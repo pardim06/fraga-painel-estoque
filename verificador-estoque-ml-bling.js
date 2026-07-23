@@ -237,7 +237,16 @@ async function getEstoqueML(accessToken) {
         const sku =
           item.seller_custom_field ||
           item.attributes?.find((a) => a.id === 'SELLER_SKU')?.value_name;
-        if (sku) estoques[sku] = { qtd: item.available_quantity, nome: item.title };
+        if (!sku) continue;
+
+        // Um mesmo SKU pode ter mais de um anúncio ativo (ex: clássico + premium,
+        // ou republicação sem pausar o anterior). Soma a quantidade de todos —
+        // é o total de fato exposto à venda no ML pra aquele SKU.
+        if (estoques[sku]) {
+          estoques[sku].qtd += item.available_quantity;
+        } else {
+          estoques[sku] = { qtd: item.available_quantity, nome: item.title };
+        }
       }
     }
 
