@@ -1,15 +1,22 @@
 {
-  "atualizadoEm": "2026-07-23T17:32:23.824Z",
+  "atualizadoEm": "2026-07-23T17:45:44.971Z",
   "totalSkus": 327,
-  "corretos": 272,
-  "totalDivergentes": 2,
+  "corretos": 195,
+  "totalDivergentes": 79,
   "divergencias": [
     {
       "sku": "97",
       "nome": "TAPETE ELITE  PROTETOR PARA  ROLO DE TREINO -  PRETO",
       "qtdBling": 21,
-      "qtdML": 10,
-      "diferenca": 11
+      "qtdML": 12,
+      "diferenca": 9
+    },
+    {
+      "sku": "228",
+      "nome": "PEDAL CLIP SHIMANO PD-M520 C/ TACOS SM-SH51 - PRETO",
+      "qtdBling": 12,
+      "qtdML": 36,
+      "diferenca": 24
     },
     {
       "sku": "368",
@@ -17,6 +24,538 @@
       "qtdBling": 3,
       "qtdML": 1,
       "diferenca": 2
+    },
+    {
+      "sku": "523",
+      "nome": "SAPATILHA MTB SHIMANO SH-XC903 S-PHYRE - AZUL COR:AZUL;TAMANHO:37",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "524",
+      "nome": "SAPATILHA MTB SHIMANO SH-XC903 S-PHYRE - AZUL COR:AZUL;TAMANHO:38",
+      "qtdBling": 2,
+      "qtdML": 4,
+      "diferenca": 2
+    },
+    {
+      "sku": "526",
+      "nome": "SAPATILHA MTB SHIMANO SH-XC903 S-PHYRE - AZUL COR:AZUL;TAMANHO:40",
+      "qtdBling": 3,
+      "qtdML": 6,
+      "diferenca": 3
+    },
+    {
+      "sku": "527",
+      "nome": "SAPATILHA MTB SHIMANO SH-XC903 S-PHYRE - AZUL COR:AZUL;TAMANHO:41",
+      "qtdBling": 4,
+      "qtdML": 8,
+      "diferenca": 4
+    },
+    {
+      "sku": "528",
+      "nome": "SAPATILHA MTB SHIMANO SH-XC903 S-PHYRE - AZUL COR:AZUL;TAMANHO:42",
+      "qtdBling": 3,
+      "qtdML": 6,
+      "diferenca": 3
+    },
+    {
+      "sku": "530",
+      "nome": "SAPATILHA MTB SHIMANO SH-XC903 S-PHYRE - AZUL COR:AZUL;TAMANHO:44",
+      "qtdBling": 2,
+      "qtdML": 4,
+      "diferenca": 2
+    },
+    {
+      "sku": "830",
+      "nome": "OLEO MOTUL P/CORRENTE UMIDO 100 ML",
+      "qtdBling": 104,
+      "qtdML": 312,
+      "diferenca": 208
+    },
+    {
+      "sku": "853",
+      "nome": "PEDAL SHIMANO PD-T421 CLICK-R C/ TAQUINHO SM-SH56",
+      "qtdBling": 4,
+      "qtdML": 8,
+      "diferenca": 4
+    },
+    {
+      "sku": "855",
+      "nome": "PASTILHA DE FREIO SHIMANO B05S - SEM BLISTER",
+      "qtdBling": 129,
+      "qtdML": 258,
+      "diferenca": 129
+    },
+    {
+      "sku": "1210",
+      "nome": "PINHAO COG SHIMANO - CS-M6100/M7100/M8100/M9100 - 10D E 12D",
+      "qtdBling": 23,
+      "qtdML": 46,
+      "diferenca": 23
+    },
+    {
+      "sku": "1521",
+      "nome": "FITA DE GUIDÃO SHIMANO PRO CLASSIC COMFORT EVA 2.5MM BCO",
+      "qtdBling": 17,
+      "qtdML": 88,
+      "diferenca": 71
+    },
+    {
+      "sku": "1523",
+      "nome": "FITA DE GUIDAO SHIMANO PRO SPORT CONTROL 200X3CM EVA AZUL",
+      "qtdBling": 9,
+      "qtdML": 18,
+      "diferenca": 9
+    },
+    {
+      "sku": "1839",
+      "nome": "GARRAFA CAMELBAK PODIUM CHILL 620ML - PRETO",
+      "qtdBling": 208,
+      "qtdML": 832,
+      "diferenca": 624
+    },
+    {
+      "sku": "2111",
+      "nome": "OCULOS CASUAL SHIMANO TOKYO LENTE RIDESCAPE",
+      "qtdBling": 15,
+      "qtdML": 30,
+      "diferenca": 15
+    },
+    {
+      "sku": "2382",
+      "nome": "KIT DE LIMPEZA ABSOLUTE COMBO COM 6 PEÇAS",
+      "qtdBling": 4,
+      "qtdML": 8,
+      "diferenca": 4
+    },
+    {
+      "sku": "2943",
+      "nome": "CICLOCOMPUTADOR/GPS NAVIHOOD L3 PRETO",
+      "qtdBling": 3,
+      "qtdML": 6,
+      "diferenca": 3
+    },
+    {
+      "sku": "3002",
+      "nome": "OCULOS CICLISMO VULTRO RISE AZUL",
+      "qtdBling": 2,
+      "qtdML": 8,
+      "diferenca": 6
+    },
+    {
+      "sku": "3017",
+      "nome": "CAPACETE CICLISMO VULTRO PODIUM PRETO/AZUL TAMANHO:M",
+      "qtdBling": 2,
+      "qtdML": 8,
+      "diferenca": 6
+    },
+    {
+      "sku": "3107",
+      "nome": "PISCA SINALIZADOR 91 ELLEVEN LEDS 50 LUMENS",
+      "qtdBling": 5,
+      "qtdML": 10,
+      "diferenca": 5
+    },
+    {
+      "sku": "3113",
+      "nome": "OCULOS CICLISMO ELLEVEN EL56 LENTE POLICARBONATO FUME/UV400 - CINZA/AZUL",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "3723",
+      "nome": "ÓCULOS DE CICLISMO VETOX - LT PRATA",
+      "qtdBling": 3,
+      "qtdML": 12,
+      "diferenca": 9
+    },
+    {
+      "sku": "3972",
+      "nome": "QUADRO MTB RAD7 STUTTGART CARBON OFF WHITE BOOST 148MM 2025/2026 TAMANHO:19",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "3977",
+      "nome": "2 PARES DE PASTILHAS SHIMANO B05S - SEM BLISTER",
+      "qtdBling": 64,
+      "qtdML": 128,
+      "diferenca": 64
+    },
+    {
+      "sku": "4362",
+      "nome": "BOMBA DE OFICINA SHIMANO PRO - TOURING",
+      "qtdBling": 10,
+      "qtdML": 40,
+      "diferenca": 30
+    },
+    {
+      "sku": "4984",
+      "nome": "GPS CICLOCOMPUTADOR GEOID CC600, WI-FI",
+      "qtdBling": 242,
+      "qtdML": 484,
+      "diferenca": 242
+    },
+    {
+      "sku": "5036",
+      "nome": "GPS Geoid CC600 com rotas wifi + Cinta cardiaca + Cadencia",
+      "qtdBling": 4,
+      "qtdML": 90,
+      "diferenca": 86
+    },
+    {
+      "sku": "5093",
+      "nome": "BOMBA DE AR CILINDRO CO2 16G GC-02P HIGH ONE",
+      "qtdBling": 56,
+      "qtdML": 112,
+      "diferenca": 56
+    },
+    {
+      "sku": "5570",
+      "nome": "Par de Rodas de Carbono RAD7 MTB XC Trail Boost  Leve",
+      "qtdBling": 55,
+      "qtdML": 110,
+      "diferenca": 55
+    },
+    {
+      "sku": "5762",
+      "nome": "Cassete 9 Velocidades Lotus 11-40D CS-HR-30-9 MTB Bike Ciclismo",
+      "qtdBling": 17,
+      "qtdML": 34,
+      "diferenca": 17
+    },
+    {
+      "sku": "5813",
+      "nome": "Alavanca Cambio Trocador Shimano Slx Sl-m7100 I-spec 12v Cor Preto",
+      "qtdBling": 10,
+      "qtdML": 20,
+      "diferenca": 10
+    },
+    {
+      "sku": "5907",
+      "nome": "SAPATILHA MTB SHIMANO SH-XC903 S-PHYRE - AZUL COR:AZUL;TAMANHO:35",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "6106",
+      "nome": "Cabo Eletrico Shimano Di2 Ew-sd. 1200mm",
+      "qtdBling": 43,
+      "qtdML": 86,
+      "diferenca": 43
+    },
+    {
+      "sku": "6263",
+      "nome": "PEDAL CRANKBROTHERS DOUBLE SHOT 1-  PRETO",
+      "qtdBling": 5,
+      "qtdML": 10,
+      "diferenca": 5
+    },
+    {
+      "sku": "6268",
+      "nome": "PNEU CONTINENTAL GRAND PRIX TR 700X32C -  PRETO",
+      "qtdBling": 1,
+      "qtdML": 4,
+      "diferenca": 3
+    },
+    {
+      "sku": "6274",
+      "nome": "CAPACETE ABUS STORMCHASER ACE-  BRANCO PURO TAMANHO:M;COR:BRANCO PURO",
+      "qtdBling": 1,
+      "qtdML": 4,
+      "diferenca": 3
+    },
+    {
+      "sku": "6283",
+      "nome": "CAPACETE  ABUS WINGBACK-  VERMELHO TAMANHO:G;COR:VERMELHO",
+      "qtdBling": 1,
+      "qtdML": 4,
+      "diferenca": 3
+    },
+    {
+      "sku": "6294",
+      "nome": "CAPACETE ABUS TAIPAN -  BRANCO BRILHANTE TAMANHO:M;COR:BRANCO BRILHANTE",
+      "qtdBling": 1,
+      "qtdML": 3,
+      "diferenca": 2
+    },
+    {
+      "sku": "6295",
+      "nome": "CAPACETE ABUS TAIPAN -  BRANCO BRILHANTE TAMANHO:G;COR:BRANCO BRILHANTE",
+      "qtdBling": 1,
+      "qtdML": 3,
+      "diferenca": 2
+    },
+    {
+      "sku": "6297",
+      "nome": "CAPACETE ABUS AIRBREAKER 2.0 MIPS-  BRANCO BRILHANTE TAMANHO:P;COR:BRANCO BRILHANTE",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "6299",
+      "nome": "CAPACETE ABUS AIRBREAKER 2.0 MIPS-  BRANCO BRILHANTE TAMANHO:G;COR:BRANCO BRILHANTE",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "6303",
+      "nome": "CAPACETE ABUS AIRBREAKER 2 0 -  CINZA GRAFITE TAMANHO:G;COR:CINZA GRAFITE",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "6311",
+      "nome": "CAPACETE  ABUS GAMECHANGER - BRANCO TAMANHO:G;COR:BRANCO",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "6337",
+      "nome": "CAPACETE ABUS AIRBREAKER 2.0 -  BRANCO BRILHANTE TAMANHO:M;COR:BRANCO BRILHANTE",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "6338",
+      "nome": "CAPACETE ABUS AIRBREAKER 2.0 -  BRANCO BRILHANTE TAMANHO:G;COR:BRANCO BRILHANTE",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "6344",
+      "nome": "PEDAL CRANKBROTHERS DOUBLE SHOT 2 - LARANJA/PRETO",
+      "qtdBling": 2,
+      "qtdML": 4,
+      "diferenca": 2
+    },
+    {
+      "sku": "6396",
+      "nome": "SAPATILHA MTB SHIMANO XC302 - BRANCO TAMANHO:34;cor:Branco",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "6398",
+      "nome": "SAPATILHA MTB SHIMANO XC302 - BRANCO TAMANHO:36;cor:Branco",
+      "qtdBling": 2,
+      "qtdML": 3,
+      "diferenca": 1
+    },
+    {
+      "sku": "6400",
+      "nome": "SAPATILHA MTB SHIMANO XC302 - BRANCO TAMANHO:38;cor:Branco",
+      "qtdBling": 2,
+      "qtdML": 4,
+      "diferenca": 2
+    },
+    {
+      "sku": "6401",
+      "nome": "SAPATILHA MTB SHIMANO XC302 - BRANCO TAMANHO:39;cor:Branco",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "6402",
+      "nome": "SAPATILHA MTB SHIMANO XC302 - BRANCO TAMANHO:40;cor:Branco",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "6406",
+      "nome": "SAPATILHA MTB SHIMANO XC302 - BRANCO TAMANHO:44;cor:Branco",
+      "qtdBling": 3,
+      "qtdML": 6,
+      "diferenca": 3
+    },
+    {
+      "sku": "6407",
+      "nome": "SAPATILHA MTB SHIMANO XC302 - BRANCO TAMANHO:45;cor:Branco",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "6408",
+      "nome": "SAPATILHA MTB SHIMANO XC302 - BRANCO TAMANHO:46;cor:Branco",
+      "qtdBling": 2,
+      "qtdML": 4,
+      "diferenca": 2
+    },
+    {
+      "sku": "6409",
+      "nome": "SAPATILHA MTB SHIMANO XC302 - BRANCO TAMANHO:47;cor:Branco",
+      "qtdBling": 2,
+      "qtdML": 4,
+      "diferenca": 2
+    },
+    {
+      "sku": "6410",
+      "nome": "SAPATILHA MTB SHIMANO XC302 - BRANCO TAMANHO:48;cor:Branco",
+      "qtdBling": 2,
+      "qtdML": 4,
+      "diferenca": 2
+    },
+    {
+      "sku": "6459",
+      "nome": "SUPORTE TRUE PARA 3 BICICLETAS ENGATE PRE",
+      "qtdBling": 1,
+      "qtdML": 2,
+      "diferenca": 1
+    },
+    {
+      "sku": "6506",
+      "nome": "MANOPLA PUNHO ESI GRIPS CHUNKY - LARANJA",
+      "qtdBling": 2,
+      "qtdML": 4,
+      "diferenca": 2
+    },
+    {
+      "sku": "6540",
+      "nome": "POTE ENERGY PRO 750G SUPLEMENTO SUDRACT - TANGERINA",
+      "qtdBling": 5,
+      "qtdML": 10,
+      "diferenca": 5
+    },
+    {
+      "sku": "6544",
+      "nome": "POTE 900G -SUDRACT MAIS CARBO -  LIMAO",
+      "qtdBling": 11,
+      "qtdML": 22,
+      "diferenca": 11
+    },
+    {
+      "sku": "6545",
+      "nome": "POTE 900G -SUDRACT MAIS CARBO - TANGERINA",
+      "qtdBling": 10,
+      "qtdML": 20,
+      "diferenca": 10
+    },
+    {
+      "sku": "6592",
+      "nome": "Cassete Sunrace M680 11-40d 8v 456g 11/40 460gr K7 Mtb Prateado 11 40",
+      "qtdBling": 1,
+      "qtdML": 4,
+      "diferenca": 3
+    },
+    {
+      "sku": "6600",
+      "nome": "PEDIVELA SUNRACE M500 170MM 42/34/24D MTB BIKE TRIPLO",
+      "qtdBling": 4,
+      "qtdML": 12,
+      "diferenca": 8
+    },
+    {
+      "sku": "6601",
+      "nome": "PEDIVELA TRIPLO SUNRACE M600 PRETO 170MM 42/32/22 MTB BIKE",
+      "qtdBling": 8,
+      "qtdML": 16,
+      "diferenca": 8
+    },
+    {
+      "sku": "6602",
+      "nome": "Pedivela Sunrace Fc M926 36/22t Duplo 175mm Ponta Quadrada",
+      "qtdBling": 7,
+      "qtdML": 14,
+      "diferenca": 7
+    },
+    {
+      "sku": "6603",
+      "nome": "Kit Transmissão Absolute Prime Mtb 1x12v Câmbio Traseiro + Alavanca",
+      "qtdBling": 5,
+      "qtdML": 20,
+      "diferenca": 15
+    },
+    {
+      "sku": "6632",
+      "nome": "Pedivela Absolute Wild 175mm Alumínio Ponta Quadrada 104x64mm",
+      "qtdBling": 3,
+      "qtdML": 12,
+      "diferenca": 9
+    },
+    {
+      "sku": "6635",
+      "nome": "Óculos Para Ciclismo Racer Sprinter Black Red Atrio Com 3 Lentes",
+      "qtdBling": 13,
+      "qtdML": 39,
+      "diferenca": 26
+    },
+    {
+      "sku": "6636",
+      "nome": "Óculos Atrio Sprinter Lite Kit 3 Lentes Black Red - Bi235 Laranja-claro Preto",
+      "qtdBling": 18,
+      "qtdML": 36,
+      "diferenca": 18
+    },
+    {
+      "sku": "6643",
+      "nome": "Par Rodas Aro 29 Mtb Absolute Wild Disco Tubeless 8/12v 32F",
+      "qtdBling": 5,
+      "qtdML": 20,
+      "diferenca": 15
+    },
+    {
+      "sku": "6651",
+      "nome": "GUIDAO MTB RETO INTEGRADO CARBONO RAD7 740 MM - PRETO",
+      "qtdBling": 490,
+      "qtdML": 980,
+      "diferenca": 490
+    },
+    {
+      "sku": "6653",
+      "nome": "GARRAFA CAMELBAK PODIUM 710ML - PRETO",
+      "qtdBling": 63,
+      "qtdML": 126,
+      "diferenca": 63
+    },
+    {
+      "sku": "6654",
+      "nome": "GARRAFA CAMELBAK PODIUM  620ML - PRETO",
+      "qtdBling": 125,
+      "qtdML": 250,
+      "diferenca": 125
+    },
+    {
+      "sku": "6658",
+      "nome": "Par Cubo Diant/tras 32f K7 Padrão Hg Boost Rolamentado Lotus",
+      "qtdBling": 5,
+      "qtdML": 10,
+      "diferenca": 5
+    },
+    {
+      "sku": "6660",
+      "nome": "Cubo Traseiro Shimano Fh Tx505 Center Lock 8/9/10/11v 32/36f",
+      "qtdBling": 16,
+      "qtdML": 32,
+      "diferenca": 16
+    },
+    {
+      "sku": "6661",
+      "nome": "CUBO DIANTEIRO TOURNEY HB-TX506 6 PARAFUSO 36F PRETO",
+      "qtdBling": 10,
+      "qtdML": 20,
+      "diferenca": 10
+    },
+    {
+      "sku": "6662",
+      "nome": "CUBO DIANTEIRO SHIMANO TOURNEY HB-TX505 C LOCK 36F PRETO",
+      "qtdBling": 20,
+      "qtdML": 40,
+      "diferenca": 20
     }
   ],
   "semSkuNoBling": [
