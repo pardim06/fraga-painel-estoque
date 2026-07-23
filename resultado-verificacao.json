@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-07-23T17:28:55.587Z",
+  "atualizadoEm": "2026-07-23T17:32:23.824Z",
   "totalSkus": 327,
-  "corretos": 271,
-  "totalDivergentes": 3,
+  "corretos": 272,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -17,13 +17,6 @@
       "qtdBling": 3,
       "qtdML": 1,
       "diferenca": 2
-    },
-    {
-      "sku": "5036",
-      "nome": "GPS Geoid CC600 com rotas wifi + Cinta cardiaca + Cadencia",
-      "qtdBling": 4,
-      "qtdML": 86,
-      "diferenca": 82
     }
   ],
   "semSkuNoBling": [
