@@ -22,6 +22,9 @@ const OUTPUT_PATH = path.join(__dirname, 'resultado-verificacao.json');
 const BLING_CLIENT_ID = process.env.BLING_CLIENT_ID;
 const BLING_CLIENT_SECRET = process.env.BLING_CLIENT_SECRET;
 const BLING_REFRESH_TOKEN = process.env.BLING_REFRESH_TOKEN;
+// Depósito "1 - SITE / MERCADO LIVRE" — só o estoque desse depósito deve ser
+// comparado com o ML (os outros são lojas físicas, reserva, eventos etc.).
+const BLING_DEPOSITO_ID = process.env.BLING_DEPOSITO_ID || '14887750294';
 
 const ML_CLIENT_ID = process.env.ML_CLIENT_ID;
 const ML_CLIENT_SECRET = process.env.ML_CLIENT_SECRET;
@@ -108,10 +111,12 @@ async function getBlingAccessToken() {
 
 // ===== 2. ESTOQUE NO BLING =====
 // Retorna um mapa { sku: quantidade }
-// A listagem de produtos já traz o saldo (estoque.saldoVirtualTotal) junto —
-// não precisa de uma chamada separada ao endpoint de saldos.
+// Usa só o saldo do depósito "SITE / MERCADO LIVRE" (BLING_DEPOSITO_ID) — o
+// saldo agregado de /produtos soma também lojas físicas e outros depósitos,
+// o que não é o estoque de fato publicado no ML.
 async function getEstoqueBling(accessToken) {
-  const estoques = {};
+  // 1. lista todos os produtos ativos: { id -> codigo }
+  const codigoPorId = {};
   let pagina = 1;
 
   while (true) {
@@ -124,12 +129,30 @@ async function getEstoqueBling(accessToken) {
     if (dados.length === 0) break;
 
     for (const item of dados) {
-      const sku = item.codigo;
-      const saldo = item.estoque?.saldoVirtualTotal;
-      if (sku && saldo !== undefined) estoques[sku] = saldo;
+      if (item.codigo) codigoPorId[item.id] = item.codigo;
     }
 
     pagina++;
+  }
+
+  // 2. busca o saldo por depósito em lotes (idsProdutos)
+  const estoques = {};
+  const idsProdutos = Object.keys(codigoPorId);
+  const TAMANHO_LOTE = 50;
+
+  for (let i = 0; i < idsProdutos.length; i += TAMANHO_LOTE) {
+    const lote = idsProdutos.slice(i, i + TAMANHO_LOTE);
+    const resp = await axios.get('https://www.bling.com.br/Api/v3/estoques/saldos', {
+      headers: { Authorization: `Bearer ${accessToken}` },
+      params: { idsProdutos: lote },
+    });
+
+    for (const item of resp.data.data || []) {
+      const sku = item.produto?.codigo ?? codigoPorId[item.produto?.id];
+      const depositoSite = item.depositos?.find((d) => String(d.id) === String(BLING_DEPOSITO_ID));
+      const saldo = depositoSite?.saldoVirtual ?? depositoSite?.saldoFisico;
+      if (sku && saldo !== undefined) estoques[sku] = saldo;
+    }
   }
 
   return estoques;

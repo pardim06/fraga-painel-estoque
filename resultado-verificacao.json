@@ -1,513 +1,351 @@
 {
-  "atualizadoEm": "2026-07-23T16:39:06.082Z",
+  "atualizadoEm": "2026-07-23T16:43:26.272Z",
   "totalSkus": 328,
-  "corretos": 200,
-  "totalDivergentes": 75,
+  "corretos": 271,
+  "totalDivergentes": 57,
   "divergencias": [
     {
       "sku": "97",
-      "qtdBling": 22,
+      "qtdBling": 21,
       "qtdML": 10,
-      "diferenca": 12
-    },
-    {
-      "sku": "228",
-      "qtdBling": 27,
-      "qtdML": 12,
-      "diferenca": 15
-    },
-    {
-      "sku": "335",
-      "qtdBling": 14,
-      "qtdML": 5,
-      "diferenca": 9
-    },
-    {
-      "sku": "368",
-      "qtdBling": 5,
-      "qtdML": 1,
-      "diferenca": 4
-    },
-    {
-      "sku": "526",
-      "qtdBling": 5,
-      "qtdML": 3,
-      "diferenca": 2
-    },
-    {
-      "sku": "528",
-      "qtdBling": 4,
-      "qtdML": 3,
-      "diferenca": 1
-    },
-    {
-      "sku": "550",
-      "qtdBling": 9,
-      "qtdML": 2,
-      "diferenca": 7
-    },
-    {
-      "sku": "820",
-      "qtdBling": 2,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "821",
-      "qtdBling": 3,
-      "qtdML": 2,
-      "diferenca": 1
-    },
-    {
-      "sku": "822",
-      "qtdBling": 4,
-      "qtdML": 2,
-      "diferenca": 2
-    },
-    {
-      "sku": "823",
-      "qtdBling": 8,
-      "qtdML": 1,
-      "diferenca": 7
-    },
-    {
-      "sku": "830",
-      "qtdBling": 130,
-      "qtdML": 104,
-      "diferenca": 26
-    },
-    {
-      "sku": "853",
-      "qtdBling": 7,
-      "qtdML": 4,
-      "diferenca": 3
-    },
-    {
-      "sku": "855",
-      "qtdBling": 152,
-      "qtdML": 129,
-      "diferenca": 23
-    },
-    {
-      "sku": "887",
-      "qtdBling": 2,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "975",
-      "qtdBling": 4,
-      "qtdML": 3,
-      "diferenca": 1
-    },
-    {
-      "sku": "1132",
-      "qtdBling": 32,
-      "qtdML": 24,
-      "diferenca": 8
-    },
-    {
-      "sku": "1210",
-      "qtdBling": 36,
-      "qtdML": 23,
-      "diferenca": 13
-    },
-    {
-      "sku": "1295",
-      "qtdBling": 3,
-      "qtdML": 2,
-      "diferenca": 1
-    },
-    {
-      "sku": "1521",
-      "qtdBling": 18,
-      "qtdML": 17,
-      "diferenca": 1
-    },
-    {
-      "sku": "1546",
-      "qtdBling": 13,
-      "qtdML": 1,
-      "diferenca": 12
-    },
-    {
-      "sku": "1839",
-      "qtdBling": 211,
-      "qtdML": 208,
-      "diferenca": 3
-    },
-    {
-      "sku": "1918",
-      "qtdBling": 3,
-      "qtdML": 2,
-      "diferenca": 1
-    },
-    {
-      "sku": "2111",
-      "qtdBling": 19,
-      "qtdML": 15,
-      "diferenca": 4
-    },
-    {
-      "sku": "2243",
-      "qtdBling": 5,
-      "qtdML": 2,
-      "diferenca": 3
-    },
-    {
-      "sku": "2382",
-      "qtdBling": 8,
-      "qtdML": 4,
-      "diferenca": 4
-    },
-    {
-      "sku": "2943",
-      "qtdBling": 14,
-      "qtdML": 3,
       "diferenca": 11
     },
     {
-      "sku": "3842",
-      "qtdBling": 53,
-      "qtdML": 32,
-      "diferenca": 21
-    },
-    {
-      "sku": "3911",
-      "qtdBling": 36,
-      "qtdML": 7,
-      "diferenca": 29
-    },
-    {
-      "sku": "3912",
-      "qtdBling": 77,
-      "qtdML": 8,
-      "diferenca": 69
-    },
-    {
-      "sku": "3913",
-      "qtdBling": 333,
-      "qtdML": 266,
-      "diferenca": 67
-    },
-    {
-      "sku": "3914",
-      "qtdBling": 132,
-      "qtdML": 46,
-      "diferenca": 86
-    },
-    {
-      "sku": "3915",
-      "qtdBling": 54,
-      "qtdML": 22,
-      "diferenca": 32
-    },
-    {
-      "sku": "3916",
-      "qtdBling": 144,
-      "qtdML": 61,
-      "diferenca": 83
-    },
-    {
-      "sku": "3917",
-      "qtdBling": 80,
-      "qtdML": 42,
-      "diferenca": 38
-    },
-    {
-      "sku": "3918",
-      "qtdBling": 93,
-      "qtdML": 34,
-      "diferenca": 59
-    },
-    {
-      "sku": "3919",
-      "qtdBling": 121,
-      "qtdML": 94,
-      "diferenca": 27
-    },
-    {
-      "sku": "3920",
-      "qtdBling": 167,
-      "qtdML": 150,
-      "diferenca": 17
-    },
-    {
-      "sku": "3972",
-      "qtdBling": 5,
-      "qtdML": 1,
-      "diferenca": 4
-    },
-    {
-      "sku": "3975",
-      "qtdBling": 4,
-      "qtdML": 1,
+      "sku": "170",
+      "qtdBling": 0,
+      "qtdML": 3,
       "diferenca": 3
     },
     {
-      "sku": "3977",
-      "qtdBling": 76,
-      "qtdML": 64,
-      "diferenca": 12
+      "sku": "173",
+      "qtdBling": 0,
+      "qtdML": 1,
+      "diferenca": 1
     },
     {
-      "sku": "4044",
-      "qtdBling": 17,
+      "sku": "176",
+      "qtdBling": 0,
+      "qtdML": 1,
+      "diferenca": 1
+    },
+    {
+      "sku": "207",
+      "qtdBling": 0,
+      "qtdML": 1,
+      "diferenca": 1
+    },
+    {
+      "sku": "368",
+      "qtdBling": 3,
+      "qtdML": 1,
+      "diferenca": 2
+    },
+    {
+      "sku": "476",
+      "qtdBling": 0,
+      "qtdML": 8,
+      "diferenca": 8
+    },
+    {
+      "sku": "484",
+      "qtdBling": 0,
       "qtdML": 15,
-      "diferenca": 2
+      "diferenca": 15
     },
     {
-      "sku": "4046",
-      "qtdBling": 7,
-      "qtdML": 2,
-      "diferenca": 5
-    },
-    {
-      "sku": "4047",
-      "qtdBling": 5,
-      "qtdML": 2,
-      "diferenca": 3
-    },
-    {
-      "sku": "4052",
-      "qtdBling": 12,
-      "qtdML": 10,
-      "diferenca": 2
-    },
-    {
-      "sku": "4053",
-      "qtdBling": 4,
-      "qtdML": 1,
-      "diferenca": 3
-    },
-    {
-      "sku": "4060",
-      "qtdBling": 7,
-      "qtdML": 8,
-      "diferenca": 1
-    },
-    {
-      "sku": "4254",
-      "qtdBling": 2,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "4257",
-      "qtdBling": 3,
-      "qtdML": 2,
-      "diferenca": 1
-    },
-    {
-      "sku": "4263",
-      "qtdBling": 3,
-      "qtdML": 1,
-      "diferenca": 2
-    },
-    {
-      "sku": "4270",
-      "qtdBling": 3,
-      "qtdML": 1,
-      "diferenca": 2
-    },
-    {
-      "sku": "4280",
-      "qtdBling": 2,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "4304",
-      "qtdBling": 2,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "4318",
-      "qtdBling": 3,
-      "qtdML": 2,
-      "diferenca": 1
-    },
-    {
-      "sku": "4323",
-      "qtdBling": 3,
-      "qtdML": 2,
-      "diferenca": 1
-    },
-    {
-      "sku": "4324",
-      "qtdBling": 3,
-      "qtdML": 2,
-      "diferenca": 1
-    },
-    {
-      "sku": "4362",
-      "qtdBling": 14,
-      "qtdML": 10,
-      "diferenca": 4
-    },
-    {
-      "sku": "4790",
-      "qtdBling": 3,
-      "qtdML": 2,
-      "diferenca": 1
-    },
-    {
-      "sku": "4984",
-      "qtdBling": 275,
-      "qtdML": 242,
-      "diferenca": 33
-    },
-    {
-      "sku": "5035",
-      "qtdBling": 47,
-      "qtdML": 17,
-      "diferenca": 30
-    },
-    {
-      "sku": "5036",
-      "qtdBling": 8,
-      "qtdML": 86,
-      "diferenca": 78
-    },
-    {
-      "sku": "5093",
-      "qtdBling": 69,
-      "qtdML": 56,
-      "diferenca": 13
-    },
-    {
-      "sku": "5342",
-      "qtdBling": 20,
-      "qtdML": 7,
-      "diferenca": 13
-    },
-    {
-      "sku": "5362",
-      "qtdBling": 65,
-      "qtdML": 40,
-      "diferenca": 25
-    },
-    {
-      "sku": "5570",
-      "qtdBling": 80,
-      "qtdML": 55,
-      "diferenca": 25
-    },
-    {
-      "sku": "6106",
-      "qtdBling": 49,
-      "qtdML": 43,
+      "sku": "492",
+      "qtdBling": 0,
+      "qtdML": 6,
       "diferenca": 6
     },
     {
-      "sku": "6268",
-      "qtdBling": 4,
+      "sku": "509",
+      "qtdBling": 0,
+      "qtdML": 11,
+      "diferenca": 11
+    },
+    {
+      "sku": "746",
+      "qtdBling": 0,
       "qtdML": 1,
+      "diferenca": 1
+    },
+    {
+      "sku": "767",
+      "qtdBling": 0,
+      "qtdML": 4,
+      "diferenca": 4
+    },
+    {
+      "sku": "768",
+      "qtdBling": 0,
+      "qtdML": 13,
+      "diferenca": 13
+    },
+    {
+      "sku": "773",
+      "qtdBling": 0,
+      "qtdML": 13,
+      "diferenca": 13
+    },
+    {
+      "sku": "856",
+      "qtdBling": 0,
+      "qtdML": 28,
+      "diferenca": 28
+    },
+    {
+      "sku": "884",
+      "qtdBling": 0,
+      "qtdML": 17,
+      "diferenca": 17
+    },
+    {
+      "sku": "1212",
+      "qtdBling": 0,
+      "qtdML": 15,
+      "diferenca": 15
+    },
+    {
+      "sku": "1225",
+      "qtdBling": 0,
+      "qtdML": 13,
+      "diferenca": 13
+    },
+    {
+      "sku": "1238",
+      "qtdBling": 0,
+      "qtdML": 16,
+      "diferenca": 16
+    },
+    {
+      "sku": "1410",
+      "qtdBling": 0,
+      "qtdML": 1,
+      "diferenca": 1
+    },
+    {
+      "sku": "1548",
+      "qtdBling": 0,
+      "qtdML": 1,
+      "diferenca": 1
+    },
+    {
+      "sku": "1551",
+      "qtdBling": 0,
+      "qtdML": 2,
+      "diferenca": 2
+    },
+    {
+      "sku": "1597",
+      "qtdBling": 0,
+      "qtdML": 4,
+      "diferenca": 4
+    },
+    {
+      "sku": "1611",
+      "qtdBling": 0,
+      "qtdML": 3,
       "diferenca": 3
     },
     {
-      "sku": "6408",
-      "qtdBling": 3,
-      "qtdML": 2,
+      "sku": "1635",
+      "qtdBling": 0,
+      "qtdML": 5,
+      "diferenca": 5
+    },
+    {
+      "sku": "1649",
+      "qtdBling": 0,
+      "qtdML": 1,
       "diferenca": 1
     },
     {
-      "sku": "6416",
-      "qtdBling": 3,
+      "sku": "1899",
+      "qtdBling": 0,
+      "qtdML": 14,
+      "diferenca": 14
+    },
+    {
+      "sku": "1906",
+      "qtdBling": 0,
+      "qtdML": 8,
+      "diferenca": 8
+    },
+    {
+      "sku": "1985",
+      "qtdBling": 0,
       "qtdML": 2,
+      "diferenca": 2
+    },
+    {
+      "sku": "2135",
+      "qtdBling": 0,
+      "qtdML": 3,
+      "diferenca": 3
+    },
+    {
+      "sku": "2544",
+      "qtdBling": 0,
+      "qtdML": 60,
+      "diferenca": 60
+    },
+    {
+      "sku": "2807",
+      "qtdBling": 0,
+      "qtdML": 271,
+      "diferenca": 271
+    },
+    {
+      "sku": "3817",
+      "qtdBling": 0,
+      "qtdML": 10,
+      "diferenca": 10
+    },
+    {
+      "sku": "4010",
+      "qtdBling": 0,
+      "qtdML": 1,
       "diferenca": 1
+    },
+    {
+      "sku": "4202",
+      "qtdBling": 0,
+      "qtdML": 14,
+      "diferenca": 14
+    },
+    {
+      "sku": "4204",
+      "qtdBling": 0,
+      "qtdML": 13,
+      "diferenca": 13
+    },
+    {
+      "sku": "4205",
+      "qtdBling": 0,
+      "qtdML": 17,
+      "diferenca": 17
+    },
+    {
+      "sku": "4206",
+      "qtdBling": 0,
+      "qtdML": 12,
+      "diferenca": 12
+    },
+    {
+      "sku": "4207",
+      "qtdBling": 0,
+      "qtdML": 13,
+      "diferenca": 13
+    },
+    {
+      "sku": "4931",
+      "qtdBling": 0,
+      "qtdML": 9,
+      "diferenca": 9
+    },
+    {
+      "sku": "4940",
+      "qtdBling": 0,
+      "qtdML": 7,
+      "diferenca": 7
+    },
+    {
+      "sku": "5036",
+      "qtdBling": 4,
+      "qtdML": 86,
+      "diferenca": 82
+    },
+    {
+      "sku": "5061",
+      "qtdBling": 0,
+      "qtdML": 2,
+      "diferenca": 2
+    },
+    {
+      "sku": "5063",
+      "qtdBling": 0,
+      "qtdML": 4,
+      "diferenca": 4
+    },
+    {
+      "sku": "5106",
+      "qtdBling": 0,
+      "qtdML": 1,
+      "diferenca": 1
+    },
+    {
+      "sku": "5119",
+      "qtdBling": 0,
+      "qtdML": 3,
+      "diferenca": 3
+    },
+    {
+      "sku": "5133",
+      "qtdBling": 0,
+      "qtdML": 1,
+      "diferenca": 1
+    },
+    {
+      "sku": "5146",
+      "qtdBling": 0,
+      "qtdML": 17,
+      "diferenca": 17
+    },
+    {
+      "sku": "5162",
+      "qtdBling": 0,
+      "qtdML": 13,
+      "diferenca": 13
+    },
+    {
+      "sku": "5178",
+      "qtdBling": 0,
+      "qtdML": 14,
+      "diferenca": 14
+    },
+    {
+      "sku": "5194",
+      "qtdBling": 0,
+      "qtdML": 2,
+      "diferenca": 2
+    },
+    {
+      "sku": "5235",
+      "qtdBling": 0,
+      "qtdML": 13,
+      "diferenca": 13
+    },
+    {
+      "sku": "5249",
+      "qtdBling": 0,
+      "qtdML": 15,
+      "diferenca": 15
+    },
+    {
+      "sku": "5281",
+      "qtdBling": 0,
+      "qtdML": 27,
+      "diferenca": 27
+    },
+    {
+      "sku": "5311",
+      "qtdBling": 0,
+      "qtdML": 4,
+      "diferenca": 4
+    },
+    {
+      "sku": "5321",
+      "qtdBling": 0,
+      "qtdML": 43,
+      "diferenca": 43
     },
     {
       "sku": "6431",
       "qtdBling": 0,
       "qtdML": 1,
       "diferenca": 1
-    },
-    {
-      "sku": "6507",
-      "qtdBling": 2,
-      "qtdML": 4,
-      "diferenca": 2
-    },
-    {
-      "sku": "6510",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "6513",
-      "qtdBling": 1,
-      "qtdML": 2,
-      "diferenca": 1
-    },
-    {
-      "sku": "6636",
-      "qtdBling": 19,
-      "qtdML": 18,
-      "diferenca": 1
-    },
-    {
-      "sku": "6651",
-      "qtdBling": 495,
-      "qtdML": 490,
-      "diferenca": 5
     }
   ],
-  "semSkuNoBling": [
-    "170",
-    "173",
-    "176",
-    "207",
-    "476",
-    "484",
-    "492",
-    "509",
-    "746",
-    "767",
-    "768",
-    "773",
-    "856",
-    "884",
-    "1212",
-    "1225",
-    "1238",
-    "1410",
-    "1548",
-    "1551",
-    "1597",
-    "1611",
-    "1635",
-    "1649",
-    "1899",
-    "1906",
-    "1985",
-    "2135",
-    "2544",
-    "2807",
-    "3817",
-    "4010",
-    "4202",
-    "4204",
-    "4205",
-    "4206",
-    "4207",
-    "4931",
-    "4940",
-    "5061",
-    "5063",
-    "5106",
-    "5119",
-    "5133",
-    "5146",
-    "5162",
-    "5178",
-    "5194",
-    "5235",
-    "5249",
-    "5281",
-    "5311",
-    "5321"
-  ]
+  "semSkuNoBling": []
 }
