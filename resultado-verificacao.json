@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-07-23T19:15:03.944Z",
-  "totalSkus": 330,
+  "atualizadoEm": "2026-07-23T20:01:32.537Z",
+  "totalSkus": 329,
   "corretos": 271,
-  "totalDivergentes": 6,
+  "totalDivergentes": 5,
   "divergencias": [
     {
       "sku": "97",
@@ -23,28 +23,21 @@
       "nome": "FITA DE GUIDÃO SHIMANO PRO CLASSIC COMFORT EVA 2.5MM BCO",
       "qtdBling": 17,
       "qtdML": 20,
-      "diferenca": 3
-    },
-    {
-      "sku": "4259",
-      "nome": "SAPATILHA MTB SHIMANO SH-XC302 - CINZA GELO TAMANHO:41 ;COR:CINZA GELO",
-      "qtdBling": 1,
-      "qtdML": 0,
-      "diferenca": 1
+      "diferenca": -3
     },
     {
       "sku": "5036",
       "nome": "GPS Geoid CC600 com rotas wifi + Cinta cardiaca + Cadencia",
       "qtdBling": 4,
       "qtdML": 86,
-      "diferenca": 82
+      "diferenca": -82
     },
     {
       "sku": "6431",
       "nome": "PEDAL CRANK BROTHERS EGG BEATER 1 - MOLA VERMELHA",
       "qtdBling": 0,
       "qtdML": 1,
-      "diferenca": 1
+      "diferenca": -1
     }
   ],
   "semSkuNoBling": [
