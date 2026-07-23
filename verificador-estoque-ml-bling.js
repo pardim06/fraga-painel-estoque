@@ -169,8 +169,11 @@ function compararEstoques(estoqueBling, estoqueML) {
       continue;
     }
 
-    const diferenca = Math.abs(bling.saldo - ml.qtd);
-    if (diferenca > TOLERANCIA) {
+    // Sinal importa: positivo = Bling tem mais que o ML (só perde exposição
+    // de venda); negativo = Bling tem menos que o ML publicado (risco real
+    // de vender sem estoque).
+    const diferenca = bling.saldo - ml.qtd;
+    if (Math.abs(diferenca) > TOLERANCIA) {
       divergencias.push({
         sku,
         nome: bling.nome || ml.nome,
@@ -195,7 +198,8 @@ async function enviarAlertaWhatsapp(divergencias) {
   let mensagem = `Divergencia de estoque Bling x ML (${divergencias.length} SKUs)\n\n`;
 
   for (const d of divergencias.slice(0, 20)) {
-    mensagem += `SKU ${d.sku}: Bling ${d.qtdBling} | ML ${d.qtdML} | diferenca ${d.diferenca}\n`;
+    const sinal = d.diferenca > 0 ? '+' : '';
+    mensagem += `SKU ${d.sku}: Bling ${d.qtdBling} | ML ${d.qtdML} | diferenca ${sinal}${d.diferenca}\n`;
   }
 
   if (divergencias.length > 20) {

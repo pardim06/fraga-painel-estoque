@@ -15,28 +15,44 @@ const OUTPUT_PATH = path.join(__dirname, '..', 'perguntas-ml.json');
 
 // Acima desse tempo sem resposta, a pergunta é destacada como atrasada no painel.
 const LIMITE_MINUTOS = 60;
+// Pergunta muito antiga sem resposta provavelmente já perdeu a janela de
+// venda — não faz sentido poluir o painel com isso, então ignora.
+const MAX_DIAS = 7;
 
 async function getPerguntasAbertas(accessToken) {
   const perguntas = [];
+  const limiteData = Date.now() - MAX_DIAS * 24 * 60 * 60 * 1000;
   let offset = 0;
   const limit = 50;
 
+  // Mais novas primeiro: assim que aparecer uma pergunta fora da janela de
+  // 30 dias, todas as próximas também vão estar (mesma ordenação) e dá pra
+  // parar de paginar.
   while (true) {
     const resp = await axios.get('https://api.mercadolibre.com/my/received_questions/search', {
       headers: { Authorization: `Bearer ${accessToken}` },
       params: {
         status: 'UNANSWERED',
         sort_fields: 'date_created',
-        sort_types: 'ASC',
+        sort_types: 'DESC',
         limit,
         offset,
       },
     });
 
     const dados = resp.data.questions || [];
-    perguntas.push(...dados);
+    if (dados.length === 0) break;
 
-    if (dados.length < limit) break;
+    let atingiuLimite = false;
+    for (const p of dados) {
+      if (new Date(p.date_created).getTime() < limiteData) {
+        atingiuLimite = true;
+        break;
+      }
+      perguntas.push(p);
+    }
+
+    if (atingiuLimite || dados.length < limit) break;
     offset += limit;
   }
 

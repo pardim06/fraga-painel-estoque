@@ -84,6 +84,12 @@
     return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
   }
 
+  // Positivo: Bling tem mais que o ML. Negativo: Bling tem menos que o ML
+  // publicado (risco de vender sem estoque).
+  function formatarDiferenca(n) {
+    return (n > 0 ? '+' : '') + n;
+  }
+
   function gaugeSvg(pct) {
     const cor = pct >= 98 ? 'var(--ok)' : pct >= 90 ? 'var(--blue)' : 'var(--alert)';
     return `
@@ -135,14 +141,14 @@
         '</tr></thead><tbody>';
       divs
         .slice()
-        .sort((a, b) => b.diferenca - a.diferenca)
+        .sort((a, b) => Math.abs(b.diferenca) - Math.abs(a.diferenca))
         .forEach((d) => {
           html += '<tr>' +
             '<td class="sku">' + escapeHtml(d.sku) + '</td>' +
             '<td class="produto" title="' + escapeHtml(d.nome) + '">' + escapeHtml(d.nome || '—') + '</td>' +
             '<td class="num">' + d.qtdBling + '</td>' +
             '<td class="num">' + d.qtdML + '</td>' +
-            '<td class="num"><span class="diff-badge">Δ' + d.diferenca + '</span></td>' +
+            '<td class="num"><span class="diff-badge">' + formatarDiferenca(d.diferenca) + '</span></td>' +
             '</tr>';
         });
       html += '</tbody></table></div>';
@@ -177,9 +183,9 @@
     let csv = 'SKU;Produto;Estoque Bling;Estoque ML;Diferenca\n';
     lista
       .slice()
-      .sort((a, b) => b.diferenca - a.diferenca)
+      .sort((a, b) => Math.abs(b.diferenca) - Math.abs(a.diferenca))
       .forEach((d) => {
-        csv += d.sku + ';' + (d.nome || '').replace(/;/g, ',') + ';' + d.qtdBling + ';' + d.qtdML + ';' + d.diferenca + '\n';
+        csv += d.sku + ';' + (d.nome || '').replace(/;/g, ',') + ';' + d.qtdBling + ';' + d.qtdML + ';' + formatarDiferenca(d.diferenca) + '\n';
       });
 
     const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
@@ -201,9 +207,9 @@
     let texto = 'Produtos para arrumar (' + lista.length + '):\n\n';
     lista
       .slice()
-      .sort((a, b) => b.diferenca - a.diferenca)
+      .sort((a, b) => Math.abs(b.diferenca) - Math.abs(a.diferenca))
       .forEach((d) => {
-        texto += 'SKU ' + d.sku + ' (' + (d.nome || 'sem nome') + '): Bling ' + d.qtdBling + ' | ML ' + d.qtdML + ' | diferenca ' + d.diferenca + '\n';
+        texto += 'SKU ' + d.sku + ' (' + (d.nome || 'sem nome') + '): Bling ' + d.qtdBling + ' | ML ' + d.qtdML + ' | diferenca ' + formatarDiferenca(d.diferenca) + '\n';
       });
 
     navigator.clipboard.writeText(texto).then(() => {

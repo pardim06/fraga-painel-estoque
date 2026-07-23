@@ -1,58 +1,7 @@
 {
-  "atualizadoEm": "2026-07-23T19:51:58.443Z",
+  "atualizadoEm": "2026-07-23T19:58:12.199Z",
   "limiteMinutos": 60,
-  "total": 5,
-  "atrasadas": 5,
-  "perguntas": [
-    {
-      "id": 13492355733,
-      "texto": "Sapatilha Shimano Feminina Sh-rc100w serve para bike indoor",
-      "itemId": "MLB5514466784",
-      "produto": "Sapatilha Shimano Feminina Sh-rc100w Azul Speed Ciclismo",
-      "link": "https://produto.mercadolivre.com.br/MLB-5514466784-sapatilha-shimano-feminina-sh-rc100w-azul-speed-ciclismo-_JM",
-      "dataCriacao": "2025-12-24T17:32:36.016649604-04:00",
-      "minutosAberta": 303739,
-      "atrasada": true
-    },
-    {
-      "id": 13517401434,
-      "texto": "Capacete original e com nota fiscal?",
-      "itemId": "MLB5019490062",
-      "produto": "Capacete Ciclismo Lazer Road Tonic Kineticore - Azul/preto",
-      "link": "https://produto.mercadolivre.com.br/MLB-5019490062-capacete-ciclismo-lazer-road-tonic-kineticore-azulpreto-_JM",
-      "dataCriacao": "2026-02-01T21:23:49.963524969-04:00",
-      "minutosAberta": 247348,
-      "atrasada": true
-    },
-    {
-      "id": 13519942124,
-      "texto": "Bom dia",
-      "itemId": "MLB4983121984",
-      "produto": "Garrafa Camelbak Podium Dirt Series Chill 0,62l - Preto Preto",
-      "link": "https://produto.mercadolivre.com.br/MLB-4983121984-garrafa-camelbak-podium-dirt-series-chill-062l-preto-preto-_JM",
-      "dataCriacao": "2026-02-05T09:40:10.545958864-04:00",
-      "minutosAberta": 242292,
-      "atrasada": true
-    },
-    {
-      "id": 13609029149,
-      "texto": "Boa tarde! serve para eixo passante(boost)? Obrigado",
-      "itemId": "MLB4310893615",
-      "produto": "Rolo De Treinamento Magnético High One Para Bicicleta Speed E Mtb",
-      "link": "https://produto.mercadolivre.com.br/MLB-4310893615-rolo-de-treinamento-magnetico-high-one-para-bicicleta-speed-e-mtb-_JM",
-      "dataCriacao": "2026-06-24T12:58:19.94577229-04:00",
-      "minutosAberta": 41934,
-      "atrasada": true
-    },
-    {
-      "id": 13623226992,
-      "texto": "Obrigado! Finalizei a compra! Top, demais!",
-      "itemId": "MLB4697957467",
-      "produto": "Par Roda Bike Speed Rad7 Racing Carbono 50mm Tubeless Leve",
-      "link": "https://produto.mercadolivre.com.br/MLB-4697957467-par-roda-bike-speed-rad7-racing-carbono-50mm-tubeless-leve-_JM",
-      "dataCriacao": "2026-07-16T14:09:28.150194161-04:00",
-      "minutosAberta": 10183,
-      "atrasada": true
-    }
-  ]
+  "total": 0,
+  "atrasadas": 0,
+  "perguntas": []
 }
