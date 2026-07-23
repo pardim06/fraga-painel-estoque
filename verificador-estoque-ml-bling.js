@@ -240,10 +240,13 @@ async function getEstoqueML(accessToken) {
         if (!sku) continue;
 
         // Um mesmo SKU pode ter mais de um anúncio ativo (ex: clássico + premium,
-        // ou republicação sem pausar o anterior). Soma a quantidade de todos —
-        // é o total de fato exposto à venda no ML pra aquele SKU.
+        // ou republicação sem pausar o anterior). Na prática o Bling sincroniza o
+        // MESMO saldo total pra cada anúncio (não divide o estoque entre eles), então
+        // soma contaria o mesmo estoque várias vezes. Usa o maior valor entre os
+        // anúncios — se estiverem dessincronizados entre si, o maior é o mais
+        // otimista/atual e ainda assim compara de forma justa contra o Bling.
         if (estoques[sku]) {
-          estoques[sku].qtd += item.available_quantity;
+          estoques[sku].qtd = Math.max(estoques[sku].qtd, item.available_quantity);
         } else {
           estoques[sku] = { qtd: item.available_quantity, nome: item.title };
         }
