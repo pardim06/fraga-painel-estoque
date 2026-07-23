@@ -2,7 +2,7 @@
 //
 // Verifica divergência entre o estoque do Bling e o estoque publicado no
 // Mercado Livre, e (opcionalmente) avisa via WhatsApp (Z-API) quando encontrar
-// diferença. Roda via GitHub Actions (cron a cada hora) — veja
+// diferença. Roda via GitHub Actions (cron a cada 10 minutos) — veja
 // .github/workflows/verificar-estoque.yml.
 //
 // IMPORTANTE: os nomes de campos do Bling (produto.codigo, saldoFisicoTotal)

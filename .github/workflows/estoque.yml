@@ -2,7 +2,7 @@ name: Verificar estoque Bling x Mercado Livre
 
 on:
   schedule:
-    - cron: '0 * * * *' # a cada hora, em ponto (UTC)
+    - cron: '*/10 * * * *' # a cada 10 minutos
   workflow_dispatch: {} # permite rodar manualmente pela aba Actions
 
 permissions:
