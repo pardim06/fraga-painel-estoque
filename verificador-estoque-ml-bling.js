@@ -214,11 +214,18 @@ async function enviarAlertaRisco(divergencias) {
   }
 
   if (CALLMEBOT_PHONE && CALLMEBOT_APIKEY) {
-    await axios.get('https://api.callmebot.com/whatsapp.php', {
-      params: { phone: CALLMEBOT_PHONE, text: corpo, apikey: CALLMEBOT_APIKEY },
+    // A API gratuita do CallMeBot rejeita mensagem com acento (ç, ã, ê etc.)
+    // com "invalid charecters" — e nome de produto quase sempre tem.
+    const semAcento = corpo.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const resp = await axios.get('https://api.callmebot.com/whatsapp.php', {
+      params: { phone: CALLMEBOT_PHONE, text: semAcento, apikey: CALLMEBOT_APIKEY },
     });
-    console.log(`Alerta enviado via CallMeBot (${risco.length} SKU(s) em risco).`);
-    return;
+    if (typeof resp.data === 'string' && resp.data.includes('Error')) {
+      console.log(`Aviso: CallMeBot recusou a mensagem: ${resp.data}`);
+    } else {
+      console.log(`Alerta enviado via CallMeBot (${risco.length} SKU(s) em risco).`);
+      return;
+    }
   }
 
   if (ZAPI_INSTANCE_URL && WHATSAPP_DESTINO) {
