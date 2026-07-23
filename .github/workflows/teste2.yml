@@ -1,0 +1,42 @@
+name: Verificar estoque Bling x Mercado Livre
+
+on:
+  schedule:
+    - cron: '0 * * * *' # a cada hora, em ponto (UTC)
+  workflow_dispatch: {} # permite rodar manualmente pela aba Actions
+
+permissions:
+  contents: write
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm install
+
+      - run: npm run verificar
+        env:
+          BLING_CLIENT_ID: ${{ secrets.BLING_CLIENT_ID }}
+          BLING_CLIENT_SECRET: ${{ secrets.BLING_CLIENT_SECRET }}
+          BLING_REFRESH_TOKEN: ${{ secrets.BLING_REFRESH_TOKEN }}
+          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+          ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
+          ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
+          ZAPI_INSTANCE_URL: ${{ secrets.ZAPI_INSTANCE_URL }}
+          WHATSAPP_DESTINO: ${{ secrets.WHATSAPP_DESTINO }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+
+      - name: Commitar resultado atualizado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add resultado-verificacao.json
+          git diff --quiet --cached || git commit -m "chore: atualiza resultado da verificacao de estoque"
+          git push
