@@ -2,7 +2,7 @@ name: Verificar estoque Bling x Mercado Livre
 
 on:
   schedule:
-    - cron: '*/10 * * * *' # a cada 10 minutos
+    - cron: '*/5 * * * *' # a cada 5 minutos (minimo pratico do GitHub Actions)
   workflow_dispatch: {} # permite rodar manualmente pela aba Actions
 
 permissions:
@@ -38,8 +38,13 @@ jobs:
           ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
           ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
           ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
+          CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
+          CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
           ZAPI_INSTANCE_URL: ${{ secrets.ZAPI_INSTANCE_URL }}
           WHATSAPP_DESTINO: ${{ secrets.WHATSAPP_DESTINO }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
           GH_PAT: ${{ secrets.GH_PAT }}
 
       - name: Commitar resultado atualizado

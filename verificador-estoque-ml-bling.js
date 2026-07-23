@@ -2,7 +2,7 @@
 //
 // Verifica divergência entre o estoque do Bling e o estoque publicado no
 // Mercado Livre, e (opcionalmente) avisa via WhatsApp (Z-API) quando encontrar
-// diferença. Roda via GitHub Actions (cron a cada 10 minutos) — veja
+// diferença. Roda via GitHub Actions (cron a cada 5 minutos) — veja
 // .github/workflows/verificar-estoque.yml.
 //
 // IMPORTANTE: os nomes de campos do Bling (produto.codigo, saldoFisicoTotal)
@@ -14,6 +14,7 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config(); // no-op em produção: GitHub Actions já injeta as env vars diretamente
 const axios = require('axios');
+const nodemailer = require('nodemailer');
 const { getBlingAccessToken, getMLAccessToken } = require('./lib/tokens');
 
 // ===== CONFIG (variáveis de ambiente / GitHub Secrets) =====
@@ -24,9 +25,16 @@ const OUTPUT_PATH = path.join(__dirname, 'resultado-verificacao.json');
 const BLING_DEPOSITO_ID = process.env.BLING_DEPOSITO_ID || '14887750294';
 const ML_SELLER_ID = process.env.ML_SELLER_ID;
 
-// Opcionais — se não configurados, o envio de WhatsApp é simplesmente pulado.
+// Opcionais — se não configurados, o alerta é simplesmente pulado. Tenta
+// nessa ordem: CallMeBot (WhatsApp grátis) → Z-API (WhatsApp pago) → e-mail
+// via Gmail (grátis, fallback atual enquanto o WhatsApp não fica estável).
+const CALLMEBOT_PHONE = process.env.CALLMEBOT_PHONE; // seu número, ex: 5531999999999
+const CALLMEBOT_APIKEY = process.env.CALLMEBOT_APIKEY;
 const ZAPI_INSTANCE_URL = process.env.ZAPI_INSTANCE_URL; // ex: https://api.z-api.io/instances/SEU_ID/token/SEU_TOKEN
 const WHATSAPP_DESTINO = process.env.WHATSAPP_DESTINO; // seu número, ex: 5531999999999
+const GMAIL_USER = process.env.GMAIL_USER; // ex: voce@gmail.com
+const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD; // senha de app de 16 caracteres, nao a senha normal
+const EMAIL_DESTINO = process.env.EMAIL_DESTINO || GMAIL_USER; // pra onde manda o alerta (padrao: o proprio remetente)
 
 const TOLERANCIA = 0; // diferença mínima pra considerar divergência (0 = qualquer diferença já dispara)
 
@@ -187,29 +195,58 @@ function compararEstoques(estoqueBling, estoqueML) {
   return { divergencias, semSkuNoBling };
 }
 
-// ===== 6. ENVIO WHATSAPP (Z-API, opcional) =====
-async function enviarAlertaWhatsapp(divergencias) {
-  if (divergencias.length === 0) return;
-  if (!ZAPI_INSTANCE_URL || !WHATSAPP_DESTINO) {
-    console.log('Z-API não configurado, pulando alerta de WhatsApp.');
+// ===== 6. ALERTA DE RISCO (WhatsApp via CallMeBot/Z-API, ou e-mail via Gmail) =====
+// Só avisa quando Bling < ML (diferenca negativa): é o único caso que gera
+// risco real de vender sem estoque. Bling > ML só significa que sobra
+// estoque não anunciado — sem urgência, não precisa acordar ninguém por isso.
+async function enviarAlertaRisco(divergencias) {
+  const risco = divergencias.filter((d) => d.diferenca < 0);
+  if (risco.length === 0) return;
+
+  let corpo = `RISCO DE FURO DE ESTOQUE - ${risco.length} SKU(s) com ML > Bling\n\n`;
+
+  for (const d of risco.slice(0, 20)) {
+    corpo += `SKU ${d.sku} (${d.nome || 'sem nome'}): Bling ${d.qtdBling} | ML ${d.qtdML} | falta ${Math.abs(d.diferenca)}\n`;
+  }
+
+  if (risco.length > 20) {
+    corpo += `\n... e mais ${risco.length - 20} SKUs em risco.`;
+  }
+
+  if (CALLMEBOT_PHONE && CALLMEBOT_APIKEY) {
+    await axios.get('https://api.callmebot.com/whatsapp.php', {
+      params: { phone: CALLMEBOT_PHONE, text: corpo, apikey: CALLMEBOT_APIKEY },
+    });
+    console.log(`Alerta enviado via CallMeBot (${risco.length} SKU(s) em risco).`);
     return;
   }
 
-  let mensagem = `Divergencia de estoque Bling x ML (${divergencias.length} SKUs)\n\n`;
-
-  for (const d of divergencias.slice(0, 20)) {
-    const sinal = d.diferenca > 0 ? '+' : '';
-    mensagem += `SKU ${d.sku}: Bling ${d.qtdBling} | ML ${d.qtdML} | diferenca ${sinal}${d.diferenca}\n`;
+  if (ZAPI_INSTANCE_URL && WHATSAPP_DESTINO) {
+    await axios.post(`${ZAPI_INSTANCE_URL}/send-text`, {
+      phone: WHATSAPP_DESTINO,
+      message: corpo,
+    });
+    console.log(`Alerta enviado via Z-API (${risco.length} SKU(s) em risco).`);
+    return;
   }
 
-  if (divergencias.length > 20) {
-    mensagem += `\n... e mais ${divergencias.length - 20} SKUs divergentes.`;
+  if (GMAIL_USER && GMAIL_APP_PASSWORD && EMAIL_DESTINO) {
+    const transporte = nodemailer.createTransport({
+      service: 'gmail',
+      auth: { user: GMAIL_USER, pass: GMAIL_APP_PASSWORD },
+    });
+
+    await transporte.sendMail({
+      from: GMAIL_USER,
+      to: EMAIL_DESTINO,
+      subject: `Risco de furo de estoque - ${risco.length} SKU(s)`,
+      text: corpo,
+    });
+    console.log(`Alerta enviado por e-mail pra ${EMAIL_DESTINO} (${risco.length} SKU(s) em risco).`);
+    return;
   }
 
-  await axios.post(`${ZAPI_INSTANCE_URL}/send-text`, {
-    phone: WHATSAPP_DESTINO,
-    message: mensagem,
-  });
+  console.log(`${risco.length} SKU(s) em risco de furo, mas nenhum canal de alerta configurado (CallMeBot, Z-API ou Gmail).`);
 }
 
 // ===== 7. SALVAR RESULTADO PRO PAINEL (arquivo local, commitado pelo Actions) =====
@@ -245,7 +282,7 @@ async function main() {
     console.log(`Aviso: ${semSkuNoBling.length} SKUs do ML não foram encontrados no Bling (verifique cadastro).`);
   }
 
-  await enviarAlertaWhatsapp(divergencias);
+  await enviarAlertaRisco(divergencias);
   salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling });
 }
 
