@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perguntas ML — Fraga Bike Shop</title>
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<div class="container">
+  <div class="header rise">
+    <div class="header-left">
+      <a href="index.html" class="badge">FB</a>
+      <div>
+        <h1>Perguntas em aberto</h1>
+        <div class="subtitle">Fraga Bike Shop · Mercado Livre</div>
+      </div>
+    </div>
+    <div class="badge-live" id="badgeLive"><span class="dot"></span> Confere a cada 15min</div>
+  </div>
+
+  <nav class="module-nav rise" style="animation-delay:.04s">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="painel-estoque.html">Painel de Estoque</a>
+    <a href="perguntas-ml.html" class="active">Perguntas ML</a>
+  </nav>
+
+  <div id="conteudo"></div>
+
+  <div class="load-strip rise" style="animation-delay:.3s">
+    <span class="lbl">Carregar outra fonte</span>
+    <div class="load-row">
+      <input id="dataUrl" type="text" placeholder="URL do perguntas-ml.json" />
+      <button onclick="carregar()">Carregar</button>
+    </div>
+  </div>
+
+  <footer>Painel interno · perguntas sem resposta há mais de 1h aparecem destacadas</footer>
+</div>
+
+<script>
+  let urlSalva = 'perguntas-ml.json';
+
+  async function carregar() {
+    const input = document.getElementById('dataUrl');
+    const url = input.value.trim() || urlSalva;
+    urlSalva = url;
+    renderCarregando();
+
+    try {
+      const resp = await fetch(url, { cache: 'no-store' });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const dados = await resp.json();
+      renderPainel(dados);
+    } catch (err) {
+      renderErro('Não foi possível carregar os dados. O arquivo perguntas-ml.json só existe depois da primeira execução do workflow "Verificar perguntas em aberto no Mercado Livre".', err.message);
+    }
+  }
+
+  function renderCarregando() {
+    document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
+  }
+
+  function renderErro(msg, detalhe) {
+    document.getElementById('conteudo').innerHTML =
+      '<div class="error-state">' + escapeHtml(msg) + (detalhe ? '<span class="detail">' + escapeHtml(detalhe) + '</span>' : '') + '</div>';
+  }
+
+  function escapeHtml(texto) {
+    const div = document.createElement('div');
+    div.textContent = texto ?? '';
+    return div.innerHTML;
+  }
+
+  function formatarData(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+  }
+
+  function formatarEspera(min) {
+    if (min < 60) return min + 'min';
+    const h = Math.floor(min / 60);
+    const m = min % 60;
+    return h + 'h' + (m > 0 ? m + 'min' : '');
+  }
+
+  function renderPainel(dados) {
+    const { atualizadoEm, total, atrasadas, perguntas } = dados;
+    const lista = perguntas || [];
+
+    const badge = document.getElementById('badgeLive');
+    if ((atrasadas ?? 0) > 0) {
+      badge.classList.add('alert');
+      badge.querySelector('.dot').classList.add('alert');
+    }
+
+    let html = '';
+
+    html += '<div class="section-header rise">';
+    html += '  <div class="section-title">Perguntas sem resposta <span class="count-chip' + (atrasadas > 0 ? ' alert' : '') + '">' + lista.length + '</span></div>';
+    html += '</div>';
+
+    if (lista.length > 0) {
+      html += '<div class="table-scroll rise" style="animation-delay:.06s"><table><thead><tr>' +
+        '<th>Produto</th><th>Pergunta</th><th class="num">Aberta há</th>' +
+        '</tr></thead><tbody>';
+      lista.forEach((p) => {
+        const linkAbre = p.link ? '<a href="' + escapeHtml(p.link) + '" target="_blank" rel="noopener">' + escapeHtml(p.produto) + '</a>' : escapeHtml(p.produto);
+        html += '<tr>' +
+          '<td class="produto" style="max-width:220px" title="' + escapeHtml(p.produto) + '">' + linkAbre + '</td>' +
+          '<td class="produto" style="max-width:340px" title="' + escapeHtml(p.texto) + '">' + escapeHtml(p.texto) + '</td>' +
+          '<td class="num"><span class="time-badge' + (p.atrasada ? ' atrasada' : '') + '">' + formatarEspera(p.minutosAberta) + '</span></td>' +
+          '</tr>';
+      });
+      html += '</tbody></table></div>';
+    } else {
+      html += '<div class="empty-state rise" style="animation-delay:.06s">' +
+        '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M6 10.5l2.5 2.5L14 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        'Nenhuma pergunta em aberto no momento</div>';
+    }
+
+    html += '<div class="updated-at rise" style="animation-delay:.1s; margin-top:16px; border-top:none; padding-top:0;">Última verificação: ' + formatarData(atualizadoEm) + '</div>';
+
+    document.getElementById('conteudo').innerHTML = html;
+  }
+
+  carregar();
+</script>
+</body>
+</html>

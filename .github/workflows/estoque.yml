@@ -8,6 +8,14 @@ on:
 permissions:
   contents: write
 
+# Compartilhada com o workflow de perguntas: os dois giram o ML_REFRESH_TOKEN,
+# então nunca podem rodar ao mesmo tempo (senão um invalida o token que o
+# outro acabou de pegar). cancel-in-progress: false pra sempre esperar a vez
+# em vez de cancelar uma execução no meio.
+concurrency:
+  group: ml-bling-token
+  cancel-in-progress: false
+
 jobs:
   verificar:
     runs-on: ubuntu-latest
@@ -38,6 +46,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase
           git add resultado-verificacao.json
           git diff --quiet --cached || git commit -m "chore: atualiza resultado da verificacao de estoque"
           git push

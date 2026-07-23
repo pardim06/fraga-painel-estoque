@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard — Fraga Bike Shop</title>
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<div class="container">
+  <div class="header rise">
+    <div class="header-left">
+      <a href="index.html" class="badge">FB</a>
+      <div>
+        <h1>Dashboard</h1>
+        <div class="subtitle">Fraga Bike Shop · visão geral</div>
+      </div>
+    </div>
+    <div class="badge-live"><span class="dot"></span> Atualiza sozinho</div>
+  </div>
+
+  <nav class="module-nav rise" style="animation-delay:.04s">
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="painel-estoque.html">Painel de Estoque</a>
+    <a href="perguntas-ml.html">Perguntas ML</a>
+  </nav>
+
+  <div id="conteudo"></div>
+
+  <footer>Painel interno · resumo dos dois módulos (estoque e perguntas)</footer>
+</div>
+
+<script>
+  function escapeHtml(texto) {
+    const div = document.createElement('div');
+    div.textContent = texto ?? '';
+    return div.innerHTML;
+  }
+
+  function formatarData(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+  }
+
+  function formatarEspera(min) {
+    if (min < 60) return min + 'min';
+    const h = Math.floor(min / 60);
+    const m = min % 60;
+    return h + 'h' + (m > 0 ? m + 'min' : '');
+  }
+
+  async function buscar(url) {
+    try {
+      const resp = await fetch(url, { cache: 'no-store' });
+      if (!resp.ok) return null;
+      return await resp.json();
+    } catch {
+      return null;
+    }
+  }
+
+  async function carregar() {
+    document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
+
+    const [estoque, perguntas] = await Promise.all([
+      buscar('resultado-verificacao.json'),
+      buscar('perguntas-ml.json'),
+    ]);
+
+    if (!estoque && !perguntas) {
+      document.getElementById('conteudo').innerHTML =
+        '<div class="error-state">Não foi possível carregar nenhum dado ainda. Os arquivos resultado-verificacao.json e perguntas-ml.json só existem depois da primeira execução dos workflows no GitHub Actions.</div>';
+      return;
+    }
+
+    let html = '<div class="kpi-grid">';
+
+    if (estoque) {
+      const total = estoque.totalSkus ?? 0;
+      const ok = estoque.corretos ?? 0;
+      const pct = total > 0 ? Math.round((ok / total) * 100) : 0;
+      const divergentes = estoque.totalDivergentes ?? 0;
+
+      html += '<div class="kpi-card rise ' + (pct >= 98 ? 'ok' : divergentes > 0 ? 'alert' : '') + '">' +
+        '<div class="lbl">Estoque em dia</div>' +
+        '<div class="val">' + pct + '%</div>' +
+        '<div class="sub">' + ok + ' de ' + total + ' SKUs batendo com o Bling</div>' +
+        '<a class="goto" href="painel-estoque.html">Ver painel de estoque →</a>' +
+        '</div>';
+
+      html += '<div class="kpi-card rise ' + (divergentes > 0 ? 'alert' : 'ok') + '" style="animation-delay:.05s">' +
+        '<div class="lbl">Divergências de estoque</div>' +
+        '<div class="val">' + divergentes + '</div>' +
+        '<div class="sub">Última verificação: ' + formatarData(estoque.atualizadoEm) + '</div>' +
+        '<a class="goto" href="painel-estoque.html">Ver detalhes →</a>' +
+        '</div>';
+    } else {
+      html += '<div class="kpi-card rise"><div class="lbl">Estoque em dia</div><div class="sub" style="margin-top:8px;">Ainda sem dados — o workflow de estoque roda de hora em hora.</div></div>';
+    }
+
+    if (perguntas) {
+      const total = perguntas.total ?? 0;
+      const atrasadas = perguntas.atrasadas ?? 0;
+      const maisAntiga = (perguntas.perguntas || [])[0];
+
+      html += '<div class="kpi-card rise ' + (atrasadas > 0 ? 'alert' : 'ok') + '" style="animation-delay:.1s">' +
+        '<div class="lbl">Perguntas em aberto</div>' +
+        '<div class="val">' + total + '</div>' +
+        '<div class="sub">' + (atrasadas > 0 ? atrasadas + ' esperando há mais de 1h' : 'nenhuma atrasada') +
+          (maisAntiga ? ' · mais antiga: ' + formatarEspera(maisAntiga.minutosAberta) : '') + '</div>' +
+        '<a class="goto" href="perguntas-ml.html">Ver perguntas →</a>' +
+        '</div>';
+    } else {
+      html += '<div class="kpi-card rise" style="animation-delay:.1s"><div class="lbl">Perguntas em aberto</div><div class="sub" style="margin-top:8px;">Ainda sem dados — o workflow de perguntas roda a cada 15min.</div></div>';
+    }
+
+    html += '</div>';
+
+    document.getElementById('conteudo').innerHTML = html;
+  }
+
+  carregar();
+</script>
+</body>
+</html>

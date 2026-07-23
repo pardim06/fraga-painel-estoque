@@ -5,7 +5,8 @@
   "description": "Verificador de divergencia de estoque Bling x Mercado Livre + painel estatico",
   "main": "verificador-estoque-ml-bling.js",
   "scripts": {
-    "verificar": "node verificador-estoque-ml-bling.js"
+    "verificar": "node verificador-estoque-ml-bling.js",
+    "verificar-perguntas": "node scripts/verificar-perguntas.js"
   },
   "dependencies": {
     "axios": "^1.7.9",

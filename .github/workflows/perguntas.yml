@@ -1,0 +1,43 @@
+name: Verificar perguntas em aberto no Mercado Livre
+
+on:
+  schedule:
+    - cron: '*/15 * * * *' # a cada 15 minutos
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+# Compartilhada com o workflow de estoque (ver ali o motivo).
+concurrency:
+  group: ml-bling-token
+  cancel-in-progress: false
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm install
+
+      - run: npm run verificar-perguntas
+        env:
+          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+          ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
+          ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+
+      - name: Commitar resultado atualizado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase
+          git add perguntas-ml.json
+          git diff --quiet --cached || git commit -m "chore: atualiza perguntas em aberto no ML"
+          git push
