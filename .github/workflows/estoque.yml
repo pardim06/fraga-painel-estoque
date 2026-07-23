@@ -25,6 +25,7 @@ jobs:
           BLING_CLIENT_ID: ${{ secrets.BLING_CLIENT_ID }}
           BLING_CLIENT_SECRET: ${{ secrets.BLING_CLIENT_SECRET }}
           BLING_REFRESH_TOKEN: ${{ secrets.BLING_REFRESH_TOKEN }}
+          BLING_DEPOSITO_ID: ${{ secrets.BLING_DEPOSITO_ID }}
           ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
           ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
           ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
