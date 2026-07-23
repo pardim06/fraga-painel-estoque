@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Painel de Estoque — Fraga Bike Shop</title>
+<style>
+  :root {
+    --bg: #0b1220;
+    --bg-panel: #111a2e;
+    --bg-card: #16213a;
+    --border: #1f2c47;
+    --border-light: #2a3a5c;
+    --text: #e6ebf5;
+    --text-dim: #8a97b3;
+    --accent: #3b82f6;
+    --accent-dark: #1e40af;
+    --ok: #34d399;
+    --ok-bg: rgba(52, 211, 153, 0.12);
+    --danger: #f87171;
+    --danger-bg: rgba(248, 113, 113, 0.12);
+    --warn: #fbbf24;
+    --warn-bg: rgba(251, 191, 36, 0.12);
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    background: radial-gradient(circle at 20% 0%, #0f1a33 0%, var(--bg) 45%);
+    margin: 0;
+    padding: 40px 24px;
+    color: var(--text);
+    min-height: 100vh;
+  }
+  .container { max-width: 1000px; margin: 0 auto; }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .header-left { display: flex; align-items: center; gap: 14px; }
+  .logo-dot {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; color: #fff;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+    flex-shrink: 0;
+  }
+  h1 { font-size: 19px; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+  .subtitle { color: var(--text-dim); font-size: 13px; margin-top: 2px; }
+
+  .badge-live {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px; border-radius: 999px;
+    background: var(--bg-card); border: 1px solid var(--border-light);
+    font-size: 12px; color: var(--text-dim);
+  }
+  .badge-live .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--ok); box-shadow: 0 0 0 3px var(--ok-bg);
+  }
+
+  .config-box {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 28px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  .config-box input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    font-size: 13px;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+  }
+  .config-box input::placeholder { color: #55617e; }
+  .config-box input:focus { border-color: var(--accent); }
+  .config-box button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+  }
+  .config-box button:hover { opacity: 0.9; }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .card {
+    background: var(--bg-panel);
+    border-radius: 14px;
+    padding: 22px 24px;
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .card.total::before { background: var(--accent); }
+  .card.ok::before { background: var(--ok); }
+  .card.divergente::before { background: var(--danger); }
+  .card .valor { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; }
+  .card .label { font-size: 12.5px; color: var(--text-dim); margin-top: 6px; }
+  .card.ok .valor { color: var(--ok); }
+  .card.divergente .valor { color: var(--danger); }
+  .card.total .valor { color: var(--text); }
+
+  .updated-at {
+    font-size: 12.5px;
+    color: var(--text-dim);
+    margin-bottom: 18px;
+    display: flex; align-items: center; gap: 6px;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 12px 2px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .export-buttons { display: flex; gap: 8px; }
+  .btn-export {
+    padding: 7px 14px;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    background: var(--accent);
+    color: #fff;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.15s;
+  }
+  .btn-export:hover { opacity: 0.88; }
+  .btn-export.secondary {
+    background: var(--bg-card);
+    color: var(--text);
+    border: 1px solid var(--border-light);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-panel);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  th, td {
+    text-align: left;
+    padding: 13px 18px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+  }
+  th {
+    background: var(--bg-card);
+    font-weight: 600;
+    color: var(--text-dim);
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  tbody tr:hover { background: var(--bg-card); }
+  tr:last-child td { border-bottom: none; }
+  td.sku { font-weight: 600; color: var(--text); }
+  .diff-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--danger-bg);
+    color: var(--danger);
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--text-dim);
+    font-size: 14px;
+    background: var(--bg-panel);
+    border-radius: 14px;
+    border: 1px solid var(--border);
+  }
+  .empty-state.ok-state { color: var(--ok); }
+
+  .status-msg {
+    font-size: 13px;
+    color: var(--warn);
+    margin-top: 16px;
+    padding: 14px 18px;
+    background: var(--warn-bg);
+    border-radius: 10px;
+    border: 1px solid rgba(251, 191, 36, 0.25);
+  }
+  .status-msg.error {
+    color: var(--danger);
+    background: var(--danger-bg);
+    border-color: rgba(248, 113, 113, 0.25);
+  }
+
+  footer {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 11.5px;
+    color: #4b5875;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="header-left">
+      <div class="logo-dot">FB</div>
+      <div>
+        <h1>Painel de Estoque</h1>
+        <div class="subtitle">Fraga Bike Shop — Bling x Mercado Livre</div>
+      </div>
+    </div>
+    <div class="badge-live"><span class="dot"></span> Verificação automática por hora</div>
+  </div>
+
+  <div class="config-box">
+    <input id="dataUrl" type="text" placeholder="URL do resultado-verificacao.json (padrão: mesmo repositório)" />
+    <button onclick="carregar()">Carregar</button>
+  </div>
+
+  <div id="conteudo"></div>
+
+  <footer>Painel interno — dados lidos diretamente do último resultado gerado pelo verificador automático</footer>
+</div>
+
+<script>
+  // Por padrão, lê o resultado-verificacao.json do mesmo repositório/pasta
+  // (é isso que o GitHub Actions atualiza a cada hora). Cole outra URL no
+  // campo acima só se quiser apontar pra um arquivo em outro lugar.
+  let urlSalva = 'resultado-verificacao.json';
+
+  async function carregar() {
+    const input = document.getElementById('dataUrl');
+    const url = input.value.trim() || urlSalva;
+    urlSalva = url;
+    renderCarregando();
+
+    try {
+      const resp = await fetch(url, { cache: 'no-store' });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const dados = await resp.json();
+      renderPainel(dados);
+    } catch (err) {
+      renderErro('Não consegui carregar o JSON. Verifique a URL, se o bucket permite leitura pública e se tem CORS habilitado. Detalhe: ' + err.message);
+    }
+  }
+
+  function renderCarregando() {
+    document.getElementById('conteudo').innerHTML = '<div class="empty-state">Carregando...</div>';
+  }
+
+  function renderErro(msg) {
+    document.getElementById('conteudo').innerHTML = '<div class="status-msg error">' + msg + '</div>';
+  }
+
+  function formatarData(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+  }
+
+  function renderPainel(dados) {
+    const { atualizadoEm, totalSkus, corretos, totalDivergentes, divergencias, semSkuNoBling } = dados;
+
+    let html = '';
+    html += '<div class="updated-at">Última verificação: ' + formatarData(atualizadoEm) + '</div>';
+
+    html += '<div class="cards">';
+    html += '<div class="card total"><div class="valor">' + (totalSkus ?? '—') + '</div><div class="label">Total de SKUs verificados</div></div>';
+    html += '<div class="card ok"><div class="valor">' + (corretos ?? '—') + '</div><div class="label">Corretos (batendo com o Bling)</div></div>';
+    html += '<div class="card divergente"><div class="valor">' + (totalDivergentes ?? 0) + '</div><div class="label">Divergentes</div></div>';
+    html += '</div>';
+
+    window._divergenciasAtuais = divergencias || [];
+
+    html += '<div class="section-header">';
+    html += '<div class="section-title" style="margin:0;">Divergências detalhadas</div>';
+    if (divergencias && divergencias.length > 0) {
+      html += '<div class="export-buttons">';
+      html += '<button class="btn-export" onclick="exportarCSV()">Baixar CSV</button>';
+      html += '<button class="btn-export secondary" onclick="copiarLista()">Copiar lista</button>';
+      html += '</div>';
+    }
+    html += '</div>';
+
+    if (divergencias && divergencias.length > 0) {
+      html += '<table><thead><tr><th>SKU</th><th>Estoque Bling</th><th>Estoque ML</th><th>Diferença</th></tr></thead><tbody>';
+      divergencias
+        .slice()
+        .sort((a, b) => b.diferenca - a.diferenca)
+        .forEach((d) => {
+          html += '<tr><td class="sku">' + d.sku + '</td><td>' + d.qtdBling + '</td><td>' + d.qtdML + '</td><td><span class="diff-badge">' + d.diferenca + '</span></td></tr>';
+        });
+      html += '</tbody></table>';
+    } else {
+      html += '<div class="empty-state ok-state">Nenhuma divergência encontrada na última verificação.</div>';
+    }
+
+    if (semSkuNoBling && semSkuNoBling.length > 0) {
+      html += '<div class="status-msg">' + semSkuNoBling.length + ' SKU(s) do Mercado Livre não foram encontrados no Bling (verifique o cadastro): ' + semSkuNoBling.join(', ') + '</div>';
+    }
+
+    document.getElementById('conteudo').innerHTML = html;
+  }
+
+  function exportarCSV() {
+    const lista = window._divergenciasAtuais || [];
+    if (lista.length === 0) return;
+
+    let csv = 'SKU;Estoque Bling;Estoque ML;Diferenca\n';
+    lista
+      .slice()
+      .sort((a, b) => b.diferenca - a.diferenca)
+      .forEach((d) => {
+        csv += d.sku + ';' + d.qtdBling + ';' + d.qtdML + ';' + d.diferenca + '\n';
+      });
+
+    const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const hoje = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = 'produtos-para-arrumar-' + hoje + '.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function copiarLista() {
+    const lista = window._divergenciasAtuais || [];
+    if (lista.length === 0) return;
+
+    let texto = 'Produtos para arrumar (' + lista.length + '):\n\n';
+    lista
+      .slice()
+      .sort((a, b) => b.diferenca - a.diferenca)
+      .forEach((d) => {
+        texto += 'SKU ' + d.sku + ': Bling ' + d.qtdBling + ' | ML ' + d.qtdML + ' | diferenca ' + d.diferenca + '\n';
+      });
+
+    navigator.clipboard.writeText(texto).then(() => {
+      const btn = document.querySelector('.btn-export.secondary');
+      if (btn) {
+        const original = btn.textContent;
+        btn.textContent = 'Copiado!';
+        setTimeout(() => { btn.textContent = original; }, 1500);
+      }
+    }).catch(() => {
+      alert('Não foi possível copiar automaticamente. Copie manualmente a lista da tabela.');
+    });
+  }
+
+  carregar();
+</script>
+</body>
+</html>
