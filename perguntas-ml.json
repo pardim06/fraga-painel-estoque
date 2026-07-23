@@ -1,18 +1,7 @@
 {
-  "atualizadoEm": "2026-07-23T20:01:48.878Z",
+  "atualizadoEm": "2026-07-23T20:45:32.217Z",
   "limiteMinutos": 60,
-  "total": 1,
+  "total": 0,
   "atrasadas": 0,
-  "perguntas": [
-    {
-      "id": 13627768426,
-      "texto": "Boa tarde amigo. Teria com essas configurações: -Aro de carbono. -Hg, -Disco de 6 parafuso , Espessura do aro 30mm.",
-      "itemId": "MLB4875450743",
-      "produto": "Par Rodas Carbono Rad7 Mtb Aro 29 Boost Tubeless 30mm 1,488g",
-      "link": "https://produto.mercadolivre.com.br/MLB-4875450743-par-rodas-carbono-rad7-mtb-aro-29-boost-tubeless-30mm-1488g-_JM",
-      "dataCriacao": "2026-07-23T15:59:00.408051851-04:00",
-      "minutosAberta": 3,
-      "atrasada": false
-    }
-  ]
+  "perguntas": []
 }
