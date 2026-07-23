@@ -195,6 +195,13 @@
   tbody tr:hover { background: var(--bg-card); }
   tr:last-child td { border-bottom: none; }
   td.sku { font-weight: 600; color: var(--text); }
+  td.produto {
+    max-width: 320px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--text-dim);
+  }
   .diff-badge {
     display: inline-block;
     padding: 3px 10px;
@@ -292,6 +299,12 @@
     document.getElementById('conteudo').innerHTML = '<div class="status-msg error">' + msg + '</div>';
   }
 
+  function escapeHtml(texto) {
+    const div = document.createElement('div');
+    div.textContent = texto ?? '';
+    return div.innerHTML;
+  }
+
   function formatarData(iso) {
     if (!iso) return '—';
     const d = new Date(iso);
@@ -323,12 +336,12 @@
     html += '</div>';
 
     if (divergencias && divergencias.length > 0) {
-      html += '<table><thead><tr><th>SKU</th><th>Estoque Bling</th><th>Estoque ML</th><th>Diferença</th></tr></thead><tbody>';
+      html += '<table><thead><tr><th>SKU</th><th>Produto</th><th>Estoque Bling</th><th>Estoque ML</th><th>Diferença</th></tr></thead><tbody>';
       divergencias
         .slice()
         .sort((a, b) => b.diferenca - a.diferenca)
         .forEach((d) => {
-          html += '<tr><td class="sku">' + d.sku + '</td><td>' + d.qtdBling + '</td><td>' + d.qtdML + '</td><td><span class="diff-badge">' + d.diferenca + '</span></td></tr>';
+          html += '<tr><td class="sku">' + d.sku + '</td><td class="produto" title="' + escapeHtml(d.nome) + '">' + escapeHtml(d.nome || '—') + '</td><td>' + d.qtdBling + '</td><td>' + d.qtdML + '</td><td><span class="diff-badge">' + d.diferenca + '</span></td></tr>';
         });
       html += '</tbody></table>';
     } else {
@@ -346,12 +359,12 @@
     const lista = window._divergenciasAtuais || [];
     if (lista.length === 0) return;
 
-    let csv = 'SKU;Estoque Bling;Estoque ML;Diferenca\n';
+    let csv = 'SKU;Produto;Estoque Bling;Estoque ML;Diferenca\n';
     lista
       .slice()
       .sort((a, b) => b.diferenca - a.diferenca)
       .forEach((d) => {
-        csv += d.sku + ';' + d.qtdBling + ';' + d.qtdML + ';' + d.diferenca + '\n';
+        csv += d.sku + ';' + (d.nome || '').replace(/;/g, ',') + ';' + d.qtdBling + ';' + d.qtdML + ';' + d.diferenca + '\n';
       });
 
     const blob = new Blob(['\ufeff' + csv], { type: 'text/csv;charset=utf-8;' });
@@ -375,7 +388,7 @@
       .slice()
       .sort((a, b) => b.diferenca - a.diferenca)
       .forEach((d) => {
-        texto += 'SKU ' + d.sku + ': Bling ' + d.qtdBling + ' | ML ' + d.qtdML + ' | diferenca ' + d.diferenca + '\n';
+        texto += 'SKU ' + d.sku + ' (' + (d.nome || 'sem nome') + '): Bling ' + d.qtdBling + ' | ML ' + d.qtdML + ' | diferenca ' + d.diferenca + '\n';
       });
 
     navigator.clipboard.writeText(texto).then(() => {

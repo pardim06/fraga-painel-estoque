@@ -1,351 +1,93 @@
 {
-  "atualizadoEm": "2026-07-23T16:43:26.272Z",
+  "atualizadoEm": "2026-07-23T17:17:51.355Z",
   "totalSkus": 328,
-  "corretos": 271,
-  "totalDivergentes": 57,
+  "corretos": 263,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
+      "nome": "TAPETE ELITE  PROTETOR PARA  ROLO DE TREINO -  PRETO",
       "qtdBling": 21,
       "qtdML": 10,
       "diferenca": 11
     },
     {
-      "sku": "170",
-      "qtdBling": 0,
-      "qtdML": 3,
-      "diferenca": 3
-    },
-    {
-      "sku": "173",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "176",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "207",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
       "sku": "368",
+      "nome": "PEDAL CLIP SHIMANO PD-ED500 C/TACOS - PRETO",
       "qtdBling": 3,
       "qtdML": 1,
       "diferenca": 2
     },
     {
-      "sku": "476",
-      "qtdBling": 0,
-      "qtdML": 8,
-      "diferenca": 8
-    },
-    {
-      "sku": "484",
-      "qtdBling": 0,
-      "qtdML": 15,
-      "diferenca": 15
-    },
-    {
-      "sku": "492",
-      "qtdBling": 0,
-      "qtdML": 6,
-      "diferenca": 6
-    },
-    {
-      "sku": "509",
-      "qtdBling": 0,
-      "qtdML": 11,
-      "diferenca": 11
-    },
-    {
-      "sku": "746",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "767",
-      "qtdBling": 0,
-      "qtdML": 4,
-      "diferenca": 4
-    },
-    {
-      "sku": "768",
-      "qtdBling": 0,
-      "qtdML": 13,
-      "diferenca": 13
-    },
-    {
-      "sku": "773",
-      "qtdBling": 0,
-      "qtdML": 13,
-      "diferenca": 13
-    },
-    {
-      "sku": "856",
-      "qtdBling": 0,
-      "qtdML": 28,
-      "diferenca": 28
-    },
-    {
-      "sku": "884",
-      "qtdBling": 0,
-      "qtdML": 17,
-      "diferenca": 17
-    },
-    {
-      "sku": "1212",
-      "qtdBling": 0,
-      "qtdML": 15,
-      "diferenca": 15
-    },
-    {
-      "sku": "1225",
-      "qtdBling": 0,
-      "qtdML": 13,
-      "diferenca": 13
-    },
-    {
-      "sku": "1238",
-      "qtdBling": 0,
-      "qtdML": 16,
-      "diferenca": 16
-    },
-    {
-      "sku": "1410",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "1548",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "1551",
-      "qtdBling": 0,
-      "qtdML": 2,
-      "diferenca": 2
-    },
-    {
-      "sku": "1597",
-      "qtdBling": 0,
-      "qtdML": 4,
-      "diferenca": 4
-    },
-    {
-      "sku": "1611",
-      "qtdBling": 0,
-      "qtdML": 3,
-      "diferenca": 3
-    },
-    {
-      "sku": "1635",
-      "qtdBling": 0,
-      "qtdML": 5,
-      "diferenca": 5
-    },
-    {
-      "sku": "1649",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "1899",
-      "qtdBling": 0,
-      "qtdML": 14,
-      "diferenca": 14
-    },
-    {
-      "sku": "1906",
-      "qtdBling": 0,
-      "qtdML": 8,
-      "diferenca": 8
-    },
-    {
-      "sku": "1985",
-      "qtdBling": 0,
-      "qtdML": 2,
-      "diferenca": 2
-    },
-    {
-      "sku": "2135",
-      "qtdBling": 0,
-      "qtdML": 3,
-      "diferenca": 3
-    },
-    {
-      "sku": "2544",
-      "qtdBling": 0,
-      "qtdML": 60,
-      "diferenca": 60
-    },
-    {
-      "sku": "2807",
-      "qtdBling": 0,
-      "qtdML": 271,
-      "diferenca": 271
-    },
-    {
-      "sku": "3817",
-      "qtdBling": 0,
-      "qtdML": 10,
-      "diferenca": 10
-    },
-    {
-      "sku": "4010",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "4202",
-      "qtdBling": 0,
-      "qtdML": 14,
-      "diferenca": 14
-    },
-    {
-      "sku": "4204",
-      "qtdBling": 0,
-      "qtdML": 13,
-      "diferenca": 13
-    },
-    {
-      "sku": "4205",
-      "qtdBling": 0,
-      "qtdML": 17,
-      "diferenca": 17
-    },
-    {
-      "sku": "4206",
-      "qtdBling": 0,
-      "qtdML": 12,
-      "diferenca": 12
-    },
-    {
-      "sku": "4207",
-      "qtdBling": 0,
-      "qtdML": 13,
-      "diferenca": 13
-    },
-    {
-      "sku": "4931",
-      "qtdBling": 0,
-      "qtdML": 9,
-      "diferenca": 9
-    },
-    {
-      "sku": "4940",
-      "qtdBling": 0,
-      "qtdML": 7,
-      "diferenca": 7
-    },
-    {
-      "sku": "5036",
-      "qtdBling": 4,
-      "qtdML": 86,
-      "diferenca": 82
-    },
-    {
-      "sku": "5061",
-      "qtdBling": 0,
-      "qtdML": 2,
-      "diferenca": 2
-    },
-    {
-      "sku": "5063",
-      "qtdBling": 0,
-      "qtdML": 4,
-      "diferenca": 4
-    },
-    {
-      "sku": "5106",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "5119",
-      "qtdBling": 0,
-      "qtdML": 3,
-      "diferenca": 3
-    },
-    {
-      "sku": "5133",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": 1
-    },
-    {
-      "sku": "5146",
-      "qtdBling": 0,
-      "qtdML": 17,
-      "diferenca": 17
-    },
-    {
-      "sku": "5162",
-      "qtdBling": 0,
-      "qtdML": 13,
-      "diferenca": 13
-    },
-    {
-      "sku": "5178",
-      "qtdBling": 0,
-      "qtdML": 14,
-      "diferenca": 14
-    },
-    {
-      "sku": "5194",
-      "qtdBling": 0,
-      "qtdML": 2,
-      "diferenca": 2
-    },
-    {
-      "sku": "5235",
-      "qtdBling": 0,
-      "qtdML": 13,
-      "diferenca": 13
-    },
-    {
-      "sku": "5249",
-      "qtdBling": 0,
-      "qtdML": 15,
-      "diferenca": 15
-    },
-    {
-      "sku": "5281",
-      "qtdBling": 0,
-      "qtdML": 27,
-      "diferenca": 27
-    },
-    {
-      "sku": "5311",
-      "qtdBling": 0,
-      "qtdML": 4,
-      "diferenca": 4
-    },
-    {
-      "sku": "5321",
-      "qtdBling": 0,
-      "qtdML": 43,
-      "diferenca": 43
-    },
-    {
       "sku": "6431",
+      "nome": "PEDAL CRANK BROTHERS EGG BEATER 1 - MOLA VERMELHA",
       "qtdBling": 0,
       "qtdML": 1,
       "diferenca": 1
     }
   ],
-  "semSkuNoBling": []
+  "semSkuNoBling": [
+    "170",
+    "173",
+    "176",
+    "207",
+    "476",
+    "484",
+    "492",
+    "509",
+    "746",
+    "767",
+    "768",
+    "773",
+    "856",
+    "884",
+    "1212",
+    "1225",
+    "1238",
+    "1410",
+    "1548",
+    "1551",
+    "1597",
+    "1611",
+    "1635",
+    "1649",
+    "1899",
+    "1906",
+    "1985",
+    "2135",
+    "2544",
+    "2807",
+    "3817",
+    "3977",
+    "4010",
+    "4202",
+    "4204",
+    "4205",
+    "4206",
+    "4207",
+    "4931",
+    "4940",
+    "5035",
+    "5036",
+    "5061",
+    "5063",
+    "5106",
+    "5119",
+    "5133",
+    "5146",
+    "5162",
+    "5178",
+    "5194",
+    "5235",
+    "5249",
+    "5281",
+    "5311",
+    "5321",
+    "6541",
+    "6543",
+    "6547",
+    "6548",
+    "6553",
+    "6554"
+  ]
 }

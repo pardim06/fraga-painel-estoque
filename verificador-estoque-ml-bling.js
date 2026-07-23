@@ -42,12 +42,18 @@ const TOLERANCIA = 0; // diferença mínima pra considerar divergência (0 = qua
 // No GitHub Actions: atualiza o Secret do repositório via API (precisa do secret GH_PAT).
 const ENV_PATH = path.join(__dirname, '.env');
 
-function salvarNovoRefreshToken(nome, valor) {
+async function salvarNovoRefreshToken(nome, valor) {
   const token = process.env.GH_PAT;
   const repo = process.env.GITHUB_REPOSITORY;
 
   if (token && repo) {
-    return atualizarSecretGithub(nome, valor, token, repo);
+    try {
+      await atualizarSecretGithub(nome, valor, token, repo);
+    } catch (err) {
+      // Nunca deixa uma falha ao persistir o secret derrubar a verificação em si.
+      console.log(`Aviso: falha ao atualizar o secret ${nome} no GitHub (${err.response?.status || err.message}). Copie manualmente se necessário: ${valor}`);
+    }
+    return;
   }
 
   if (!fs.existsSync(ENV_PATH)) {
@@ -115,8 +121,11 @@ async function getBlingAccessToken() {
 // saldo agregado de /produtos soma também lojas físicas e outros depósitos,
 // o que não é o estoque de fato publicado no ML.
 async function getEstoqueBling(accessToken) {
-  // 1. lista todos os produtos ativos: { id -> codigo }
-  const codigoPorId = {};
+  // 1. lista todos os produtos ativos do tipo "Simples" (formato "S"): { id -> {codigo, nome} }
+  // Produtos "pai" com variações (formato "V") e kits (formato "E") não têm saldo
+  // próprio — quem carrega o estoque de verdade são as variações filhas, que já
+  // aparecem nessa mesma listagem como itens separados (formato "S").
+  const infoPorId = {};
   let pagina = 1;
 
   while (true) {
@@ -129,7 +138,9 @@ async function getEstoqueBling(accessToken) {
     if (dados.length === 0) break;
 
     for (const item of dados) {
-      if (item.codigo) codigoPorId[item.id] = item.codigo;
+      if (item.codigo && item.formato === 'S') {
+        infoPorId[item.id] = { codigo: item.codigo, nome: item.nome };
+      }
     }
 
     pagina++;
@@ -137,7 +148,7 @@ async function getEstoqueBling(accessToken) {
 
   // 2. busca o saldo por depósito em lotes (idsProdutos)
   const estoques = {};
-  const idsProdutos = Object.keys(codigoPorId);
+  const idsProdutos = Object.keys(infoPorId);
   const TAMANHO_LOTE = 50;
 
   for (let i = 0; i < idsProdutos.length; i += TAMANHO_LOTE) {
@@ -148,10 +159,11 @@ async function getEstoqueBling(accessToken) {
     });
 
     for (const item of resp.data.data || []) {
-      const sku = item.produto?.codigo ?? codigoPorId[item.produto?.id];
+      const info = infoPorId[item.produto?.id];
+      const sku = item.produto?.codigo ?? info?.codigo;
       const depositoSite = item.depositos?.find((d) => String(d.id) === String(BLING_DEPOSITO_ID));
       const saldo = depositoSite?.saldoVirtual ?? depositoSite?.saldoFisico;
-      if (sku && saldo !== undefined) estoques[sku] = saldo;
+      if (sku && saldo !== undefined) estoques[sku] = { saldo, nome: info?.nome };
     }
   }
 
@@ -206,7 +218,7 @@ async function getEstoqueML(accessToken) {
         const sku =
           item.seller_custom_field ||
           item.attributes?.find((a) => a.id === 'SELLER_SKU')?.value_name;
-        if (sku) estoques[sku] = item.available_quantity;
+        if (sku) estoques[sku] = { qtd: item.available_quantity, nome: item.title };
       }
     }
 
@@ -222,17 +234,23 @@ function compararEstoques(estoqueBling, estoqueML) {
   const semSkuNoBling = [];
 
   for (const sku in estoqueML) {
-    const qtdBling = estoqueBling[sku];
-    const qtdML = estoqueML[sku];
+    const bling = estoqueBling[sku];
+    const ml = estoqueML[sku];
 
-    if (qtdBling === undefined) {
+    if (bling === undefined) {
       semSkuNoBling.push(sku);
       continue;
     }
 
-    const diferenca = Math.abs(qtdBling - qtdML);
+    const diferenca = Math.abs(bling.saldo - ml.qtd);
     if (diferenca > TOLERANCIA) {
-      divergencias.push({ sku, qtdBling, qtdML, diferenca });
+      divergencias.push({
+        sku,
+        nome: bling.nome || ml.nome,
+        qtdBling: bling.saldo,
+        qtdML: ml.qtd,
+        diferenca,
+      });
     }
   }
 
