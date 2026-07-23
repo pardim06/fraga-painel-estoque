@@ -12,7 +12,6 @@ const axios = require('axios');
 const { getMLAccessToken } = require('../lib/tokens');
 
 const OUTPUT_PATH = path.join(__dirname, '..', 'perguntas-ml.json');
-const ML_SELLER_ID = process.env.ML_SELLER_ID;
 
 // Acima desse tempo sem resposta, a pergunta é destacada como atrasada no painel.
 const LIMITE_MINUTOS = 60;
@@ -23,10 +22,9 @@ async function getPerguntasAbertas(accessToken) {
   const limit = 50;
 
   while (true) {
-    const resp = await axios.get('https://api.mercadolibre.com/questions/search', {
+    const resp = await axios.get('https://api.mercadolibre.com/my/received_questions/search', {
       headers: { Authorization: `Bearer ${accessToken}` },
       params: {
-        seller_id: ML_SELLER_ID,
         status: 'UNANSWERED',
         sort_fields: 'date_created',
         sort_types: 'ASC',
