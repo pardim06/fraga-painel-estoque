@@ -203,14 +203,22 @@ async function enviarAlertaRisco(divergencias) {
   const risco = divergencias.filter((d) => d.diferenca < 0);
   if (risco.length === 0) return;
 
-  let corpo = `RISCO DE FURO DE ESTOQUE - ${risco.length} SKU(s) com ML > Bling\n\n`;
+  const LIMITE_ITENS = 15;
+  const separador = '----------------------------';
 
-  for (const d of risco.slice(0, 20)) {
-    corpo += `SKU ${d.sku} (${d.nome || 'sem nome'}): Bling ${d.qtdBling} | ML ${d.qtdML} | falta ${Math.abs(d.diferenca)}\n`;
+  let corpo = `*RISCO DE FURO DE ESTOQUE*\n${risco.length} produto(s) com estoque do ML maior que o Bling\n`;
+
+  for (const d of risco.slice(0, LIMITE_ITENS)) {
+    corpo +=
+      `\n${separador}\n` +
+      `*SKU ${d.sku}*\n` +
+      `${d.nome || 'sem nome'}\n` +
+      `Bling: ${d.qtdBling}  |  ML: ${d.qtdML}\n` +
+      `Faltam *${Math.abs(d.diferenca)}* unidade(s)\n`;
   }
 
-  if (risco.length > 20) {
-    corpo += `\n... e mais ${risco.length - 20} SKUs em risco.`;
+  if (risco.length > LIMITE_ITENS) {
+    corpo += `\n${separador}\n... e mais ${risco.length - LIMITE_ITENS} produto(s) em risco. Veja todos no painel.\n`;
   }
 
   if (CALLMEBOT_PHONE && CALLMEBOT_APIKEY) {
