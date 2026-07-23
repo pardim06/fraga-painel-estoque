@@ -37,7 +37,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase
           git add perguntas-ml.json
           git diff --quiet --cached || git commit -m "chore: atualiza perguntas em aberto no ML"
+          git pull --rebase
           git push
