@@ -1,7 +1,7 @@
 {
-  "atualizadoEm": "2026-07-23T17:17:51.355Z",
-  "totalSkus": 328,
-  "corretos": 263,
+  "atualizadoEm": "2026-07-23T17:28:55.587Z",
+  "totalSkus": 327,
+  "corretos": 271,
   "totalDivergentes": 3,
   "divergencias": [
     {
@@ -19,11 +19,11 @@
       "diferenca": 2
     },
     {
-      "sku": "6431",
-      "nome": "PEDAL CRANK BROTHERS EGG BEATER 1 - MOLA VERMELHA",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": 1
+      "sku": "5036",
+      "nome": "GPS Geoid CC600 com rotas wifi + Cinta cardiaca + Cadencia",
+      "qtdBling": 4,
+      "qtdML": 86,
+      "diferenca": 82
     }
   ],
   "semSkuNoBling": [
@@ -58,7 +58,6 @@
     "2544",
     "2807",
     "3817",
-    "3977",
     "4010",
     "4202",
     "4204",
@@ -67,8 +66,6 @@
     "4207",
     "4931",
     "4940",
-    "5035",
-    "5036",
     "5061",
     "5063",
     "5106",
@@ -82,12 +79,6 @@
     "5249",
     "5281",
     "5311",
-    "5321",
-    "6541",
-    "6543",
-    "6547",
-    "6548",
-    "6553",
-    "6554"
+    "5321"
   ]
 }

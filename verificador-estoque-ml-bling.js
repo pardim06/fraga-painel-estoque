@@ -115,21 +115,40 @@ async function getBlingAccessToken() {
   return resp.data.access_token;
 }
 
+// Bling limita a 3 requisições/segundo. Espera entre chamadas e tenta de novo
+// (com backoff) se ainda assim tomar 429 — evita derrubar a verificação inteira
+// por causa do rate limit.
+const aguardar = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+async function blingGet(url, config, tentativa = 1) {
+  await aguardar(400); // ~2.5 req/s, com folga do limite de 3/s
+  try {
+    return await axios.get(url, config);
+  } catch (err) {
+    if (err.response?.status === 429 && tentativa <= 4) {
+      await aguardar(1000 * tentativa);
+      return blingGet(url, config, tentativa + 1);
+    }
+    throw err;
+  }
+}
+
 // ===== 2. ESTOQUE NO BLING =====
 // Retorna um mapa { sku: quantidade }
 // Usa só o saldo do depósito "SITE / MERCADO LIVRE" (BLING_DEPOSITO_ID) — o
 // saldo agregado de /produtos soma também lojas físicas e outros depósitos,
 // o que não é o estoque de fato publicado no ML.
 async function getEstoqueBling(accessToken) {
-  // 1. lista todos os produtos ativos do tipo "Simples" (formato "S"): { id -> {codigo, nome} }
-  // Produtos "pai" com variações (formato "V") e kits (formato "E") não têm saldo
-  // próprio — quem carrega o estoque de verdade são as variações filhas, que já
-  // aparecem nessa mesma listagem como itens separados (formato "S").
+  // 1. lista todos os produtos ativos, exceto os "pai" com variações (formato "V"):
+  // { id -> {codigo, nome} }. Um produto pai não tem saldo próprio — quem carrega
+  // o estoque de verdade são as variações filhas, que já aparecem nessa mesma
+  // listagem como itens separados (formato "S"). Kits (formato "E") têm saldo
+  // próprio normalmente e entram na comparação como qualquer produto simples.
   const infoPorId = {};
   let pagina = 1;
 
   while (true) {
-    const resp = await axios.get('https://www.bling.com.br/Api/v3/produtos', {
+    const resp = await blingGet('https://www.bling.com.br/Api/v3/produtos', {
       headers: { Authorization: `Bearer ${accessToken}` },
       params: { pagina, limite: 100, situacao: 'A' }, // só produtos ativos
     });
@@ -138,7 +157,7 @@ async function getEstoqueBling(accessToken) {
     if (dados.length === 0) break;
 
     for (const item of dados) {
-      if (item.codigo && item.formato === 'S') {
+      if (item.codigo && item.formato !== 'V') {
         infoPorId[item.id] = { codigo: item.codigo, nome: item.nome };
       }
     }
@@ -153,7 +172,7 @@ async function getEstoqueBling(accessToken) {
 
   for (let i = 0; i < idsProdutos.length; i += TAMANHO_LOTE) {
     const lote = idsProdutos.slice(i, i + TAMANHO_LOTE);
-    const resp = await axios.get('https://www.bling.com.br/Api/v3/estoques/saldos', {
+    const resp = await blingGet('https://www.bling.com.br/Api/v3/estoques/saldos', {
       headers: { Authorization: `Bearer ${accessToken}` },
       params: { idsProdutos: lote },
     });
