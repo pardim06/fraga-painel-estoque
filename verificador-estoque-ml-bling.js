@@ -34,19 +34,33 @@ const WHATSAPP_DESTINO = process.env.WHATSAPP_DESTINO; // seu número, ex: 55319
 
 const TOLERANCIA = 0; // diferença mínima pra considerar divergência (0 = qualquer diferença já dispara)
 
-// ===== 0. ATUALIZAÇÃO AUTOMÁTICA DE SECRETS (Bling e ML giram o refresh_token a cada uso) =====
-// Exige um secret GH_PAT (Personal Access Token com permissão de "Secrets" no repo).
-// Sem ele, o script funciona mas o novo refresh_token não é persistido — a próxima
-// execução vai falhar quando o token antigo já tiver sido invalidado.
-async function atualizarSecretGithub(nome, valor) {
-  const token = process.env.GH_PAT;
-  const repo = process.env.GITHUB_REPOSITORY; // preenchido automaticamente pelo GitHub Actions
+// ===== 0. PERSISTÊNCIA DO REFRESH TOKEN (Bling e ML giram o refresh_token a cada uso) =====
+// Local (sem GH_PAT/GITHUB_REPOSITORY): grava direto no .env.
+// No GitHub Actions: atualiza o Secret do repositório via API (precisa do secret GH_PAT).
+const ENV_PATH = path.join(__dirname, '.env');
 
-  if (!token || !repo) {
-    console.log(`Aviso: GH_PAT não configurado — não foi possível atualizar o secret ${nome} automaticamente. A próxima execução pode falhar.`);
+function salvarNovoRefreshToken(nome, valor) {
+  const token = process.env.GH_PAT;
+  const repo = process.env.GITHUB_REPOSITORY;
+
+  if (token && repo) {
+    return atualizarSecretGithub(nome, valor, token, repo);
+  }
+
+  if (!fs.existsSync(ENV_PATH)) {
+    console.log(`Aviso: .env não encontrado — não foi possível persistir o novo ${nome}. Copie manualmente: ${valor}`);
     return;
   }
 
+  let conteudo = fs.readFileSync(ENV_PATH, 'utf8');
+  const linha = `${nome}=${valor}`;
+  const regex = new RegExp(`^${nome}=.*$`, 'm');
+  conteudo = regex.test(conteudo) ? conteudo.replace(regex, linha) : conteudo + `\n${linha}\n`;
+  fs.writeFileSync(ENV_PATH, conteudo);
+  console.log(`.env atualizado localmente: ${nome}`);
+}
+
+async function atualizarSecretGithub(nome, valor, token, repo) {
   const headers = { Authorization: `Bearer ${token}`, Accept: 'application/vnd.github+json' };
 
   const { data: chavePublica } = await axios.get(
@@ -86,7 +100,7 @@ async function getBlingAccessToken() {
   );
 
   if (resp.data.refresh_token && resp.data.refresh_token !== BLING_REFRESH_TOKEN) {
-    await atualizarSecretGithub('BLING_REFRESH_TOKEN', resp.data.refresh_token);
+    await salvarNovoRefreshToken('BLING_REFRESH_TOKEN', resp.data.refresh_token);
   }
 
   return resp.data.access_token;
@@ -94,24 +108,25 @@ async function getBlingAccessToken() {
 
 // ===== 2. ESTOQUE NO BLING =====
 // Retorna um mapa { sku: quantidade }
+// A listagem de produtos já traz o saldo (estoque.saldoVirtualTotal) junto —
+// não precisa de uma chamada separada ao endpoint de saldos.
 async function getEstoqueBling(accessToken) {
   const estoques = {};
   let pagina = 1;
 
   while (true) {
-    const resp = await axios.get('https://www.bling.com.br/Api/v3/estoques/saldos', {
+    const resp = await axios.get('https://www.bling.com.br/Api/v3/produtos', {
       headers: { Authorization: `Bearer ${accessToken}` },
-      params: { pagina, limite: 100 },
+      params: { pagina, limite: 100, situacao: 'A' }, // só produtos ativos
     });
 
     const dados = resp.data.data || [];
     if (dados.length === 0) break;
 
     for (const item of dados) {
-      // ajuste o campo conforme o retorno real da sua conta
-      const sku = item.produto?.codigo;
-      const saldo = item.saldoFisicoTotal ?? item.saldoVirtualTotal;
-      if (sku) estoques[sku] = saldo;
+      const sku = item.codigo;
+      const saldo = item.estoque?.saldoVirtualTotal;
+      if (sku && saldo !== undefined) estoques[sku] = saldo;
     }
 
     pagina++;
@@ -133,7 +148,7 @@ async function getMLAccessToken() {
   );
 
   if (resp.data.refresh_token && resp.data.refresh_token !== ML_REFRESH_TOKEN) {
-    await atualizarSecretGithub('ML_REFRESH_TOKEN', resp.data.refresh_token);
+    await salvarNovoRefreshToken('ML_REFRESH_TOKEN', resp.data.refresh_token);
   }
 
   return resp.data.access_token;
