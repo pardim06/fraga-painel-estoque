@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-07-24T13:54:05.807Z",
+  "atualizadoEm": "2026-07-24T14:29:25.907Z",
   "parametros": {
     "leadTimeDias": 7,
     "segurancaDias": 15,
@@ -11,12 +11,12 @@
   },
   "resumo": {
     "totalProdutosAnalisados": 4448,
-    "totalPedidosAnalisados": 2560,
+    "totalPedidosAnalisados": 2562,
     "totalParaComprar": 266,
     "classeA_paraComprar": 106,
     "classeB_paraComprar": 82,
     "classeC_paraComprar": 78,
-    "investimentoEstimado": 253063.33,
+    "investimentoEstimado": 253123.13,
     "produtosSemDadoCusto": 14
   },
   "itens": [
@@ -1765,6 +1765,22 @@
       "classeABC": "B"
     },
     {
+      "sku": "6459",
+      "nome": "SUPORTE TRUE PARA 3 BICICLETAS ENGATE PRE",
+      "estoqueAtual": 0,
+      "vendidoUlt90d": 6,
+      "vendidoUlt30d": 6,
+      "velocidadeDiaria": 0.2,
+      "tendencia": "subindo",
+      "diasDeEstoqueRestante": 0,
+      "precisaComprar": true,
+      "quantidadeSugerida": 5,
+      "custoUnitario": null,
+      "investimentoLinha": null,
+      "faturamento90d": 1379.94,
+      "classeABC": "B"
+    },
+    {
       "sku": "6420",
       "nome": "SAPATILHA MTB SHIMANO XC503 - PRETO TAMANHO:43;Cor:PRETO",
       "estoqueAtual": 0,
@@ -2965,22 +2981,6 @@
       "classeABC": "B"
     },
     {
-      "sku": "6459",
-      "nome": "SUPORTE TRUE PARA 3 BICICLETAS ENGATE PRE",
-      "estoqueAtual": 1,
-      "vendidoUlt90d": 5,
-      "vendidoUlt30d": 5,
-      "velocidadeDiaria": 0.17,
-      "tendencia": "subindo",
-      "diasDeEstoqueRestante": 6,
-      "precisaComprar": true,
-      "quantidadeSugerida": 3,
-      "custoUnitario": null,
-      "investimentoLinha": null,
-      "faturamento90d": 1149.95,
-      "classeABC": "B"
-    },
-    {
       "sku": "6085",
       "nome": "SAPATILHA MTB HIGH ONE FEET  2 VELCROS + 1 TRAVA  PRETO/CINZA  CICLISMO TAMANHO:42;Cor:Preto cinza",
       "estoqueAtual": 1,
@@ -2997,6 +2997,22 @@
       "classeABC": "B"
     },
     {
+      "sku": "2549",
+      "nome": "BRETELLE MASCULINO CICLY LIFE TOP GEL PRETO TAMANHO:EGG;Cor:preto",
+      "estoqueAtual": 3,
+      "vendidoUlt90d": 20,
+      "vendidoUlt30d": 9,
+      "velocidadeDiaria": 0.3,
+      "tendencia": "subindo",
+      "diasDeEstoqueRestante": 10,
+      "precisaComprar": true,
+      "quantidadeSugerida": 4,
+      "custoUnitario": 29.9,
+      "investimentoLinha": 119.6,
+      "faturamento90d": 2023.33,
+      "classeABC": "B"
+    },
+    {
       "sku": "4052",
       "nome": "CORTA VENTO CICLY LIFE ELITE REFLETIVO COR:VERDE;TAMANHO:G",
       "estoqueAtual": 6,
@@ -3010,22 +3026,6 @@
       "custoUnitario": 59.9,
       "investimentoLinha": 299.5,
       "faturamento90d": 2039.82,
-      "classeABC": "B"
-    },
-    {
-      "sku": "2549",
-      "nome": "BRETELLE MASCULINO CICLY LIFE TOP GEL PRETO TAMANHO:EGG;Cor:preto",
-      "estoqueAtual": 4,
-      "vendidoUlt90d": 19,
-      "vendidoUlt30d": 8,
-      "velocidadeDiaria": 0.27,
-      "tendencia": "estável",
-      "diasDeEstoqueRestante": 15,
-      "precisaComprar": true,
-      "quantidadeSugerida": 2,
-      "custoUnitario": 29.9,
-      "investimentoLinha": 59.8,
-      "faturamento90d": 1927.33,
       "classeABC": "B"
     },
     {
@@ -4823,12 +4823,12 @@
     {
       "sku": "5362",
       "nome": "RODA RAD7 RACING CARBONO SPEED 50MM",
-      "estoqueAtual": 40,
+      "estoqueAtual": 39,
       "vendidoUlt90d": 3,
       "vendidoUlt30d": 3,
       "velocidadeDiaria": 0.1,
       "tendencia": "subindo",
-      "diasDeEstoqueRestante": 400,
+      "diasDeEstoqueRestante": 390,
       "precisaComprar": false,
       "quantidadeSugerida": 0,
       "custoUnitario": 2737.59004,
@@ -27079,7 +27079,7 @@
     {
       "sku": "4778",
       "nome": "PAR DE VALVULAS TUBELESS ABSOLUTE BICO FINO 48MM",
-      "estoqueAtual": 41,
+      "estoqueAtual": 40,
       "vendidoUlt90d": 0,
       "vendidoUlt30d": 0,
       "velocidadeDiaria": 0,
@@ -35511,7 +35511,7 @@
     {
       "sku": "3940",
       "nome": "PAR DE PNEUS CHAOYANG PHANTOM DRY 29X2.20 + KIT TUBELESS",
-      "estoqueAtual": 0,
+      "estoqueAtual": -1,
       "vendidoUlt90d": 0,
       "vendidoUlt30d": 0,
       "velocidadeDiaria": 0,
@@ -53959,7 +53959,7 @@
     {
       "sku": "2025",
       "nome": "ALAVANCA GATILHO ACIONAMENTO CANOTE RETRATIL FOX TRANSFER 2022",
-      "estoqueAtual": 0,
+      "estoqueAtual": -1,
       "vendidoUlt90d": 0,
       "vendidoUlt30d": 0,
       "velocidadeDiaria": 0,
@@ -62199,7 +62199,7 @@
     {
       "sku": "1060",
       "nome": "PAR DE PNEUS CHAOYANG PHANTOM WET 29X2.20 + KIT TUBELESS",
-      "estoqueAtual": 0,
+      "estoqueAtual": -1,
       "vendidoUlt90d": 0,
       "vendidoUlt30d": 0,
       "velocidadeDiaria": 0,
@@ -65831,7 +65831,7 @@
     {
       "sku": "639",
       "nome": "SELANTE ALGOO P/ PROTECAO ANTI-FURO - 300ML",
-      "estoqueAtual": 0,
+      "estoqueAtual": -1,
       "vendidoUlt90d": 0,
       "vendidoUlt30d": 0,
       "velocidadeDiaria": 0,
