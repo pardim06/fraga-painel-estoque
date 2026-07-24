@@ -144,15 +144,20 @@ async function getEstoqueML(accessToken) {
         if (!sku) continue;
 
         // Um mesmo SKU pode ter mais de um anúncio ativo (ex: clássico + premium,
-        // ou republicação sem pausar o anterior). Na prática o Bling sincroniza o
-        // MESMO saldo total pra cada anúncio (não divide o estoque entre eles), então
-        // soma contaria o mesmo estoque várias vezes. Usa o maior valor entre os
-        // anúncios — se estiverem dessincronizados entre si, o maior é o mais
-        // otimista/atual e ainda assim compara de forma justa contra o Bling.
+        // ou republicação sem pausar o anterior). Guarda todos os item_id — a
+        // correção automática precisa atualizar TODOS eles, não só um. Pra
+        // comparação usa o maior valor entre os anúncios (na prática o Bling
+        // sincroniza o mesmo saldo pra cada um; se estiverem dessincronizados
+        // entre si, o maior é o mais otimista/atual).
         if (estoques[sku]) {
           estoques[sku].qtd = Math.max(estoques[sku].qtd, item.available_quantity);
+          estoques[sku].itens.push({ itemId: item.id, qtd: item.available_quantity });
         } else {
-          estoques[sku] = { qtd: item.available_quantity, nome: item.title };
+          estoques[sku] = {
+            qtd: item.available_quantity,
+            nome: item.title,
+            itens: [{ itemId: item.id, qtd: item.available_quantity }],
+          };
         }
       }
     }
@@ -188,6 +193,7 @@ function compararEstoques(estoqueBling, estoqueML) {
         qtdBling: bling.saldo,
         qtdML: ml.qtd,
         diferenca,
+        itens: ml.itens, // uso interno (corrigirEstoqueML) — removido antes de salvar o JSON
       });
     }
   }
@@ -195,18 +201,57 @@ function compararEstoques(estoqueBling, estoqueML) {
   return { divergencias, semSkuNoBling };
 }
 
+// ===== 5b. CORREÇÃO AUTOMÁTICA NO ML =====
+// Só corrige o sentido de risco (Bling < ML): atualiza o(s) anúncio(s) do ML
+// pra baterem com o saldo real do Bling, que é a fonte da verdade. Bling > ML
+// não é mexido automaticamente — só sobra estoque não anunciado, sem risco.
+async function corrigirEstoqueML(accessToken, divergencias) {
+  for (const d of divergencias) {
+    if (d.diferenca >= 0) continue; // só corrige quando Bling < ML
+
+    const resultadosPorItem = [];
+    for (const item of d.itens) {
+      try {
+        await axios.put(
+          `https://api.mercadolibre.com/items/${item.itemId}`,
+          { available_quantity: d.qtdBling },
+          { headers: { Authorization: `Bearer ${accessToken}` } }
+        );
+        resultadosPorItem.push({ itemId: item.itemId, ok: true });
+      } catch (err) {
+        resultadosPorItem.push({
+          itemId: item.itemId,
+          ok: false,
+          erro: err.response?.data?.message || err.message,
+        });
+      }
+      await aguardar(250); // folga entre chamadas de escrita no ML
+    }
+
+    const falhas = resultadosPorItem.filter((r) => !r.ok);
+    d.corrigido = falhas.length === 0;
+    d.corrigidoDetalhe = d.corrigido
+      ? `${resultadosPorItem.length} anúncio(s) atualizado(s) para ${d.qtdBling}`
+      : `Falha em ${falhas.length}/${resultadosPorItem.length} anúncio(s): ${falhas[0].erro}`;
+
+    console.log(
+      `SKU ${d.sku}: ${d.corrigido ? 'corrigido' : 'FALHA ao corrigir'} — ${d.corrigidoDetalhe}`
+    );
+  }
+}
+
 // ===== 6. ALERTA DE RISCO (WhatsApp via CallMeBot/Z-API, ou e-mail via Gmail) =====
-// Só avisa quando Bling < ML (diferenca negativa): é o único caso que gera
-// risco real de vender sem estoque. Bling > ML só significa que sobra
-// estoque não anunciado — sem urgência, não precisa acordar ninguém por isso.
+// Só avisa dos casos que a correção automática NÃO conseguiu resolver sozinha
+// (ex: anúncio pausado, erro da API do ML) — o que corrigiu não precisa
+// acordar ninguém, já está resolvido.
 async function enviarAlertaRisco(divergencias) {
-  const risco = divergencias.filter((d) => d.diferenca < 0);
+  const risco = divergencias.filter((d) => d.diferenca < 0 && !d.corrigido);
   if (risco.length === 0) return;
 
   const LIMITE_ITENS = 15;
   const separador = '----------------------------';
 
-  let corpo = `*RISCO DE FURO DE ESTOQUE*\n${risco.length} produto(s) com estoque do ML maior que o Bling\n`;
+  let corpo = `*RISCO DE FURO - CORRECAO AUTOMATICA FALHOU*\n${risco.length} produto(s) precisam de atencao manual\n`;
 
   for (const d of risco.slice(0, LIMITE_ITENS)) {
     corpo +=
@@ -214,7 +259,8 @@ async function enviarAlertaRisco(divergencias) {
       `*SKU ${d.sku}*\n` +
       `${d.nome || 'sem nome'}\n` +
       `Bling: ${d.qtdBling}  |  ML: ${d.qtdML}\n` +
-      `Faltam *${Math.abs(d.diferenca)}* unidade(s)\n`;
+      `Faltam *${Math.abs(d.diferenca)}* unidade(s)\n` +
+      `Motivo: ${d.corrigidoDetalhe || 'nao corrigido'}\n`;
   }
 
   if (risco.length > LIMITE_ITENS) {
@@ -273,7 +319,9 @@ function salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling }) {
     totalSkus: totalSkusML,
     corretos,
     totalDivergentes: divergencias.length,
-    divergencias, // [{ sku, qtdBling, qtdML, diferenca }]
+    // [{ sku, qtdBling, qtdML, diferenca, corrigido?, corrigidoDetalhe? }] —
+    // "itens" (item_id do ML) é só uso interno, não vai pro painel.
+    divergencias: divergencias.map(({ itens, ...resto }) => resto),
     semSkuNoBling, // skus do ML não encontrados no Bling
   };
 
@@ -297,6 +345,7 @@ async function main() {
     console.log(`Aviso: ${semSkuNoBling.length} SKUs do ML não foram encontrados no Bling (verifique cadastro).`);
   }
 
+  await corrigirEstoqueML(mlToken, divergencias);
   await enviarAlertaRisco(divergencias);
   salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling });
 }

@@ -90,6 +90,22 @@
     return (n > 0 ? '+' : '') + n;
   }
 
+  // Só o sentido de risco (Bling < ML) passa por correção automática.
+  function statusBadge(d) {
+    if (d.diferenca >= 0) {
+      return '<span class="status-badge neutral">sem ação</span>';
+    }
+    if (d.corrigido) {
+      return '<span class="status-badge ok" title="' + escapeHtml(d.corrigidoDetalhe || '') + '">Corrigido</span>';
+    }
+    return '<span class="status-badge alert" title="' + escapeHtml(d.corrigidoDetalhe || '') + '">Falha ao corrigir</span>';
+  }
+
+  function statusTexto(d) {
+    if (d.diferenca >= 0) return 'Sem acao';
+    return d.corrigido ? 'Corrigido' : 'Falha ao corrigir';
+  }
+
   function gaugeSvg(pct) {
     const cor = pct >= 98 ? 'var(--ok)' : pct >= 90 ? 'var(--blue)' : 'var(--alert)';
     return `
@@ -137,7 +153,7 @@
 
     if (divs.length > 0) {
       html += '<div class="table-scroll rise" style="animation-delay:.14s"><table><thead><tr>' +
-        '<th>SKU</th><th>Produto</th><th class="num">Bling</th><th class="num">ML</th><th class="num">Diferença</th>' +
+        '<th>SKU</th><th>Produto</th><th class="num">Bling</th><th class="num">ML</th><th class="num">Diferença</th><th>Status</th>' +
         '</tr></thead><tbody>';
       divs
         .slice()
@@ -149,6 +165,7 @@
             '<td class="num">' + d.qtdBling + '</td>' +
             '<td class="num">' + d.qtdML + '</td>' +
             '<td class="num"><span class="diff-badge">' + formatarDiferenca(d.diferenca) + '</span></td>' +
+            '<td>' + statusBadge(d) + '</td>' +
             '</tr>';
         });
       html += '</tbody></table></div>';
@@ -180,12 +197,12 @@
     const lista = window._divergenciasAtuais || [];
     if (lista.length === 0) return;
 
-    let csv = 'SKU;Produto;Estoque Bling;Estoque ML;Diferenca\n';
+    let csv = 'SKU;Produto;Estoque Bling;Estoque ML;Diferenca;Status\n';
     lista
       .slice()
       .sort((a, b) => Math.abs(b.diferenca) - Math.abs(a.diferenca))
       .forEach((d) => {
-        csv += d.sku + ';' + (d.nome || '').replace(/;/g, ',') + ';' + d.qtdBling + ';' + d.qtdML + ';' + formatarDiferenca(d.diferenca) + '\n';
+        csv += d.sku + ';' + (d.nome || '').replace(/;/g, ',') + ';' + d.qtdBling + ';' + d.qtdML + ';' + formatarDiferenca(d.diferenca) + ';' + statusTexto(d) + '\n';
       });
 
     const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
@@ -209,7 +226,7 @@
       .slice()
       .sort((a, b) => Math.abs(b.diferenca) - Math.abs(a.diferenca))
       .forEach((d) => {
-        texto += 'SKU ' + d.sku + ' (' + (d.nome || 'sem nome') + '): Bling ' + d.qtdBling + ' | ML ' + d.qtdML + ' | diferenca ' + formatarDiferenca(d.diferenca) + '\n';
+        texto += 'SKU ' + d.sku + ' (' + (d.nome || 'sem nome') + '): Bling ' + d.qtdBling + ' | ML ' + d.qtdML + ' | diferenca ' + formatarDiferenca(d.diferenca) + ' | ' + statusTexto(d) + '\n';
       });
 
     navigator.clipboard.writeText(texto).then(() => {
