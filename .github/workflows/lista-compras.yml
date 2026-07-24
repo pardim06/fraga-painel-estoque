@@ -1,0 +1,47 @@
+name: Gerar lista de compras
+
+on:
+  schedule:
+    - cron: '0 9 * * *' # 1x/dia, 09:00 UTC (~06:00 BRT) - antes do horario comercial
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+# Compartilha o mesmo grupo dos outros dois: os tres giram o BLING_REFRESH_TOKEN
+# (esse aqui nao mexe no ML_REFRESH_TOKEN, mas ainda assim nao pode rodar ao
+# mesmo tempo que o verificador de estoque sem risco de corrida no token do
+# Bling). E uma consulta pesada (milhares de pedidos), pode levar ~20min.
+concurrency:
+  group: ml-bling-token
+  cancel-in-progress: false
+
+jobs:
+  gerar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm install
+
+      - run: npm run lista-compras
+        env:
+          BLING_CLIENT_ID: ${{ secrets.BLING_CLIENT_ID }}
+          BLING_CLIENT_SECRET: ${{ secrets.BLING_CLIENT_SECRET }}
+          BLING_REFRESH_TOKEN: ${{ secrets.BLING_REFRESH_TOKEN }}
+          BLING_DEPOSITO_ID: ${{ secrets.BLING_DEPOSITO_ID }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+
+      - name: Commitar resultado atualizado
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add lista-compras.json
+          git diff --quiet --cached || git commit -m "chore: atualiza lista de compras sugerida"
+          git pull --rebase
+          git push

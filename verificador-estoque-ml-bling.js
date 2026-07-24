@@ -16,6 +16,7 @@ require('dotenv').config(); // no-op em produção: GitHub Actions já injeta as
 const axios = require('axios');
 const nodemailer = require('nodemailer');
 const { getBlingAccessToken, getMLAccessToken } = require('./lib/tokens');
+const { blingGet, aguardar } = require('./lib/bling-http');
 
 // ===== CONFIG (variáveis de ambiente / GitHub Secrets) =====
 const OUTPUT_PATH = path.join(__dirname, 'resultado-verificacao.json');
@@ -39,24 +40,6 @@ const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD; // senha de app de 16
 const EMAIL_DESTINO = process.env.EMAIL_DESTINO || GMAIL_USER; // pra onde manda o alerta (padrao: o proprio remetente)
 
 const TOLERANCIA = 0; // diferença mínima pra considerar divergência (0 = qualquer diferença já dispara)
-
-// Bling limita a 3 requisições/segundo. Espera entre chamadas e tenta de novo
-// (com backoff) se ainda assim tomar 429 — evita derrubar a verificação inteira
-// por causa do rate limit.
-const aguardar = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-async function blingGet(url, config, tentativa = 1) {
-  await aguardar(400); // ~2.5 req/s, com folga do limite de 3/s
-  try {
-    return await axios.get(url, config);
-  } catch (err) {
-    if (err.response?.status === 429 && tentativa <= 4) {
-      await aguardar(1000 * tentativa);
-      return blingGet(url, config, tentativa + 1);
-    }
-    throw err;
-  }
-}
 
 // ===== 2. ESTOQUE NO BLING =====
 // Retorna um mapa { sku: quantidade }

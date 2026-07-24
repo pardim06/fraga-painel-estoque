@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lista de Compras — Fraga Bike Shop</title>
+<link rel="stylesheet" href="assets/estilo.css">
+<style>
+  .classe-badge {
+    display: inline-block;
+    width: 22px; height: 22px;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 22px;
+    font-weight: 700;
+    font-size: 12px;
+  }
+  .classe-badge.A { background: var(--blue-bg); color: var(--blue); }
+  .classe-badge.B { background: var(--bg-raised); color: var(--ink-dim); }
+  .classe-badge.C { background: var(--bg-raised); color: var(--ink-faint); }
+  .tend { font-size: 13px; }
+  .tend.subindo { color: var(--alert); }
+  .tend.caindo { color: var(--ink-faint); }
+  .tend.estável { color: var(--ink-dim); }
+  .params-note {
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-bottom: 20px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header rise">
+    <div class="header-left">
+      <a href="index.html" class="badge">FB</a>
+      <div>
+        <h1>Lista de Compras</h1>
+        <div class="subtitle">Fraga Bike Shop · reposição sugerida (Mercado Livre)</div>
+      </div>
+    </div>
+    <div class="badge-live"><span class="dot"></span> Atualiza 1x/dia</div>
+  </div>
+
+  <nav class="module-nav rise" style="animation-delay:.04s">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="painel-estoque.html">Painel de Estoque</a>
+    <a href="perguntas-ml.html">Perguntas ML</a>
+    <a href="lista-compras.html" class="active">Lista de Compras</a>
+  </nav>
+
+  <div id="conteudo"></div>
+
+  <footer>Painel interno · reposição calculada a partir do histórico de vendas do Bling (canal Mercado Livre)</footer>
+</div>
+
+<script>
+  function escapeHtml(texto) {
+    const div = document.createElement('div');
+    div.textContent = texto ?? '';
+    return div.innerHTML;
+  }
+
+  function formatarData(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+  }
+
+  function formatarMoeda(v) {
+    if (v === null || v === undefined) return '—';
+    return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
+
+  function setaTendencia(t) {
+    if (t === 'subindo') return '<span class="tend subindo">▲ subindo</span>';
+    if (t === 'caindo') return '<span class="tend caindo">▼ caindo</span>';
+    return '<span class="tend estável">— estável</span>';
+  }
+
+  let ITENS_ATUAIS = [];
+
+  async function carregar() {
+    document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
+
+    try {
+      const resp = await fetch('lista-compras.json', { cache: 'no-store' });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const dados = await resp.json();
+      render(dados);
+    } catch (err) {
+      document.getElementById('conteudo').innerHTML =
+        '<div class="error-state">Não foi possível carregar a lista de compras. Ela só existe depois da primeira execução do workflow "Gerar lista de compras" no GitHub Actions (roda 1x/dia, pode levar ~20min pra terminar).' +
+        '<span class="detail">' + escapeHtml(err.message) + '</span></div>';
+    }
+  }
+
+  function render(dados) {
+    const { atualizadoEm, parametros, resumo, itens } = dados;
+    ITENS_ATUAIS = (itens || []).filter((i) => i.precisaComprar);
+
+    let html = '';
+
+    html += '<div class="kpi-grid rise">';
+    html += '  <div class="kpi-card ' + (resumo.totalParaComprar > 0 ? 'alert' : 'ok') + '">' +
+      '<div class="lbl">Produtos pra comprar</div><div class="val">' + resumo.totalParaComprar + '</div>' +
+      '<div class="sub">de ' + resumo.totalProdutosAnalisados + ' analisados</div></div>';
+    html += '  <div class="kpi-card" style="animation-delay:.05s">' +
+      '<div class="lbl">Investimento estimado</div><div class="val" style="font-size:22px;">' + formatarMoeda(resumo.investimentoEstimado) + '</div>' +
+      '<div class="sub">' + (resumo.produtosSemDadoCusto > 0 ? resumo.produtosSemDadoCusto + ' sem custo cadastrado (fora da soma)' : 'todos os itens com custo cadastrado') + '</div></div>';
+    html += '  <div class="kpi-card alert" style="animation-delay:.1s">' +
+      '<div class="lbl">Classe A em risco</div><div class="val">' + resumo.classeA_paraComprar + '</div>' +
+      '<div class="sub">seus produtos mais importantes (maior faturamento)</div></div>';
+    html += '  <div class="kpi-card" style="animation-delay:.15s">' +
+      '<div class="lbl">Classe B / C em risco</div><div class="val">' + (resumo.classeB_paraComprar + resumo.classeC_paraComprar) + '</div>' +
+      '<div class="sub">' + resumo.classeB_paraComprar + ' classe B · ' + resumo.classeC_paraComprar + ' classe C</div></div>';
+    html += '</div>';
+
+    html += '<div class="params-note rise" style="animation-delay:.18s">' +
+      'Considera vendas dos últimos ' + parametros.janelaAnaliseDias + ' dias (canal ' + parametros.canalConsiderado + '), ' +
+      'lead time de reposição de ' + parametros.leadTimeDias + ' dia(s) + ' + parametros.segurancaDias + ' dia(s) de segurança ' +
+      '(cobertura alvo: ' + parametros.coberturaAlvoDias + ' dias). Curva ABC por ' + parametros.criterioABC + '. ' +
+      'Última atualização: ' + formatarData(atualizadoEm) + ' · ' + resumo.totalPedidosAnalisados + ' pedido(s) analisado(s).' +
+      '</div>';
+
+    html += '<div class="section-header rise" style="animation-delay:.2s">';
+    html += '  <div class="section-title">Sugestão de compra <span class="count-chip' + (ITENS_ATUAIS.length > 0 ? ' alert' : '') + '">' + ITENS_ATUAIS.length + '</span></div>';
+    if (ITENS_ATUAIS.length > 0) {
+      html += '  <div class="export-buttons"><button class="btn-export primary" onclick="exportarCSV()">Baixar CSV</button></div>';
+    }
+    html += '</div>';
+
+    if (ITENS_ATUAIS.length === 0) {
+      html += '<div class="empty-state rise" style="animation-delay:.24s">' +
+        '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M6 10.5l2.5 2.5L14 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        'Nenhum produto precisa de reposição agora</div>';
+    } else {
+      html += '<div class="table-scroll rise" style="animation-delay:.24s"><table><thead><tr>' +
+        '<th>Classe</th><th>SKU</th><th>Produto</th><th class="num">Estoque</th><th class="num">Vend. 90d</th>' +
+        '<th class="num">Vend. 30d</th><th class="num">Un./dia</th><th>Tendência</th><th class="num">Dias restantes</th>' +
+        '<th class="num">Comprar</th><th class="num">Investimento</th>' +
+        '</tr></thead><tbody>';
+      ITENS_ATUAIS.forEach((i) => {
+        html += '<tr>' +
+          '<td><span class="classe-badge ' + i.classeABC + '">' + i.classeABC + '</span></td>' +
+          '<td class="sku">' + escapeHtml(i.sku) + '</td>' +
+          '<td class="produto" title="' + escapeHtml(i.nome) + '">' + escapeHtml(i.nome || '—') + '</td>' +
+          '<td class="num">' + i.estoqueAtual + '</td>' +
+          '<td class="num">' + i.vendidoUlt90d + '</td>' +
+          '<td class="num">' + i.vendidoUlt30d + '</td>' +
+          '<td class="num">' + i.velocidadeDiaria.toFixed(2) + '</td>' +
+          '<td>' + setaTendencia(i.tendencia) + '</td>' +
+          '<td class="num"><span class="diff-badge">' + i.diasDeEstoqueRestante + '</span></td>' +
+          '<td class="num" style="font-weight:700;">' + i.quantidadeSugerida + '</td>' +
+          '<td class="num">' + formatarMoeda(i.investimentoLinha) + '</td>' +
+          '</tr>';
+      });
+      html += '</tbody></table></div>';
+    }
+
+    document.getElementById('conteudo').innerHTML = html;
+  }
+
+  function exportarCSV() {
+    if (ITENS_ATUAIS.length === 0) return;
+
+    let csv = 'Classe;SKU;Produto;Estoque Atual;Vendido 90d;Vendido 30d;Un por dia;Tendencia;Dias Restantes;Comprar;Custo Unitario;Investimento\n';
+    ITENS_ATUAIS.forEach((i) => {
+      csv += [
+        i.classeABC, i.sku, (i.nome || '').replace(/;/g, ','), i.estoqueAtual, i.vendidoUlt90d, i.vendidoUlt30d,
+        i.velocidadeDiaria.toFixed(2), i.tendencia, i.diasDeEstoqueRestante, i.quantidadeSugerida,
+        i.custoUnitario ?? '', i.investimentoLinha ?? '',
+      ].join(';') + '\n';
+    });
+
+    const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const hoje = new Date().toISOString().slice(0, 10);
+    a.href = url;
+    a.download = 'lista-de-compras-' + hoje + '.csv';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  carregar();
+</script>
+</body>
+</html>
