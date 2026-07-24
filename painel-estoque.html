@@ -115,12 +115,11 @@
   }
 
   function renderPainel(dados, historico) {
-    const { atualizadoEm, totalSkus, corretos, totalDivergentes, divergencias, semSkuNoBling } = dados;
+    const { atualizadoEm, totalSkus, corretos, totalDivergentes, divergencias } = dados;
     const total = totalSkus ?? 0;
     const ok = corretos ?? 0;
     const pct = total > 0 ? Math.round((ok / total) * 100) : 0;
     const divs = divergencias || [];
-    const semBling = semSkuNoBling || [];
 
     window._divergenciasAtuais = divs;
 
@@ -170,13 +169,6 @@
       html += '<div class="empty-state rise" style="animation-delay:.14s">' +
         '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M6 10.5l2.5 2.5L14 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
         'Estoque em dia — nenhuma divergência encontrada</div>';
-    }
-
-    if (semBling.length > 0) {
-      html += '<details class="advisory rise" style="animation-delay:.2s">';
-      html += '  <summary>' + semBling.length + ' SKU(s) do Mercado Livre sem código correspondente no Bling</summary>';
-      html += '  <div class="chip-list">' + semBling.map((s) => '<span class="chip">' + escapeHtml(s) + '</span>').join('') + '</div>';
-      html += '</details>';
     }
 
     if (historico && historico.length > 0) {
