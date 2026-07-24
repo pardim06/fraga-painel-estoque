@@ -334,10 +334,13 @@ function salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling }) {
 // ===== 7b. HISTÓRICO DE CORREÇÕES (persiste entre execuções) =====
 // Depois que um item é corrigido, ele bate com o Bling e some da lista de
 // divergências no próximo ciclo — sem isso, não sobraria registro de que a
-// correção aconteceu. Guarda um log à parte, mais recente primeiro.
+// correção aconteceu. Guarda um log à parte, mais recente primeiro, e some
+// sozinho do histórico depois de alguns dias (não precisa acumular pra
+// sempre — o que importa é o que aconteceu recentemente).
+const HISTORICO_DIAS = 3;
+
 function registrarHistoricoCorrecoes(divergencias) {
   const corrigidosAgora = divergencias.filter((d) => d.corrigido);
-  if (corrigidosAgora.length === 0) return;
 
   let historico = [];
   if (fs.existsSync(HISTORICO_PATH)) {
@@ -348,19 +351,25 @@ function registrarHistoricoCorrecoes(divergencias) {
     }
   }
 
-  const agora = new Date().toISOString();
+  const agora = new Date();
+  const limiteData = agora.getTime() - HISTORICO_DIAS * 24 * 60 * 60 * 1000;
+
   const novasEntradas = corrigidosAgora.map((d) => ({
     sku: d.sku,
     nome: d.nome,
     qtdAnteriorML: d.qtdML,
     qtdNova: d.qtdBling,
-    dataHora: agora,
+    dataHora: agora.toISOString(),
   }));
 
-  historico = [...novasEntradas, ...historico].slice(0, HISTORICO_MAX);
+  historico = [...novasEntradas, ...historico]
+    .filter((h) => new Date(h.dataHora).getTime() >= limiteData)
+    .slice(0, HISTORICO_MAX);
 
   fs.writeFileSync(HISTORICO_PATH, JSON.stringify(historico, null, 2));
-  console.log(`Histórico atualizado: +${novasEntradas.length} correção(ões) registrada(s).`);
+  if (novasEntradas.length > 0) {
+    console.log(`Histórico atualizado: +${novasEntradas.length} correção(ões) registrada(s).`);
+  }
 }
 
 // ===== EXECUÇÃO =====

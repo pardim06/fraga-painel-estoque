@@ -181,7 +181,8 @@
 
     if (historico && historico.length > 0) {
       html += '<div class="section-header rise" style="animation-delay:.24s; margin-top:24px;">';
-      html += '  <div class="section-title">Histórico de correções automáticas <span class="count-chip">' + historico.length + '</span></div>';
+      html += '  <div class="section-title">Histórico de correções automáticas <span class="count-chip">' + historico.length + '</span>' +
+        '<span style="font-size:11.5px;font-weight:400;color:var(--ink-faint);">últimos 3 dias</span></div>';
       html += '</div>';
       html += '<div class="table-scroll rise" style="animation-delay:.26s"><table><thead><tr>' +
         '<th>SKU</th><th>Produto</th><th class="num">De</th><th class="num">Para</th><th>Quando</th>' +
