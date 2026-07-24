@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-07-24T03:49:36.100Z",
+  "atualizadoEm": "2026-07-24T06:32:32.514Z",
   "limiteMinutos": 60,
   "total": 2,
-  "atrasadas": 0,
+  "atrasadas": 2,
   "perguntas": [
     {
       "id": 13627206643,
@@ -11,8 +11,8 @@
       "produto": "Par Rodas Aro 29 Absolute Wild Tubeless Disco 8/12v",
       "link": "https://produto.mercadolivre.com.br/MLB-4930820033-par-rodas-aro-29-absolute-wild-tubeless-disco-812v-_JM",
       "dataCriacao": "2026-07-23T23:12:53.611267283-04:00",
-      "minutosAberta": 37,
-      "atrasada": false
+      "minutosAberta": 200,
+      "atrasada": true
     },
     {
       "id": 13627205739,
@@ -21,8 +21,8 @@
       "produto": "Par Rodas Aro 29 Absolute Wild Tubeless Disco 8/12v",
       "link": "https://produto.mercadolivre.com.br/MLB-4930820033-par-rodas-aro-29-absolute-wild-tubeless-disco-812v-_JM",
       "dataCriacao": "2026-07-23T23:12:09.480743949-04:00",
-      "minutosAberta": 37,
-      "atrasada": false
+      "minutosAberta": 200,
+      "atrasada": true
     }
   ]
 }
