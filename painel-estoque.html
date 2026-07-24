@@ -27,40 +27,37 @@
 
   <div id="conteudo"></div>
 
-  <div class="load-strip rise" style="animation-delay:.3s">
-    <span class="lbl">Carregar outra fonte</span>
-    <div class="load-row">
-      <input id="dataUrl" type="text" placeholder="URL do resultado-verificacao.json" />
-      <button onclick="carregar()">Carregar</button>
-    </div>
-  </div>
-
   <footer>Painel interno · dados do último resultado gerado pelo verificador automático</footer>
 </div>
 
 <script>
-  // Por padrão, lê o resultado-verificacao.json do mesmo repositório/pasta
-  // (é isso que o GitHub Actions atualiza a cada 15min). Cole outra URL no
-  // campo acima só se quiser apontar pra um arquivo em outro lugar.
-  let urlSalva = 'resultado-verificacao.json';
-
   const GAUGE_R = 50;
   const GAUGE_C = 2 * Math.PI * GAUGE_R;
 
-  async function carregar() {
-    const input = document.getElementById('dataUrl');
-    const url = input.value.trim() || urlSalva;
-    urlSalva = url;
-    renderCarregando();
-
+  async function buscarJson(url) {
     try {
       const resp = await fetch(url, { cache: 'no-store' });
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      const dados = await resp.json();
-      renderPainel(dados);
-    } catch (err) {
-      renderErro('Não foi possível carregar os dados. Confira a URL, se o bucket/arquivo permite leitura pública e se o CORS está habilitado.', err.message);
+      if (!resp.ok) return null;
+      return await resp.json();
+    } catch {
+      return null;
     }
+  }
+
+  async function carregar() {
+    renderCarregando();
+
+    const [dados, historico] = await Promise.all([
+      buscarJson('resultado-verificacao.json'),
+      buscarJson('historico-correcoes.json'),
+    ]);
+
+    if (!dados) {
+      renderErro('Não foi possível carregar o resultado-verificacao.json. Ele só existe depois da primeira execução do workflow no GitHub Actions.');
+      return;
+    }
+
+    renderPainel(dados, historico || []);
   }
 
   function renderCarregando() {
@@ -117,7 +114,7 @@
       </svg>`;
   }
 
-  function renderPainel(dados) {
+  function renderPainel(dados, historico) {
     const { atualizadoEm, totalSkus, corretos, totalDivergentes, divergencias, semSkuNoBling } = dados;
     const total = totalSkus ?? 0;
     const ok = corretos ?? 0;
@@ -180,6 +177,25 @@
       html += '  <summary>' + semBling.length + ' SKU(s) do Mercado Livre sem código correspondente no Bling</summary>';
       html += '  <div class="chip-list">' + semBling.map((s) => '<span class="chip">' + escapeHtml(s) + '</span>').join('') + '</div>';
       html += '</details>';
+    }
+
+    if (historico && historico.length > 0) {
+      html += '<div class="section-header rise" style="animation-delay:.24s; margin-top:24px;">';
+      html += '  <div class="section-title">Histórico de correções automáticas <span class="count-chip">' + historico.length + '</span></div>';
+      html += '</div>';
+      html += '<div class="table-scroll rise" style="animation-delay:.26s"><table><thead><tr>' +
+        '<th>SKU</th><th>Produto</th><th class="num">De</th><th class="num">Para</th><th>Quando</th>' +
+        '</tr></thead><tbody>';
+      historico.forEach((h) => {
+        html += '<tr>' +
+          '<td class="sku">' + escapeHtml(h.sku) + '</td>' +
+          '<td class="produto" title="' + escapeHtml(h.nome) + '">' + escapeHtml(h.nome || '—') + '</td>' +
+          '<td class="num">' + h.qtdAnteriorML + '</td>' +
+          '<td class="num">' + h.qtdNova + '</td>' +
+          '<td>' + formatarData(h.dataHora) + '</td>' +
+          '</tr>';
+      });
+      html += '</tbody></table></div>';
     }
 
     document.getElementById('conteudo').innerHTML = html;

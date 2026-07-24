@@ -27,28 +27,15 @@
 
   <div id="conteudo"></div>
 
-  <div class="load-strip rise" style="animation-delay:.3s">
-    <span class="lbl">Carregar outra fonte</span>
-    <div class="load-row">
-      <input id="dataUrl" type="text" placeholder="URL do perguntas-ml.json" />
-      <button onclick="carregar()">Carregar</button>
-    </div>
-  </div>
-
   <footer>Painel interno · perguntas sem resposta há mais de 1h aparecem destacadas</footer>
 </div>
 
 <script>
-  let urlSalva = 'perguntas-ml.json';
-
   async function carregar() {
-    const input = document.getElementById('dataUrl');
-    const url = input.value.trim() || urlSalva;
-    urlSalva = url;
     renderCarregando();
 
     try {
-      const resp = await fetch(url, { cache: 'no-store' });
+      const resp = await fetch('perguntas-ml.json', { cache: 'no-store' });
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
       const dados = await resp.json();
       renderPainel(dados);

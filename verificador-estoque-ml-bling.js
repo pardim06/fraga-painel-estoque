@@ -19,6 +19,8 @@ const { getBlingAccessToken, getMLAccessToken } = require('./lib/tokens');
 
 // ===== CONFIG (variáveis de ambiente / GitHub Secrets) =====
 const OUTPUT_PATH = path.join(__dirname, 'resultado-verificacao.json');
+const HISTORICO_PATH = path.join(__dirname, 'historico-correcoes.json');
+const HISTORICO_MAX = 300; // mantém só as correções mais recentes, pra não crescer sem limite
 
 // Depósito "1 - SITE / MERCADO LIVRE" — só o estoque desse depósito deve ser
 // comparado com o ML (os outros são lojas físicas, reserva, eventos etc.).
@@ -329,6 +331,38 @@ function salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling }) {
   console.log(`Resultado salvo em ${OUTPUT_PATH}`);
 }
 
+// ===== 7b. HISTÓRICO DE CORREÇÕES (persiste entre execuções) =====
+// Depois que um item é corrigido, ele bate com o Bling e some da lista de
+// divergências no próximo ciclo — sem isso, não sobraria registro de que a
+// correção aconteceu. Guarda um log à parte, mais recente primeiro.
+function registrarHistoricoCorrecoes(divergencias) {
+  const corrigidosAgora = divergencias.filter((d) => d.corrigido);
+  if (corrigidosAgora.length === 0) return;
+
+  let historico = [];
+  if (fs.existsSync(HISTORICO_PATH)) {
+    try {
+      historico = JSON.parse(fs.readFileSync(HISTORICO_PATH, 'utf8'));
+    } catch {
+      historico = [];
+    }
+  }
+
+  const agora = new Date().toISOString();
+  const novasEntradas = corrigidosAgora.map((d) => ({
+    sku: d.sku,
+    nome: d.nome,
+    qtdAnteriorML: d.qtdML,
+    qtdNova: d.qtdBling,
+    dataHora: agora,
+  }));
+
+  historico = [...novasEntradas, ...historico].slice(0, HISTORICO_MAX);
+
+  fs.writeFileSync(HISTORICO_PATH, JSON.stringify(historico, null, 2));
+  console.log(`Histórico atualizado: +${novasEntradas.length} correção(ões) registrada(s).`);
+}
+
 // ===== EXECUÇÃO =====
 async function main() {
   const blingToken = await getBlingAccessToken();
@@ -346,6 +380,7 @@ async function main() {
   }
 
   await corrigirEstoqueML(mlToken, divergencias);
+  registrarHistoricoCorrecoes(divergencias);
   await enviarAlertaRisco(divergencias);
   salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling });
 }
