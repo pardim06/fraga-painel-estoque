@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-07-25T15:40:46.921Z",
+  "atualizadoEm": "2026-07-25T16:37:03.752Z",
   "totalSkus": 317,
-  "corretos": 262,
-  "totalDivergentes": 2,
+  "corretos": 261,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,13 @@
       "qtdBling": 21,
       "qtdML": 10,
       "diferenca": 11
+    },
+    {
+      "sku": "228",
+      "nome": "PEDAL CLIP SHIMANO PD-M520 C/ TACOS SM-SH51 - PRETO",
+      "qtdBling": 12,
+      "qtdML": 11,
+      "diferenca": 1
     },
     {
       "sku": "368",
