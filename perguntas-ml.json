@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-07-25T23:44:43.659Z",
+  "atualizadoEm": "2026-07-26T01:18:20.897Z",
   "limiteMinutos": 60,
-  "total": 1,
-  "atrasadas": 1,
+  "total": 2,
+  "atrasadas": 2,
   "perguntas": [
     {
       "id": 13627919747,
@@ -11,7 +11,17 @@
       "produto": "Sapatilha Mtb Shimano Xc302 - Branco Branco 39 Br",
       "link": "https://produto.mercadolivre.com.br/MLB-6920713360-sapatilha-mtb-shimano-xc302-branco-branco-39-br-_JM",
       "dataCriacao": "2026-07-25T09:50:11.401468982-04:00",
-      "minutosAberta": 595,
+      "minutosAberta": 688,
+      "atrasada": true
+    },
+    {
+      "id": 13629017432,
+      "texto": "ola o passador acompanha o cabo original Shimano sem corte",
+      "itemId": "MLB4888012945",
+      "produto": "Shifter Alavanca Câmbio Shimano Slx M7100 12v I-spec Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-4888012945-shifter-alavanca-cmbio-shimano-slx-m7100-12v-i-spec-preto-_JM",
+      "dataCriacao": "2026-07-25T19:54:36.401370414-04:00",
+      "minutosAberta": 84,
       "atrasada": true
     }
   ]
