@@ -1,7 +1,18 @@
 {
-  "atualizadoEm": "2026-07-27T21:17:38.319Z",
+  "atualizadoEm": "2026-07-27T22:34:47.133Z",
   "limiteMinutos": 60,
-  "total": 0,
+  "total": 1,
   "atrasadas": 0,
-  "perguntas": []
+  "perguntas": [
+    {
+      "id": 13630115162,
+      "texto": "Boa noite, Consigo dobrar e colocar no bolso da camisa?",
+      "itemId": "MLB6908373258",
+      "produto": "Corta Vento Cicly Life Elite Refletivo Preto G",
+      "link": "https://produto.mercadolivre.com.br/MLB-6908373258-corta-vento-cicly-life-elite-refletivo-preto-g-_JM",
+      "dataCriacao": "2026-07-27T18:32:44.872423955-04:00",
+      "minutosAberta": 2,
+      "atrasada": false
+    }
+  ]
 }
