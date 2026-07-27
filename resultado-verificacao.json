@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-07-27T11:22:15.483Z",
+  "atualizadoEm": "2026-07-27T13:55:32.426Z",
   "totalSkus": 303,
-  "corretos": 250,
-  "totalDivergentes": 2,
+  "corretos": 249,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -17,6 +17,15 @@
       "qtdBling": 3,
       "qtdML": 1,
       "diferenca": 2
+    },
+    {
+      "sku": "4984",
+      "nome": "GPS CICLOCOMPUTADOR GEOID CC600, WI-FI",
+      "qtdBling": 240,
+      "qtdML": 272,
+      "diferenca": -32,
+      "corrigido": true,
+      "corrigidoDetalhe": "3 anúncio(s) atualizado(s) para 240"
     }
   ],
   "semSkuNoBling": [
