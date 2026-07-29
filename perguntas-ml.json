@@ -1,18 +1,7 @@
 {
-  "atualizadoEm": "2026-07-29T12:31:45.111Z",
+  "atualizadoEm": "2026-07-29T14:59:04.864Z",
   "limiteMinutos": 60,
-  "total": 1,
+  "total": 0,
   "atrasadas": 0,
-  "perguntas": [
-    {
-      "id": 13630331193,
-      "texto": "qual o modelo do cubo que vem nessa roda?",
-      "itemId": "MLB7229238306",
-      "produto": "Roda Bike Mtb Aro 29 Absolute Wild Alumínio Disco 32 Furos Preto",
-      "link": "https://produto.mercadolivre.com.br/MLB-7229238306-roda-bike-mtb-aro-29-absolute-wild-aluminio-disco-32-furos-preto-_JM",
-      "dataCriacao": "2026-07-29T08:18:44.282350478-04:00",
-      "minutosAberta": 13,
-      "atrasada": false
-    }
-  ]
+  "perguntas": []
 }
