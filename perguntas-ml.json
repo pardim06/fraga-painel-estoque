@@ -1,7 +1,7 @@
 {
-  "atualizadoEm": "2026-08-02T17:33:57.709Z",
+  "atualizadoEm": "2026-08-02T18:43:31.100Z",
   "limiteMinutos": 60,
-  "total": 3,
+  "total": 4,
   "atrasadas": 3,
   "perguntas": [
     {
@@ -11,7 +11,7 @@
       "produto": "Sapatilha Shimano Sh-rc302 Boa 2025 Branca Ciclismo",
       "link": "https://produto.mercadolivre.com.br/MLB-3807182027-sapatilha-shimano-sh-rc302-boa-2025-branca-ciclismo-_JM",
       "dataCriacao": "2026-07-31T18:39:17.394149478-04:00",
-      "minutosAberta": 2575,
+      "minutosAberta": 2644,
       "atrasada": true
     },
     {
@@ -21,7 +21,7 @@
       "produto": "Sapatilha Shimano Road Speed Ciclismo Sh-rc703 - Verde Oliva",
       "link": "https://produto.mercadolivre.com.br/MLB-5071304466-sapatilha-shimano-road-speed-ciclismo-sh-rc703-verde-oliva-_JM",
       "dataCriacao": "2026-08-01T10:12:12.630955741-04:00",
-      "minutosAberta": 1642,
+      "minutosAberta": 1711,
       "atrasada": true
     },
     {
@@ -31,8 +31,18 @@
       "produto": "Par Rodas Carbono Rad7 Mtb Aro 29 Boost Tubeless 30mm",
       "link": "https://produto.mercadolivre.com.br/MLB-4460400887-par-rodas-carbono-rad7-mtb-aro-29-boost-tubeless-30mm-_JM",
       "dataCriacao": "2026-08-01T12:25:35.30916761-04:00",
-      "minutosAberta": 1508,
+      "minutosAberta": 1578,
       "atrasada": true
+    },
+    {
+      "id": 13632932187,
+      "texto": "Quantas calibragem faz por cada carga completa ?!",
+      "itemId": "MLB4875203767",
+      "produto": "Mini Bomba Elétrica Digital Bike 120 Psi Presta Schraderauto",
+      "link": "https://produto.mercadolivre.com.br/MLB-4875203767-mini-bomba-eletrica-digital-bike-120-psi-presta-schraderauto-_JM",
+      "dataCriacao": "2026-08-02T13:55:27.449537559-04:00",
+      "minutosAberta": 48,
+      "atrasada": false
     }
   ]
 }
