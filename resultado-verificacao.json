@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-03T13:42:45.192Z",
-  "totalSkus": 290,
+  "atualizadoEm": "2026-08-03T16:10:55.598Z",
+  "totalSkus": 291,
   "corretos": 244,
-  "totalDivergentes": 1,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,13 @@
       "qtdBling": 18,
       "qtdML": 9,
       "diferenca": 9
+    },
+    {
+      "sku": "368",
+      "nome": "PEDAL CLIP SHIMANO PD-ED500 C/TACOS - PRETO",
+      "qtdBling": 2,
+      "qtdML": 1,
+      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
