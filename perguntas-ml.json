@@ -1,7 +1,18 @@
 {
-  "atualizadoEm": "2026-08-03T21:49:50.079Z",
+  "atualizadoEm": "2026-08-03T23:09:45.381Z",
   "limiteMinutos": 60,
-  "total": 0,
-  "atrasadas": 0,
-  "perguntas": []
+  "total": 1,
+  "atrasadas": 1,
+  "perguntas": [
+    {
+      "id": 13634627452,
+      "texto": "A loja de vcs ficam aonde? Cidade e estado",
+      "itemId": "MLB7110255382",
+      "produto": "Kit Transmissão Absolute Prime Mtb 1x12v Câmbio Traseiro +al",
+      "link": "https://produto.mercadolivre.com.br/MLB-7110255382-kit-transmisso-absolute-prime-mtb-1x12v-cmbio-traseiro-al-_JM",
+      "dataCriacao": "2026-08-03T18:05:22.182646252-04:00",
+      "minutosAberta": 64,
+      "atrasada": true
+    }
+  ]
 }
