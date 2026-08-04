@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-04T17:05:28.969Z",
+  "atualizadoEm": "2026-08-04T18:53:56.046Z",
   "totalSkus": 304,
   "corretos": 256,
   "totalDivergentes": 2,
@@ -12,13 +12,11 @@
       "diferenca": 9
     },
     {
-      "sku": "98",
-      "nome": "GARRAFA ELITE LOLI SHIMANO 600ML 2024",
-      "qtdBling": 27,
-      "qtdML": 44,
-      "diferenca": -17,
-      "corrigido": true,
-      "corrigidoDetalhe": "2 anúncio(s) atualizado(s) para 27"
+      "sku": "6560",
+      "nome": "CAMBIO TRASEIRO DEORE RD-M5120 SGS 10/11V",
+      "qtdBling": 6,
+      "qtdML": 5,
+      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
