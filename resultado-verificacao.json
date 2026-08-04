@@ -1,7 +1,7 @@
 {
-  "atualizadoEm": "2026-08-04T15:03:02.008Z",
-  "totalSkus": 299,
-  "corretos": 251,
+  "atualizadoEm": "2026-08-04T17:05:28.969Z",
+  "totalSkus": 304,
+  "corretos": 256,
   "totalDivergentes": 2,
   "divergencias": [
     {
@@ -12,13 +12,13 @@
       "diferenca": 9
     },
     {
-      "sku": "1720",
-      "nome": "CAPACETE ROAD CICLISMO LAZER Z1 KINETICORE - VERMELHO METAL COR:VERMELHO METALICO;TAMANHO:M",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": -1,
+      "sku": "98",
+      "nome": "GARRAFA ELITE LOLI SHIMANO 600ML 2024",
+      "qtdBling": 27,
+      "qtdML": 44,
+      "diferenca": -17,
       "corrigido": true,
-      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 0"
+      "corrigidoDetalhe": "2 anúncio(s) atualizado(s) para 27"
     }
   ],
   "semSkuNoBling": [
