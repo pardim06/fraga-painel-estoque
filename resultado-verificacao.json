@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-04T12:20:47.815Z",
-  "totalSkus": 300,
-  "corretos": 253,
-  "totalDivergentes": 1,
+  "atualizadoEm": "2026-08-04T15:03:02.008Z",
+  "totalSkus": 299,
+  "corretos": 251,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,15 @@
       "qtdBling": 18,
       "qtdML": 9,
       "diferenca": 9
+    },
+    {
+      "sku": "1720",
+      "nome": "CAPACETE ROAD CICLISMO LAZER Z1 KINETICORE - VERMELHO METAL COR:VERMELHO METALICO;TAMANHO:M",
+      "qtdBling": 0,
+      "qtdML": 1,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 0"
     }
   ],
   "semSkuNoBling": [
