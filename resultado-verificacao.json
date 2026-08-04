@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-04T18:53:56.046Z",
+  "atualizadoEm": "2026-08-04T20:25:48.402Z",
   "totalSkus": 304,
   "corretos": 256,
   "totalDivergentes": 2,
@@ -12,11 +12,13 @@
       "diferenca": 9
     },
     {
-      "sku": "6560",
-      "nome": "CAMBIO TRASEIRO DEORE RD-M5120 SGS 10/11V",
-      "qtdBling": 6,
-      "qtdML": 5,
-      "diferenca": 1
+      "sku": "1521",
+      "nome": "FITA DE GUIDÃO SHIMANO PRO CLASSIC COMFORT EVA 2.5MM BCO",
+      "qtdBling": 14,
+      "qtdML": 15,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "3 anúncio(s) atualizado(s) para 14"
     }
   ],
   "semSkuNoBling": [
