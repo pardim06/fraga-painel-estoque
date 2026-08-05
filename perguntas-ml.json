@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-05T21:57:29.375Z",
+  "atualizadoEm": "2026-08-05T23:11:13.898Z",
   "limiteMinutos": 60,
   "total": 1,
-  "atrasadas": 0,
+  "atrasadas": 1,
   "perguntas": [
     {
       "id": 13635358639,
@@ -11,8 +11,8 @@
       "produto": "Sapatilha Shimano Sh-rc302 Azul Escuro Speed Ciclismo",
       "link": "https://produto.mercadolivre.com.br/MLB-4979016510-sapatilha-shimano-sh-rc302-azul-escuro-speed-ciclismo-_JM",
       "dataCriacao": "2026-08-05T17:53:44.09135071-04:00",
-      "minutosAberta": 4,
-      "atrasada": false
+      "minutosAberta": 77,
+      "atrasada": true
     }
   ]
 }
