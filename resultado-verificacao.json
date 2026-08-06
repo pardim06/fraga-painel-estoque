@@ -1,24 +1,15 @@
 {
-  "atualizadoEm": "2026-08-06T13:21:57.282Z",
-  "totalSkus": 322,
-  "corretos": 268,
-  "totalDivergentes": 2,
+  "atualizadoEm": "2026-08-06T15:43:31.125Z",
+  "totalSkus": 319,
+  "corretos": 266,
+  "totalDivergentes": 1,
   "divergencias": [
     {
       "sku": "97",
       "nome": "TAPETE ELITE  PROTETOR PARA  ROLO DE TREINO -  PRETO",
-      "qtdBling": 18,
+      "qtdBling": 17,
       "qtdML": 9,
-      "diferenca": 9
-    },
-    {
-      "sku": "1521",
-      "nome": "FITA DE GUIDÃO SHIMANO PRO CLASSIC COMFORT EVA 2.5MM BCO",
-      "qtdBling": 12,
-      "qtdML": 13,
-      "diferenca": -1,
-      "corrigido": true,
-      "corrigidoDetalhe": "3 anúncio(s) atualizado(s) para 12"
+      "diferenca": 8
     }
   ],
   "semSkuNoBling": [
