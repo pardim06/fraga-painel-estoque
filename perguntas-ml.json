@@ -1,38 +1,7 @@
 {
-  "atualizadoEm": "2026-08-06T09:23:31.734Z",
+  "atualizadoEm": "2026-08-06T11:46:20.567Z",
   "limiteMinutos": 60,
-  "total": 3,
-  "atrasadas": 3,
-  "perguntas": [
-    {
-      "id": 13635358639,
-      "texto": "Boa noite a minha é 44 europa, qual seria o tamanho br?",
-      "itemId": "MLB4979016510",
-      "produto": "Sapatilha Shimano Sh-rc302 Azul Escuro Speed Ciclismo",
-      "link": "https://produto.mercadolivre.com.br/MLB-4979016510-sapatilha-shimano-sh-rc302-azul-escuro-speed-ciclismo-_JM",
-      "dataCriacao": "2026-08-05T17:53:44.09135071-04:00",
-      "minutosAberta": 690,
-      "atrasada": true
-    },
-    {
-      "id": 13636303480,
-      "texto": "Acabei de receber o meu e gostaria de comprar outro. Paguei 72,00 c o cupom, poderia me mandar outro cupom?",
-      "itemId": "MLB5468465424",
-      "produto": "Bretelle Masculino Cicly Life Top Gel Preto",
-      "link": "https://produto.mercadolivre.com.br/MLB-5468465424-bretelle-masculino-cicly-life-top-gel-preto-_JM",
-      "dataCriacao": "2026-08-05T20:33:48.652856429-04:00",
-      "minutosAberta": 530,
-      "atrasada": true
-    },
-    {
-      "id": 13635507123,
-      "texto": "Esse quadro pega uma só ou 2 caramanhola?",
-      "itemId": "MLB6768508398",
-      "produto": "Quadro Mtb Rad7 Stuttgart Carbon Preto Boost 148mm 2025/2026 17",
-      "link": "https://produto.mercadolivre.com.br/MLB-6768508398-quadro-mtb-rad7-stuttgart-carbon-preto-boost-148mm-20252026-17-_JM",
-      "dataCriacao": "2026-08-05T21:26:15.217082663-04:00",
-      "minutosAberta": 477,
-      "atrasada": true
-    }
-  ]
+  "total": 0,
+  "atrasadas": 0,
+  "perguntas": []
 }
