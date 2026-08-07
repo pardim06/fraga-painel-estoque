@@ -297,11 +297,15 @@ async function enviarAlertaRisco(divergencias) {
 
 // ===== 7. SALVAR RESULTADO PRO PAINEL (arquivo local, commitado pelo Actions) =====
 function salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling }) {
-  const corretos = totalSkusML - divergencias.length - semSkuNoBling.length;
+  // "sem SKU no Bling" é majoritariamente produto pai (sem estoque próprio,
+  // não é um SKU de fato comparável) — não conta como "verificado" no total,
+  // senão infla o denominador e derruba o % em dia artificialmente.
+  const totalComparavel = totalSkusML - semSkuNoBling.length;
+  const corretos = totalComparavel - divergencias.length;
 
   const resultado = {
     atualizadoEm: new Date().toISOString(),
-    totalSkus: totalSkusML,
+    totalSkus: totalComparavel,
     corretos,
     totalDivergentes: divergencias.length,
     // [{ sku, qtdBling, qtdML, diferenca, corrigido?, corrigidoDetalhe? }] —
