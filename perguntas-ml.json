@@ -1,28 +1,7 @@
 {
-  "atualizadoEm": "2026-08-07T10:36:17.752Z",
+  "atualizadoEm": "2026-08-07T11:33:10.085Z",
   "limiteMinutos": 60,
-  "total": 2,
-  "atrasadas": 2,
-  "perguntas": [
-    {
-      "id": 13636099521,
-      "texto": "serve em cassete 11-36?",
-      "itemId": "MLB4992717085",
-      "produto": "Alavanca Cambio Alivio Sl-m3100 9v Direito",
-      "link": "https://produto.mercadolivre.com.br/MLB-4992717085-alavanca-cambio-alivio-sl-m3100-9v-direito-_JM",
-      "dataCriacao": "2026-08-06T17:25:17.8212284-04:00",
-      "minutosAberta": 791,
-      "atrasada": true
-    },
-    {
-      "id": 13636231779,
-      "texto": "Original com NF e caixa ?",
-      "itemId": "MLB7328657942",
-      "produto": "Alavanca Trocador Shimano Slx M7100 12v Traseiro S/ Visor",
-      "link": "https://produto.mercadolivre.com.br/MLB-7328657942-alavanca-trocador-shimano-slx-m7100-12v-traseiro-s-visor-_JM",
-      "dataCriacao": "2026-08-06T20:42:54.288323007-04:00",
-      "minutosAberta": 593,
-      "atrasada": true
-    }
-  ]
+  "total": 0,
+  "atrasadas": 0,
+  "perguntas": []
 }
