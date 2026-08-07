@@ -1,1 +1,37 @@
-[]
+[
+  {
+    "sku": "1521",
+    "nome": "FITA DE GUIDÃO SHIMANO PRO CLASSIC COMFORT EVA 2.5MM BCO",
+    "qtdAnteriorML": 13,
+    "qtdNova": 12,
+    "dataHora": "2026-08-06T13:21:57.281Z"
+  },
+  {
+    "sku": "1521",
+    "nome": "FITA DE GUIDÃO SHIMANO PRO CLASSIC COMFORT EVA 2.5MM BCO",
+    "qtdAnteriorML": 14,
+    "qtdNova": 13,
+    "dataHora": "2026-08-05T21:49:28.775Z"
+  },
+  {
+    "sku": "1521",
+    "nome": "FITA DE GUIDÃO SHIMANO PRO CLASSIC COMFORT EVA 2.5MM BCO",
+    "qtdAnteriorML": 15,
+    "qtdNova": 14,
+    "dataHora": "2026-08-04T20:25:48.401Z"
+  },
+  {
+    "sku": "98",
+    "nome": "GARRAFA ELITE LOLI SHIMANO 600ML 2024",
+    "qtdAnteriorML": 44,
+    "qtdNova": 27,
+    "dataHora": "2026-08-04T17:05:28.968Z"
+  },
+  {
+    "sku": "1720",
+    "nome": "CAPACETE ROAD CICLISMO LAZER Z1 KINETICORE - VERMELHO METAL COR:VERMELHO METALICO;TAMANHO:M",
+    "qtdAnteriorML": 1,
+    "qtdNova": 0,
+    "dataHora": "2026-08-04T15:03:02.007Z"
+  }
+]
