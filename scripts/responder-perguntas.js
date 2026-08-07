@@ -1,14 +1,15 @@
 // scripts/responder-perguntas.js
 //
 // Pra cada pergunta nova em aberto no Mercado Livre (lida de perguntas-ml.json,
-// já gerado pelo verificar-perguntas.js), pede pra Claude sugerir uma
-// resposta e manda pro dono aprovar via WhatsApp/e-mail — NADA é publicado
-// automaticamente no ML, é só rascunho. O dono decide se copia e cola no app
-// do Mercado Livre.
+// já gerado pelo verificar-perguntas.js), pede pra Gemini sugerir uma resposta.
 //
-// Só gera rascunho novo pra pergunta que ainda não foi notificada antes
-// (controlado por respostas-sugeridas.json), pra não gastar chamada da API
-// nem repetir a mesma notificação a cada ciclo enquanto a pergunta segue em aberto.
+// Fora do horário comercial (segunda a sexta 18:00-08:10, e sábado/domingo
+// o dia todo) a resposta é publicada automaticamente no ML — é quando não
+// tem ninguém pra revisar antes. Em horário comercial, só manda o rascunho
+// pro dono aprovar via WhatsApp/e-mail e copiar/colar manualmente.
+//
+// Só processa pergunta nova (controlado por respostas-sugeridas.json), pra
+// não gastar chamada da API nem repetir notificação a cada ciclo.
 
 const fs = require('fs');
 const path = require('path');
@@ -20,6 +21,7 @@ const { enviarNotificacao } = require('../lib/notificar');
 
 const PERGUNTAS_PATH = path.join(__dirname, '..', 'perguntas-ml.json');
 const ESTADO_PATH = path.join(__dirname, '..', 'respostas-sugeridas.json');
+const FUSO = 'America/Sao_Paulo';
 
 function lerJson(caminho) {
   if (!fs.existsSync(caminho)) return null;
@@ -28,6 +30,28 @@ function lerJson(caminho) {
   } catch {
     return null;
   }
+}
+
+// Segunda a sexta das 18:00 às 08:10 = fora do horário comercial da loja.
+// Sábado e domingo o dia todo também. Nesses períodos não tem ninguém pra
+// aprovar manualmente, então a resposta sai automática.
+function estaNoHorarioAutomatico(agora = new Date()) {
+  const fmt = new Intl.DateTimeFormat('en-US', {
+    timeZone: FUSO,
+    weekday: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+    hourCycle: 'h23',
+  });
+  const partes = Object.fromEntries(fmt.formatToParts(agora).map((p) => [p.type, p.value]));
+  const diaSemana = partes.weekday; // 'Mon'..'Sun'
+  const minutosDoDia = parseInt(partes.hour, 10) * 60 + parseInt(partes.minute, 10);
+
+  if (diaSemana === 'Sat' || diaSemana === 'Sun') return true;
+
+  const INICIO_NOITE = 18 * 60; // 18:00
+  const FIM_MANHA = 8 * 60 + 10; // 08:10
+  return minutosDoDia >= INICIO_NOITE || minutosDoDia < FIM_MANHA;
 }
 
 const cacheDescricao = new Map();
@@ -46,20 +70,34 @@ async function getDescricaoItem(accessToken, itemId) {
   return descricao;
 }
 
-function formatarNotificacao(rascunhos) {
-  const separador = '----------------------------';
-  let corpo = `*SUGESTAO DE RESPOSTA - PERGUNTAS ML*\n${rascunhos.length} pergunta(s) nova(s) com rascunho pronto\n`;
+async function postarRespostaML(accessToken, questionId, texto) {
+  await axios.post(
+    'https://api.mercadolibre.com/answers',
+    { question_id: questionId, text: texto },
+    { headers: { Authorization: `Bearer ${accessToken}` } }
+  );
+}
 
-  for (const r of rascunhos) {
-    corpo +=
-      `\n${separador}\n` +
-      `*${r.produto}*\n` +
-      `Pergunta: ${r.pergunta}\n\n` +
-      `Sugestao de resposta:\n${r.resposta}\n`;
+function formatarNotificacao({ autoRespondidas, aguardandoAprovacao }) {
+  const separador = '----------------------------';
+  let corpo = '';
+
+  if (autoRespondidas.length > 0) {
+    corpo += `*RESPONDIDO AUTOMATICAMENTE - FORA DO HORARIO COMERCIAL*\n${autoRespondidas.length} pergunta(s) ja respondida(s) no ML\n`;
+    for (const r of autoRespondidas) {
+      corpo += `\n${separador}\n*${r.produto}*\nPergunta: ${r.pergunta}\n\nResposta publicada:\n${r.resposta}\n`;
+    }
   }
 
-  corpo += `\n${separador}\nRevise antes de enviar - copie e cole no app do Mercado Livre se estiver de acordo.`;
-  return corpo;
+  if (aguardandoAprovacao.length > 0) {
+    corpo += `\n${separador}\n*SUGESTAO DE RESPOSTA - AGUARDANDO APROVACAO*\n${aguardandoAprovacao.length} pergunta(s) nova(s) com rascunho pronto\n`;
+    for (const r of aguardandoAprovacao) {
+      corpo += `\n${separador}\n*${r.produto}*\nPergunta: ${r.pergunta}\n\nSugestao de resposta:\n${r.resposta}\n`;
+    }
+    corpo += `\n${separador}\nRevise antes de enviar - copie e cole no app do Mercado Livre se estiver de acordo.`;
+  }
+
+  return corpo.trim();
 }
 
 async function main() {
@@ -87,8 +125,12 @@ async function main() {
     return;
   }
 
+  const automatico = estaNoHorarioAutomatico();
+  console.log(automatico ? 'Fora do horário comercial: respostas serão publicadas automaticamente.' : 'Horário comercial: respostas ficam pendentes de aprovação.');
+
   const token = await getMLAccessToken();
-  const rascunhos = [];
+  const autoRespondidas = [];
+  const aguardandoAprovacao = [];
 
   for (const p of novas) {
     try {
@@ -105,10 +147,24 @@ async function main() {
         produto: p.produto,
         link: p.link,
         geradoEm: new Date().toISOString(),
+        status: 'aguardando_aprovacao',
       };
 
+      if (automatico) {
+        try {
+          await postarRespostaML(token, p.id, resposta);
+          registro.status = 'auto_respondida';
+          registro.respondidoEm = new Date().toISOString();
+          autoRespondidas.push(registro);
+        } catch (err) {
+          console.error(`Falha ao publicar resposta automática da pergunta ${p.id}, caiu pra aprovação manual:`, err.response?.data || err.message);
+          aguardandoAprovacao.push(registro);
+        }
+      } else {
+        aguardandoAprovacao.push(registro);
+      }
+
       estado[String(p.id)] = registro;
-      rascunhos.push(registro);
     } catch (err) {
       console.error(`Erro ao gerar resposta pra pergunta ${p.id}:`, err.response?.data || err.message);
     }
@@ -116,9 +172,13 @@ async function main() {
 
   fs.writeFileSync(ESTADO_PATH, JSON.stringify(estado, null, 2));
 
-  if (rascunhos.length > 0) {
-    await enviarNotificacao(formatarNotificacao(rascunhos), `${rascunhos.length} sugestão(ões) de resposta pra aprovar`);
-    console.log(`${rascunhos.length} rascunho(s) gerado(s) e notificado(s).`);
+  const total = autoRespondidas.length + aguardandoAprovacao.length;
+  if (total > 0) {
+    await enviarNotificacao(
+      formatarNotificacao({ autoRespondidas, aguardandoAprovacao }),
+      `${total} pergunta(s) do ML processada(s)`
+    );
+    console.log(`${autoRespondidas.length} respondida(s) automaticamente, ${aguardandoAprovacao.length} aguardando aprovação.`);
   } else {
     console.log('Nenhum rascunho gerado com sucesso.');
   }

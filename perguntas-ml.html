@@ -38,10 +38,15 @@
     renderCarregando();
 
     try {
-      const resp = await fetch('perguntas-ml.json', { cache: 'no-store' });
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      const dados = await resp.json();
+      const [respPerguntas, respRespostas] = await Promise.all([
+        fetch('perguntas-ml.json', { cache: 'no-store' }),
+        fetch('respostas-sugeridas.json', { cache: 'no-store' }),
+      ]);
+      if (!respPerguntas.ok) throw new Error('HTTP ' + respPerguntas.status);
+      const dados = await respPerguntas.json();
+      const respostas = respRespostas.ok ? await respRespostas.json() : {};
       renderPainel(dados);
+      renderRespostas(respostas);
     } catch (err) {
       renderErro('Não foi possível carregar os dados. O arquivo perguntas-ml.json só existe depois da primeira execução do workflow "Verificar perguntas em aberto no Mercado Livre".', err.message);
     }
@@ -113,6 +118,37 @@
     html += '<div class="updated-at rise" style="animation-delay:.1s; margin-top:16px; border-top:none; padding-top:0;">Última verificação: ' + formatarData(atualizadoEm) + '</div>';
 
     document.getElementById('conteudo').innerHTML = html;
+  }
+
+  function renderRespostas(respostas) {
+    const lista = Object.values(respostas || {}).sort((a, b) => new Date(b.geradoEm) - new Date(a.geradoEm));
+    if (lista.length === 0) return;
+
+    let html = '<div class="section-header rise" style="animation-delay:.12s; margin-top:28px;">';
+    html += '  <div class="section-title">Respostas geradas por IA <span class="count-chip">' + lista.length + '</span></div>';
+    html += '</div>';
+
+    html += '<div class="table-scroll rise" style="animation-delay:.14s"><table><thead><tr>' +
+      '<th>Produto</th><th>Pergunta</th><th>Resposta</th><th>Status</th>' +
+      '</tr></thead><tbody>';
+
+    lista.forEach((r) => {
+      const auto = r.status === 'auto_respondida';
+      const linkAbre = r.link ? '<a href="' + escapeHtml(r.link) + '" target="_blank" rel="noopener">' + escapeHtml(r.produto) + '</a>' : escapeHtml(r.produto);
+      const badge = auto
+        ? '<span class="status-badge ok">Respondida automática</span>'
+        : '<span class="status-badge warn">Aguardando aprovação</span>';
+      html += '<tr>' +
+        '<td class="produto" style="max-width:200px" title="' + escapeHtml(r.produto) + '">' + linkAbre + '</td>' +
+        '<td class="produto" style="max-width:260px" title="' + escapeHtml(r.pergunta) + '">' + escapeHtml(r.pergunta) + '</td>' +
+        '<td class="produto" style="max-width:340px" title="' + escapeHtml(r.resposta) + '">' + escapeHtml(r.resposta) + '</td>' +
+        '<td>' + badge + '</td>' +
+        '</tr>';
+    });
+
+    html += '</tbody></table></div>';
+
+    document.getElementById('conteudo').insertAdjacentHTML('beforeend', html);
   }
 
   carregar();
