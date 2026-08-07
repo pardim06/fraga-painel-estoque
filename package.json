@@ -10,7 +10,8 @@
     "reputacao": "node scripts/reputacao.js",
     "lista-compras": "node scripts/lista-compras.js",
     "vigia": "node scripts/vigia.js",
-    "responder-perguntas": "node scripts/responder-perguntas.js"
+    "responder-perguntas": "node scripts/responder-perguntas.js",
+    "saude-anuncios": "node scripts/saude-anuncios.js"
   },
   "dependencies": {
     "axios": "^1.7.9",

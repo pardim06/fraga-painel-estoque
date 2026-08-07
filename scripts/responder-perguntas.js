@@ -21,6 +21,11 @@ const { enviarNotificacao } = require('../lib/notificar');
 
 const PERGUNTAS_PATH = path.join(__dirname, '..', 'perguntas-ml.json');
 const ESTADO_PATH = path.join(__dirname, '..', 'respostas-sugeridas.json');
+// respostas-sugeridas.json é só controle de dedup (some quando a pergunta
+// fecha) — esse aqui é o histórico de verdade, pra acompanhar no painel o
+// que a IA já respondeu mesmo depois de fechada.
+const HISTORICO_PATH = path.join(__dirname, '..', 'historico-respostas-ia.json');
+const HISTORICO_DIAS = 30;
 const FUSO = 'America/Sao_Paulo';
 
 function lerJson(caminho) {
@@ -68,6 +73,26 @@ async function getDescricaoItem(accessToken, itemId) {
   }
   cacheDescricao.set(itemId, descricao);
   return descricao;
+}
+
+function registrarHistorico(questionId, registro) {
+  let historico = {};
+  if (fs.existsSync(HISTORICO_PATH)) {
+    try {
+      historico = JSON.parse(fs.readFileSync(HISTORICO_PATH, 'utf8'));
+    } catch {
+      historico = {};
+    }
+  }
+
+  historico[questionId] = registro;
+
+  const limite = Date.now() - HISTORICO_DIAS * 24 * 60 * 60 * 1000;
+  for (const id of Object.keys(historico)) {
+    if (new Date(historico[id].geradoEm).getTime() < limite) delete historico[id];
+  }
+
+  fs.writeFileSync(HISTORICO_PATH, JSON.stringify(historico, null, 2));
 }
 
 async function postarRespostaML(accessToken, questionId, texto) {
@@ -165,6 +190,7 @@ async function main() {
       }
 
       estado[String(p.id)] = registro;
+      registrarHistorico(String(p.id), registro);
     } catch (err) {
       console.error(`Erro ao gerar resposta pra pergunta ${p.id}:`, err.response?.data || err.message);
     }

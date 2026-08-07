@@ -26,6 +26,7 @@
     <a href="perguntas-ml.html" class="active">Perguntas ML</a>
     <a href="lista-compras.html">Lista de Compras</a>
     <a href="reputacao-ml.html">Reputação ML</a>
+    <a href="saude-anuncios.html">Saúde dos Anúncios</a>
   </nav>
 
   <div id="conteudo"></div>
@@ -40,7 +41,7 @@
     try {
       const [respPerguntas, respRespostas] = await Promise.all([
         fetch('perguntas-ml.json', { cache: 'no-store' }),
-        fetch('respostas-sugeridas.json', { cache: 'no-store' }),
+        fetch('historico-respostas-ia.json', { cache: 'no-store' }),
       ]);
       if (!respPerguntas.ok) throw new Error('HTTP ' + respPerguntas.status);
       const dados = await respPerguntas.json();
@@ -121,11 +122,12 @@
   }
 
   function renderRespostas(respostas) {
-    const lista = Object.values(respostas || {}).sort((a, b) => new Date(b.geradoEm) - new Date(a.geradoEm));
-    if (lista.length === 0) return;
+    const todasOrdenadas = Object.values(respostas || {}).sort((a, b) => new Date(b.geradoEm) - new Date(a.geradoEm));
+    if (todasOrdenadas.length === 0) return;
+    const lista = todasOrdenadas.slice(0, 50);
 
     let html = '<div class="section-header rise" style="animation-delay:.12s; margin-top:28px;">';
-    html += '  <div class="section-title">Respostas geradas por IA <span class="count-chip">' + lista.length + '</span></div>';
+    html += '  <div class="section-title">Histórico de respostas da IA <span class="count-chip">' + todasOrdenadas.length + '</span></div>';
     html += '</div>';
 
     html += '<div class="table-scroll rise" style="animation-delay:.14s"><table><thead><tr>' +
@@ -147,6 +149,9 @@
     });
 
     html += '</tbody></table></div>';
+    if (todasOrdenadas.length > lista.length) {
+      html += '<div class="updated-at" style="margin-top:10px; border-top:none; padding-top:0;">Mostrando as ' + lista.length + ' mais recentes de ' + todasOrdenadas.length + ' (últimos 30 dias)</div>';
+    }
 
     document.getElementById('conteudo').insertAdjacentHTML('beforeend', html);
   }

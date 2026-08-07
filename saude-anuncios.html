@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saúde dos Anúncios — Fraga Bike Shop</title>
+<link rel="icon" type="image/png" href="assets/logo-fraga.png">
+<link rel="stylesheet" href="assets/estilo.css">
+<style>
+  .problema-tag {
+    display: inline-block;
+    font-size: 11.5px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    margin: 2px 4px 2px 0;
+    background: var(--bg-raised);
+    color: var(--ink-dim);
+    border: 1px solid var(--line);
+  }
+  .problema-tag.warning { color: var(--alert); border-color: rgba(248,113,113,0.35); background: var(--alert-bg); }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header rise">
+    <div class="header-left">
+      <a href="index.html" class="badge"><img src="assets/logo-fraga.png" alt="Fraga Bike Shop"></a>
+      <div>
+        <h1>Saúde dos Anúncios</h1>
+        <div class="subtitle">Fraga Bike Shop · Mercado Livre</div>
+      </div>
+    </div>
+    <div class="badge-live"><span class="dot"></span> Atualiza 1x/dia</div>
+  </div>
+
+  <nav class="module-nav rise" style="animation-delay:.04s">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="painel-estoque.html">Painel de Estoque</a>
+    <a href="perguntas-ml.html">Perguntas ML</a>
+    <a href="lista-compras.html">Lista de Compras</a>
+    <a href="reputacao-ml.html">Reputação ML</a>
+    <a href="saude-anuncios.html" class="active">Saúde dos Anúncios</a>
+  </nav>
+
+  <div id="conteudo"></div>
+
+  <footer>Painel interno · anúncio "perdendo exposição" já está com alcance reduzido por reclamação/cancelamento recente — "em alerta" ainda dá pra recuperar antes de perder alcance</footer>
+</div>
+
+<script>
+  function escapeHtml(texto) {
+    const div = document.createElement('div');
+    div.textContent = texto ?? '';
+    return div.innerHTML;
+  }
+
+  function formatarData(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+  }
+
+  async function carregar() {
+    document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
+    try {
+      const resp = await fetch('saude-anuncios.json', { cache: 'no-store' });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const dados = await resp.json();
+      render(dados);
+    } catch (err) {
+      document.getElementById('conteudo').innerHTML =
+        '<div class="error-state">Não foi possível carregar os dados. O arquivo saude-anuncios.json só existe depois da primeira execução do workflow "Gerar lista de compras".' +
+        '<span class="detail">' + err.message + '</span></div>';
+    }
+  }
+
+  function render(dados) {
+    const { atualizadoEm, totalUnhealthy, totalWarning, itens } = dados;
+    const lista = itens || [];
+
+    let html = '';
+
+    html += '<div class="kpi-grid rise">';
+    html += '  <div class="kpi-card' + (totalUnhealthy > 0 ? ' alert' : ' ok') + '">' +
+      '<div class="lbl">Perdendo exposição agora</div><div class="val">' + totalUnhealthy + '</div></div>';
+    html += '  <div class="kpi-card' + (totalWarning > 0 ? '' : ' ok') + '">' +
+      '<div class="lbl">Em alerta (ainda dá pra recuperar)</div><div class="val">' + totalWarning + '</div></div>';
+    html += '</div>';
+
+    html += '<div class="error-state rise" style="animation-delay:.05s; color:var(--ink-dim); background:var(--bg-panel); border-color:var(--line);">' +
+      '"Perdendo exposição" e "Em alerta" vêm de reclamações/cancelamentos recentes desse anúncio específico — o Mercado Livre não expõe o motivo exato por item via API. ' +
+      'Pra ver o detalhe, confira em <b>Reputação → Reclamações, cancelamentos e devoluções</b> no seu painel de vendedor do Mercado Livre. ' +
+      'A coluna "Oportunidades de qualidade" abaixo é um dado complementar (fotos, ficha técnica etc.) — ajuda a melhorar o anúncio, mas não é necessariamente a causa da perda de exposição.' +
+      '</div>';
+
+    html += '<div class="section-header rise" style="animation-delay:.06s; margin-top:20px;"><div class="section-title">Anúncios afetados <span class="count-chip' + (totalUnhealthy > 0 ? ' alert' : '') + '">' + lista.length + '</span></div></div>';
+
+    if (lista.length > 0) {
+      html += '<div class="table-scroll rise" style="animation-delay:.08s"><table><thead><tr>' +
+        '<th>Anúncio</th><th>Status</th><th>Oportunidades de qualidade (complementar)</th>' +
+        '</tr></thead><tbody>';
+
+      lista.forEach((item) => {
+        const linkAbre = item.link ? '<a href="' + escapeHtml(item.link) + '" target="_blank" rel="noopener">' + escapeHtml(item.titulo) + '</a>' : escapeHtml(item.titulo);
+        const badge = item.status === 'unhealthy'
+          ? '<span class="status-badge alert">Perdendo exposição</span>'
+          : '<span class="status-badge warn">Em alerta</span>';
+
+        const problemasHtml = (item.problemas || []).length > 0
+          ? item.problemas.map((p) => {
+              const linkProblema = p.link ? '<a href="' + escapeHtml(p.link) + '" target="_blank" rel="noopener" style="color:inherit;">' + escapeHtml(p.titulo) + '</a>' : escapeHtml(p.titulo);
+              return '<span class="problema-tag' + (p.tipo === 'warning' ? ' warning' : '') + '">' + linkProblema + '</span>';
+            }).join(' ')
+          : '<span style="color:var(--ink-faint);">—</span>';
+
+        html += '<tr>' +
+          '<td class="produto" style="max-width:260px" title="' + escapeHtml(item.titulo) + '">' + linkAbre + '</td>' +
+          '<td>' + badge + '</td>' +
+          '<td style="max-width:420px">' + problemasHtml + '</td>' +
+          '</tr>';
+      });
+
+      html += '</tbody></table></div>';
+    } else {
+      html += '<div class="empty-state rise" style="animation-delay:.08s">' +
+        '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M6 10.5l2.5 2.5L14 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        'Nenhum anúncio com problema de qualidade no momento</div>';
+    }
+
+    html += '<div class="updated-at rise" style="animation-delay:.1s; margin-top:16px; border-top:none; padding-top:0;">Última verificação: ' + formatarData(atualizadoEm) + '</div>';
+
+    document.getElementById('conteudo').innerHTML = html;
+  }
+
+  carregar();
+</script>
+</body>
+</html>
