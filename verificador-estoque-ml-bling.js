@@ -320,7 +320,6 @@ function registrarHistoricoCorrecoes(divergencias) {
 // pra manter indefinidamente e mostrar tendência ao longo do tempo.
 function registrarHistoricoMensal(divergencias) {
   const corrigidosAgora = divergencias.filter((d) => d.corrigido).length;
-  if (corrigidosAgora === 0) return;
 
   let porMes = {};
   if (fs.existsSync(HISTORICO_MENSAL_PATH)) {
@@ -331,6 +330,9 @@ function registrarHistoricoMensal(divergencias) {
     }
   }
 
+  // Sempre escreve o arquivo, mesmo sem correção nova (corrigidosAgora=0) —
+  // senão o "git add historico-mensal.json" do Actions falha com pathspec
+  // não encontrado num ciclo sem correção, e derruba o commit inteiro junto.
   const chave = new Date().toISOString().slice(0, 7); // "2026-08"
   porMes[chave] = (porMes[chave] || 0) + corrigidosAgora;
 
