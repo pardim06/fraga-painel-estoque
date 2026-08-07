@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-07T15:32:32.586Z",
-  "totalSkus": 262,
+  "atualizadoEm": "2026-08-07T15:37:20.203Z",
+  "totalSkus": 261,
   "corretos": 260,
-  "totalDivergentes": 2,
+  "totalDivergentes": 1,
   "divergencias": [
     {
       "sku": "97",
@@ -10,13 +10,6 @@
       "qtdBling": 17,
       "qtdML": 9,
       "diferenca": 8
-    },
-    {
-      "sku": "4052",
-      "nome": "CORTA VENTO CICLY LIFE ELITE REFLETIVO COR:VERDE;TAMANHO:G",
-      "qtdBling": 1,
-      "qtdML": 0,
-      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
