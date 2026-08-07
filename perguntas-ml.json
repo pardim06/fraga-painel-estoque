@@ -1,7 +1,18 @@
 {
-  "atualizadoEm": "2026-08-06T13:22:27.313Z",
+  "atualizadoEm": "2026-08-07T00:08:07.780Z",
   "limiteMinutos": 60,
-  "total": 0,
-  "atrasadas": 0,
-  "perguntas": []
+  "total": 1,
+  "atrasadas": 1,
+  "perguntas": [
+    {
+      "id": 13636099521,
+      "texto": "serve em cassete 11-36?",
+      "itemId": "MLB4992717085",
+      "produto": "Alavanca Cambio Alivio Sl-m3100 9v Direito",
+      "link": "https://produto.mercadolivre.com.br/MLB-4992717085-alavanca-cambio-alivio-sl-m3100-9v-direito-_JM",
+      "dataCriacao": "2026-08-06T17:25:17.8212284-04:00",
+      "minutosAberta": 163,
+      "atrasada": true
+    }
+  ]
 }
