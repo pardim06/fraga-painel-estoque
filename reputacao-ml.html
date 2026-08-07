@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reputação ML — Fraga Bike Shop</title>
+<link rel="icon" type="image/png" href="assets/logo-fraga.png">
+<link rel="stylesheet" href="assets/estilo.css">
+<style>
+  .nivel-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+  }
+  .nivel-badge .bolinha { width: 10px; height: 10px; border-radius: 50%; }
+  .metrica-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px 22px;
+  }
+  .metrica-card .titulo { font-size: 13px; color: var(--ink-dim); margin-bottom: 4px; }
+  .metrica-card .valor { font-family: var(--font-display); font-size: 28px; font-weight: 700; }
+  .metrica-card .detalhe { font-size: 12px; color: var(--ink-faint); margin-top: 4px; }
+  .metrica-card .explicacao { font-size: 12px; color: var(--ink-dim); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); line-height: 1.5; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header rise">
+    <div class="header-left">
+      <a href="index.html" class="badge"><img src="assets/logo-fraga.png" alt="Fraga Bike Shop"></a>
+      <div>
+        <h1>Reputação no Mercado Livre</h1>
+        <div class="subtitle">Fraga Bike Shop · termômetro do vendedor</div>
+      </div>
+    </div>
+    <div class="badge-live"><span class="dot"></span> Atualiza a cada 5min</div>
+  </div>
+
+  <nav class="module-nav rise" style="animation-delay:.04s">
+    <a href="dashboard.html">Dashboard</a>
+    <a href="painel-estoque.html">Painel de Estoque</a>
+    <a href="perguntas-ml.html">Perguntas ML</a>
+    <a href="lista-compras.html">Lista de Compras</a>
+    <a href="reputacao-ml.html" class="active">Reputação ML</a>
+  </nav>
+
+  <div id="conteudo"></div>
+
+  <footer>Painel interno · dados direto da API de reputação do Mercado Livre (últimos 60 dias)</footer>
+</div>
+
+<script>
+  function formatarData(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+  }
+
+  function formatarPct(taxa) {
+    if (taxa === null || taxa === undefined) return '—';
+    return (taxa * 100).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + '%';
+  }
+
+  const NIVEIS = {
+    '5_green': { label: 'Excelente', cor: 'var(--ok)', bg: 'var(--ok-bg)' },
+    '4_light_green': { label: 'Bom', cor: 'var(--ok)', bg: 'var(--ok-bg)' },
+    '3_yellow': { label: 'Regular', cor: 'var(--warn)', bg: 'var(--warn-bg)' },
+    '2_orange': { label: 'Atenção', cor: 'var(--alert)', bg: 'var(--alert-bg)' },
+    '1_red': { label: 'Crítico', cor: 'var(--alert)', bg: 'var(--alert-bg)' },
+  };
+
+  async function carregar() {
+    document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
+
+    try {
+      const resp = await fetch('reputacao-ml.json', { cache: 'no-store' });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const dados = await resp.json();
+      render(dados);
+    } catch (err) {
+      document.getElementById('conteudo').innerHTML =
+        '<div class="error-state">Não foi possível carregar os dados de reputação. O arquivo reputacao-ml.json só existe depois da primeira execução do workflow "Verificar perguntas e reputação no Mercado Livre".' +
+        '<span class="detail">' + err.message + '</span></div>';
+    }
+  }
+
+  function render(dados) {
+    const { atualizadoEm, nickname, nivel, powerSeller, metricas } = dados;
+    const nivelInfo = NIVEIS[nivel] || { label: nivel || '—', cor: 'var(--ink-dim)', bg: 'var(--bg-raised)' };
+
+    let html = '';
+
+    html += '<div class="hero rise" style="align-items:flex-start; flex-direction:column; gap:16px;">';
+    html += '  <div>';
+    html += '    <div class="nivel-badge" style="background:' + nivelInfo.bg + '; color:' + nivelInfo.cor + ';">' +
+      '<span class="bolinha" style="background:' + nivelInfo.cor + ';"></span>' + nivelInfo.label + '</div>';
+    html += '  </div>';
+    html += '  <div class="specs" style="width:100%;">';
+    html += '    <div class="spec-row"><span class="k">Conta</span><span class="v">' + (nickname || '—') + '</span></div>';
+    html += '    <div class="spec-row"><span class="k">Power Seller</span><span class="v">' + (powerSeller || '—') + '</span></div>';
+    html += '    <div class="spec-row"><span class="k">Vendas concluídas (60 dias)</span><span class="v">' + (metricas?.vendas60d ?? '—') + '</span></div>';
+    html += '    <div class="updated-at">Última atualização: ' + formatarData(atualizadoEm) + '</div>';
+    html += '  </div>';
+    html += '</div>';
+
+    html += '<div class="section-header rise" style="animation-delay:.08s"><div class="section-title">Taxas (últimos 60 dias)</div></div>';
+    html += '<div class="kpi-grid rise" style="animation-delay:.1s">';
+
+    html += '  <div class="metrica-card">' +
+      '<div class="titulo">Taxa de cancelamento</div>' +
+      '<div class="valor" style="color:' + (metricas?.cancelamento?.taxa > 0.03 ? 'var(--alert)' : 'var(--ink)') + ';">' + formatarPct(metricas?.cancelamento?.taxa) + '</div>' +
+      '<div class="detalhe">' + (metricas?.cancelamento?.quantidade ?? 0) + ' pedido(s) cancelado(s)</div>' +
+      '<div class="explicacao">Pedidos que você cancelou depois de vendidos. Furo de estoque é uma das causas mais diretas.</div>' +
+      '</div>';
+
+    html += '  <div class="metrica-card">' +
+      '<div class="titulo">Taxa de reclamação</div>' +
+      '<div class="valor" style="color:' + (metricas?.reclamacao?.taxa > 0.03 ? 'var(--alert)' : 'var(--ink)') + ';">' + formatarPct(metricas?.reclamacao?.taxa) + '</div>' +
+      '<div class="detalhe">' + (metricas?.reclamacao?.quantidade ?? 0) + ' reclamação(ões)</div>' +
+      '<div class="explicacao">Compradores que abriram reclamação após a compra (produto errado, atraso, problema no atendimento etc.).</div>' +
+      '</div>';
+
+    html += '  <div class="metrica-card">' +
+      '<div class="titulo">Taxa de atraso no envio</div>' +
+      '<div class="valor" style="color:' + (metricas?.atraso?.taxa > 0.1 ? 'var(--alert)' : 'var(--ink)') + ';">' + formatarPct(metricas?.atraso?.taxa) + '</div>' +
+      '<div class="detalhe">' + (metricas?.atraso?.quantidade ?? 0) + ' envio(s) atrasado(s)</div>' +
+      '<div class="explicacao">Pedidos despachados depois do prazo prometido ao comprador.</div>' +
+      '</div>';
+
+    html += '</div>';
+
+    document.getElementById('conteudo').innerHTML = html;
+  }
+
+  carregar();
+</script>
+</body>
+</html>

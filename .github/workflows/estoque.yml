@@ -51,7 +51,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add resultado-verificacao.json historico-correcoes.json
+          git add resultado-verificacao.json historico-correcoes.json historico-mensal.json
           git diff --quiet --cached || git commit -m "chore: atualiza resultado da verificacao de estoque"
           git pull --rebase
           git push

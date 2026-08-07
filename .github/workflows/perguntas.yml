@@ -1,4 +1,4 @@
-name: Verificar perguntas em aberto no Mercado Livre
+name: Verificar perguntas e reputação no Mercado Livre
 
 on:
   schedule:
@@ -33,11 +33,19 @@ jobs:
           ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
           GH_PAT: ${{ secrets.GH_PAT }}
 
+      - run: npm run reputacao
+        env:
+          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+          ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
+          ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+
       - name: Commitar resultado atualizado
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add perguntas-ml.json
-          git diff --quiet --cached || git commit -m "chore: atualiza perguntas em aberto no ML"
+          git add perguntas-ml.json reputacao-ml.json
+          git diff --quiet --cached || git commit -m "chore: atualiza perguntas e reputacao do ML"
           git pull --rebase
           git push

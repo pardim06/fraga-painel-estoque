@@ -1,0 +1,40 @@
+name: Vigia do sistema
+
+on:
+  schedule:
+    - cron: '*/15 * * * *' # fallback - disparo real vem de gatilho externo (cron-job.org) via workflow_dispatch
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  vigiar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm install
+
+      - run: npm run vigia
+        env:
+          CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
+          CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
+          ZAPI_INSTANCE_URL: ${{ secrets.ZAPI_INSTANCE_URL }}
+          WHATSAPP_DESTINO: ${{ secrets.WHATSAPP_DESTINO }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
+
+      - name: Commitar estado do vigia
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add vigia-estado.json
+          git diff --quiet --cached || git commit -m "chore: atualiza estado do vigia"
+          git pull --rebase
+          git push

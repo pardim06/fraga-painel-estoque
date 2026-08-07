@@ -1,0 +1,22 @@
+{
+  "estoque": {
+    "status": "ok",
+    "atrasoMin": 2,
+    "verificadoEm": "2026-08-07T14:59:00.307Z"
+  },
+  "perguntas": {
+    "status": "ok",
+    "atrasoMin": 2,
+    "verificadoEm": "2026-08-07T14:59:00.321Z"
+  },
+  "reputacao": {
+    "status": "ok",
+    "atrasoMin": 30,
+    "verificadoEm": "2026-08-07T14:59:00.321Z"
+  },
+  "lista-compras": {
+    "status": "ok",
+    "atrasoMin": 274,
+    "verificadoEm": "2026-08-07T14:59:00.338Z"
+  }
+}

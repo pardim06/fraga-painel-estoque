@@ -14,30 +14,20 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config(); // no-op em produção: GitHub Actions já injeta as env vars diretamente
 const axios = require('axios');
-const nodemailer = require('nodemailer');
 const { getBlingAccessToken, getMLAccessToken } = require('./lib/tokens');
 const { blingGet, aguardar } = require('./lib/bling-http');
+const { enviarNotificacao } = require('./lib/notificar');
 
 // ===== CONFIG (variáveis de ambiente / GitHub Secrets) =====
 const OUTPUT_PATH = path.join(__dirname, 'resultado-verificacao.json');
 const HISTORICO_PATH = path.join(__dirname, 'historico-correcoes.json');
 const HISTORICO_MAX = 300; // mantém só as correções mais recentes, pra não crescer sem limite
+const HISTORICO_MENSAL_PATH = path.join(__dirname, 'historico-mensal.json');
 
 // Depósito "1 - SITE / MERCADO LIVRE" — só o estoque desse depósito deve ser
 // comparado com o ML (os outros são lojas físicas, reserva, eventos etc.).
 const BLING_DEPOSITO_ID = process.env.BLING_DEPOSITO_ID || '14887750294';
 const ML_SELLER_ID = process.env.ML_SELLER_ID;
-
-// Opcionais — se não configurados, o alerta é simplesmente pulado. Tenta
-// nessa ordem: CallMeBot (WhatsApp grátis) → Z-API (WhatsApp pago) → e-mail
-// via Gmail (grátis, fallback atual enquanto o WhatsApp não fica estável).
-const CALLMEBOT_PHONE = process.env.CALLMEBOT_PHONE; // seu número, ex: 5531999999999
-const CALLMEBOT_APIKEY = process.env.CALLMEBOT_APIKEY;
-const ZAPI_INSTANCE_URL = process.env.ZAPI_INSTANCE_URL; // ex: https://api.z-api.io/instances/SEU_ID/token/SEU_TOKEN
-const WHATSAPP_DESTINO = process.env.WHATSAPP_DESTINO; // seu número, ex: 5531999999999
-const GMAIL_USER = process.env.GMAIL_USER; // ex: voce@gmail.com
-const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD; // senha de app de 16 caracteres, nao a senha normal
-const EMAIL_DESTINO = process.env.EMAIL_DESTINO || GMAIL_USER; // pra onde manda o alerta (padrao: o proprio remetente)
 
 const TOLERANCIA = 0; // diferença mínima pra considerar divergência (0 = qualquer diferença já dispara)
 
@@ -252,47 +242,12 @@ async function enviarAlertaRisco(divergencias) {
     corpo += `\n${separador}\n... e mais ${risco.length - LIMITE_ITENS} produto(s) em risco. Veja todos no painel.\n`;
   }
 
-  if (CALLMEBOT_PHONE && CALLMEBOT_APIKEY) {
-    // A API gratuita do CallMeBot rejeita mensagem com acento (ç, ã, ê etc.)
-    // com "invalid charecters" — e nome de produto quase sempre tem.
-    const semAcento = corpo.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    const resp = await axios.get('https://api.callmebot.com/whatsapp.php', {
-      params: { phone: CALLMEBOT_PHONE, text: semAcento, apikey: CALLMEBOT_APIKEY },
-    });
-    if (typeof resp.data === 'string' && resp.data.includes('Error')) {
-      console.log(`Aviso: CallMeBot recusou a mensagem: ${resp.data}`);
-    } else {
-      console.log(`Alerta enviado via CallMeBot (${risco.length} SKU(s) em risco).`);
-      return;
-    }
+  const enviado = await enviarNotificacao(corpo, `Risco de furo de estoque - ${risco.length} SKU(s)`);
+  if (enviado) {
+    console.log(`Alerta enviado (${risco.length} SKU(s) em risco).`);
+  } else {
+    console.log(`${risco.length} SKU(s) em risco de furo, mas nenhum canal de alerta configurado.`);
   }
-
-  if (ZAPI_INSTANCE_URL && WHATSAPP_DESTINO) {
-    await axios.post(`${ZAPI_INSTANCE_URL}/send-text`, {
-      phone: WHATSAPP_DESTINO,
-      message: corpo,
-    });
-    console.log(`Alerta enviado via Z-API (${risco.length} SKU(s) em risco).`);
-    return;
-  }
-
-  if (GMAIL_USER && GMAIL_APP_PASSWORD && EMAIL_DESTINO) {
-    const transporte = nodemailer.createTransport({
-      service: 'gmail',
-      auth: { user: GMAIL_USER, pass: GMAIL_APP_PASSWORD },
-    });
-
-    await transporte.sendMail({
-      from: GMAIL_USER,
-      to: EMAIL_DESTINO,
-      subject: `Risco de furo de estoque - ${risco.length} SKU(s)`,
-      text: corpo,
-    });
-    console.log(`Alerta enviado por e-mail pra ${EMAIL_DESTINO} (${risco.length} SKU(s) em risco).`);
-    return;
-  }
-
-  console.log(`${risco.length} SKU(s) em risco de furo, mas nenhum canal de alerta configurado (CallMeBot, Z-API ou Gmail).`);
 }
 
 // ===== 7. SALVAR RESULTADO PRO PAINEL (arquivo local, commitado pelo Actions) =====
@@ -359,6 +314,29 @@ function registrarHistoricoCorrecoes(divergencias) {
   }
 }
 
+// ===== 7c. HISTÓRICO MENSAL (furos evitados por mês, sem limite de retenção) =====
+// Diferente do histórico de 3 dias acima, aqui guarda só a contagem por mês
+// ("2026-08": 12) — cresce muito devagar (1 número a mais por mês), então dá
+// pra manter indefinidamente e mostrar tendência ao longo do tempo.
+function registrarHistoricoMensal(divergencias) {
+  const corrigidosAgora = divergencias.filter((d) => d.corrigido).length;
+  if (corrigidosAgora === 0) return;
+
+  let porMes = {};
+  if (fs.existsSync(HISTORICO_MENSAL_PATH)) {
+    try {
+      porMes = JSON.parse(fs.readFileSync(HISTORICO_MENSAL_PATH, 'utf8'));
+    } catch {
+      porMes = {};
+    }
+  }
+
+  const chave = new Date().toISOString().slice(0, 7); // "2026-08"
+  porMes[chave] = (porMes[chave] || 0) + corrigidosAgora;
+
+  fs.writeFileSync(HISTORICO_MENSAL_PATH, JSON.stringify(porMes, null, 2));
+}
+
 // ===== EXECUÇÃO =====
 async function main() {
   const blingToken = await getBlingAccessToken();
@@ -377,6 +355,7 @@ async function main() {
 
   await corrigirEstoqueML(mlToken, divergencias);
   registrarHistoricoCorrecoes(divergencias);
+  registrarHistoricoMensal(divergencias);
   await enviarAlertaRisco(divergencias);
   salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling });
 }

@@ -6,9 +6,49 @@
 <title>Dashboard — Fraga Bike Shop</title>
 <link rel="icon" type="image/png" href="assets/logo-fraga.png">
 <link rel="stylesheet" href="assets/estilo.css">
+<style>
+  .viz-root {
+    --good: #0ca30c;
+    --critical: #d03b3b;
+    --slot-a: #3987e5;
+    --slot-b: #d95926;
+    --slot-c: #199e70;
+  }
+
+  .metrica-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+  .metrica-card .titulo { font-size: 12.5px; color: var(--ink-dim); margin-bottom: 4px; }
+  .metrica-card .valor { font-family: var(--font-display); font-size: 24px; font-weight: 700; }
+  .metrica-card .detalhe { font-size: 11.5px; color: var(--ink-faint); margin-top: 4px; }
+
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 14px;
+    height: 160px;
+    padding: 16px 8px 0;
+  }
+  .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+  .bar-col .valor-topo { font-family: var(--font-mono, var(--font-display)); font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .bar-col .barra { width: 100%; max-width: 44px; border-radius: 6px 6px 0 0; background: var(--good); min-height: 3px; }
+  .bar-col .rotulo { font-size: 11px; color: var(--ink-dim); margin-top: 8px; }
+
+  .hbar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .hbar-row:last-child { margin-bottom: 0; }
+  .hbar-row .hbar-label { width: 90px; flex-shrink: 0; font-size: 12.5px; color: var(--ink-dim); }
+  .hbar-row .hbar-track { flex: 1; background: var(--bg-raised); border-radius: 999px; height: 14px; overflow: hidden; }
+  .hbar-row .hbar-fill { height: 100%; border-radius: 999px; }
+  .hbar-row .hbar-valor { width: 34px; text-align: right; flex-shrink: 0; font-size: 12.5px; font-weight: 700; }
+
+  .empty-mini { font-size: 12.5px; color: var(--ink-faint); padding: 12px 4px; }
+</style>
 </head>
 <body>
-<div class="container">
+<div class="container viz-root">
   <div class="header rise">
     <div class="header-left">
       <a href="index.html" class="badge"><img src="assets/logo-fraga.png" alt="Fraga Bike Shop"></a>
@@ -25,14 +65,19 @@
     <a href="painel-estoque.html">Painel de Estoque</a>
     <a href="perguntas-ml.html">Perguntas ML</a>
     <a href="lista-compras.html">Lista de Compras</a>
+    <a href="reputacao-ml.html">Reputação ML</a>
   </nav>
 
   <div id="conteudo"></div>
 
-  <footer>Painel interno · resumo dos dois módulos (estoque e perguntas)</footer>
+  <footer>Painel interno · resumo de todos os módulos</footer>
 </div>
 
 <script>
+  const GAUGE_R = 50;
+  const GAUGE_C = 2 * Math.PI * GAUGE_R;
+  const MES_NOME = { '01': 'Jan', '02': 'Fev', '03': 'Mar', '04': 'Abr', '05': 'Mai', '06': 'Jun', '07': 'Jul', '08': 'Ago', '09': 'Set', '10': 'Out', '11': 'Nov', '12': 'Dez' };
+
   function escapeHtml(texto) {
     const div = document.createElement('div');
     div.textContent = texto ?? '';
@@ -52,6 +97,11 @@
     return h + 'h' + (m > 0 ? m + 'min' : '');
   }
 
+  function formatarPct(taxa) {
+    if (taxa === null || taxa === undefined) return '—';
+    return (taxa * 100).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + '%';
+  }
+
   async function buscar(url) {
     try {
       const resp = await fetch(url, { cache: 'no-store' });
@@ -62,79 +112,178 @@
     }
   }
 
+  function gaugeSvg(pct) {
+    const cor = pct >= 98 ? 'var(--ok)' : pct >= 90 ? 'var(--blue)' : 'var(--alert)';
+    return `
+      <svg viewBox="0 0 120 120" role="img" aria-label="${pct}% dos SKUs em dia">
+        <circle cx="60" cy="60" r="${GAUGE_R}" fill="none" stroke="var(--line)" stroke-width="9"/>
+        <circle class="gauge-progress" cx="60" cy="60" r="${GAUGE_R}" fill="none" stroke="${cor}"
+          stroke-width="9" stroke-linecap="round" stroke-dasharray="${GAUGE_C}"
+          stroke-dashoffset="${GAUGE_C}" transform="rotate(-90 60 60)"/>
+      </svg>`;
+  }
+
+  const NIVEIS = {
+    '5_green': { label: 'Excelente', cor: 'var(--ok)' },
+    '4_light_green': { label: 'Bom', cor: 'var(--ok)' },
+    '3_yellow': { label: 'Regular', cor: 'var(--warn)' },
+    '2_orange': { label: 'Atenção', cor: 'var(--alert)' },
+    '1_red': { label: 'Crítico', cor: 'var(--alert)' },
+  };
+
   async function carregar() {
     document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
 
-    const [estoque, perguntas, compras] = await Promise.all([
+    const [estoque, perguntas, compras, reputacao, historicoMensal] = await Promise.all([
       buscar('resultado-verificacao.json'),
       buscar('perguntas-ml.json'),
       buscar('lista-compras.json'),
+      buscar('reputacao-ml.json'),
+      buscar('historico-mensal.json'),
     ]);
 
-    if (!estoque && !perguntas && !compras) {
+    if (!estoque && !perguntas && !compras && !reputacao) {
       document.getElementById('conteudo').innerHTML =
         '<div class="error-state">Não foi possível carregar nenhum dado ainda. Os arquivos de resultado só existem depois da primeira execução de cada workflow no GitHub Actions.</div>';
       return;
     }
 
-    let html = '<div class="kpi-grid">';
+    let html = '';
+    const pct = estoque && estoque.totalSkus > 0 ? Math.round((estoque.corretos / estoque.totalSkus) * 100) : null;
 
+    // ---- hero: medidor de estoque ----
     if (estoque) {
-      const total = estoque.totalSkus ?? 0;
-      const ok = estoque.corretos ?? 0;
-      const pct = total > 0 ? Math.round((ok / total) * 100) : 0;
-      const divergentes = estoque.totalDivergentes ?? 0;
-
-      html += '<div class="kpi-card rise ' + (pct >= 98 ? 'ok' : divergentes > 0 ? 'alert' : '') + '">' +
-        '<div class="lbl">Estoque em dia</div>' +
-        '<div class="val">' + pct + '%</div>' +
-        '<div class="sub">' + ok + ' de ' + total + ' SKUs batendo com o Bling</div>' +
-        '<a class="goto" href="painel-estoque.html">Ver painel de estoque →</a>' +
-        '</div>';
-
-      html += '<div class="kpi-card rise ' + (divergentes > 0 ? 'alert' : 'ok') + '" style="animation-delay:.05s">' +
-        '<div class="lbl">Divergências de estoque</div>' +
-        '<div class="val">' + divergentes + '</div>' +
-        '<div class="sub">Última verificação: ' + formatarData(estoque.atualizadoEm) + '</div>' +
-        '<a class="goto" href="painel-estoque.html">Ver detalhes →</a>' +
-        '</div>';
-    } else {
-      html += '<div class="kpi-card rise"><div class="lbl">Estoque em dia</div><div class="sub" style="margin-top:8px;">Ainda sem dados — o workflow de estoque roda a cada 5min.</div></div>';
+      html += '<div class="hero rise">';
+      html += '  <div class="gauge-wrap">' + gaugeSvg(pct ?? 0) +
+        '    <div class="gauge-readout"><div class="pct">' + (pct ?? '—') + '<span class="unit">%</span></div><div class="lbl">Em dia</div></div>' +
+        '  </div>';
+      html += '  <div class="specs">';
+      html += '    <div class="spec-row"><span class="k">Total de SKUs verificados</span><span class="v">' + (estoque.totalSkus ?? '—') + '</span></div>';
+      html += '    <div class="spec-row spec-ok"><span class="k">Corretos</span><span class="v">' + (estoque.corretos ?? '—') + '</span></div>';
+      html += '    <div class="spec-row spec-alert"><span class="k">Divergentes</span><span class="v">' + (estoque.totalDivergentes ?? 0) + '</span></div>';
+      html += '    <div class="updated-at">Última verificação: ' + formatarData(estoque.atualizadoEm) + ' · <a href="painel-estoque.html" style="color:var(--blue);">ver detalhes →</a></div>';
+      html += '  </div>';
+      html += '</div>';
     }
+
+    // ---- linha de KPIs ----
+    html += '<div class="kpi-grid rise" style="animation-delay:.06s">';
 
     if (perguntas) {
       const total = perguntas.total ?? 0;
       const atrasadas = perguntas.atrasadas ?? 0;
-      const maisAntiga = (perguntas.perguntas || [])[0];
-
-      html += '<div class="kpi-card rise ' + (atrasadas > 0 ? 'alert' : 'ok') + '" style="animation-delay:.1s">' +
-        '<div class="lbl">Perguntas em aberto</div>' +
-        '<div class="val">' + total + '</div>' +
-        '<div class="sub">' + (atrasadas > 0 ? atrasadas + ' esperando há mais de 1h' : 'nenhuma atrasada') +
-          (maisAntiga ? ' · mais antiga: ' + formatarEspera(maisAntiga.minutosAberta) : '') + '</div>' +
-        '<a class="goto" href="perguntas-ml.html">Ver perguntas →</a>' +
-        '</div>';
+      html += '<div class="kpi-card ' + (atrasadas > 0 ? 'alert' : 'ok') + '">' +
+        '<div class="lbl">Perguntas em aberto</div><div class="val">' + total + '</div>' +
+        '<div class="sub">' + (atrasadas > 0 ? atrasadas + ' esperando há mais de 1h' : 'nenhuma atrasada') + '</div>' +
+        '<a class="goto" href="perguntas-ml.html">Ver perguntas →</a></div>';
     } else {
-      html += '<div class="kpi-card rise" style="animation-delay:.1s"><div class="lbl">Perguntas em aberto</div><div class="sub" style="margin-top:8px;">Ainda sem dados — o workflow de perguntas roda a cada 5min.</div></div>';
+      html += '<div class="kpi-card"><div class="lbl">Perguntas em aberto</div><div class="sub" style="margin-top:8px;">Sem dados ainda.</div></div>';
     }
 
     if (compras) {
       const totalComprar = compras.resumo?.totalParaComprar ?? 0;
       const classeA = compras.resumo?.classeA_paraComprar ?? 0;
-
-      html += '<div class="kpi-card rise ' + (classeA > 0 ? 'alert' : totalComprar > 0 ? '' : 'ok') + '" style="animation-delay:.15s">' +
-        '<div class="lbl">Reposição sugerida</div>' +
-        '<div class="val">' + totalComprar + '</div>' +
-        '<div class="sub">' + (classeA > 0 ? classeA + ' são classe A (prioridade)' : 'nenhum item classe A em risco') + '</div>' +
-        '<a class="goto" href="lista-compras.html">Ver lista de compras →</a>' +
-        '</div>';
+      html += '<div class="kpi-card ' + (classeA > 0 ? 'alert' : totalComprar > 0 ? '' : 'ok') + '">' +
+        '<div class="lbl">Reposição sugerida</div><div class="val">' + totalComprar + '</div>' +
+        '<div class="sub">' + (classeA > 0 ? classeA + ' são classe A' : 'nenhum classe A em risco') + '</div>' +
+        '<a class="goto" href="lista-compras.html">Ver lista →</a></div>';
     } else {
-      html += '<div class="kpi-card rise" style="animation-delay:.15s"><div class="lbl">Reposição sugerida</div><div class="sub" style="margin-top:8px;">Ainda sem dados — o workflow roda 1x/dia.</div></div>';
+      html += '<div class="kpi-card"><div class="lbl">Reposição sugerida</div><div class="sub" style="margin-top:8px;">Sem dados ainda.</div></div>';
+    }
+
+    if (reputacao) {
+      const nivelInfo = NIVEIS[reputacao.nivel] || { label: reputacao.nivel || '—', cor: 'var(--ink-dim)' };
+      html += '<div class="kpi-card">' +
+        '<div class="lbl">Reputação ML</div><div class="val" style="color:' + nivelInfo.cor + ';">' + nivelInfo.label + '</div>' +
+        '<div class="sub">' + (reputacao.powerSeller || '—') + ' · ' + (reputacao.metricas?.vendas60d ?? '—') + ' vendas (60d)</div>' +
+        '<a class="goto" href="reputacao-ml.html">Ver detalhes →</a></div>';
+    } else {
+      html += '<div class="kpi-card"><div class="lbl">Reputação ML</div><div class="sub" style="margin-top:8px;">Sem dados ainda.</div></div>';
     }
 
     html += '</div>';
 
+    // ---- furos evitados por mês ----
+    html += '<div class="section-header rise" style="animation-delay:.1s"><div class="section-title">Furos de estoque evitados por mês</div></div>';
+    if (historicoMensal && Object.keys(historicoMensal).length > 0) {
+      const meses = Object.keys(historicoMensal).sort();
+      const max = Math.max(...meses.map((m) => historicoMensal[m]), 1);
+      html += '<div class="metrica-card rise" style="animation-delay:.12s"><div class="bar-chart">';
+      meses.forEach((m) => {
+        const valor = historicoMensal[m];
+        const alturaPct = Math.max((valor / max) * 100, 4);
+        const [ano, mm] = m.split('-');
+        html += '<div class="bar-col">' +
+          '<div class="valor-topo">' + valor + '</div>' +
+          '<div class="barra" style="height:' + alturaPct + '%;"></div>' +
+          '<div class="rotulo">' + (MES_NOME[mm] || mm) + '/' + ano.slice(2) + '</div>' +
+          '</div>';
+      });
+      html += '</div><div class="detalhe" style="padding:0 8px 4px;">Anúncios do ML corrigidos automaticamente pra bater com o Bling — cada um é uma venda sem estoque evitada.</div></div>';
+    } else {
+      html += '<div class="metrica-card rise" style="animation-delay:.12s"><div class="empty-mini">Ainda sem correções registradas — aparece aqui assim que o sistema corrigir o primeiro risco de furo.</div></div>';
+    }
+
+    // ---- duas colunas: reputação detalhada + curva ABC ----
+    html += '<div class="kpi-grid rise" style="animation-delay:.16s; grid-template-columns: 1fr 1fr; margin-top:24px;">';
+
+    html += '  <div class="metrica-card">';
+    html += '    <div class="section-title" style="margin-bottom:14px;">Taxas do ML (60 dias)</div>';
+    if (reputacao) {
+      const m = reputacao.metricas || {};
+      html += hbar('Cancelamento', m.cancelamento?.taxa, 'var(--critical)');
+      html += hbar('Reclamação', m.reclamacao?.taxa, 'var(--critical)');
+      html += hbar('Atraso no envio', m.atraso?.taxa, 'var(--critical)');
+    } else {
+      html += '<div class="empty-mini">Sem dados ainda.</div>';
+    }
+    html += '  </div>';
+
+    html += '  <div class="metrica-card">';
+    html += '    <div class="section-title" style="margin-bottom:14px;">Reposição por classe ABC</div>';
+    if (compras) {
+      const r = compras.resumo || {};
+      const maxAbc = Math.max(r.classeA_paraComprar || 0, r.classeB_paraComprar || 0, r.classeC_paraComprar || 0, 1);
+      html += hbarAbs('Classe A', r.classeA_paraComprar || 0, maxAbc, 'var(--slot-a)');
+      html += hbarAbs('Classe B', r.classeB_paraComprar || 0, maxAbc, 'var(--slot-b)');
+      html += hbarAbs('Classe C', r.classeC_paraComprar || 0, maxAbc, 'var(--slot-c)');
+    } else {
+      html += '<div class="empty-mini">Sem dados ainda.</div>';
+    }
+    html += '  </div>';
+
+    html += '</div>';
+
     document.getElementById('conteudo').innerHTML = html;
+
+    if (pct !== null) {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const prog = document.querySelector('.gauge-progress');
+          if (prog) prog.style.strokeDashoffset = GAUGE_C * (1 - pct / 100);
+        });
+      });
+    }
+  }
+
+  // barra horizontal pra taxa (0-100%, limitada a um teto visual de 10% pra não esmagar as outras)
+  function hbar(rotulo, taxa, cor) {
+    const pct = taxa === null || taxa === undefined ? 0 : Math.min((taxa / 0.1) * 100, 100);
+    return '<div class="hbar-row">' +
+      '<div class="hbar-label">' + escapeHtml(rotulo) + '</div>' +
+      '<div class="hbar-track"><div class="hbar-fill" style="width:' + pct + '%; background:' + cor + ';"></div></div>' +
+      '<div class="hbar-valor">' + formatarPct(taxa) + '</div>' +
+      '</div>';
+  }
+
+  // barra horizontal pra valor absoluto, escalada pelo maior dos 3
+  function hbarAbs(rotulo, valor, max, cor) {
+    const pct = max > 0 ? (valor / max) * 100 : 0;
+    return '<div class="hbar-row">' +
+      '<div class="hbar-label">' + escapeHtml(rotulo) + '</div>' +
+      '<div class="hbar-track"><div class="hbar-fill" style="width:' + Math.max(pct, valor > 0 ? 4 : 0) + '%; background:' + cor + ';"></div></div>' +
+      '<div class="hbar-valor">' + valor + '</div>' +
+      '</div>';
   }
 
   carregar();

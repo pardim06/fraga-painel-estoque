@@ -7,7 +7,9 @@
   "scripts": {
     "verificar": "node verificador-estoque-ml-bling.js",
     "verificar-perguntas": "node scripts/verificar-perguntas.js",
-    "lista-compras": "node scripts/lista-compras.js"
+    "reputacao": "node scripts/reputacao.js",
+    "lista-compras": "node scripts/lista-compras.js",
+    "vigia": "node scripts/vigia.js"
   },
   "dependencies": {
     "axios": "^1.7.9",
