@@ -1,8 +1,11 @@
 name: Vigia do sistema
 
 on:
-  schedule:
-    - cron: '*/15 * * * *' # fallback - disparo real vem de gatilho externo (cron-job.org) via workflow_dispatch
+  # Encadeado no workflow de perguntas (já disparado de forma confiável a
+  # cada 5min via cron-job.org externo) — não precisa de um cron próprio.
+  workflow_run:
+    workflows: ['Verificar perguntas e reputação no Mercado Livre']
+    types: [completed]
   workflow_dispatch: {}
 
 permissions:
