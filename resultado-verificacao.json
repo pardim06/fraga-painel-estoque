@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-07T23:37:37.254Z",
+  "atualizadoEm": "2026-08-07T23:42:16.792Z",
   "totalSkus": 258,
-  "corretos": 257,
-  "totalDivergentes": 1,
+  "corretos": 256,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,15 @@
       "qtdBling": 17,
       "qtdML": 9,
       "diferenca": 8
+    },
+    {
+      "sku": "6651",
+      "nome": "GUIDAO MTB RETO INTEGRADO CARBONO RAD7 740 MM - PRETO",
+      "qtdBling": 453,
+      "qtdML": 454,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "4 anúncio(s) atualizado(s) para 453"
     }
   ],
   "semSkuNoBling": [
