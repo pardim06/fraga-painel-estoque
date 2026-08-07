@@ -81,16 +81,16 @@ a { color: var(--blue); text-decoration: none; }
 .header-left { display: flex; align-items: center; gap: 14px; }
 
 .badge {
-  width: 40px; height: 40px;
+  width: 44px; height: 44px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
-  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 700; font-size: 14px; color: #fff;
-  letter-spacing: -0.01em;
   flex-shrink: 0;
   text-decoration: none;
+  overflow: hidden;
+}
+.badge img {
+  width: 100%; height: 100%;
+  object-fit: contain;
 }
 h1 {
   font-family: var(--font-display);
