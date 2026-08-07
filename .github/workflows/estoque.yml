@@ -2,7 +2,7 @@ name: Verificar estoque Bling x Mercado Livre
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # a cada 15 minutos (abaixo disso o GitHub atrasa/pula com frequencia)
+    - cron: '*/5 * * * *' # fallback - disparo real vem de gatilho externo (cron-job.org) via workflow_dispatch
   workflow_dispatch: {} # permite rodar manualmente pela aba Actions
 
 permissions:

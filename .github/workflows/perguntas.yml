@@ -2,7 +2,7 @@ name: Verificar perguntas em aberto no Mercado Livre
 
 on:
   schedule:
-    - cron: '*/15 * * * *' # a cada 15 minutos
+    - cron: '*/5 * * * *' # fallback - disparo real vem de gatilho externo (cron-job.org) via workflow_dispatch
   workflow_dispatch: {}
 
 permissions:
