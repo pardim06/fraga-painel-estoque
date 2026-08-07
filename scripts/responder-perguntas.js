@@ -126,6 +126,13 @@ function formatarNotificacao({ autoRespondidas, aguardandoAprovacao }) {
 }
 
 async function main() {
+  // Garante que o arquivo existe mesmo sem pergunta nova nesse ciclo — senão
+  // o "git add" do Actions falha com pathspec não encontrado na primeira
+  // execução (mesmo bug que já pegou o historico-mensal.json antes).
+  if (!fs.existsSync(HISTORICO_PATH)) {
+    fs.writeFileSync(HISTORICO_PATH, JSON.stringify({}, null, 2));
+  }
+
   const perguntasData = lerJson(PERGUNTAS_PATH);
   if (!perguntasData || !Array.isArray(perguntasData.perguntas)) {
     console.log('perguntas-ml.json ainda não existe ou está vazio — nada a fazer.');
