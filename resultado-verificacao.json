@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-08T22:57:18.067Z",
-  "totalSkus": 254,
-  "corretos": 253,
-  "totalDivergentes": 1,
+  "atualizadoEm": "2026-08-08T23:02:29.522Z",
+  "totalSkus": 253,
+  "corretos": 251,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,13 @@
       "qtdBling": 16,
       "qtdML": 9,
       "diferenca": 7
+    },
+    {
+      "sku": "6718",
+      "nome": "CASSETE SHIMANO 8V CS-HG31 11/32D - PRETO",
+      "qtdBling": 5,
+      "qtdML": 4,
+      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
