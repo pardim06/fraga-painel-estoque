@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-08T17:02:55.918Z",
+  "atualizadoEm": "2026-08-08T17:07:35.053Z",
   "totalSkus": 256,
-  "corretos": 255,
-  "totalDivergentes": 1,
+  "corretos": 254,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,13 @@
       "qtdBling": 17,
       "qtdML": 9,
       "diferenca": 8
+    },
+    {
+      "sku": "6545",
+      "nome": "POTE 900G -SUDRACT MAIS CARBO - TANGERINA",
+      "qtdBling": 7,
+      "qtdML": 5,
+      "diferenca": 2
     }
   ],
   "semSkuNoBling": [
