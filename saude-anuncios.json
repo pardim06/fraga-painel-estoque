@@ -1,6 +1,6 @@
 {
-  "atualizadoEm": "2026-08-08T10:02:30.701Z",
-  "totalUnhealthy": 238,
+  "atualizadoEm": "2026-08-09T10:02:27.181Z",
+  "totalUnhealthy": 249,
   "totalWarning": 10,
   "itens": [
     {
@@ -356,14 +356,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU2346461651&item_id=MLB3800666561&item_syi=MLB3800666561&origin=quality#origin=quality"
-        },
-        {
           "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU2346461651/modificar/omni/variation/dominio/picture-uploader-default"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU2346461651&item_id=MLB3800666561&item_syi=MLB3800666561&origin=quality#origin=quality"
         }
       ]
     },
@@ -862,6 +862,15 @@
       "problemas": []
     },
     {
+      "itemId": "MLB5323879240",
+      "titulo": "Guidao Vultro Proton Sl 80x780mm Carbono",
+      "link": "https://produto.mercadolivre.com.br/MLB-5323879240-guidao-vultro-proton-sl-80x780mm-carbono-_JM",
+      "status": "unhealthy",
+      "score": null,
+      "level": null,
+      "problemas": []
+    },
+    {
       "itemId": "MLB5345670242",
       "titulo": "Canote Retrátil Sentec Cabeamento Interno 30.9x470x150mm",
       "link": "https://produto.mercadolivre.com.br/MLB-5345670242-canote-retratil-sentec-cabeamento-interno-309x470x150mm-_JM",
@@ -921,6 +930,15 @@
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB3807237469"
         }
       ]
+    },
+    {
+      "itemId": "MLB5075600762",
+      "titulo": "Fita Anti-furo Pneu 29 Safetire 35mm - Pneus 26 27.5 29",
+      "link": "https://produto.mercadolivre.com.br/MLB-5075600762-fita-anti-furo-pneu-29-safetire-35mm-pneus-26-275-29-_JM",
+      "status": "unhealthy",
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB4054518869",
@@ -1426,11 +1444,6 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?item_id=MLB5970988068&item_syi=MLB5970988068&origin=quality#origin=quality&pi_origin=listings&pi_rule=HAS_SHORTS"
-        },
-        {
           "titulo": "Preencha as características principais",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=technical_specifications_task&itemId=MLB5970988068"
@@ -1439,6 +1452,11 @@
           "titulo": "Preencha os dados fiscais para emitir faturas",
           "tipo": "oportunidade",
           "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB5970988068/tax-information"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?item_id=MLB5970988068&item_syi=MLB5970988068&origin=quality#origin=quality&pi_origin=listings&pi_rule=HAS_SHORTS"
         },
         {
           "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
@@ -1665,14 +1683,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3938165435&item_id=MLB6722116884&item_syi=MLB6722116884&origin=quality#origin=quality"
-        },
-        {
           "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3938165435/modificar/omni/variation/dominio/picture-uploader-default"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3938165435&item_id=MLB6722116884&item_syi=MLB6722116884&origin=quality#origin=quality"
         },
         {
           "titulo": "Adicione preços de atacado",
@@ -1724,13 +1742,18 @@
       "titulo": "Quadro Mtb Rad7 Stuttgart Carbon Off White Boost 148mm 25/26 19",
       "link": "https://produto.mercadolivre.com.br/MLB-6768497374-quadro-mtb-rad7-stuttgart-carbon-off-white-boost-148mm-2526-19-_JM",
       "status": "unhealthy",
-      "score": 93,
+      "score": 74,
       "level": "Profissional",
       "problemas": [
         {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3959438165&item_id=MLB6768497374&item_syi=MLB6768497374&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB6768497374"
         }
       ]
     },
@@ -1830,18 +1853,13 @@
       "titulo": "Pinhao Cog Shimano - Cs-m6100/m7100/m8100/m9100 - 10d E 12d Aço",
       "link": "https://produto.mercadolivre.com.br/MLB-4977700626-pinhao-cog-shimano-cs-m6100m7100m8100m9100-10d-e-12d-aco-_JM",
       "status": "unhealthy",
-      "score": 85,
+      "score": 95,
       "level": "Profissional",
       "problemas": [
         {
           "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU1479113474/modificar/omni/variation/dominio/picture-uploader-default"
-        },
-        {
-          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4977700626"
         }
       ]
     },
@@ -1922,6 +1940,15 @@
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=prices_task&itemId=MLB6971779102"
         }
       ]
+    },
+    {
+      "itemId": "MLB6971779090",
+      "titulo": "Manopla Punho Esi Grips Chunky - Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-6971779090-manopla-punho-esi-grips-chunky-preto-_JM",
+      "status": "unhealthy",
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB4782535819",
@@ -2029,6 +2056,21 @@
           "titulo": "Adicione preços de atacado",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=prices_task&itemId=MLB4857009465"
+        }
+      ]
+    },
+    {
+      "itemId": "MLB4856843631",
+      "titulo": "Pedivela Triplo Sunrace M600 Preto 170mm 42/32/22 Mtb Bike",
+      "link": "https://produto.mercadolivre.com.br/MLB-4856843631-pedivela-triplo-sunrace-m600-preto-170mm-423222-mtb-bike-_JM",
+      "status": "unhealthy",
+      "score": 93,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4226381395&item_id=MLB4856843631&item_syi=MLB4856843631&origin=quality#origin=quality"
         }
       ]
     },
@@ -2509,13 +2551,13 @@
       "titulo": "Cambio Traseiro Deore Rd-m5120 Sgs 10/11v",
       "link": "https://produto.mercadolivre.com.br/MLB-7328839318-cambio-traseiro-deore-rd-m5120-sgs-1011v-_JM",
       "status": "unhealthy",
-      "score": 74,
+      "score": 90,
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4590374296/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB7328839318"
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4590374296&item_id=MLB7328839318&item_syi=MLB7328839318&origin=quality#origin=quality"
         },
         {
           "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
@@ -2523,14 +2565,9 @@
           "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4590374296"
         },
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4590374296&item_id=MLB7328839318&item_syi=MLB7328839318&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB7328839318"
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4590374296/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB7328839318"
         }
       ]
     },
@@ -2578,6 +2615,11 @@
       "level": "Satisfatória",
       "problemas": [
         {
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4564192941/modificar/omni/variation/dominio/picture-uploader-default"
+        },
+        {
           "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4564192941"
@@ -2586,11 +2628,6 @@
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4564192941&item_id=MLB7328832536&item_syi=MLB7328832536&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4564192941/modificar/omni/variation/dominio/picture-uploader-default"
         },
         {
           "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
@@ -2623,14 +2660,14 @@
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4589867782&item_id=MLB7328670238&item_syi=MLB7328670238&origin=quality#origin=quality"
         },
         {
-          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB7328670238"
-        },
-        {
           "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB7328670238"
+        },
+        {
+          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB7328670238"
         }
       ]
     },
@@ -2643,16 +2680,34 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4563958427/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB7328657942"
-        },
-        {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4563958427&item_id=MLB7328657942&item_syi=MLB7328657942&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4563958427/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB7328657942"
         }
       ]
+    },
+    {
+      "itemId": "MLB7328453084",
+      "titulo": "Guidão Carbono Mtb Reto 740mm Rad7 31.8mm Flat Bike Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-7328453084-guido-carbono-mtb-reto-740mm-rad7-318mm-flat-bike-preto-_JM",
+      "status": "unhealthy",
+      "score": null,
+      "level": null,
+      "problemas": []
+    },
+    {
+      "itemId": "MLB7328450396",
+      "titulo": "Par Roda Bike Speed Rad7 Racing Carbono 50mm Tubeless Leve Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-7328450396-par-roda-bike-speed-rad7-racing-carbono-50mm-tubeless-leve-preto-_JM",
+      "status": "unhealthy",
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB4992919227",
@@ -2693,28 +2748,172 @@
       "titulo": "Alavanca Cambio Alivio Sl-m3100 9v Direito",
       "link": "https://produto.mercadolivre.com.br/MLB-4992717085-alavanca-cambio-alivio-sl-m3100-9v-direito-_JM",
       "status": "unhealthy",
-      "score": 85,
+      "score": null,
+      "level": null,
+      "problemas": []
+    },
+    {
+      "itemId": "MLB7344598250",
+      "titulo": "Cassete Shimano 8v Cs-hg31 11/32d - Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-7344598250-cassete-shimano-8v-cs-hg31-1132d-preto-_JM",
+      "status": "unhealthy",
+      "score": 68,
       "level": "Profissional",
       "problemas": [
         {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4620973198&item_id=MLB7344598250&item_syi=MLB7344598250&origin=quality#origin=quality"
+        },
+        {
           "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4590396402/modificar/omni/variation/dominio/picture-uploader-default"
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4620973198/modificar/omni/variation/dominio/picture-uploader-default"
         },
         {
-          "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
+          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4590396402"
-        },
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB7344598250"
+        }
+      ]
+    },
+    {
+      "itemId": "MLB5005891995",
+      "titulo": "Corrente Ted Tec Pwr Index C10 - Cinza",
+      "link": "https://produto.mercadolivre.com.br/MLB-5005891995-corrente-ted-tec-pwr-index-c10-cinza-_JM",
+      "status": "unhealthy",
+      "score": 61,
+      "level": "Satisfatória",
+      "problemas": [
         {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "titulo": "Preencha as características principais",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4590396402/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4992717085"
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4622024776/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB5005891995"
         },
         {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4590396402&item_id=MLB4992717085&item_syi=MLB4992717085&origin=quality#origin=quality"
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4622024776&item_id=MLB5005891995&item_syi=MLB5005891995&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005891995"
+        },
+        {
+          "titulo": "Participe de uma promoção para receber mais visitas",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/anuncios/lista/promos?search=MLB5005891995"
+        }
+      ]
+    },
+    {
+      "itemId": "MLB5005887975",
+      "titulo": "Caixa De Direção Neco Zs H159e 1-1/8 56/44 Mm Tapered ",
+      "link": "https://produto.mercadolivre.com.br/MLB-5005887975-caixa-de-direco-neco-zs-h159e-1-18-5644-mm-tapered-_JM",
+      "status": "unhealthy",
+      "score": 48,
+      "level": "Básica",
+      "problemas": [
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4595448195&item_id=MLB5005887975&item_syi=MLB5005887975&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4595448195/modificar/omni/variation/dominio/picture-uploader-default"
+        },
+        {
+          "titulo": "Participe de uma promoção para receber mais visitas",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/anuncios/lista/promos?search=MLB5005887975"
+        },
+        {
+          "titulo": "Adicione preços de atacado",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=prices_task&itemId=MLB5005887975"
+        },
+        {
+          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005887975"
+        },
+        {
+          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005887975"
+        }
+      ]
+    },
+    {
+      "itemId": "MLB5005621021",
+      "titulo": "Cubo Neco Cassete Aluminio Mtb Disc 36f - Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-5005621021-cubo-neco-cassete-aluminio-mtb-disc-36f-preto-_JM",
+      "status": "unhealthy",
+      "score": 49,
+      "level": "Básica",
+      "problemas": [
+        {
+          "titulo": "Preencha as características principais",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4595135987/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB5005621021"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4595135987&item_id=MLB5005621021&item_syi=MLB5005621021&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4595135987/modificar/omni/variation/dominio/picture-uploader-default"
+        },
+        {
+          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005621021"
+        },
+        {
+          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005621021"
+        }
+      ]
+    },
+    {
+      "itemId": "MLB5005286307",
+      "titulo": "Alavanca De Cambio Altus Sl-m2010 2v - Esquerdo",
+      "link": "https://produto.mercadolivre.com.br/MLB-5005286307-alavanca-de-cambio-altus-sl-m2010-2v-esquerdo-_JM",
+      "status": "unhealthy",
+      "score": 55,
+      "level": "Satisfatória",
+      "problemas": [
+        {
+          "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4594762599"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4594762599&item_id=MLB5005286307&item_syi=MLB5005286307&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4594762599/modificar/omni/variation/dominio/picture-uploader-default"
+        },
+        {
+          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005286307"
+        },
+        {
+          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005286307"
         }
       ]
     },
@@ -2736,24 +2935,24 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3222517354/modificar/omni/variation/dominio/picture-uploader-default"
-        },
-        {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3222517354&item_id=MLB4084990233&item_syi=MLB4084990233&origin=quality#origin=quality"
         },
         {
-          "titulo": "Adicione preços de atacado",
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=prices_task&itemId=MLB4084990233"
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3222517354/modificar/omni/variation/dominio/picture-uploader-default"
         },
         {
           "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4084990233"
+        },
+        {
+          "titulo": "Adicione preços de atacado",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=prices_task&itemId=MLB4084990233"
         }
       ]
     },
@@ -2786,14 +2985,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4787309804"
-        },
-        {
           "titulo": "Preencha os dados fiscais para emitir faturas",
           "tipo": "oportunidade",
           "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4787309804/tax-information"
+        },
+        {
+          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4787309804"
         }
       ]
     },
@@ -2802,23 +3001,18 @@
       "titulo": "Sapatilha Shimano Mtb Sh-xc903 S-phyre - Branco",
       "link": "https://produto.mercadolivre.com.br/MLB-3750557283-sapatilha-shimano-mtb-sh-xc903-s-phyre-branco-_JM",
       "status": "warning",
-      "score": 85,
+      "score": 97,
       "level": "Profissional",
       "problemas": [
-        {
-          "titulo": "Preencha os dados fiscais para emitir faturas",
-          "tipo": "oportunidade",
-          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB3750557283/tax-information"
-        },
-        {
-          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB3750557283"
-        },
         {
           "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB3750557283"
+        },
+        {
+          "titulo": "Preencha os dados fiscais para emitir faturas",
+          "tipo": "oportunidade",
+          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB3750557283/tax-information"
         }
       ]
     },
@@ -2827,18 +3021,23 @@
       "titulo": "Sapatilha Shimano Sh-rc302 Azul Escuro Speed Ciclismo",
       "link": "https://produto.mercadolivre.com.br/MLB-4979016510-sapatilha-shimano-sh-rc302-azul-escuro-speed-ciclismo-_JM",
       "status": "warning",
-      "score": 97,
+      "score": 85,
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Preencha os dados fiscais para emitir faturas",
+          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
           "tipo": "oportunidade",
-          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4979016510/tax-information"
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4979016510"
         },
         {
           "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4979016510"
+        },
+        {
+          "titulo": "Preencha os dados fiscais para emitir faturas",
+          "tipo": "oportunidade",
+          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4979016510/tax-information"
         }
       ]
     },
