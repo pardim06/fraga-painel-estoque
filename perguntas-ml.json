@@ -1,7 +1,18 @@
 {
-  "atualizadoEm": "2026-08-09T20:45:23.289Z",
+  "atualizadoEm": "2026-08-09T20:55:19.667Z",
   "limiteMinutos": 60,
-  "total": 0,
+  "total": 1,
   "atrasadas": 0,
-  "perguntas": []
+  "perguntas": [
+    {
+      "id": 13638556400,
+      "texto": "Como ela é por dentro? Camada dupla",
+      "itemId": "MLB4959331999",
+      "produto": "Garrafa Camelbak Podium De 24 Onças Com Capacidade De 24 Floz Preta Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-4959331999-garrafa-camelbak-podium-de-24-oncas-com-capacidade-de-24-floz-preta-preto-_JM",
+      "dataCriacao": "2026-08-09T16:52:46.657584667-04:00",
+      "minutosAberta": 3,
+      "atrasada": false
+    }
+  ]
 }
