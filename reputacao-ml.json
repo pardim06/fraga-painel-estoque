@@ -1,21 +1,21 @@
 {
-  "atualizadoEm": "2026-08-09T09:30:33.206Z",
+  "atualizadoEm": "2026-08-09T10:01:06.071Z",
   "nickname": "FRAGAPROMO",
   "nivel": "5_green",
   "powerSeller": "gold",
   "metricas": {
-    "vendas60d": 1415,
+    "vendas60d": 1367,
     "cancelamento": {
-      "taxa": 0.0024,
+      "taxa": 0.0025,
       "quantidade": 4
     },
     "reclamacao": {
-      "taxa": 0.0067,
-      "quantidade": 11
+      "taxa": 0.0063,
+      "quantidade": 10
     },
     "atraso": {
-      "taxa": 0.0328,
-      "quantidade": 50
+      "taxa": 0.0081,
+      "quantidade": 12
     }
   }
 }
