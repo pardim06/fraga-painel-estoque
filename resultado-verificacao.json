@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-10T22:37:36.810Z",
+  "atualizadoEm": "2026-08-10T22:42:34.314Z",
   "totalSkus": 250,
-  "corretos": 247,
-  "totalDivergentes": 3,
+  "corretos": 246,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -19,13 +19,18 @@
       "diferenca": 9
     },
     {
+      "sku": "6592",
+      "nome": "Cassete Sunrace M680 11-40d 8v 456g 11/40 460gr K7 Mtb Prateado 11 40",
+      "qtdBling": 1,
+      "qtdML": 0,
+      "diferenca": 1
+    },
+    {
       "sku": "6651",
       "nome": "GUIDAO MTB RETO INTEGRADO CARBONO RAD7 740 MM - PRETO",
-      "qtdBling": 449,
-      "qtdML": 450,
-      "diferenca": -1,
-      "corrigido": true,
-      "corrigidoDetalhe": "4 anúncio(s) atualizado(s) para 449"
+      "qtdBling": 450,
+      "qtdML": 449,
+      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
