@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-10T21:32:30.735Z",
-  "totalSkus": 252,
+  "atualizadoEm": "2026-08-10T21:37:39.211Z",
+  "totalSkus": 251,
   "corretos": 249,
-  "totalDivergentes": 3,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -10,13 +10,6 @@
       "qtdBling": 15,
       "qtdML": 9,
       "diferenca": 6
-    },
-    {
-      "sku": "4283",
-      "nome": "SAPATILHA MTB SHIMANO SH-XC302 - PRETA TAMANHO:34 ;COR:PRETA",
-      "qtdBling": 3,
-      "qtdML": 2,
-      "diferenca": 1
     },
     {
       "sku": "5570",
