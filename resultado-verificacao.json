@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-10T04:07:18.065Z",
-  "totalSkus": 249,
-  "corretos": 247,
-  "totalDivergentes": 2,
+  "atualizadoEm": "2026-08-10T04:12:07.940Z",
+  "totalSkus": 250,
+  "corretos": 249,
+  "totalDivergentes": 1,
   "divergencias": [
     {
       "sku": "97",
@@ -10,13 +10,6 @@
       "qtdBling": 15,
       "qtdML": 9,
       "diferenca": 6
-    },
-    {
-      "sku": "6714",
-      "nome": "ALAVANCA DE CAMBIO ALTUS SL-M2010 2V - ESQUERDO",
-      "qtdBling": 39,
-      "qtdML": 38,
-      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
