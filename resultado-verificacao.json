@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-10T19:02:22.934Z",
+  "atualizadoEm": "2026-08-10T19:07:25.109Z",
   "totalSkus": 251,
   "corretos": 248,
   "totalDivergentes": 3,
@@ -19,11 +19,13 @@
       "diferenca": 1
     },
     {
-      "sku": "5083",
-      "nome": "SAPATILHA MTB SHIMANO SH-XC703 - ROXO TAMANHO:38;COR:ROXO",
-      "qtdBling": 2,
-      "qtdML": 1,
-      "diferenca": 1
+      "sku": "5570",
+      "nome": "Par de Rodas de Carbono RAD7 MTB XC Trail Boost  Leve",
+      "qtdBling": 28,
+      "qtdML": 37,
+      "diferenca": -9,
+      "corrigido": true,
+      "corrigidoDetalhe": "2 anúncio(s) atualizado(s) para 28"
     }
   ],
   "semSkuNoBling": [
