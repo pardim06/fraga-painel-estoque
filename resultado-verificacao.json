@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-10T13:13:06.637Z",
+  "atualizadoEm": "2026-08-10T13:17:56.363Z",
   "totalSkus": 250,
-  "corretos": 249,
-  "totalDivergentes": 1,
+  "corretos": 248,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,13 @@
       "qtdBling": 15,
       "qtdML": 9,
       "diferenca": 6
+    },
+    {
+      "sku": "6661",
+      "nome": "CUBO DIANTEIRO TOURNEY HB-TX506 6 PARAFUSO 36F PRETO",
+      "qtdBling": 7,
+      "qtdML": 6,
+      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
