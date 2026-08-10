@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-10T15:37:34.659Z",
+  "atualizadoEm": "2026-08-10T15:42:25.785Z",
   "totalSkus": 247,
-  "corretos": 245,
-  "totalDivergentes": 2,
+  "corretos": 246,
+  "totalDivergentes": 1,
   "divergencias": [
     {
       "sku": "97",
@@ -10,15 +10,6 @@
       "qtdBling": 15,
       "qtdML": 9,
       "diferenca": 6
-    },
-    {
-      "sku": "6592",
-      "nome": "Cassete Sunrace M680 11-40d 8v 456g 11/40 460gr K7 Mtb Prateado 11 40",
-      "qtdBling": 1,
-      "qtdML": 2,
-      "diferenca": -1,
-      "corrigido": true,
-      "corrigidoDetalhe": "4 anúncio(s) atualizado(s) para 1"
     }
   ],
   "semSkuNoBling": [
