@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-11T18:10:57.631Z",
+  "atualizadoEm": "2026-08-11T18:17:25.482Z",
   "totalSkus": 250,
-  "corretos": 248,
-  "totalDivergentes": 2,
+  "corretos": 249,
+  "totalDivergentes": 1,
   "divergencias": [
     {
       "sku": "97",
@@ -10,15 +10,6 @@
       "qtdBling": 15,
       "qtdML": 9,
       "diferenca": 6
-    },
-    {
-      "sku": "3976",
-      "nome": "LIMPADOR DE CORRENTE ABSOLUTE SMARTCLEAN",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": -1,
-      "corrigido": true,
-      "corrigidoDetalhe": "2 anúncio(s) atualizado(s) para 0"
     }
   ],
   "semSkuNoBling": [
