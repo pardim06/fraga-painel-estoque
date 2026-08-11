@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-11T12:47:37.026Z",
+  "atualizadoEm": "2026-08-11T12:52:54.314Z",
   "totalSkus": 249,
   "corretos": 246,
   "totalDivergentes": 3,
@@ -15,8 +15,8 @@
       "sku": "5570",
       "nome": "Par de Rodas de Carbono RAD7 MTB XC Trail Boost  Leve",
       "qtdBling": 37,
-      "qtdML": 28,
-      "diferenca": 9
+      "qtdML": 32,
+      "diferenca": 5
     },
     {
       "sku": "6651",
