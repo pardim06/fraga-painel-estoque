@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-11T01:22:31.823Z",
+  "atualizadoEm": "2026-08-11T01:27:02.220Z",
   "totalSkus": 249,
-  "corretos": 246,
-  "totalDivergentes": 3,
+  "corretos": 245,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -23,6 +23,13 @@
       "nome": "GUIDAO MTB RETO INTEGRADO CARBONO RAD7 740 MM - PRETO",
       "qtdBling": 450,
       "qtdML": 449,
+      "diferenca": 1
+    },
+    {
+      "sku": "6653",
+      "nome": "GARRAFA CAMELBAK PODIUM 710ML - PRETO",
+      "qtdBling": 26,
+      "qtdML": 25,
       "diferenca": 1
     }
   ],
