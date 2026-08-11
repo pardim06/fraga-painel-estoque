@@ -1,7 +1,18 @@
 {
-  "atualizadoEm": "2026-08-11T00:35:25.650Z",
+  "atualizadoEm": "2026-08-11T00:42:50.727Z",
   "limiteMinutos": 60,
-  "total": 0,
+  "total": 1,
   "atrasadas": 0,
-  "perguntas": []
+  "perguntas": [
+    {
+      "id": 13639431070,
+      "texto": "Boa noite Essa roda ela é compatível com a cassete gx 10x52",
+      "itemId": "MLB4875450743",
+      "produto": "Par Rodas Carbono Rad7 Mtb Aro 29 Boost Tubeless 30mm 1,488g",
+      "link": "https://produto.mercadolivre.com.br/MLB-4875450743-par-rodas-carbono-rad7-mtb-aro-29-boost-tubeless-30mm-1488g-_JM",
+      "dataCriacao": "2026-08-10T20:36:36.91020549-04:00",
+      "minutosAberta": 6,
+      "atrasada": false
+    }
+  ]
 }
