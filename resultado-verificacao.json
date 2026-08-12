@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-12T23:37:18.468Z",
+  "atualizadoEm": "2026-08-12T23:42:21.968Z",
   "totalSkus": 247,
-  "corretos": 246,
-  "totalDivergentes": 1,
+  "corretos": 245,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,13 @@
       "qtdBling": 16,
       "qtdML": 9,
       "diferenca": 7
+    },
+    {
+      "sku": "6603",
+      "nome": "Kit Transmissão Absolute Prime Mtb 1x12v Câmbio Traseiro + Alavanca",
+      "qtdBling": 4,
+      "qtdML": 3,
+      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
