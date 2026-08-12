@@ -1,18 +1,7 @@
 {
-  "atualizadoEm": "2026-08-12T21:57:21.065Z",
+  "atualizadoEm": "2026-08-12T22:00:13.499Z",
   "limiteMinutos": 60,
-  "total": 1,
+  "total": 0,
   "atrasadas": 0,
-  "perguntas": [
-    {
-      "id": 13639870715,
-      "texto": "Comprei uma vermelha tamanho 44 e ficou grande. Teria a 43 disponível? Vou fazer a troca.",
-      "itemId": "MLB3776887875",
-      "produto": "Sapatilha Shimano Sh-rp101 Vermelha Speed Ciclismo",
-      "link": "https://produto.mercadolivre.com.br/MLB-3776887875-sapatilha-shimano-sh-rp101-vermelha-speed-ciclismo-_JM",
-      "dataCriacao": "2026-08-12T17:55:01.833847762-04:00",
-      "minutosAberta": 2,
-      "atrasada": false
-    }
-  ]
+  "perguntas": []
 }
