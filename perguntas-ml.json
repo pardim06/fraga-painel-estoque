@@ -1,7 +1,18 @@
 {
-  "atualizadoEm": "2026-08-12T22:25:22.995Z",
+  "atualizadoEm": "2026-08-12T22:30:28.435Z",
   "limiteMinutos": 60,
-  "total": 0,
+  "total": 1,
   "atrasadas": 0,
-  "perguntas": []
+  "perguntas": [
+    {
+      "id": 13639890067,
+      "texto": "Ele ja vem com suporte de fixação?",
+      "itemId": "MLB5857592980",
+      "produto": "Gps Geoid Cc600 Ciclocomputador C/rotas Wifi Tela Colorida",
+      "link": "https://produto.mercadolivre.com.br/MLB-5857592980-gps-geoid-cc600-ciclocomputador-crotas-wifi-tela-colorida-_JM",
+      "dataCriacao": "2026-08-12T18:26:00.285609884-04:00",
+      "minutosAberta": 4,
+      "atrasada": false
+    }
+  ]
 }
