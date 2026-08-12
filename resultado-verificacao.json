@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-12T00:27:39.059Z",
+  "atualizadoEm": "2026-08-12T00:32:45.851Z",
   "totalSkus": 249,
-  "corretos": 248,
-  "totalDivergentes": 1,
+  "corretos": 247,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,13 @@
       "qtdBling": 17,
       "qtdML": 9,
       "diferenca": 8
+    },
+    {
+      "sku": "5093",
+      "nome": "BOMBA DE AR CILINDRO CO2 16G GC-02P HIGH ONE",
+      "qtdBling": 46,
+      "qtdML": 45,
+      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
