@@ -1,22 +1,15 @@
 {
-  "atualizadoEm": "2026-08-12T00:32:45.851Z",
+  "atualizadoEm": "2026-08-12T00:37:38.110Z",
   "totalSkus": 249,
-  "corretos": 247,
-  "totalDivergentes": 2,
+  "corretos": 248,
+  "totalDivergentes": 1,
   "divergencias": [
     {
       "sku": "97",
       "nome": "TAPETE ELITE  PROTETOR PARA  ROLO DE TREINO -  PRETO",
-      "qtdBling": 17,
+      "qtdBling": 16,
       "qtdML": 9,
-      "diferenca": 8
-    },
-    {
-      "sku": "5093",
-      "nome": "BOMBA DE AR CILINDRO CO2 16G GC-02P HIGH ONE",
-      "qtdBling": 46,
-      "qtdML": 45,
-      "diferenca": 1
+      "diferenca": 7
     }
   ],
   "semSkuNoBling": [
