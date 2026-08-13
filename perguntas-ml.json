@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-13T14:33:13.060Z",
+  "atualizadoEm": "2026-08-13T14:45:55.126Z",
   "limiteMinutos": 60,
   "total": 3,
   "atrasadas": 2,
@@ -11,7 +11,7 @@
       "produto": "Par Rodas Carbono Rad7 Mtb Aro 29 Boost Tubeless 30mm 1,488g",
       "link": "https://produto.mercadolivre.com.br/MLB-4875450743-par-rodas-carbono-rad7-mtb-aro-29-boost-tubeless-30mm-1488g-_JM",
       "dataCriacao": "2026-08-13T08:05:06.668741171-04:00",
-      "minutosAberta": 148,
+      "minutosAberta": 161,
       "atrasada": true
     },
     {
@@ -21,7 +21,7 @@
       "produto": "Sapatilha Shimano Sh-rp101 Vermelha Speed Ciclismo",
       "link": "https://produto.mercadolivre.com.br/MLB-3776887875-sapatilha-shimano-sh-rp101-vermelha-speed-ciclismo-_JM",
       "dataCriacao": "2026-08-13T09:04:41.647656092-04:00",
-      "minutosAberta": 89,
+      "minutosAberta": 101,
       "atrasada": true
     },
     {
@@ -31,7 +31,7 @@
       "produto": "Par Rodas Carbono Rad7 Mtb Aro 29 Boost Tubeless 30mm 1,488g",
       "link": "https://produto.mercadolivre.com.br/MLB-4875450743-par-rodas-carbono-rad7-mtb-aro-29-boost-tubeless-30mm-1488g-_JM",
       "dataCriacao": "2026-08-13T10:30:33.258592631-04:00",
-      "minutosAberta": 3,
+      "minutosAberta": 15,
       "atrasada": false
     }
   ]
