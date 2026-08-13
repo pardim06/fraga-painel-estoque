@@ -1,7 +1,18 @@
 {
-  "atualizadoEm": "2026-08-13T23:26:39.852Z",
+  "atualizadoEm": "2026-08-13T23:30:43.512Z",
   "limiteMinutos": 60,
-  "total": 0,
+  "total": 1,
   "atrasadas": 0,
-  "perguntas": []
+  "perguntas": [
+    {
+      "id": 13641424012,
+      "texto": "Desculpe não especificar, é o freio shimano triagra br 4700 vs51 ferradura",
+      "itemId": "MLB7328450396",
+      "produto": "Par Roda Bike Speed Rad7 Racing Carbono 50mm Tubeless Leve Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-7328450396-par-roda-bike-speed-rad7-racing-carbono-50mm-tubeless-leve-preto-_JM",
+      "dataCriacao": "2026-08-13T19:28:11.12861115-04:00",
+      "minutosAberta": 3,
+      "atrasada": false
+    }
+  ]
 }
