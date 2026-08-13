@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-13T20:16:48.774Z",
+  "atualizadoEm": "2026-08-13T20:20:41.760Z",
   "limiteMinutos": 60,
   "total": 3,
   "atrasadas": 0,
@@ -11,7 +11,7 @@
       "produto": "Sapatilha Shimano Sh-rc903s S-phyre Prata Speed Ciclismo",
       "link": "https://produto.mercadolivre.com.br/MLB-3855453667-sapatilha-shimano-sh-rc903s-s-phyre-prata-speed-ciclismo-_JM",
       "dataCriacao": "2026-08-13T16:07:04.815843185-04:00",
-      "minutosAberta": 10,
+      "minutosAberta": 14,
       "atrasada": false
     },
     {
@@ -21,7 +21,7 @@
       "produto": "Sapatilha Shimano Sh-rc903 S-phyre Branco Speed Ciclismo",
       "link": "https://produto.mercadolivre.com.br/MLB-4898645792-sapatilha-shimano-sh-rc903-s-phyre-branco-speed-ciclismo-_JM",
       "dataCriacao": "2026-08-13T16:07:41.288904376-04:00",
-      "minutosAberta": 9,
+      "minutosAberta": 13,
       "atrasada": false
     },
     {
@@ -31,7 +31,7 @@
       "produto": "Sapatilha Shimano Sh-rc903 S-phyre Branco Speed Ciclismo",
       "link": "https://produto.mercadolivre.com.br/MLB-4898645792-sapatilha-shimano-sh-rc903-s-phyre-branco-speed-ciclismo-_JM",
       "dataCriacao": "2026-08-13T16:08:33.509898289-04:00",
-      "minutosAberta": 8,
+      "minutosAberta": 12,
       "atrasada": false
     }
   ]
