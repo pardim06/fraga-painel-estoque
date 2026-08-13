@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-13T11:12:47.548Z",
-  "totalSkus": 246,
-  "corretos": 245,
-  "totalDivergentes": 1,
+  "atualizadoEm": "2026-08-13T11:17:46.116Z",
+  "totalSkus": 248,
+  "corretos": 246,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,15 @@
       "qtdBling": 15,
       "qtdML": 8,
       "diferenca": 7
+    },
+    {
+      "sku": "3977",
+      "nome": "2 PARES DE PASTILHAS SHIMANO B05S - SEM BLISTER",
+      "qtdBling": 0,
+      "qtdML": 1,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "2 anúncio(s) atualizado(s) para 0"
     }
   ],
   "semSkuNoBling": [
