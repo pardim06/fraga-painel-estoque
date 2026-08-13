@@ -1,19 +1,9 @@
 {
-  "atualizadoEm": "2026-08-13T20:20:41.760Z",
+  "atualizadoEm": "2026-08-13T20:25:26.622Z",
   "limiteMinutos": 60,
   "total": 3,
   "atrasadas": 0,
   "perguntas": [
-    {
-      "id": 13640463905,
-      "texto": "Tem a branca 38 Brasil no modelo feminino?",
-      "itemId": "MLB3855453667",
-      "produto": "Sapatilha Shimano Sh-rc903s S-phyre Prata Speed Ciclismo",
-      "link": "https://produto.mercadolivre.com.br/MLB-3855453667-sapatilha-shimano-sh-rc903s-s-phyre-prata-speed-ciclismo-_JM",
-      "dataCriacao": "2026-08-13T16:07:04.815843185-04:00",
-      "minutosAberta": 14,
-      "atrasada": false
-    },
     {
       "id": 13640464649,
       "texto": "Tem o modelo feminino?",
@@ -21,7 +11,17 @@
       "produto": "Sapatilha Shimano Sh-rc903 S-phyre Branco Speed Ciclismo",
       "link": "https://produto.mercadolivre.com.br/MLB-4898645792-sapatilha-shimano-sh-rc903-s-phyre-branco-speed-ciclismo-_JM",
       "dataCriacao": "2026-08-13T16:07:41.288904376-04:00",
-      "minutosAberta": 13,
+      "minutosAberta": 18,
+      "atrasada": false
+    },
+    {
+      "id": 13640463905,
+      "texto": "Tem a branca 38 Brasil no modelo feminino?",
+      "itemId": "MLB3855453667",
+      "produto": "Sapatilha Shimano Sh-rc903s S-phyre Prata Speed Ciclismo",
+      "link": "https://produto.mercadolivre.com.br/MLB-3855453667-sapatilha-shimano-sh-rc903s-s-phyre-prata-speed-ciclismo-_JM",
+      "dataCriacao": "2026-08-13T16:07:04.815843185-04:00",
+      "minutosAberta": 18,
       "atrasada": false
     },
     {
@@ -31,7 +31,7 @@
       "produto": "Sapatilha Shimano Sh-rc903 S-phyre Branco Speed Ciclismo",
       "link": "https://produto.mercadolivre.com.br/MLB-4898645792-sapatilha-shimano-sh-rc903-s-phyre-branco-speed-ciclismo-_JM",
       "dataCriacao": "2026-08-13T16:08:33.509898289-04:00",
-      "minutosAberta": 12,
+      "minutosAberta": 17,
       "atrasada": false
     }
   ]
