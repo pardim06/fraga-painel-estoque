@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-16T22:00:26.543Z",
+  "atualizadoEm": "2026-08-16T22:05:30.982Z",
   "nickname": "FRAGAPROMO",
   "nivel": "5_green",
   "powerSeller": "gold",
@@ -10,8 +10,8 @@
       "quantidade": 4
     },
     "reclamacao": {
-      "taxa": 0.0073,
-      "quantidade": 12
+      "taxa": 0.008,
+      "quantidade": 13
     },
     "atraso": {
       "taxa": 0.0105,
