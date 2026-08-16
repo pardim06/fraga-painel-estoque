@@ -1,18 +1,7 @@
 {
-  "atualizadoEm": "2026-08-16T00:15:33.089Z",
+  "atualizadoEm": "2026-08-16T00:20:23.845Z",
   "limiteMinutos": 60,
-  "total": 1,
+  "total": 0,
   "atrasadas": 0,
-  "perguntas": [
-    {
-      "id": 13642463884,
-      "texto": "Cor do lubrificante é verde?",
-      "itemId": "MLB4899053826",
-      "produto": "Óleo Lubrificante Corrente Bicicleta Motul - Úmido 100 Ml",
-      "link": "https://produto.mercadolivre.com.br/MLB-4899053826-oleo-lubrificante-corrente-bicicleta-motul-umido-100-ml-_JM",
-      "dataCriacao": "2026-08-15T20:13:17.779520135-04:00",
-      "minutosAberta": 2,
-      "atrasada": false
-    }
-  ]
+  "perguntas": []
 }
