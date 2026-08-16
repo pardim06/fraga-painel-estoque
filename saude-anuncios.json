@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-15T09:22:10.322Z",
+  "atualizadoEm": "2026-08-16T09:23:31.521Z",
   "totalUnhealthy": 277,
   "totalWarning": 10,
   "itens": [
@@ -116,9 +116,20 @@
       "titulo": "Sapatilha Shimano Rp101 Speed Road Ciclismo Estrada",
       "link": "https://produto.mercadolivre.com.br/MLB-4803870204-sapatilha-shimano-rp101-speed-road-ciclismo-estrada-_JM",
       "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
+      "score": 97,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4803870204"
+        },
+        {
+          "titulo": "Preencha os dados fiscais para emitir faturas",
+          "tipo": "oportunidade",
+          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4803870204/tax-information"
+        }
+      ]
     },
     {
       "itemId": "MLB4808894880",
@@ -1742,8 +1753,8 @@
     },
     {
       "itemId": "MLB6293300144",
-      "titulo": "Corrente Kmc 12v 126 Elos X12 Silver Bicicleta Mtb Prateado",
-      "link": "https://produto.mercadolivre.com.br/MLB-6293300144-corrente-kmc-12v-126-elos-x12-silver-bicicleta-mtb-prateado-_JM",
+      "titulo": "Kmc X12 Silver Prata X12 Prateado",
+      "link": "https://produto.mercadolivre.com.br/MLB-6293300144-kmc-x12-silver-prata-x12-prateado-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
@@ -1857,14 +1868,14 @@
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3959435177/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB6768508398"
         },
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3959435177&item_id=MLB6768508398&item_syi=MLB6768508398&origin=quality#origin=quality"
-        },
-        {
           "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3959435177/modificar/omni/variation/dominio/picture-uploader-default"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3959435177&item_id=MLB6768508398&item_syi=MLB6768508398&origin=quality#origin=quality"
         }
       ]
     },
@@ -1873,18 +1884,13 @@
       "titulo": "Quadro Mtb Rad7 Stuttgart Carbon Off White Boost 148mm 25/26 19",
       "link": "https://produto.mercadolivre.com.br/MLB-6768497374-quadro-mtb-rad7-stuttgart-carbon-off-white-boost-148mm-2526-19-_JM",
       "status": "unhealthy",
-      "score": 74,
+      "score": 93,
       "level": "Profissional",
       "problemas": [
         {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3959438165&item_id=MLB6768497374&item_syi=MLB6768497374&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB6768497374"
         }
       ]
     },
@@ -3097,9 +3103,9 @@
       "level": "Satisfatória",
       "problemas": [
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4594762599&item_id=MLB5005286307&item_syi=MLB5005286307&origin=quality#origin=quality"
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4594762599/modificar/omni/variation/dominio/picture-uploader-default"
         },
         {
           "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
@@ -3107,17 +3113,17 @@
           "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4594762599"
         },
         {
-          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4594762599/modificar/omni/variation/dominio/picture-uploader-default"
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4594762599&item_id=MLB5005286307&item_syi=MLB5005286307&origin=quality#origin=quality"
         },
         {
-          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
+          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005286307"
         },
         {
-          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
+          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005286307"
         }
@@ -3230,23 +3236,18 @@
       "titulo": "Sapatilha Shimano Sh-rc302 Azul Escuro Speed Ciclismo",
       "link": "https://produto.mercadolivre.com.br/MLB-4979016510-sapatilha-shimano-sh-rc302-azul-escuro-speed-ciclismo-_JM",
       "status": "warning",
-      "score": 85,
+      "score": 97,
       "level": "Profissional",
       "problemas": [
-        {
-          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4979016510"
-        },
-        {
-          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4979016510"
-        },
         {
           "titulo": "Preencha os dados fiscais para emitir faturas",
           "tipo": "oportunidade",
           "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4979016510/tax-information"
+        },
+        {
+          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4979016510"
         }
       ]
     },
