@@ -1,28 +1,7 @@
 {
-  "atualizadoEm": "2026-08-17T20:25:20.844Z",
+  "atualizadoEm": "2026-08-17T20:30:25.690Z",
   "limiteMinutos": 60,
-  "total": 2,
+  "total": 0,
   "atrasadas": 0,
-  "perguntas": [
-    {
-      "id": 13643338354,
-      "texto": "BOA TARDE, ESSE CAMBIO É O ABSOLUTE PRIME",
-      "itemId": "MLB7229148606",
-      "produto": "Kit Transmissão Absolute Prime 12v Mtb 52 Dentes Câmbio Traseiro",
-      "link": "https://produto.mercadolivre.com.br/MLB-7229148606-kit-transmisso-absolute-prime-12v-mtb-52-dentes-cmbio-traseiro-_JM",
-      "dataCriacao": "2026-08-17T16:10:25.330813981-04:00",
-      "minutosAberta": 15,
-      "atrasada": false
-    },
-    {
-      "id": 13642492305,
-      "texto": "tu tens kit MTB amigo?",
-      "itemId": "MLB5965216386",
-      "produto": "Sapatilha Speed Shimano Sh-rc302 - Preto + Pedal Clip Rs500",
-      "link": "https://produto.mercadolivre.com.br/MLB-5965216386-sapatilha-speed-shimano-sh-rc302-preto-pedal-clip-rs500-_JM",
-      "dataCriacao": "2026-08-17T16:14:55.784496032-04:00",
-      "minutosAberta": 10,
-      "atrasada": false
-    }
-  ]
+  "perguntas": []
 }
