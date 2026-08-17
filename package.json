@@ -8,6 +8,7 @@
     "verificar": "node verificador-estoque-ml-bling.js",
     "verificar-perguntas": "node scripts/verificar-perguntas.js",
     "reputacao": "node scripts/reputacao.js",
+    "reputacao-detalhe": "node scripts/reputacao-detalhe.js",
     "lista-compras": "node scripts/lista-compras.js",
     "vigia": "node scripts/vigia.js",
     "responder-perguntas": "node scripts/responder-perguntas.js",

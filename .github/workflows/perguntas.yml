@@ -41,6 +41,14 @@ jobs:
           ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
           GH_PAT: ${{ secrets.GH_PAT }}
 
+      - run: npm run reputacao-detalhe
+        env:
+          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+          ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
+          ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+
       - run: npm run responder-perguntas
         env:
           ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
@@ -61,7 +69,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add perguntas-ml.json reputacao-ml.json respostas-sugeridas.json historico-respostas-ia.json
+          git add perguntas-ml.json reputacao-ml.json reputacao-detalhe.json respostas-sugeridas.json historico-respostas-ia.json
           git diff --quiet --cached || git commit -m "chore: atualiza perguntas, reputacao e sugestoes de resposta"
           git pull --rebase
           git push

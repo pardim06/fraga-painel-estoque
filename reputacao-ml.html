@@ -25,6 +25,14 @@
   .metrica-card .valor { font-family: var(--font-display); font-size: 28px; font-weight: 700; }
   .metrica-card .detalhe { font-size: 12px; color: var(--ink-faint); margin-top: 4px; }
   .metrica-card .explicacao { font-size: 12px; color: var(--ink-dim); margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); line-height: 1.5; }
+  .metrica-card .contagem { font-size: 13px; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); }
+  .metrica-card .contagem .zera { font-weight: 700; }
+  .metrica-card .proximas { font-size: 11.5px; color: var(--ink-faint); margin-top: 6px; line-height: 1.6; }
+  .estimativa-tag {
+    display: inline-block; font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: .03em; color: var(--warn); background: var(--warn-bg);
+    padding: 1px 7px; border-radius: 999px; margin-left: 6px; vertical-align: middle;
+  }
 </style>
 </head>
 <body>
@@ -51,7 +59,7 @@
 
   <div id="conteudo"></div>
 
-  <footer>Painel interno · dados direto da API de reputação do Mercado Livre (últimos 60 dias)</footer>
+  <footer>Painel interno · dados direto da API de reputação do Mercado Livre (últimos 60 dias) · a contagem regressiva de reclamação é uma estimativa reconstruída (o ML não documenta o critério exato da métrica)</footer>
 </div>
 
 <script>
@@ -78,10 +86,14 @@
     document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
 
     try {
-      const resp = await fetch('reputacao-ml.json', { cache: 'no-store' });
+      const [resp, respDetalhe] = await Promise.all([
+        fetch('reputacao-ml.json', { cache: 'no-store' }),
+        fetch('reputacao-detalhe.json', { cache: 'no-store' }),
+      ]);
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
       const dados = await resp.json();
-      render(dados);
+      const detalhe = respDetalhe.ok ? await respDetalhe.json() : null;
+      render(dados, detalhe);
     } catch (err) {
       document.getElementById('conteudo').innerHTML =
         '<div class="error-state">Não foi possível carregar os dados de reputação. O arquivo reputacao-ml.json só existe depois da primeira execução do workflow "Verificar perguntas e reputação no Mercado Livre".' +
@@ -89,7 +101,33 @@
     }
   }
 
-  function render(dados) {
+  function formatarDataCurta(iso) {
+    if (!iso) return '—';
+    return new Date(iso).toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' });
+  }
+
+  function contagemHtml(resumo) {
+    if (!resumo || resumo.quantidade === 0) return '';
+
+    let html = '<div class="contagem">';
+    if (resumo.diasParaZerar > 0) {
+      html += 'Zera em <span class="zera">' + resumo.diasParaZerar + ' dia(s)</span> se não houver nova ocorrência';
+    } else {
+      html += 'Já deveria estar zerando — confira o painel do ML';
+    }
+    html += '</div>';
+
+    const proximas = resumo.ocorrencias.slice(0, 3);
+    if (proximas.length > 0) {
+      html += '<div class="proximas">Próximas a sair: ' +
+        proximas.map((o) => formatarDataCurta(o.saiEm) + ' (faltam ' + o.diasRestantes + 'd)').join(' · ') +
+        '</div>';
+    }
+
+    return html;
+  }
+
+  function render(dados, detalhe) {
     const { atualizadoEm, nickname, nivel, powerSeller, metricas } = dados;
     const nivelInfo = NIVEIS[nivel] || { label: nivel || '—', cor: 'var(--ink-dim)', bg: 'var(--bg-raised)' };
 
@@ -116,13 +154,15 @@
       '<div class="valor" style="color:' + (metricas?.cancelamento?.taxa > 0.03 ? 'var(--alert)' : 'var(--ink)') + ';">' + formatarPct(metricas?.cancelamento?.taxa) + '</div>' +
       '<div class="detalhe">' + (metricas?.cancelamento?.quantidade ?? 0) + ' pedido(s) cancelado(s)</div>' +
       '<div class="explicacao">Pedidos que você cancelou depois de vendidos. Furo de estoque é uma das causas mais diretas.</div>' +
+      contagemHtml(detalhe?.cancelamento) +
       '</div>';
 
     html += '  <div class="metrica-card">' +
-      '<div class="titulo">Taxa de reclamação</div>' +
+      '<div class="titulo">Taxa de reclamação' + (detalhe?.reclamacao?.estimativa ? '<span class="estimativa-tag">contagem estimada</span>' : '') + '</div>' +
       '<div class="valor" style="color:' + (metricas?.reclamacao?.taxa > 0.03 ? 'var(--alert)' : 'var(--ink)') + ';">' + formatarPct(metricas?.reclamacao?.taxa) + '</div>' +
       '<div class="detalhe">' + (metricas?.reclamacao?.quantidade ?? 0) + ' reclamação(ões)</div>' +
       '<div class="explicacao">Compradores que abriram reclamação após a compra (produto errado, atraso, problema no atendimento etc.).</div>' +
+      contagemHtml(detalhe?.reclamacao) +
       '</div>';
 
     html += '  <div class="metrica-card">' +

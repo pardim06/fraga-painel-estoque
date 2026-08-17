@@ -1,0 +1,118 @@
+{
+  "atualizadoEm": "2026-08-17T16:47:27.388Z",
+  "janelaDias": 60,
+  "cancelamento": {
+    "quantidade": 3,
+    "diasParaZerar": 53,
+    "ocorrencias": [
+      {
+        "id": 2000017014749350,
+        "data": "2026-06-19T06:30:38.000-04:00",
+        "motivo": "There is a feedback from seller with the reason out_of_stock or seller_out_of_stock",
+        "diasRestantes": 1,
+        "saiEm": "2026-08-18T10:30:38.000Z"
+      },
+      {
+        "id": 2000017051162566,
+        "data": "2026-06-21T21:36:06.000-04:00",
+        "motivo": "There is a feedback from seller with the reason out_of_stock or seller_out_of_stock",
+        "diasRestantes": 4,
+        "saiEm": "2026-08-21T01:36:06.000Z"
+      },
+      {
+        "id": 2000017855967392,
+        "data": "2026-08-10T09:54:26.000-04:00",
+        "motivo": "There is a feedback from seller with the reason out_of_stock or seller_out_of_stock",
+        "diasRestantes": 53,
+        "saiEm": "2026-10-09T13:54:26.000Z"
+      }
+    ],
+    "quantidadeOficial": 4,
+    "estimativa": false
+  },
+  "reclamacao": {
+    "quantidade": 11,
+    "diasParaZerar": 60,
+    "ocorrencias": [
+      {
+        "id": 5535274889,
+        "data": "2026-06-29T04:39:58.000-04:00",
+        "motivo": "PDD9939",
+        "diasRestantes": 11,
+        "saiEm": "2026-08-28T08:39:58.000Z"
+      },
+      {
+        "id": 5540434064,
+        "data": "2026-07-08T17:46:20.000-04:00",
+        "motivo": "PNR9560",
+        "diasRestantes": 21,
+        "saiEm": "2026-09-06T21:46:20.000Z"
+      },
+      {
+        "id": 5545484897,
+        "data": "2026-07-18T08:46:44.000-04:00",
+        "motivo": "PNR9560",
+        "diasRestantes": 30,
+        "saiEm": "2026-09-16T12:46:44.000Z"
+      },
+      {
+        "id": 5545837996,
+        "data": "2026-07-18T22:53:49.000-04:00",
+        "motivo": "PDD9939",
+        "diasRestantes": 31,
+        "saiEm": "2026-09-17T02:53:49.000Z"
+      },
+      {
+        "id": 5547922108,
+        "data": "2026-07-22T20:50:18.000-04:00",
+        "motivo": "PDD9939",
+        "diasRestantes": 35,
+        "saiEm": "2026-09-21T00:50:18.000Z"
+      },
+      {
+        "id": 5548028476,
+        "data": "2026-07-23T06:24:26.000-04:00",
+        "motivo": "PDD9939",
+        "diasRestantes": 35,
+        "saiEm": "2026-09-21T10:24:26.000Z"
+      },
+      {
+        "id": 5555416962,
+        "data": "2026-08-06T10:36:09.000-04:00",
+        "motivo": "PDD9952",
+        "diasRestantes": 49,
+        "saiEm": "2026-10-05T14:36:09.000Z"
+      },
+      {
+        "id": 5557252479,
+        "data": "2026-08-09T19:26:41.000-04:00",
+        "motivo": "PDD9939",
+        "diasRestantes": 53,
+        "saiEm": "2026-10-08T23:26:41.000Z"
+      },
+      {
+        "id": 5560062836,
+        "data": "2026-08-14T10:49:08.000-04:00",
+        "motivo": "PDD9939",
+        "diasRestantes": 57,
+        "saiEm": "2026-10-13T14:49:08.000Z"
+      },
+      {
+        "id": 5561569940,
+        "data": "2026-08-17T12:36:28.000-04:00",
+        "motivo": "PDD9941",
+        "diasRestantes": 60,
+        "saiEm": "2026-10-16T16:36:28.000Z"
+      },
+      {
+        "id": 5561169113,
+        "data": "2026-08-16T16:37:44.000-04:00",
+        "motivo": "PDD9946",
+        "diasRestantes": 60,
+        "saiEm": "2026-10-15T20:37:44.000Z"
+      }
+    ],
+    "quantidadeOficial": 11,
+    "estimativa": true
+  }
+}
