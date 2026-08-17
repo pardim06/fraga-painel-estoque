@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-16T09:23:31.521Z",
+  "atualizadoEm": "2026-08-17T09:37:02.074Z",
   "totalUnhealthy": 277,
   "totalWarning": 10,
   "itens": [
@@ -120,14 +120,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4803870204"
-        },
-        {
           "titulo": "Preencha os dados fiscais para emitir faturas",
           "tipo": "oportunidade",
           "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4803870204/tax-information"
+        },
+        {
+          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4803870204"
         }
       ]
     },
@@ -1814,14 +1814,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3938165435/modificar/omni/variation/dominio/picture-uploader-default"
-        },
-        {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3938165435&item_id=MLB6722116884&item_syi=MLB6722116884&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3938165435/modificar/omni/variation/dominio/picture-uploader-default"
         },
         {
           "titulo": "Adicione preços de atacado",
@@ -1863,11 +1863,6 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3959435177/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB6768508398"
-        },
-        {
           "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3959435177/modificar/omni/variation/dominio/picture-uploader-default"
@@ -1876,6 +1871,11 @@
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3959435177&item_id=MLB6768508398&item_syi=MLB6768508398&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3959435177/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB6768508398"
         }
       ]
     },
@@ -2378,7 +2378,7 @@
       "titulo": "Guidão Carbono Mtb Reto 740mm Rad7 31.8mm Bike 163gpreto",
       "link": "https://produto.mercadolivre.com.br/MLB-7217874500-guido-carbono-mtb-reto-740mm-rad7-318mm-bike-163gpreto-_JM",
       "status": "unhealthy",
-      "score": 94,
+      "score": 93,
       "level": "Profissional",
       "problemas": [
         {
@@ -2518,14 +2518,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4405719704&item_id=MLB7228511536&item_syi=MLB7228511536&origin=quality#origin=quality"
-        },
-        {
           "titulo": "Preencha as características principais",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4405719704/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB7228511536"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4405719704&item_id=MLB7228511536&item_syi=MLB7228511536&origin=quality#origin=quality"
         }
       ]
     },
@@ -2534,13 +2534,18 @@
       "titulo": "Cubo Dianteiro Shimano Hb-tx506 6 Parafusos Disco 36f Mtb",
       "link": "https://produto.mercadolivre.com.br/MLB-4931741219-cubo-dianteiro-shimano-hb-tx506-6-parafusos-disco-36f-mtb-_JM",
       "status": "unhealthy",
-      "score": 68,
+      "score": 67,
       "level": "Profissional",
       "problemas": [
         {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4407339134&item_id=MLB4931741219&item_syi=MLB4931741219&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4407339134/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4931741219"
         },
         {
           "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
@@ -2559,18 +2564,23 @@
       "titulo": "Cubo Dianteiro Tourney Hb-tx506 6 Parafuso 36f Preto",
       "link": "https://produto.mercadolivre.com.br/MLB-4931741217-cubo-dianteiro-tourney-hb-tx506-6-parafuso-36f-preto-_JM",
       "status": "unhealthy",
-      "score": 61,
+      "score": 60,
       "level": "Satisfatória",
       "problemas": [
+        {
+          "titulo": "Preencha as características principais",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4383962597/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB4931741217"
+        },
         {
           "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4383962597"
         },
         {
-          "titulo": "Preencha as características principais",
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4383962597/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB4931741217"
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4383962597/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4931741217"
         },
         {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
@@ -2578,14 +2588,14 @@
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4383962597&item_id=MLB4931741217&item_syi=MLB4931741217&origin=quality#origin=quality"
         },
         {
-          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4931741217"
-        },
-        {
           "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB4931741217"
+        },
+        {
+          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4931741217"
         }
       ]
     },
@@ -2768,9 +2778,9 @@
       "level": "Satisfatória",
       "problemas": [
         {
-          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4564204563/modificar/omni/variation/dominio/picture-uploader-default"
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4564204563&item_id=MLB7328832538&item_syi=MLB7328832538&origin=quality#origin=quality"
         },
         {
           "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
@@ -2778,9 +2788,9 @@
           "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4564204563"
         },
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4564204563&item_id=MLB7328832538&item_syi=MLB7328832538&origin=quality#origin=quality"
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4564204563/modificar/omni/variation/dominio/picture-uploader-default"
         },
         {
           "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
@@ -2803,6 +2813,11 @@
       "level": "Satisfatória",
       "problemas": [
         {
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4564192941/modificar/omni/variation/dominio/picture-uploader-default"
+        },
+        {
           "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4564192941"
@@ -2811,11 +2826,6 @@
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4564192941&item_id=MLB7328832536&item_syi=MLB7328832536&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4564192941/modificar/omni/variation/dominio/picture-uploader-default"
         },
         {
           "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
@@ -2829,55 +2839,18 @@
       "titulo": "Alavanca Cambio Shimano Slx Sl-m7100 12v Direito S/visor",
       "link": "https://produto.mercadolivre.com.br/MLB-7328670238-alavanca-cambio-shimano-slx-sl-m7100-12v-direito-svisor-_JM",
       "status": "unhealthy",
-      "score": 64,
-      "level": "Satisfatória",
-      "problemas": [
-        {
-          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4589867782/modificar/omni/variation/dominio/picture-uploader-default"
-        },
-        {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4589867782/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB7328670238"
-        },
-        {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4589867782&item_id=MLB7328670238&item_syi=MLB7328670238&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB7328670238"
-        },
-        {
-          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB7328670238"
-        }
-      ]
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB7328657942",
       "titulo": "Alavanca Trocador Shimano Slx M7100 12v Traseiro S/ Visor",
       "link": "https://produto.mercadolivre.com.br/MLB-7328657942-alavanca-trocador-shimano-slx-m7100-12v-traseiro-s-visor-_JM",
       "status": "unhealthy",
-      "score": 92,
-      "level": "Profissional",
-      "problemas": [
-        {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4563958427&item_id=MLB7328657942&item_syi=MLB7328657942&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4563958427/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB7328657942"
-        }
-      ]
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB7328453084",
@@ -3186,9 +3159,9 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Preencha as características principais",
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4666654579/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB7388008708"
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4666654579&item_id=MLB7388008708&item_syi=MLB7388008708&origin=quality#origin=quality"
         },
         {
           "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
@@ -3196,9 +3169,9 @@
           "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4666654579"
         },
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "titulo": "Preencha as características principais",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4666654579&item_id=MLB7388008708&item_syi=MLB7388008708&origin=quality#origin=quality"
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4666654579/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB7388008708"
         }
       ]
     },
