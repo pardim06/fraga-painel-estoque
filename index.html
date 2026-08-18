@@ -8,6 +8,16 @@
 <link rel="stylesheet" href="assets/estilo.css">
 </head>
 <body>
+<div id="preloader">
+  <div class="preloader-nucleo">
+    <div class="preloader-anel">
+      <img class="preloader-logo" src="assets/logo-fraga.png" alt="">
+    </div>
+    <div class="preloader-texto">Fraga Bike Shop</div>
+    <div class="preloader-barra"></div>
+  </div>
+</div>
+
 <div class="container">
   <div class="header rise">
     <div class="header-left">
@@ -77,5 +87,28 @@
 
   <footer>Painel interno · Fraga Bike Shop</footer>
 </div>
+
+<script>
+  // Tempo mínimo pra não piscar rápido demais em conexão rápida, mas some
+  // assim que a página estiver pronta (o que demorar mais dos dois).
+  const MINIMO_MS = 900;
+  const inicio = Date.now();
+
+  function esconderPreloader() {
+    const passado = Date.now() - inicio;
+    const espera = Math.max(0, MINIMO_MS - passado);
+    setTimeout(() => {
+      const preloader = document.getElementById('preloader');
+      preloader.classList.add('esconder');
+      preloader.addEventListener('transitionend', () => preloader.remove(), { once: true });
+    }, espera);
+  }
+
+  if (document.readyState === 'complete') {
+    esconderPreloader();
+  } else {
+    window.addEventListener('load', esconderPreloader);
+  }
+</script>
 </body>
 </html>
