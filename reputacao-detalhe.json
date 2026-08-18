@@ -1,17 +1,10 @@
 {
-  "atualizadoEm": "2026-08-18T10:55:21.761Z",
+  "atualizadoEm": "2026-08-18T11:00:43.338Z",
   "janelaDias": 60,
   "cancelamento": {
-    "quantidade": 3,
+    "quantidade": 2,
     "diasParaZerar": 53,
     "ocorrencias": [
-      {
-        "id": 2000017014749350,
-        "data": "2026-06-19T06:30:38.000-04:00",
-        "motivo": "There is a feedback from seller with the reason out_of_stock or seller_out_of_stock",
-        "diasRestantes": 0,
-        "saiEm": "2026-08-18T10:30:38.000Z"
-      },
       {
         "id": 2000017051162566,
         "data": "2026-06-21T21:36:06.000-04:00",
