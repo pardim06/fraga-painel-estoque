@@ -1,18 +1,7 @@
 {
-  "atualizadoEm": "2026-08-18T12:05:30.797Z",
+  "atualizadoEm": "2026-08-18T12:10:38.328Z",
   "limiteMinutos": 60,
-  "total": 1,
+  "total": 0,
   "atrasadas": 0,
-  "perguntas": [
-    {
-      "id": 13642804135,
-      "texto": "Teria algum anúncio com película e capa?",
-      "itemId": "MLB4689030231",
-      "produto": "Ciclocomputador Geoid Cc600 Colorido Gps Monitor Cardíaco 2,4  Preto",
-      "link": "https://produto.mercadolivre.com.br/MLB-4689030231-ciclocomputador-geoid-cc600-colorido-gps-monitor-cardiaco-24-preto-_JM",
-      "dataCriacao": "2026-08-18T07:32:52.76142932-04:00",
-      "minutosAberta": 33,
-      "atrasada": false
-    }
-  ]
+  "perguntas": []
 }
