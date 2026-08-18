@@ -1,7 +1,18 @@
 {
-  "atualizadoEm": "2026-08-18T00:30:33.912Z",
+  "atualizadoEm": "2026-08-18T00:35:19.142Z",
   "limiteMinutos": 60,
-  "total": 0,
+  "total": 1,
   "atrasadas": 0,
-  "perguntas": []
+  "perguntas": [
+    {
+      "id": 13643504146,
+      "texto": "Qual prazo garantia",
+      "itemId": "MLB4692876531",
+      "produto": "Sapatilha Mtb High One Feet  2 Velcros  Trava  Preto/cinza   Preto/cinza 39 Br",
+      "link": "https://produto.mercadolivre.com.br/MLB-4692876531-sapatilha-mtb-high-one-feet-2-velcros-trava-pretocinza-pretocinza-39-br-_JM",
+      "dataCriacao": "2026-08-17T20:33:19.092158621-04:00",
+      "minutosAberta": 2,
+      "atrasada": false
+    }
+  ]
 }
