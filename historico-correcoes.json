@@ -1,44 +1,30 @@
 [
   {
-    "sku": "3977",
-    "nome": "2 PARES DE PASTILHAS SHIMANO B05S - SEM BLISTER",
-    "qtdAnteriorML": 1,
-    "qtdNova": 0,
-    "dataHora": "2026-08-13T11:17:46.115Z"
+    "sku": "1521",
+    "nome": "FITA DE GUIDÃO SHIMANO PRO CLASSIC COMFORT EVA 2.5MM BCO",
+    "qtdAnteriorML": 11,
+    "qtdNova": 10,
+    "dataHora": "2026-08-18T17:37:06.367Z"
   },
   {
-    "sku": "3976",
-    "nome": "LIMPADOR DE CORRENTE ABSOLUTE SMARTCLEAN",
-    "qtdAnteriorML": 1,
-    "qtdNova": 0,
-    "dataHora": "2026-08-11T18:10:57.630Z"
-  },
-  {
-    "sku": "6651",
-    "nome": "GUIDAO MTB RETO INTEGRADO CARBONO RAD7 740 MM - PRETO",
-    "qtdAnteriorML": 450,
-    "qtdNova": 449,
-    "dataHora": "2026-08-10T22:37:36.809Z"
-  },
-  {
-    "sku": "5570",
-    "nome": "Par de Rodas de Carbono RAD7 MTB XC Trail Boost  Leve",
-    "qtdAnteriorML": 37,
-    "qtdNova": 28,
-    "dataHora": "2026-08-10T19:07:25.108Z"
-  },
-  {
-    "sku": "4283",
-    "nome": "SAPATILHA MTB SHIMANO SH-XC302 - PRETA TAMANHO:34 ;COR:PRETA",
+    "sku": "6621",
+    "nome": "CAMISA FRAGA BIKE ELITE 2.0 - CALOI TAMANHO:G;COR:PRETO/LARANJA",
     "qtdAnteriorML": 3,
-    "qtdNova": 2,
-    "dataHora": "2026-08-10T16:07:24.142Z"
+    "qtdNova": 0,
+    "dataHora": "2026-08-18T17:37:06.367Z"
   },
   {
-    "sku": "6592",
-    "nome": "Cassete Sunrace M680 11-40d 8v 456g 11/40 460gr K7 Mtb Prateado 11 40",
-    "qtdAnteriorML": 2,
-    "qtdNova": 1,
-    "dataHora": "2026-08-10T15:37:34.658Z"
+    "sku": "6622",
+    "nome": "CAMISA FRAGA BIKE ELITE 2.0 - CALOI TAMANHO:GG;COR:PRETO/LARANJA",
+    "qtdAnteriorML": 1,
+    "qtdNova": 0,
+    "dataHora": "2026-08-18T17:37:06.367Z"
+  },
+  {
+    "sku": "6624",
+    "nome": "CAMISA FRAGA BIKE ELITE 2.0 - CALOI TAMANHO:EXGG;COR:PRETO/LARANJA",
+    "qtdAnteriorML": 1,
+    "qtdNova": 0,
+    "dataHora": "2026-08-18T17:37:06.367Z"
   }
 ]

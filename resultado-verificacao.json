@@ -1,15 +1,51 @@
 {
-  "atualizadoEm": "2026-08-13T14:32:37.751Z",
-  "totalSkus": 244,
-  "corretos": 243,
-  "totalDivergentes": 1,
+  "atualizadoEm": "2026-08-18T17:37:06.368Z",
+  "totalSkus": 268,
+  "corretos": 263,
+  "totalDivergentes": 5,
   "divergencias": [
     {
       "sku": "97",
       "nome": "TAPETE ELITE  PROTETOR PARA  ROLO DE TREINO -  PRETO",
-      "qtdBling": 15,
-      "qtdML": 8,
-      "diferenca": 7
+      "qtdBling": 9,
+      "qtdML": 7,
+      "diferenca": 2
+    },
+    {
+      "sku": "1521",
+      "nome": "FITA DE GUIDÃO SHIMANO PRO CLASSIC COMFORT EVA 2.5MM BCO",
+      "qtdBling": 10,
+      "qtdML": 11,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "3 anúncio(s) atualizado(s) para 10"
+    },
+    {
+      "sku": "6621",
+      "nome": "CAMISA FRAGA BIKE ELITE 2.0 - CALOI TAMANHO:G;COR:PRETO/LARANJA",
+      "qtdBling": 0,
+      "qtdML": 3,
+      "diferenca": -3,
+      "corrigido": true,
+      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 0"
+    },
+    {
+      "sku": "6622",
+      "nome": "CAMISA FRAGA BIKE ELITE 2.0 - CALOI TAMANHO:GG;COR:PRETO/LARANJA",
+      "qtdBling": 0,
+      "qtdML": 1,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 0"
+    },
+    {
+      "sku": "6624",
+      "nome": "CAMISA FRAGA BIKE ELITE 2.0 - CALOI TAMANHO:EXGG;COR:PRETO/LARANJA",
+      "qtdBling": 0,
+      "qtdML": 1,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 0"
     }
   ],
   "semSkuNoBling": [
@@ -38,6 +74,7 @@
     "1906",
     "1985",
     "2135",
+    "2544",
     "2807",
     "3817",
     "4010",
