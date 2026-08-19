@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-19T02:36:57.502Z",
+  "atualizadoEm": "2026-08-19T02:42:20.692Z",
   "totalSkus": 264,
   "corretos": 263,
   "totalDivergentes": 1,
@@ -13,7 +13,6 @@
     }
   ],
   "semSkuNoBling": [
-    "207",
     "476",
     "484",
     "492",
