@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-19T11:37:47.945Z",
-  "totalSkus": 264,
+  "atualizadoEm": "2026-08-19T11:42:14.223Z",
+  "totalSkus": 265,
   "corretos": 263,
-  "totalDivergentes": 1,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,13 @@
       "qtdBling": 9,
       "qtdML": 7,
       "diferenca": 2
+    },
+    {
+      "sku": "1782",
+      "nome": "CAPACETE CICLISMO LAZER FINCH KINETICORE - PRETO FOSCO COR:PRETO FSC;TAMANHO:UNICO",
+      "qtdBling": 11,
+      "qtdML": 10,
+      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
