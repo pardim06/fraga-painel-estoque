@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-19T21:04:00.167Z",
+  "atualizadoEm": "2026-08-19T21:07:12.721Z",
   "totalSkus": 264,
-  "corretos": 261,
-  "totalDivergentes": 3,
+  "corretos": 262,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -16,13 +16,6 @@
       "nome": "CAPACETE CICLISMO LAZER FINCH KINETICORE - PRETO FOSCO COR:PRETO FSC;TAMANHO:UNICO",
       "qtdBling": 11,
       "qtdML": 10,
-      "diferenca": 1
-    },
-    {
-      "sku": "6263",
-      "nome": "PEDAL CRANKBROTHERS DOUBLE SHOT 1-  PRETO",
-      "qtdBling": 5,
-      "qtdML": 4,
       "diferenca": 1
     }
   ],
