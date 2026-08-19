@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-19T13:02:53.283Z",
+  "atualizadoEm": "2026-08-19T13:07:38.338Z",
   "totalSkus": 264,
-  "corretos": 262,
-  "totalDivergentes": 2,
+  "corretos": 261,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -16,6 +16,13 @@
       "nome": "CAPACETE CICLISMO LAZER FINCH KINETICORE - PRETO FOSCO COR:PRETO FSC;TAMANHO:UNICO",
       "qtdBling": 11,
       "qtdML": 10,
+      "diferenca": 1
+    },
+    {
+      "sku": "6679",
+      "nome": "BICICLETA INFANTIL ATHOR BABY BOY ARO 16 -  AMARELO NEON",
+      "qtdBling": 1,
+      "qtdML": 0,
       "diferenca": 1
     }
   ],
