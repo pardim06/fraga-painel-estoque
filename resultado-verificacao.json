@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-19T16:47:11.895Z",
+  "atualizadoEm": "2026-08-19T16:52:03.069Z",
   "totalSkus": 266,
   "corretos": 263,
   "totalDivergentes": 3,
@@ -19,11 +19,11 @@
       "diferenca": 1
     },
     {
-      "sku": "6654",
-      "nome": "GARRAFA CAMELBAK PODIUM  620ML - PRETO",
-      "qtdBling": 60,
-      "qtdML": 58,
-      "diferenca": 2
+      "sku": "5093",
+      "nome": "BOMBA DE AR CILINDRO CO2 16G GC-02P HIGH ONE",
+      "qtdBling": 23,
+      "qtdML": 22,
+      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
