@@ -1,7 +1,7 @@
 {
-  "atualizadoEm": "2026-08-18T18:09:13.623Z",
-  "totalUnhealthy": 279,
-  "totalWarning": 11,
+  "atualizadoEm": "2026-08-19T09:57:38.027Z",
+  "totalUnhealthy": 280,
+  "totalWarning": 10,
   "itens": [
     {
       "itemId": "MLB4903215320",
@@ -120,14 +120,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Preencha os dados fiscais para emitir faturas",
-          "tipo": "oportunidade",
-          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4803870204/tax-information"
-        },
-        {
           "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4803870204"
+        },
+        {
+          "titulo": "Preencha os dados fiscais para emitir faturas",
+          "tipo": "oportunidade",
+          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4803870204/tax-information"
         }
       ]
     },
@@ -480,8 +480,8 @@
     },
     {
       "itemId": "MLB3815741885",
-      "titulo": "Pedal Clip Plataforma Wellgo C002 + Tacos Mtb 9/16 Preto",
-      "link": "https://produto.mercadolivre.com.br/MLB-3815741885-pedal-clip-plataforma-wellgo-c002-tacos-mtb-916-preto-_JM",
+      "titulo": "Pedal Sapatilha Wellgo C002 Clip E Plataforma Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-3815741885-pedal-sapatilha-wellgo-c002-clip-e-plataforma-preto-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
@@ -1356,6 +1356,26 @@
       "problemas": []
     },
     {
+      "itemId": "MLB5468465424",
+      "titulo": "Bretelle Masculino Cicly Life Top Gel Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-5468465424-bretelle-masculino-cicly-life-top-gel-preto-_JM",
+      "status": "unhealthy",
+      "score": 97,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB5468465424"
+        },
+        {
+          "titulo": "Preencha os dados fiscais para emitir faturas",
+          "tipo": "oportunidade",
+          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB5468465424/tax-information"
+        }
+      ]
+    },
+    {
       "itemId": "MLB4112256611",
       "titulo": "Suspensão Rockshox Reba Rl29 100mm Boost 15x110 Tapered",
       "link": "https://produto.mercadolivre.com.br/MLB-4112256611-suspenso-rockshox-reba-rl29-100mm-boost-15x110-tapered-_JM",
@@ -1848,14 +1868,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3959437699/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB6768509570"
-        },
-        {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3959437699&item_id=MLB6768509570&item_syi=MLB6768509570&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3959437699/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB6768509570"
         }
       ]
     },
@@ -2412,7 +2432,7 @@
       "titulo": "Guidão Carbono Mtb Reto 740mm Rad7 31.8mm Bike 163gpreto",
       "link": "https://produto.mercadolivre.com.br/MLB-7217874500-guido-carbono-mtb-reto-740mm-rad7-318mm-bike-163gpreto-_JM",
       "status": "unhealthy",
-      "score": 94,
+      "score": 93,
       "level": "Profissional",
       "problemas": [
         {
@@ -2722,9 +2742,14 @@
       "titulo": "Canote Retrátil Rad7 De Aluminio - 31.6mm 100mm Curso 345mm ",
       "link": "https://produto.mercadolivre.com.br/MLB-4986471323-canote-retratil-rad7-de-aluminio-316mm-100mm-curso-345mm-_JM",
       "status": "unhealthy",
-      "score": 78,
+      "score": 75,
       "level": "Profissional",
       "problemas": [
+        {
+          "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4572330704"
+        },
         {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
@@ -3028,14 +3053,14 @@
       "level": "Satisfatória",
       "problemas": [
         {
-          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4594762599/modificar/omni/variation/dominio/picture-uploader-default"
-        },
-        {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4594762599&item_id=MLB5005286307&item_syi=MLB5005286307&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4594762599/modificar/omni/variation/dominio/picture-uploader-default"
         },
         {
           "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
@@ -3136,20 +3161,9 @@
       "titulo": "Sapatilha Mtb Shimano Sh-xc502 Azul Ciclismo Com Sistema Boa",
       "link": "https://produto.mercadolivre.com.br/MLB-4787309804-sapatilha-mtb-shimano-sh-xc502-azul-ciclismo-com-sistema-boa-_JM",
       "status": "warning",
-      "score": 97,
-      "level": "Profissional",
-      "problemas": [
-        {
-          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4787309804"
-        },
-        {
-          "titulo": "Preencha os dados fiscais para emitir faturas",
-          "tipo": "oportunidade",
-          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4787309804/tax-information"
-        }
-      ]
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB3750557283",
@@ -3217,26 +3231,6 @@
       "score": null,
       "level": null,
       "problemas": []
-    },
-    {
-      "itemId": "MLB5468465424",
-      "titulo": "Bretelle Masculino Cicly Life Top Gel Preto",
-      "link": "https://produto.mercadolivre.com.br/MLB-5468465424-bretelle-masculino-cicly-life-top-gel-preto-_JM",
-      "status": "warning",
-      "score": 97,
-      "level": "Profissional",
-      "problemas": [
-        {
-          "titulo": "Preencha os dados fiscais para emitir faturas",
-          "tipo": "oportunidade",
-          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB5468465424/tax-information"
-        },
-        {
-          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB5468465424"
-        }
-      ]
     },
     {
       "itemId": "MLB4275979469",
