@@ -1,6 +1,6 @@
 {
-  "atualizadoEm": "2026-08-19T09:57:38.027Z",
-  "totalUnhealthy": 280,
+  "atualizadoEm": "2026-08-20T09:56:02.398Z",
+  "totalUnhealthy": 289,
   "totalWarning": 10,
   "itens": [
     {
@@ -271,9 +271,20 @@
       "titulo": "Pedal Shimano Pd-t421 Click-r C/ Taquinho Sm-sh56 Preto",
       "link": "https://produto.mercadolivre.com.br/MLB-4909297886-pedal-shimano-pd-t421-click-r-c-taquinho-sm-sh56-preto-_JM",
       "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
+      "score": 93,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU1474087449&item_id=MLB4909297886&item_syi=MLB4909297886&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU1474087449/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4909297886"
+        }
+      ]
     },
     {
       "itemId": "MLB4909151454",
@@ -534,8 +545,8 @@
     },
     {
       "itemId": "MLB5071259980",
-      "titulo": "Cassete Shimano Acera Hg400 8v 11-40 Mtb Bike Cor Prateado Quantidade Máxima De Dentes 40 Quantidade Mínima De Dentes 11 Prata",
-      "link": "https://produto.mercadolivre.com.br/MLB-5071259980-cassete-shimano-acera-hg400-8v-11-40-mtb-bike-cor-prateado-quantidade-maxima-de-dentes-40-quantidade-minima-de-dentes-11-prata-_JM",
+      "titulo": "Shimano Hg400 11x40 8v Prata 11 40",
+      "link": "https://produto.mercadolivre.com.br/MLB-5071259980-shimano-hg400-11x40-8v-prata-11-40-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
@@ -1364,14 +1375,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB5468465424"
-        },
-        {
           "titulo": "Preencha os dados fiscais para emitir faturas",
           "tipo": "oportunidade",
           "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB5468465424/tax-information"
+        },
+        {
+          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB5468465424"
         }
       ]
     },
@@ -1494,8 +1505,8 @@
     },
     {
       "itemId": "MLB5830680202",
-      "titulo": "Cassete Shimano 8v Hg400 11/45 Dentes Bulk Mtb Bike Prateado",
-      "link": "https://produto.mercadolivre.com.br/MLB-5830680202-cassete-shimano-8v-hg400-1145-dentes-bulk-mtb-bike-prateado-_JM",
+      "titulo": "Cassete Shimano 8v Hg400 11/45 Dentes Bulk Mtb Bike Prateado 36 Prateado 11 45",
+      "link": "https://produto.mercadolivre.com.br/MLB-5830680202-cassete-shimano-8v-hg400-1145-dentes-bulk-mtb-bike-prateado-36-prateado-11-45-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
@@ -1662,9 +1673,20 @@
       "titulo": "Guidao Integrado Carbono Rad7 Performance 780mm X 80mm 17º",
       "link": "https://produto.mercadolivre.com.br/MLB-5983920890-guidao-integrado-carbono-rad7-performance-780mm-x-80mm-17-_JM",
       "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
+      "score": 92,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3641907840/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB5983920890"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3641907840&item_id=MLB5983920890&item_syi=MLB5983920890&origin=quality#origin=quality"
+        }
+      ]
     },
     {
       "itemId": "MLB5983783978",
@@ -1888,11 +1910,6 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3959435177/modificar/omni/variation/dominio/picture-uploader-default"
-        },
-        {
           "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3959435177/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB6768508398"
@@ -1901,6 +1918,11 @@
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3959435177&item_id=MLB6768508398&item_syi=MLB6768508398&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3959435177/modificar/omni/variation/dominio/picture-uploader-default"
         }
       ]
     },
@@ -2034,6 +2056,21 @@
       "score": null,
       "level": null,
       "problemas": []
+    },
+    {
+      "itemId": "MLB4752904163",
+      "titulo": "Pedal Crankbrothers Double Shot 1-  Preto Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-4752904163-pedal-crankbrothers-double-shot-1-preto-preto-_JM",
+      "status": "unhealthy",
+      "score": 94,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4076658818&item_id=MLB4752904163&item_syi=MLB4752904163&origin=quality#origin=quality"
+        }
+      ]
     },
     {
       "itemId": "MLB4752902493",
@@ -2191,6 +2228,15 @@
       "itemId": "MLB7024656924",
       "titulo": "Pedal Crank Brothers Double Shot 2 Laranja",
       "link": "https://produto.mercadolivre.com.br/MLB-7024656924-pedal-crank-brothers-double-shot-2-laranja-_JM",
+      "status": "unhealthy",
+      "score": null,
+      "level": null,
+      "problemas": []
+    },
+    {
+      "itemId": "MLB7024515534",
+      "titulo": "Pedais Crankbrothers Double Shot 1 Cor Preta Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-7024515534-pedais-crankbrothers-double-shot-1-cor-preta-preto-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
@@ -2588,18 +2634,70 @@
       "titulo": "Cubo Dianteiro Shimano Hb-tx506 6 Parafusos Disco 36f Mtb",
       "link": "https://produto.mercadolivre.com.br/MLB-4931741219-cubo-dianteiro-shimano-hb-tx506-6-parafusos-disco-36f-mtb-_JM",
       "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
+      "score": 67,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4407339134/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4931741219"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4407339134&item_id=MLB4931741219&item_syi=MLB4931741219&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4931741219"
+        },
+        {
+          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4931741219"
+        }
+      ]
     },
     {
       "itemId": "MLB4931741217",
       "titulo": "Cubo Dianteiro Tourney Hb-tx506 6 Parafuso 36f Preto",
       "link": "https://produto.mercadolivre.com.br/MLB-4931741217-cubo-dianteiro-tourney-hb-tx506-6-parafuso-36f-preto-_JM",
       "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
+      "score": 60,
+      "level": "Satisfatória",
+      "problemas": [
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4383962597/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4931741217"
+        },
+        {
+          "titulo": "Preencha as características principais",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4383962597/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB4931741217"
+        },
+        {
+          "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4383962597"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4383962597&item_id=MLB4931741217&item_syi=MLB4931741217&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4931741217"
+        },
+        {
+          "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB4931741217"
+        }
+      ]
     },
     {
       "itemId": "MLB4930820035",
@@ -2889,14 +2987,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4564576055&item_id=MLB4992796931&item_syi=MLB4992796931&origin=quality#origin=quality"
-        },
-        {
           "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4564576055/modificar/omni/variation/dominio/picture-uploader-default"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4564576055&item_id=MLB4992796931&item_syi=MLB4992796931&origin=quality#origin=quality"
         }
       ]
     },
@@ -3063,12 +3161,12 @@
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4594762599/modificar/omni/variation/dominio/picture-uploader-default"
         },
         {
-          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
+          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005286307"
         },
         {
-          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
+          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005286307"
         }
@@ -3146,6 +3244,133 @@
           "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4666654579"
         }
       ]
+    },
+    {
+      "itemId": "MLB7438297088",
+      "titulo": "Alavanca Trocador Shimano Xt Sl-m8100 12v Direito Abraçadeir",
+      "link": "https://produto.mercadolivre.com.br/MLB-7438297088-alavanca-trocador-shimano-xt-sl-m8100-12v-direito-abracadeir-_JM",
+      "status": "unhealthy",
+      "score": 94,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4784968462&item_id=MLB7438297088&item_syi=MLB7438297088&origin=quality#origin=quality"
+        }
+      ]
+    },
+    {
+      "itemId": "MLB7438187186",
+      "titulo": "Manete Freio Hidráulico Shimano Deore Bl-m6100 Esquerda Dian",
+      "link": "https://produto.mercadolivre.com.br/MLB-7438187186-manete-freio-hidraulico-shimano-deore-bl-m6100-esquerda-dian-_JM",
+      "status": "unhealthy",
+      "score": 80,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4784686580/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB7438187186"
+        },
+        {
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4784686580/modificar/omni/variation/dominio/picture-uploader-default"
+        },
+        {
+          "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4784686580"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4784686580&item_id=MLB7438187186&item_syi=MLB7438187186&origin=quality#origin=quality"
+        }
+      ]
+    },
+    {
+      "itemId": "MLB7432646416",
+      "titulo": "Alavanca Passador Esquerdo Shimano Alivio Sl M3100 2v Para Cambio Dianteiro Duplo Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-7432646416-alavanca-passador-esquerdo-shimano-alivio-sl-m3100-2v-para-cambio-dianteiro-duplo-preto-_JM",
+      "status": "unhealthy",
+      "score": null,
+      "level": null,
+      "problemas": []
+    },
+    {
+      "itemId": "MLB5080133197",
+      "titulo": "Alavanca Trocador Shimano Xt Sl-m8100 12v Direito Sem Visor",
+      "link": "https://produto.mercadolivre.com.br/MLB-5080133197-alavanca-trocador-shimano-xt-sl-m8100-12v-direito-sem-visor-_JM",
+      "status": "unhealthy",
+      "score": 85,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4755478423&item_id=MLB5080133197&item_syi=MLB5080133197&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB5080133197"
+        }
+      ]
+    },
+    {
+      "itemId": "MLB5080031959",
+      "titulo": "Par Alavanca Câmbio Shimano Alivio Sl-m3100 2x9v 18v Mtb Tro",
+      "link": "https://produto.mercadolivre.com.br/MLB-5080031959-par-alavanca-cmbio-shimano-alivio-sl-m3100-2x9v-18v-mtb-tro-_JM",
+      "status": "unhealthy",
+      "score": 60,
+      "level": "Satisfatória",
+      "problemas": [
+        {
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4784605430/modificar/omni/variation/dominio/picture-uploader-default"
+        },
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4784605430/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB5080031959"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4784605430&item_id=MLB5080031959&item_syi=MLB5080031959&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5080031959"
+        },
+        {
+          "titulo": "Participe de uma promoção para receber mais visitas",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/anuncios/lista/promos?search=MLB5080031959"
+        }
+      ]
+    },
+    {
+      "itemId": "MLB5075785403",
+      "titulo": "Alavanca Passador De Câmbio Dianteiro Shimano Altus Sl-m2010 De 2 Velocidades - Esquerdo Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-5075785403-alavanca-passador-de-cmbio-dianteiro-shimano-altus-sl-m2010-de-2-velocidades-esquerdo-preto-_JM",
+      "status": "unhealthy",
+      "score": null,
+      "level": null,
+      "problemas": []
+    },
+    {
+      "itemId": "MLB7456331498",
+      "titulo": "Alavanca Cambio Deore Xt Sl-m8100 Dir 12v S/visor Bicicleta Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-7456331498-alavanca-cambio-deore-xt-sl-m8100-dir-12v-svisor-bicicleta-preto-_JM",
+      "status": "unhealthy",
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB4775654934",
