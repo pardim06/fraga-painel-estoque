@@ -1,7 +1,18 @@
 {
-  "atualizadoEm": "2026-08-20T17:24:45.260Z",
+  "atualizadoEm": "2026-08-20T18:07:19.531Z",
   "limiteMinutos": 60,
-  "total": 0,
+  "total": 1,
   "atrasadas": 0,
-  "perguntas": []
+  "perguntas": [
+    {
+      "id": 13644385251,
+      "texto": "Elas dão certo na Sunped Mars A com o grupo sensah ?",
+      "itemId": "MLB4697957467",
+      "produto": "Par Roda Bike Speed Rad7 Racing Carbono 50mm Tubeless Leve",
+      "link": "https://produto.mercadolivre.com.br/MLB-4697957467-par-roda-bike-speed-rad7-racing-carbono-50mm-tubeless-leve-_JM",
+      "dataCriacao": "2026-08-20T13:43:34.199465086-04:00",
+      "minutosAberta": 24,
+      "atrasada": false
+    }
+  ]
 }
