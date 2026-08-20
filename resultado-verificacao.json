@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-20T17:24:29.036Z",
+  "atualizadoEm": "2026-08-20T17:37:00.508Z",
   "totalSkus": 265,
   "corretos": 262,
   "totalDivergentes": 3,
@@ -19,11 +19,13 @@
       "diferenca": 1
     },
     {
-      "sku": "5093",
-      "nome": "BOMBA DE AR CILINDRO CO2 16G GC-02P HIGH ONE",
-      "qtdBling": 22,
-      "qtdML": 21,
-      "diferenca": 1
+      "sku": "6662",
+      "nome": "CUBO DIANTEIRO SHIMANO TOURNEY HB-TX505 C LOCK 36F PRETO",
+      "qtdBling": 19,
+      "qtdML": 20,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "2 anúncio(s) atualizado(s) para 19"
     }
   ],
   "semSkuNoBling": [
