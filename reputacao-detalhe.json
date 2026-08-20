@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-20T00:45:20.610Z",
+  "atualizadoEm": "2026-08-20T00:52:18.826Z",
   "janelaDias": 60,
   "cancelamento": {
     "quantidade": 2,
@@ -59,7 +59,7 @@
         "id": 5547922108,
         "data": "2026-07-22T20:50:18.000-04:00",
         "motivo": "PDD9939",
-        "diasRestantes": 33,
+        "diasRestantes": 32,
         "saiEm": "2026-09-21T00:50:18.000Z"
       },
       {
