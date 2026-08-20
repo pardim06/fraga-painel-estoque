@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-20T19:46:42.396Z",
-  "totalSkus": 263,
+  "atualizadoEm": "2026-08-20T20:00:25.290Z",
+  "totalSkus": 267,
   "corretos": 257,
-  "totalDivergentes": 6,
+  "totalDivergentes": 10,
   "divergencias": [
     {
       "sku": "97",
@@ -19,11 +19,40 @@
       "diferenca": 1
     },
     {
-      "sku": "4046",
-      "nome": "CORTA VENTO CICLY LIFE ELITE REFLETIVO COR:PRETO;TAMANHO:G",
-      "qtdBling": 39,
-      "qtdML": 38,
-      "diferenca": 1
+      "sku": "4636",
+      "nome": "SACHÊ 20G (UNIDADE) - SUDRACT ISOTÔNICO HYDRAMAXI - LARANJA",
+      "qtdBling": 48,
+      "qtdML": 82,
+      "diferenca": -34,
+      "corrigido": true,
+      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 48"
+    },
+    {
+      "sku": "4637",
+      "nome": "SACHÊ 20G (UNIDADE)  - SUDRACT ISOTÔNICO HYDRAMAXI - MORANGO / MARACUJA",
+      "qtdBling": 26,
+      "qtdML": 90,
+      "diferenca": -64,
+      "corrigido": true,
+      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 26"
+    },
+    {
+      "sku": "4640",
+      "nome": "SACHÊ 20G (UNIDADE) - SUDRACT ISOTÔNICO HYDRAMAXI  - GUARANA / ACAI",
+      "qtdBling": 144,
+      "qtdML": 217,
+      "diferenca": -73,
+      "corrigido": true,
+      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 144"
+    },
+    {
+      "sku": "5464",
+      "nome": "SACHÊ 20G (UNIDADE)  - SUDRACT ISOTÔNICO HYDRAMAXI  - LIMÃO",
+      "qtdBling": 55,
+      "qtdML": 81,
+      "diferenca": -26,
+      "corrigido": true,
+      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 55"
     },
     {
       "sku": "5465",
@@ -31,6 +60,13 @@
       "qtdBling": 74,
       "qtdML": 63,
       "diferenca": 11
+    },
+    {
+      "sku": "5813",
+      "nome": "Alavanca Cambio Trocador Shimano Slx Sl-m7100 I-spec 12v Cor Preto",
+      "qtdBling": 9,
+      "qtdML": 7,
+      "diferenca": 2
     },
     {
       "sku": "6653",
