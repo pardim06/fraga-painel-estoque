@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-20T17:05:02.871Z",
+  "atualizadoEm": "2026-08-20T17:10:25.787Z",
   "totalSkus": 265,
-  "corretos": 263,
-  "totalDivergentes": 2,
+  "corretos": 262,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -16,6 +16,13 @@
       "nome": "CAPACETE CICLISMO LAZER FINCH KINETICORE - PRETO FOSCO COR:PRETO FSC;TAMANHO:UNICO",
       "qtdBling": 11,
       "qtdML": 10,
+      "diferenca": 1
+    },
+    {
+      "sku": "6654",
+      "nome": "GARRAFA CAMELBAK PODIUM  620ML - PRETO",
+      "qtdBling": 54,
+      "qtdML": 53,
       "diferenca": 1
     }
   ],
