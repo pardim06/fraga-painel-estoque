@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-20T17:37:00.508Z",
+  "atualizadoEm": "2026-08-20T17:56:38.316Z",
   "totalSkus": 265,
-  "corretos": 262,
-  "totalDivergentes": 3,
+  "corretos": 261,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -19,13 +19,20 @@
       "diferenca": 1
     },
     {
-      "sku": "6662",
-      "nome": "CUBO DIANTEIRO SHIMANO TOURNEY HB-TX505 C LOCK 36F PRETO",
-      "qtdBling": 19,
-      "qtdML": 20,
+      "sku": "6653",
+      "nome": "GARRAFA CAMELBAK PODIUM 710ML - PRETO",
+      "qtdBling": 1,
+      "qtdML": 2,
       "diferenca": -1,
       "corrigido": true,
-      "corrigidoDetalhe": "2 anúncio(s) atualizado(s) para 19"
+      "corrigidoDetalhe": "4 anúncio(s) atualizado(s) para 1"
+    },
+    {
+      "sku": "6662",
+      "nome": "CUBO DIANTEIRO SHIMANO TOURNEY HB-TX505 C LOCK 36F PRETO",
+      "qtdBling": 20,
+      "qtdML": 19,
+      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
