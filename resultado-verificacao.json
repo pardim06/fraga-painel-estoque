@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-21T21:47:09.831Z",
+  "atualizadoEm": "2026-08-21T21:52:14.708Z",
   "totalSkus": 263,
-  "corretos": 259,
-  "totalDivergentes": 4,
+  "corretos": 258,
+  "totalDivergentes": 5,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,13 @@
       "qtdBling": 9,
       "qtdML": 7,
       "diferenca": 2
+    },
+    {
+      "sku": "1210",
+      "nome": "PINHAO COG SHIMANO - CS-M6100/M7100/M8100/M9100 - 10D E 12D",
+      "qtdBling": 8,
+      "qtdML": 7,
+      "diferenca": 1
     },
     {
       "sku": "1782",
