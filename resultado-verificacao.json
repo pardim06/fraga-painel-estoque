@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-21T00:52:13.704Z",
+  "atualizadoEm": "2026-08-21T00:57:19.528Z",
   "totalSkus": 266,
-  "corretos": 262,
-  "totalDivergentes": 4,
+  "corretos": 261,
+  "totalDivergentes": 5,
   "divergencias": [
     {
       "sku": "97",
@@ -16,6 +16,13 @@
       "nome": "CAPACETE CICLISMO LAZER FINCH KINETICORE - PRETO FOSCO COR:PRETO FSC;TAMANHO:UNICO",
       "qtdBling": 11,
       "qtdML": 10,
+      "diferenca": 1
+    },
+    {
+      "sku": "2822",
+      "nome": "CAPA BORRACHA STI ST-5800/ST-6800/ST-4700 - PRETO",
+      "qtdBling": 2,
+      "qtdML": 1,
       "diferenca": 1
     },
     {
