@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-22T14:22:04.143Z",
+  "atualizadoEm": "2026-08-22T14:27:27.710Z",
   "totalSkus": 262,
-  "corretos": 257,
-  "totalDivergentes": 5,
+  "corretos": 258,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -16,13 +16,6 @@
       "nome": "CAPACETE CICLISMO LAZER FINCH KINETICORE - PRETO FOSCO COR:PRETO FSC;TAMANHO:UNICO",
       "qtdBling": 11,
       "qtdML": 10,
-      "diferenca": 1
-    },
-    {
-      "sku": "4984",
-      "nome": "GPS CICLOCOMPUTADOR GEOID CC600, WI-FI",
-      "qtdBling": 226,
-      "qtdML": 225,
       "diferenca": 1
     },
     {
