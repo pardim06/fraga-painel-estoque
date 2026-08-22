@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-22T20:44:26.961Z",
+  "atualizadoEm": "2026-08-22T20:47:23.298Z",
   "totalSkus": 260,
-  "corretos": 254,
-  "totalDivergentes": 6,
+  "corretos": 255,
+  "totalDivergentes": 5,
   "divergencias": [
     {
       "sku": "97",
@@ -31,13 +31,6 @@
       "qtdBling": 74,
       "qtdML": 63,
       "diferenca": 11
-    },
-    {
-      "sku": "6654",
-      "nome": "GARRAFA CAMELBAK PODIUM  620ML - PRETO",
-      "qtdBling": 35,
-      "qtdML": 34,
-      "diferenca": 1
     },
     {
       "sku": "6662",
