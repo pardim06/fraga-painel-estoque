@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-22T14:37:09.516Z",
+  "atualizadoEm": "2026-08-22T14:42:16.957Z",
   "totalSkus": 262,
   "corretos": 257,
   "totalDivergentes": 5,
@@ -19,18 +19,18 @@
       "diferenca": 1
     },
     {
+      "sku": "3911",
+      "nome": "OCULOS CICLISMO ADX AUGE RIDE - PRETO/ROSA",
+      "qtdBling": 5,
+      "qtdML": 4,
+      "diferenca": 1
+    },
+    {
       "sku": "5465",
       "nome": "SACHÊ 20G (UNIDADE)  - SUDRACT ISOTÔNICO HYDRAMAXI  - AGUA DE COCO",
       "qtdBling": 74,
       "qtdML": 63,
       "diferenca": 11
-    },
-    {
-      "sku": "6601",
-      "nome": "PEDIVELA TRIPLO SUNRACE M600 PRETO 170MM 42/32/22 MTB BIKE",
-      "qtdBling": 5,
-      "qtdML": 4,
-      "diferenca": 1
     },
     {
       "sku": "6662",
