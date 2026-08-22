@@ -1,18 +1,7 @@
 {
-  "atualizadoEm": "2026-08-22T02:00:46.705Z",
+  "atualizadoEm": "2026-08-22T02:03:45.963Z",
   "limiteMinutos": 60,
-  "total": 1,
+  "total": 0,
   "atrasadas": 0,
-  "perguntas": [
-    {
-      "id": 13645224491,
-      "texto": "Ela tem acumulador de ar ?",
-      "itemId": "MLB7068740526",
-      "produto": "Bomba Oficina Shimano Pro Touring Manômetro Preto 160 Psi",
-      "link": "https://produto.mercadolivre.com.br/MLB-7068740526-bomba-oficina-shimano-pro-touring-manmetro-preto-160-psi-_JM",
-      "dataCriacao": "2026-08-21T21:52:51.016571293-04:00",
-      "minutosAberta": 8,
-      "atrasada": false
-    }
-  ]
+  "perguntas": []
 }
