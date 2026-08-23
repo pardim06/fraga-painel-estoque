@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-23T13:17:27.297Z",
+  "atualizadoEm": "2026-08-23T13:22:31.554Z",
   "totalSkus": 254,
-  "corretos": 249,
-  "totalDivergentes": 5,
+  "corretos": 250,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -10,15 +10,6 @@
       "qtdBling": 9,
       "qtdML": 7,
       "diferenca": 2
-    },
-    {
-      "sku": "1521",
-      "nome": "FITA DE GUIDÃO SHIMANO PRO CLASSIC COMFORT EVA 2.5MM BCO",
-      "qtdBling": 9,
-      "qtdML": 10,
-      "diferenca": -1,
-      "corrigido": true,
-      "corrigidoDetalhe": "3 anúncio(s) atualizado(s) para 9"
     },
     {
       "sku": "1782",
