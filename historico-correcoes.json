@@ -5,33 +5,5 @@
     "qtdAnteriorML": 10,
     "qtdNova": 9,
     "dataHora": "2026-08-23T13:17:27.296Z"
-  },
-  {
-    "sku": "4636",
-    "nome": "SACHÊ 20G (UNIDADE) - SUDRACT ISOTÔNICO HYDRAMAXI - LARANJA",
-    "qtdAnteriorML": 82,
-    "qtdNova": 48,
-    "dataHora": "2026-08-20T20:00:25.289Z"
-  },
-  {
-    "sku": "4637",
-    "nome": "SACHÊ 20G (UNIDADE)  - SUDRACT ISOTÔNICO HYDRAMAXI - MORANGO / MARACUJA",
-    "qtdAnteriorML": 90,
-    "qtdNova": 26,
-    "dataHora": "2026-08-20T20:00:25.289Z"
-  },
-  {
-    "sku": "4640",
-    "nome": "SACHÊ 20G (UNIDADE) - SUDRACT ISOTÔNICO HYDRAMAXI  - GUARANA / ACAI",
-    "qtdAnteriorML": 217,
-    "qtdNova": 144,
-    "dataHora": "2026-08-20T20:00:25.289Z"
-  },
-  {
-    "sku": "5464",
-    "nome": "SACHÊ 20G (UNIDADE)  - SUDRACT ISOTÔNICO HYDRAMAXI  - LIMÃO",
-    "qtdAnteriorML": 81,
-    "qtdNova": 55,
-    "dataHora": "2026-08-20T20:00:25.289Z"
   }
 ]
