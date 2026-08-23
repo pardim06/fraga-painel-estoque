@@ -1,18 +1,7 @@
 {
-  "atualizadoEm": "2026-08-23T16:20:22.879Z",
+  "atualizadoEm": "2026-08-23T16:27:12.616Z",
   "limiteMinutos": 60,
-  "total": 1,
+  "total": 0,
   "atrasadas": 0,
-  "perguntas": [
-    {
-      "id": 13645781141,
-      "texto": "Quantas enchidas a 100psi da pra usar?",
-      "itemId": "MLB4810986671",
-      "produto": "Mini Bomba Eletrica Bateria Recarregavel 120 Psi Rad7 ",
-      "link": "https://produto.mercadolivre.com.br/MLB-4810986671-mini-bomba-eletrica-bateria-recarregavel-120-psi-rad7-_JM",
-      "dataCriacao": "2026-08-23T12:06:05.524078755-04:00",
-      "minutosAberta": 14,
-      "atrasada": false
-    }
-  ]
+  "perguntas": []
 }
