@@ -1,7 +1,7 @@
 {
-  "atualizadoEm": "2026-08-24T21:50:20.601Z",
+  "atualizadoEm": "2026-08-24T21:57:12.124Z",
   "limiteMinutos": 60,
-  "total": 3,
+  "total": 2,
   "atrasadas": 2,
   "perguntas": [
     {
@@ -11,7 +11,7 @@
       "produto": "Sapatilha Speed Shimano Sh-rc302 - Preto + Pedal Clip Rs500",
       "link": "https://produto.mercadolivre.com.br/MLB-5965216386-sapatilha-speed-shimano-sh-rc302-preto-pedal-clip-rs500-_JM",
       "dataCriacao": "2026-08-24T13:53:11.781081819-04:00",
-      "minutosAberta": 237,
+      "minutosAberta": 244,
       "atrasada": true
     },
     {
@@ -21,18 +21,8 @@
       "produto": "Bretelle Masculino Cicly Life Carbon Pro",
       "link": "https://produto.mercadolivre.com.br/MLB-4415978407-bretelle-masculino-cicly-life-carbon-pro-_JM",
       "dataCriacao": "2026-08-24T15:37:55.425700829-04:00",
-      "minutosAberta": 132,
+      "minutosAberta": 139,
       "atrasada": true
-    },
-    {
-      "id": 13647372114,
-      "texto": "Qual o tamanho máximo de navegação de rota, que o GPS suporta?",
-      "itemId": "MLB7437957896",
-      "produto": "Ciclocomputador/gps Navihood L2 - Azul",
-      "link": "https://produto.mercadolivre.com.br/MLB-7437957896-ciclocomputadorgps-navihood-l2-azul-_JM",
-      "dataCriacao": "2026-08-24T17:41:19.931338398-04:00",
-      "minutosAberta": 9,
-      "atrasada": false
     }
   ]
 }
