@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-24T13:27:24.595Z",
-  "totalSkus": 252,
+  "atualizadoEm": "2026-08-24T13:32:35.590Z",
+  "totalSkus": 251,
   "corretos": 248,
-  "totalDivergentes": 4,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -24,15 +24,6 @@
       "qtdBling": 74,
       "qtdML": 63,
       "diferenca": 11
-    },
-    {
-      "sku": "6398",
-      "nome": "SAPATILHA MTB SHIMANO XC302 - BRANCO TAMANHO:36;cor:Branco",
-      "qtdBling": 0,
-      "qtdML": 1,
-      "diferenca": -1,
-      "corrigido": true,
-      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 0"
     }
   ],
   "semSkuNoBling": [
