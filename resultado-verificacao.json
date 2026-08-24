@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-24T15:22:27.584Z",
-  "totalSkus": 252,
-  "corretos": 249,
-  "totalDivergentes": 3,
+  "atualizadoEm": "2026-08-24T15:27:42.143Z",
+  "totalSkus": 251,
+  "corretos": 247,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -16,6 +16,13 @@
       "nome": "CAPACETE CICLISMO LAZER FINCH KINETICORE - PRETO FOSCO COR:PRETO FSC;TAMANHO:UNICO",
       "qtdBling": 11,
       "qtdML": 10,
+      "diferenca": 1
+    },
+    {
+      "sku": "4265",
+      "nome": "SAPATILHA MTB SHIMANO SH-XC302 - CINZA GELO TAMANHO:47 ;COR:CINZA GELO",
+      "qtdBling": 1,
+      "qtdML": 0,
       "diferenca": 1
     },
     {
