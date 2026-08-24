@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-24T14:18:10.671Z",
+  "atualizadoEm": "2026-08-24T14:22:46.247Z",
   "totalSkus": 252,
-  "corretos": 248,
-  "totalDivergentes": 4,
+  "corretos": 249,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -17,15 +17,6 @@
       "qtdBling": 11,
       "qtdML": 10,
       "diferenca": 1
-    },
-    {
-      "sku": "4643",
-      "nome": "SACHÊ 400G (UNIDADE) -  SUDRACT  ISOTÔNICO HYDRAMAXI  -  GUARANA / ACAI",
-      "qtdBling": 8,
-      "qtdML": 10,
-      "diferenca": -2,
-      "corrigido": true,
-      "corrigidoDetalhe": "2 anúncio(s) atualizado(s) para 8"
     },
     {
       "sku": "5465",
