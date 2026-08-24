@@ -1,7 +1,7 @@
 {
-  "atualizadoEm": "2026-08-24T18:37:38.858Z",
-  "totalSkus": 250,
-  "corretos": 247,
+  "atualizadoEm": "2026-08-24T18:42:11.313Z",
+  "totalSkus": 249,
+  "corretos": 246,
   "totalDivergentes": 3,
   "divergencias": [
     {
@@ -62,9 +62,6 @@
     "4940",
     "5061",
     "5063",
-    "5235",
-    "5249",
-    "5281",
     "5311",
     "5321"
   ]
