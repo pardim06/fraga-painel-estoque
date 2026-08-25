@@ -1,7 +1,7 @@
 {
-  "atualizadoEm": "2026-08-25T17:35:21.945Z",
+  "atualizadoEm": "2026-08-25T17:39:42.502Z",
   "limiteMinutos": 60,
-  "total": 1,
+  "total": 2,
   "atrasadas": 0,
   "perguntas": [
     {
@@ -11,7 +11,17 @@
       "produto": "Óculos Shimano Tokyo Azul Escuro Lente Ridescape Contraste Armação Azul-escuro",
       "link": "https://produto.mercadolivre.com.br/MLB-4993213831-oculos-shimano-tokyo-azul-escuro-lente-ridescape-contraste-armaco-azul-escuro-_JM",
       "dataCriacao": "2026-08-25T13:32:22.756964928-04:00",
-      "minutosAberta": 3,
+      "minutosAberta": 7,
+      "atrasada": false
+    },
+    {
+      "id": 13646997143,
+      "texto": "olá, boa tarde! tudo bem?! gostaria de saber a área de corte e o comprimento mínimo recomendado",
+      "itemId": "MLB7328450370",
+      "produto": "Guidão Carbono Mtb Reto 740mm Rad7 31.8mm Flat Bike Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-7328450370-guido-carbono-mtb-reto-740mm-rad7-318mm-flat-bike-preto-_JM",
+      "dataCriacao": "2026-08-25T13:37:28.725762517-04:00",
+      "minutosAberta": 2,
       "atrasada": false
     }
   ]
