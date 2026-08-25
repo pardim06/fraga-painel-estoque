@@ -6,7 +6,9 @@
 // Fora do horário comercial (segunda a sexta 18:00-08:10, e sábado/domingo
 // o dia todo) a resposta é publicada automaticamente no ML — é quando não
 // tem ninguém pra revisar antes. Em horário comercial, só manda o rascunho
-// pro dono aprovar via WhatsApp/e-mail e copiar/colar manualmente.
+// pro dono aprovar via WhatsApp/e-mail e copiar/colar manualmente — mas se
+// passar 45 minutos sem aprovação, publica sozinho mesmo assim (pra pergunta
+// não ficar sem resposta o dia todo esperando alguém ver o WhatsApp).
 //
 // Só processa pergunta nova (controlado por respostas-sugeridas.json), pra
 // não gastar chamada da API nem repetir notificação a cada ciclo.
@@ -27,6 +29,8 @@ const ESTADO_PATH = path.join(__dirname, '..', 'respostas-sugeridas.json');
 const HISTORICO_PATH = path.join(__dirname, '..', 'historico-respostas-ia.json');
 const HISTORICO_DIAS = 30;
 const FUSO = 'America/Sao_Paulo';
+// Em horário comercial, se ninguém aprovar em até esse tempo, publica sozinho.
+const LIMITE_ESCALONAMENTO_MIN = 45;
 
 function lerJson(caminho) {
   if (!fs.existsSync(caminho)) return null;
@@ -103,13 +107,20 @@ async function postarRespostaML(accessToken, questionId, texto) {
   );
 }
 
-function formatarNotificacao({ autoRespondidas, aguardandoAprovacao }) {
+function formatarNotificacao({ autoRespondidas, escalonadas, aguardandoAprovacao }) {
   const separador = '----------------------------';
   let corpo = '';
 
   if (autoRespondidas.length > 0) {
     corpo += `*RESPONDIDO AUTOMATICAMENTE - FORA DO HORARIO COMERCIAL*\n${autoRespondidas.length} pergunta(s) ja respondida(s) no ML\n`;
     for (const r of autoRespondidas) {
+      corpo += `\n${separador}\n*${r.produto}*\nPergunta: ${r.pergunta}\n\nResposta publicada:\n${r.resposta}\n`;
+    }
+  }
+
+  if (escalonadas.length > 0) {
+    corpo += `\n${separador}\n*RESPONDIDO AUTOMATICAMENTE - SEM APROVACAO EM ${LIMITE_ESCALONAMENTO_MIN}MIN*\n${escalonadas.length} pergunta(s) publicada(s) sozinha(s) por falta de resposta\n`;
+    for (const r of escalonadas) {
       corpo += `\n${separador}\n*${r.produto}*\nPergunta: ${r.pergunta}\n\nResposta publicada:\n${r.resposta}\n`;
     }
   }
@@ -151,9 +162,14 @@ async function main() {
 
   const novas = perguntasData.perguntas.filter((p) => !estado[String(p.id)]);
 
-  if (novas.length === 0) {
+  const limiteEscalonamento = Date.now() - LIMITE_ESCALONAMENTO_MIN * 60 * 1000;
+  const paraEscalar = Object.entries(estado).filter(
+    ([, r]) => r.status === 'aguardando_aprovacao' && new Date(r.geradoEm).getTime() <= limiteEscalonamento
+  );
+
+  if (novas.length === 0 && paraEscalar.length === 0) {
     fs.writeFileSync(ESTADO_PATH, JSON.stringify(estado, null, 2));
-    console.log('Nenhuma pergunta nova sem rascunho. Nada a notificar.');
+    console.log('Nenhuma pergunta nova e nada pra escalar. Nada a notificar.');
     return;
   }
 
@@ -162,7 +178,24 @@ async function main() {
 
   const token = await getMLAccessToken();
   const autoRespondidas = [];
+  const escalonadas = [];
   const aguardandoAprovacao = [];
+
+  // Pendente há mais de 45min sem aprovação humana — publica sozinho mesmo
+  // sendo horário comercial, usando o texto que já foi gerado (não gasta
+  // chamada nova da IA).
+  for (const [id, registro] of paraEscalar) {
+    try {
+      await postarRespostaML(token, Number(id), registro.resposta);
+      registro.status = 'auto_respondida';
+      registro.respondidoEm = new Date().toISOString();
+      estado[id] = registro;
+      registrarHistorico(id, registro);
+      escalonadas.push(registro);
+    } catch (err) {
+      console.error(`Falha ao escalar pergunta ${id} após ${LIMITE_ESCALONAMENTO_MIN}min sem aprovação:`, err.response?.data || err.message);
+    }
+  }
 
   for (const p of novas) {
     try {
@@ -205,13 +238,15 @@ async function main() {
 
   fs.writeFileSync(ESTADO_PATH, JSON.stringify(estado, null, 2));
 
-  const total = autoRespondidas.length + aguardandoAprovacao.length;
+  const total = autoRespondidas.length + escalonadas.length + aguardandoAprovacao.length;
   if (total > 0) {
     await enviarNotificacao(
-      formatarNotificacao({ autoRespondidas, aguardandoAprovacao }),
+      formatarNotificacao({ autoRespondidas, escalonadas, aguardandoAprovacao }),
       `${total} pergunta(s) do ML processada(s)`
     );
-    console.log(`${autoRespondidas.length} respondida(s) automaticamente, ${aguardandoAprovacao.length} aguardando aprovação.`);
+    console.log(
+      `${autoRespondidas.length} respondida(s) automaticamente, ${escalonadas.length} escalonada(s) após ${LIMITE_ESCALONAMENTO_MIN}min, ${aguardandoAprovacao.length} aguardando aprovação.`
+    );
   } else {
     console.log('Nenhum rascunho gerado com sucesso.');
   }

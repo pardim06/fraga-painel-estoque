@@ -3,7 +3,7 @@
    Fraga Bike Shop. */
 
 :root {
-  /* azul premium: navy profundo + azul vibrante */
+  /* navy profundo + laranja da marca Fraga Bike Shop */
   --bg: #0b1220;
   --bg-panel: #111a2e;
   --bg-raised: #16213a;
@@ -13,9 +13,9 @@
   --line: #1f2c47;
   --line-strong: #2a3a5c;
 
-  --blue: #3b82f6;
-  --blue-dark: #1e40af;
-  --blue-bg: rgba(59, 130, 246, 0.14);
+  --blue: #ea580c;
+  --blue-dark: #9a3412;
+  --blue-bg: rgba(234, 88, 12, 0.14);
   --warn: #fbbf24;
   --warn-bg: rgba(251, 191, 36, 0.14);
   --ok: #34d399;
@@ -33,7 +33,7 @@
 body {
   font-family: var(--font-body);
   background:
-    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(59,130,246,0.12), transparent 60%),
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(234,88,12,0.12), transparent 60%),
     var(--bg);
   margin: 0;
   padding: 48px 24px 64px;
@@ -78,7 +78,7 @@ a { color: var(--blue); text-decoration: none; }
   align-items: center;
   justify-content: center;
   background:
-    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(59,130,246,0.16), transparent 60%),
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(234,88,12,0.16), transparent 60%),
     var(--bg);
   transition: opacity .5s cubic-bezier(.4,0,.2,1), visibility .5s;
 }
@@ -114,7 +114,7 @@ a { color: var(--blue); text-decoration: none; }
 }
 .preloader-anel::after {
   inset: -10px;
-  border-top-color: rgba(59,130,246,0.35);
+  border-top-color: rgba(234,88,12,0.35);
   animation: girar 2.2s linear infinite reverse;
 }
 @keyframes girar { to { transform: rotate(360deg); } }
@@ -126,10 +126,10 @@ a { color: var(--blue); text-decoration: none; }
   object-fit: contain;
   background: var(--bg-panel);
   padding: 8px;
-  box-shadow: 0 0 0 1px var(--line), 0 0 24px rgba(59,130,246,0.25);
+  box-shadow: 0 0 0 1px var(--line), 0 0 24px rgba(234,88,12,0.25);
   animation: respirar 1.8s ease-in-out infinite;
 }
-@keyframes respirar { 50% { box-shadow: 0 0 0 1px var(--line), 0 0 34px rgba(59,130,246,0.4); } }
+@keyframes respirar { 50% { box-shadow: 0 0 0 1px var(--line), 0 0 34px rgba(234,88,12,0.4); } }
 
 .preloader-texto {
   font-size: 12.5px;
@@ -417,7 +417,7 @@ h1 {
   background: linear-gradient(135deg, var(--blue), var(--blue-dark));
   border-color: transparent;
   color: #fff;
-  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.28);
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.28);
 }
 .btn-export.primary:hover { opacity: 0.92; }
 
