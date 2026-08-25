@@ -36,30 +36,64 @@
 </style>
 </head>
 <body>
-<div class="container">
-  <div class="header rise">
-    <div class="header-left">
-      <a href="index.html" class="badge"><img src="assets/logo-fraga.png" alt="Fraga Bike Shop"></a>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <img src="assets/logo-fraga.png" alt="Fraga Bike Shop">
+      <div>
+        <div class="name">Fraga Bike Shop</div>
+        <div class="tag">Sistema Interno</div>
+      </div>
+    </a>
+
+    <div class="sidebar-label">Módulos</div>
+    <nav class="sidebar-nav">
+      <a href="index.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 9.5L10 3l7 6.5M5 8.2V17h4v-5h2v5h4V8.2" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        Início
+      </a>
+      <a href="dashboard.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="2" y="10" width="4" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="8" y="5" width="4" height="13" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="2" width="4" height="16" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
+        Dashboard
+      </a>
+      <a href="painel-estoque.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.6"/><path d="M10 5.5v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Painel de Estoque
+      </a>
+      <a href="perguntas-ml.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 8h6M7 10.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Perguntas ML
+      </a>
+      <a href="lista-compras.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 3h10v14l-5-2.5L5 17V3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 7h5M7.5 10h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Lista de Compras
+      </a>
+      <a href="reputacao-ml.html" class="active">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.9 4.6 5 .4-3.8 3.3 1.2 4.9L10 12.7l-4.3 2.5 1.2-4.9L3.1 7l5-.4L10 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Reputação ML
+      </a>
+      <a href="saude-anuncios.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 17.5s-6.5-3.9-6.5-8.9A3.6 3.6 0 0110 6.1a3.6 3.6 0 016.5 2.5c0 5-6.5 8.9-6.5 8.9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Saúde dos Anúncios
+      </a>
+    </nav>
+
+    <div class="sidebar-foot">Painel interno<br>Fraga Bike Shop</div>
+  </aside>
+
+  <main class="content">
+    <div class="page-head rise">
       <div>
         <h1>Reputação no Mercado Livre</h1>
         <div class="subtitle">Fraga Bike Shop · termômetro do vendedor</div>
       </div>
+      <div class="badge-live"><span class="dot"></span> Atualiza a cada 5min</div>
     </div>
-    <div class="badge-live"><span class="dot"></span> Atualiza a cada 5min</div>
-  </div>
 
-  <nav class="module-nav rise" style="animation-delay:.04s">
-    <a href="dashboard.html">Dashboard</a>
-    <a href="painel-estoque.html">Painel de Estoque</a>
-    <a href="perguntas-ml.html">Perguntas ML</a>
-    <a href="lista-compras.html">Lista de Compras</a>
-    <a href="reputacao-ml.html" class="active">Reputação ML</a>
-    <a href="saude-anuncios.html">Saúde dos Anúncios</a>
-  </nav>
+    <div id="conteudo"></div>
 
-  <div id="conteudo"></div>
-
-  <footer>Painel interno · dados direto da API de reputação do Mercado Livre (últimos 60 dias) · a contagem regressiva de reclamação é uma estimativa reconstruída (o ML não documenta o critério exato da métrica)</footer>
+    <footer>Painel interno · dados direto da API de reputação do Mercado Livre (últimos 60 dias) · a contagem regressiva de reclamação é uma estimativa reconstruída (o ML não documenta o critério exato da métrica)</footer>
+  </main>
 </div>
 
 <script>
