@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-25T21:32:17.027Z",
+  "atualizadoEm": "2026-08-25T21:36:48.340Z",
   "totalSkus": 254,
-  "corretos": 251,
-  "totalDivergentes": 3,
+  "corretos": 250,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -16,6 +16,13 @@
       "nome": "CAPACETE CICLISMO LAZER FINCH KINETICORE - PRETO FOSCO COR:PRETO FSC;TAMANHO:UNICO",
       "qtdBling": 11,
       "qtdML": 10,
+      "diferenca": 1
+    },
+    {
+      "sku": "5093",
+      "nome": "BOMBA DE AR CILINDRO CO2 16G GC-02P HIGH ONE",
+      "qtdBling": 19,
+      "qtdML": 18,
       "diferenca": 1
     },
     {
