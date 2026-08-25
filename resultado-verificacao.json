@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-25T13:27:43.401Z",
+  "atualizadoEm": "2026-08-25T13:32:52.248Z",
   "totalSkus": 252,
-  "corretos": 246,
-  "totalDivergentes": 6,
+  "corretos": 249,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -24,33 +24,6 @@
       "qtdBling": 74,
       "qtdML": 63,
       "diferenca": 11
-    },
-    {
-      "sku": "6623",
-      "nome": "CAMISA FRAGA BIKE ELITE 2.0 - CALOI TAMANHO:EGG;COR:PRETO/LARANJA",
-      "qtdBling": 1,
-      "qtdML": 2,
-      "diferenca": -1,
-      "corrigido": true,
-      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 1"
-    },
-    {
-      "sku": "6693",
-      "nome": "CAMISA FRAGA BIKE ELITE 2.0 - FRAGA TAMANHO:M;COR:PRETO/LARANJA",
-      "qtdBling": 7,
-      "qtdML": 8,
-      "diferenca": -1,
-      "corrigido": true,
-      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 7"
-    },
-    {
-      "sku": "6694",
-      "nome": "CAMISA FRAGA BIKE ELITE 2.0 - FRAGA TAMANHO:G;COR:PRETO/LARANJA",
-      "qtdBling": 16,
-      "qtdML": 20,
-      "diferenca": -4,
-      "corrigido": true,
-      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 16"
     }
   ],
   "semSkuNoBling": [
