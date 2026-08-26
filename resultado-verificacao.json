@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-26T12:09:34.699Z",
+  "atualizadoEm": "2026-08-26T12:13:05.201Z",
   "totalSkus": 253,
-  "corretos": 250,
-  "totalDivergentes": 3,
+  "corretos": 249,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -24,6 +24,15 @@
       "qtdBling": 74,
       "qtdML": 63,
       "diferenca": 11
+    },
+    {
+      "sku": "5678",
+      "nome": "CANOTE RETRÁTIL RAD7 DE ALUMINIO - 31.6MM 100MM CURSO 345MM - CABO INTERNO",
+      "qtdBling": 38,
+      "qtdML": 39,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "3 anúncio(s) atualizado(s) para 38"
     }
   ],
   "semSkuNoBling": [
