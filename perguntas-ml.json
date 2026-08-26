@@ -1,19 +1,9 @@
 {
-  "atualizadoEm": "2026-08-26T03:50:19.925Z",
+  "atualizadoEm": "2026-08-26T03:55:20.078Z",
   "limiteMinutos": 60,
-  "total": 2,
+  "total": 1,
   "atrasadas": 0,
   "perguntas": [
-    {
-      "id": 13648177468,
-      "texto": "Tenho 1 m e 80 85 e pesos 100 quilos qual o tamanho comprar",
-      "itemId": "MLB4415978407",
-      "produto": "Bretelle Masculino Cicly Life Carbon Pro",
-      "link": "https://produto.mercadolivre.com.br/MLB-4415978407-bretelle-masculino-cicly-life-carbon-pro-_JM",
-      "dataCriacao": "2026-08-25T23:35:41.038696289-04:00",
-      "minutosAberta": 15,
-      "atrasada": false
-    },
     {
       "id": 13647330475,
       "texto": "Tenho 185cm de altura e 100kg qual tamanho eu compro?",
@@ -21,7 +11,7 @@
       "produto": "Bretelle Masculino Cicly Life Carbon Pro",
       "link": "https://produto.mercadolivre.com.br/MLB-4415978407-bretelle-masculino-cicly-life-carbon-pro-_JM",
       "dataCriacao": "2026-08-25T23:37:04.40815514-04:00",
-      "minutosAberta": 13,
+      "minutosAberta": 18,
       "atrasada": false
     }
   ]
