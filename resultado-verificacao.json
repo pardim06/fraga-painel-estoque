@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-26T19:52:40.727Z",
+  "atualizadoEm": "2026-08-26T19:57:23.550Z",
   "totalSkus": 252,
-  "corretos": 249,
-  "totalDivergentes": 3,
+  "corretos": 250,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -10,13 +10,6 @@
       "qtdBling": 7,
       "qtdML": 5,
       "diferenca": 2
-    },
-    {
-      "sku": "5465",
-      "nome": "SACHÊ 20G (UNIDADE)  - SUDRACT ISOTÔNICO HYDRAMAXI  - AGUA DE COCO",
-      "qtdBling": 74,
-      "qtdML": 63,
-      "diferenca": 11
     },
     {
       "sku": "5678",
