@@ -1,7 +1,7 @@
 {
-  "atualizadoEm": "2026-08-26T16:10:23.035Z",
+  "atualizadoEm": "2026-08-26T16:17:34.052Z",
   "limiteMinutos": 60,
-  "total": 1,
+  "total": 2,
   "atrasadas": 0,
   "perguntas": [
     {
@@ -11,7 +11,17 @@
       "produto": "Bretelle Masculino Cicly Life Carbon Pro",
       "link": "https://produto.mercadolivre.com.br/MLB-4415978407-bretelle-masculino-cicly-life-carbon-pro-_JM",
       "dataCriacao": "2026-08-26T12:03:28.014651009-04:00",
-      "minutosAberta": 7,
+      "minutosAberta": 14,
+      "atrasada": false
+    },
+    {
+      "id": 13648420076,
+      "texto": "Qual a diferença para o cc700",
+      "itemId": "MLB4689030231",
+      "produto": "Ciclocomputador Geoid Cc600 Colorido Gps Monitor Cardíaco 2,4  Preto",
+      "link": "https://produto.mercadolivre.com.br/MLB-4689030231-ciclocomputador-geoid-cc600-colorido-gps-monitor-cardiaco-24-preto-_JM",
+      "dataCriacao": "2026-08-26T12:13:34.221062177-04:00",
+      "minutosAberta": 4,
       "atrasada": false
     }
   ]
