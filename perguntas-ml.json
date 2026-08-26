@@ -1,7 +1,18 @@
 {
-  "atualizadoEm": "2026-08-26T16:02:40.909Z",
+  "atualizadoEm": "2026-08-26T16:07:25.921Z",
   "limiteMinutos": 60,
-  "total": 0,
+  "total": 1,
   "atrasadas": 0,
-  "perguntas": []
+  "perguntas": [
+    {
+      "id": 13648412084,
+      "texto": "Tenho 1,65 Alt e 74kg. Qual tamanho ideal ?",
+      "itemId": "MLB4415978407",
+      "produto": "Bretelle Masculino Cicly Life Carbon Pro",
+      "link": "https://produto.mercadolivre.com.br/MLB-4415978407-bretelle-masculino-cicly-life-carbon-pro-_JM",
+      "dataCriacao": "2026-08-26T12:03:28.014651009-04:00",
+      "minutosAberta": 4,
+      "atrasada": false
+    }
+  ]
 }
