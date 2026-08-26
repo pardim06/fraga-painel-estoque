@@ -1,7 +1,7 @@
 {
-  "atualizadoEm": "2026-08-26T18:37:08.171Z",
-  "totalSkus": 252,
-  "corretos": 248,
+  "atualizadoEm": "2026-08-26T18:42:31.294Z",
+  "totalSkus": 253,
+  "corretos": 249,
   "totalDivergentes": 4,
   "divergencias": [
     {
@@ -12,10 +12,10 @@
       "diferenca": 2
     },
     {
-      "sku": "1782",
-      "nome": "CAPACETE CICLISMO LAZER FINCH KINETICORE - PRETO FOSCO COR:PRETO FSC;TAMANHO:UNICO",
-      "qtdBling": 11,
-      "qtdML": 10,
+      "sku": "3971",
+      "nome": "QUADRO MTB RAD7 STUTTGART CARBON OFF WHITE BOOST 148MM 2025/2026 TAMANHO:17",
+      "qtdBling": 1,
+      "qtdML": 0,
       "diferenca": 1
     },
     {
