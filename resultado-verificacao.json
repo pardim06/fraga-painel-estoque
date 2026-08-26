@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-26T23:12:42.963Z",
+  "atualizadoEm": "2026-08-26T23:17:33.895Z",
   "totalSkus": 251,
-  "corretos": 249,
-  "totalDivergentes": 2,
+  "corretos": 248,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,13 @@
       "qtdBling": 7,
       "qtdML": 5,
       "diferenca": 2
+    },
+    {
+      "sku": "5668",
+      "nome": "MINI BOMBA ELETRICA BATERIA RECARREGAVEL 120 PSI RAD7 PERFORMANCE",
+      "qtdBling": 59,
+      "qtdML": 58,
+      "diferenca": 1
     },
     {
       "sku": "5678",
