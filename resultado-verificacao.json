@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-26T18:42:31.294Z",
+  "atualizadoEm": "2026-08-26T18:47:34.404Z",
   "totalSkus": 253,
-  "corretos": 249,
-  "totalDivergentes": 4,
+  "corretos": 250,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -10,13 +10,6 @@
       "qtdBling": 7,
       "qtdML": 5,
       "diferenca": 2
-    },
-    {
-      "sku": "3971",
-      "nome": "QUADRO MTB RAD7 STUTTGART CARBON OFF WHITE BOOST 148MM 2025/2026 TAMANHO:17",
-      "qtdBling": 1,
-      "qtdML": 0,
-      "diferenca": 1
     },
     {
       "sku": "5465",
