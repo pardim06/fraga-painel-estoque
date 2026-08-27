@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-27T14:17:47.808Z",
+  "atualizadoEm": "2026-08-27T14:22:27.409Z",
   "janelaDias": 60,
   "cancelamento": {
     "quantidade": 1,
@@ -17,7 +17,7 @@
     "estimativa": false
   },
   "reclamacao": {
-    "quantidade": 14,
+    "quantidade": 15,
     "diasParaZerar": 60,
     "ocorrencias": [
       {
@@ -96,6 +96,13 @@
         "motivo": "PDD9939",
         "diasRestantes": 58,
         "saiEm": "2026-10-23T18:22:48.000Z"
+      },
+      {
+        "id": 5565407121,
+        "data": "2026-08-24T13:32:22.000-04:00",
+        "motivo": "PDD9961",
+        "diasRestantes": 58,
+        "saiEm": "2026-10-23T17:32:22.000Z"
       },
       {
         "id": 5566697488,
