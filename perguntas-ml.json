@@ -1,7 +1,18 @@
 {
-  "atualizadoEm": "2026-08-27T20:32:39.949Z",
+  "atualizadoEm": "2026-08-27T20:37:25.182Z",
   "limiteMinutos": 60,
-  "total": 0,
+  "total": 1,
   "atrasadas": 0,
-  "perguntas": []
+  "perguntas": [
+    {
+      "id": 13648350645,
+      "texto": "Boa rarde ! Teria ele no tamanho 3g",
+      "itemId": "MLB5081819787",
+      "produto": "Camisa Fraga Bike Elite 2.0 - 2 Preto/laranja Gg",
+      "link": "https://produto.mercadolivre.com.br/MLB-5081819787-camisa-fraga-bike-elite-20-2-pretolaranja-gg-_JM",
+      "dataCriacao": "2026-08-27T16:34:02.139096141-04:00",
+      "minutosAberta": 3,
+      "atrasada": false
+    }
+  ]
 }
