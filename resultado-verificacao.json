@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-28T17:22:48.208Z",
+  "atualizadoEm": "2026-08-28T17:28:10.280Z",
   "totalSkus": 251,
   "corretos": 247,
   "totalDivergentes": 4,
@@ -14,11 +14,9 @@
     {
       "sku": "5668",
       "nome": "MINI BOMBA ELETRICA BATERIA RECARREGAVEL 120 PSI RAD7 PERFORMANCE",
-      "qtdBling": 49,
-      "qtdML": 50,
-      "diferenca": -1,
-      "corrigido": true,
-      "corrigidoDetalhe": "2 anúncio(s) atualizado(s) para 49"
+      "qtdBling": 50,
+      "qtdML": 49,
+      "diferenca": 1
     },
     {
       "sku": "5678",
@@ -30,11 +28,9 @@
     {
       "sku": "6694",
       "nome": "CAMISA FRAGA BIKE ELITE 2.0 - FRAGA TAMANHO:G;COR:PRETO/LARANJA",
-      "qtdBling": 5,
-      "qtdML": 6,
-      "diferenca": -1,
-      "corrigido": true,
-      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 5"
+      "qtdBling": 6,
+      "qtdML": 5,
+      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
