@@ -1,18 +1,7 @@
 {
-  "atualizadoEm": "2026-08-28T17:50:26.307Z",
+  "atualizadoEm": "2026-08-28T17:57:28.521Z",
   "limiteMinutos": 60,
-  "total": 1,
+  "total": 0,
   "atrasadas": 0,
-  "perguntas": [
-    {
-      "id": 13648787381,
-      "texto": "Se puder, me avise sobre os bicos para a roda fazendo o favor.",
-      "itemId": "MLB4697957467",
-      "produto": "Par Roda Bike Speed Rad7 Racing Carbono 50mm Tubeless Leve",
-      "link": "https://produto.mercadolivre.com.br/MLB-4697957467-par-roda-bike-speed-rad7-racing-carbono-50mm-tubeless-leve-_JM",
-      "dataCriacao": "2026-08-28T13:23:10.195626836-04:00",
-      "minutosAberta": 27,
-      "atrasada": false
-    }
-  ]
+  "perguntas": []
 }
