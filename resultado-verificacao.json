@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-28T19:32:35.143Z",
+  "atualizadoEm": "2026-08-28T19:37:08.238Z",
   "totalSkus": 290,
-  "corretos": 286,
-  "totalDivergentes": 4,
+  "corretos": 287,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -24,13 +24,6 @@
       "qtdBling": 7,
       "qtdML": 5,
       "diferenca": 2
-    },
-    {
-      "sku": "5910",
-      "nome": "SAPATILHA SPEED SHIMANO SH-RC703 - BRANCO TAMANHO:46;COR:Branco",
-      "qtdBling": 3,
-      "qtdML": 2,
-      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
