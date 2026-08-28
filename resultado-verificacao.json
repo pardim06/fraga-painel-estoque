@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-28T17:17:27.164Z",
+  "atualizadoEm": "2026-08-28T17:22:48.208Z",
   "totalSkus": 251,
-  "corretos": 249,
-  "totalDivergentes": 2,
+  "corretos": 247,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -12,11 +12,29 @@
       "diferenca": 2
     },
     {
+      "sku": "5668",
+      "nome": "MINI BOMBA ELETRICA BATERIA RECARREGAVEL 120 PSI RAD7 PERFORMANCE",
+      "qtdBling": 49,
+      "qtdML": 50,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "2 anúncio(s) atualizado(s) para 49"
+    },
+    {
       "sku": "5678",
       "nome": "CANOTE RETRÁTIL RAD7 DE ALUMINIO - 31.6MM 100MM CURSO 345MM - CABO INTERNO",
       "qtdBling": 39,
       "qtdML": 38,
       "diferenca": 1
+    },
+    {
+      "sku": "6694",
+      "nome": "CAMISA FRAGA BIKE ELITE 2.0 - FRAGA TAMANHO:G;COR:PRETO/LARANJA",
+      "qtdBling": 5,
+      "qtdML": 6,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 5"
     }
   ],
   "semSkuNoBling": [
