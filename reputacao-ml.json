@@ -1,10 +1,10 @@
 {
-  "atualizadoEm": "2026-08-28T19:10:22.008Z",
+  "atualizadoEm": "2026-08-28T19:17:23.437Z",
   "nickname": "FRAGAPROMO",
   "nivel": "5_green",
   "powerSeller": "gold",
   "metricas": {
-    "vendas60d": 1523,
+    "vendas60d": 1525,
     "cancelamento": {
       "taxa": 0.0005,
       "quantidade": 1
