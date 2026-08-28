@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-28T14:32:33.319Z",
+  "atualizadoEm": "2026-08-28T14:37:26.385Z",
   "janelaDias": 60,
   "cancelamento": {
     "quantidade": 1,
@@ -59,7 +59,7 @@
         "id": 5555416962,
         "data": "2026-08-06T10:36:09.000-04:00",
         "motivo": "PDD9952",
-        "diasRestantes": 39,
+        "diasRestantes": 38,
         "saiEm": "2026-10-05T14:36:09.000Z"
       },
       {
@@ -112,18 +112,18 @@
         "saiEm": "2026-10-26T23:17:59.000Z"
       },
       {
-        "id": 5567285601,
-        "data": "2026-08-27T17:01:38.000-04:00",
-        "motivo": "PDD9939",
-        "diasRestantes": 60,
-        "saiEm": "2026-10-26T21:01:38.000Z"
-      },
-      {
         "id": 5567282046,
         "data": "2026-08-27T16:56:00.000-04:00",
         "motivo": "PDD9944",
         "diasRestantes": 60,
         "saiEm": "2026-10-26T20:56:00.000Z"
+      },
+      {
+        "id": 5567285601,
+        "data": "2026-08-27T17:01:38.000-04:00",
+        "motivo": "PDD9939",
+        "diasRestantes": 60,
+        "saiEm": "2026-10-26T21:01:38.000Z"
       }
     ],
     "quantidadeOficial": 15,
