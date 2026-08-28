@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-28T17:12:23.863Z",
+  "atualizadoEm": "2026-08-28T17:17:27.164Z",
   "totalSkus": 251,
-  "corretos": 248,
-  "totalDivergentes": 3,
+  "corretos": 249,
+  "totalDivergentes": 2,
   "divergencias": [
     {
       "sku": "97",
@@ -16,13 +16,6 @@
       "nome": "CANOTE RETRÁTIL RAD7 DE ALUMINIO - 31.6MM 100MM CURSO 345MM - CABO INTERNO",
       "qtdBling": 39,
       "qtdML": 38,
-      "diferenca": 1
-    },
-    {
-      "sku": "6693",
-      "nome": "CAMISA FRAGA BIKE ELITE 2.0 - FRAGA TAMANHO:M;COR:PRETO/LARANJA",
-      "qtdBling": 3,
-      "qtdML": 2,
       "diferenca": 1
     }
   ],
