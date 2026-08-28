@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-28T00:27:18.718Z",
+  "atualizadoEm": "2026-08-28T00:32:08.536Z",
   "totalSkus": 251,
-  "corretos": 249,
-  "totalDivergentes": 2,
+  "corretos": 248,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -16,6 +16,13 @@
       "nome": "CANOTE RETRÁTIL RAD7 DE ALUMINIO - 31.6MM 100MM CURSO 345MM - CABO INTERNO",
       "qtdBling": 39,
       "qtdML": 38,
+      "diferenca": 1
+    },
+    {
+      "sku": "6654",
+      "nome": "GARRAFA CAMELBAK PODIUM  620ML - PRETO",
+      "qtdBling": 15,
+      "qtdML": 14,
       "diferenca": 1
     }
   ],
