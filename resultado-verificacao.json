@@ -1,7 +1,7 @@
 {
-  "atualizadoEm": "2026-08-28T19:22:14.209Z",
-  "totalSkus": 289,
-  "corretos": 285,
+  "atualizadoEm": "2026-08-28T19:27:55.126Z",
+  "totalSkus": 290,
+  "corretos": 286,
   "totalDivergentes": 4,
   "divergencias": [
     {
@@ -21,11 +21,9 @@
     {
       "sku": "5813",
       "nome": "Alavanca Cambio Trocador Shimano Slx Sl-m7100 I-spec 12v Cor Preto",
-      "qtdBling": 5,
-      "qtdML": 7,
-      "diferenca": -2,
-      "corrigido": true,
-      "corrigidoDetalhe": "2 anúncio(s) atualizado(s) para 5"
+      "qtdBling": 7,
+      "qtdML": 5,
+      "diferenca": 2
     },
     {
       "sku": "5910",
