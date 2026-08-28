@@ -1,28 +1,7 @@
 {
-  "atualizadoEm": "2026-08-28T19:25:20.284Z",
+  "atualizadoEm": "2026-08-28T19:30:26.965Z",
   "limiteMinutos": 60,
-  "total": 2,
+  "total": 0,
   "atrasadas": 0,
-  "perguntas": [
-    {
-      "id": 13649699530,
-      "texto": "Obrigado",
-      "itemId": "MLB4697957467",
-      "produto": "Par Roda Bike Speed Rad7 Racing Carbono 50mm Tubeless Leve",
-      "link": "https://produto.mercadolivre.com.br/MLB-4697957467-par-roda-bike-speed-rad7-racing-carbono-50mm-tubeless-leve-_JM",
-      "dataCriacao": "2026-08-28T15:20:04.235176728-04:00",
-      "minutosAberta": 5,
-      "atrasada": false
-    },
-    {
-      "id": 13648853745,
-      "texto": "Tem o outro lado tbm?",
-      "itemId": "MLB5150012469",
-      "produto": "Manete De Freio Shimano Deore Bl-m6100 Direito",
-      "link": "https://produto.mercadolivre.com.br/MLB-5150012469-manete-de-freio-shimano-deore-bl-m6100-direito-_JM",
-      "dataCriacao": "2026-08-28T15:21:39.603933319-04:00",
-      "minutosAberta": 4,
-      "atrasada": false
-    }
-  ]
+  "perguntas": []
 }
