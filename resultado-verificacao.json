@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-29T15:42:23.160Z",
+  "atualizadoEm": "2026-08-29T15:47:47.694Z",
   "totalSkus": 286,
-  "corretos": 280,
-  "totalDivergentes": 6,
+  "corretos": 281,
+  "totalDivergentes": 5,
   "divergencias": [
     {
       "sku": "97",
@@ -16,13 +16,6 @@
       "nome": "OLEO MOTUL P/CORRENTE UMIDO 100 ML",
       "qtdBling": 27,
       "qtdML": 26,
-      "diferenca": 1
-    },
-    {
-      "sku": "5668",
-      "nome": "MINI BOMBA ELETRICA BATERIA RECARREGAVEL 120 PSI RAD7 PERFORMANCE",
-      "qtdBling": 47,
-      "qtdML": 46,
       "diferenca": 1
     },
     {
