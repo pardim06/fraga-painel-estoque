@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-29T14:07:35.845Z",
+  "atualizadoEm": "2026-08-29T14:37:15.925Z",
   "totalSkus": 286,
   "corretos": 281,
   "totalDivergentes": 5,
@@ -12,13 +12,13 @@
       "diferenca": 2
     },
     {
-      "sku": "1782",
-      "nome": "CAPACETE CICLISMO LAZER FINCH KINETICORE - PRETO FOSCO COR:PRETO FSC;TAMANHO:UNICO",
-      "qtdBling": 7,
-      "qtdML": 8,
+      "sku": "830",
+      "nome": "OLEO MOTUL P/CORRENTE UMIDO 100 ML",
+      "qtdBling": 26,
+      "qtdML": 27,
       "diferenca": -1,
       "corrigido": true,
-      "corrigidoDetalhe": "2 anúncio(s) atualizado(s) para 7"
+      "corrigidoDetalhe": "3 anúncio(s) atualizado(s) para 26"
     },
     {
       "sku": "5678",
