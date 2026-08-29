@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-29T20:07:33.105Z",
+  "atualizadoEm": "2026-08-29T20:12:26.547Z",
   "totalSkus": 284,
-  "corretos": 279,
-  "totalDivergentes": 5,
+  "corretos": 278,
+  "totalDivergentes": 6,
   "divergencias": [
     {
       "sku": "97",
@@ -37,6 +37,13 @@
       "nome": "CAMISA FRAGA BIKE ELITE 2.0 - FRAGA TAMANHO:G;COR:PRETO/LARANJA",
       "qtdBling": 8,
       "qtdML": 7,
+      "diferenca": 1
+    },
+    {
+      "sku": "6708",
+      "nome": "CORRENTE KMC 12V 126 ELOS X12 BIKE MTB SPEED - GOLD",
+      "qtdBling": 31,
+      "qtdML": 30,
       "diferenca": 1
     }
   ],
