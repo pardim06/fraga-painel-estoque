@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-29T05:10:27.840Z",
+  "atualizadoEm": "2026-08-29T05:22:58.484Z",
   "janelaDias": 60,
   "cancelamento": {
     "quantidade": 1,
@@ -140,7 +140,7 @@
         "saiEm": "2026-10-27T22:15:35.000Z"
       }
     ],
-    "quantidadeOficial": 16,
+    "quantidadeOficial": 17,
     "estimativa": true
   }
 }
