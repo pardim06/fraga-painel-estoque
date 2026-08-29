@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-29T13:37:13.336Z",
-  "totalSkus": 287,
+  "atualizadoEm": "2026-08-29T13:42:29.721Z",
+  "totalSkus": 286,
   "corretos": 282,
-  "totalDivergentes": 5,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -10,13 +10,6 @@
       "qtdBling": 6,
       "qtdML": 4,
       "diferenca": 2
-    },
-    {
-      "sku": "3913",
-      "nome": "OCULOS CICLISMO ADX FS900 HIGH END - ROSA",
-      "qtdBling": 255,
-      "qtdML": 235,
-      "diferenca": 20
     },
     {
       "sku": "5678",
@@ -33,11 +26,13 @@
       "diferenca": 2
     },
     {
-      "sku": "6696",
-      "nome": "CAMISA FRAGA BIKE ELITE 2.0 - FRAGA TAMANHO:EGG;COR:PRETO/LARANJA",
-      "qtdBling": 5,
-      "qtdML": 4,
-      "diferenca": 1
+      "sku": "6694",
+      "nome": "CAMISA FRAGA BIKE ELITE 2.0 - FRAGA TAMANHO:G;COR:PRETO/LARANJA",
+      "qtdBling": 7,
+      "qtdML": 8,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 7"
     }
   ],
   "semSkuNoBling": [
