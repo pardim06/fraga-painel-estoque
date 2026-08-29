@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-29T16:07:41.438Z",
+  "atualizadoEm": "2026-08-29T16:12:28.252Z",
   "totalSkus": 286,
   "corretos": 281,
   "totalDivergentes": 5,
@@ -7,8 +7,8 @@
     {
       "sku": "97",
       "nome": "TAPETE ELITE  PROTETOR PARA  ROLO DE TREINO -  PRETO",
-      "qtdBling": 6,
-      "qtdML": 4,
+      "qtdBling": 5,
+      "qtdML": 3,
       "diferenca": 2
     },
     {
