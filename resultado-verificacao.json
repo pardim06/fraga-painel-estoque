@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-29T14:37:15.925Z",
+  "atualizadoEm": "2026-08-29T14:42:29.951Z",
   "totalSkus": 286,
   "corretos": 281,
   "totalDivergentes": 5,
@@ -14,11 +14,9 @@
     {
       "sku": "830",
       "nome": "OLEO MOTUL P/CORRENTE UMIDO 100 ML",
-      "qtdBling": 26,
-      "qtdML": 27,
-      "diferenca": -1,
-      "corrigido": true,
-      "corrigidoDetalhe": "3 anúncio(s) atualizado(s) para 26"
+      "qtdBling": 27,
+      "qtdML": 26,
+      "diferenca": 1
     },
     {
       "sku": "5678",
