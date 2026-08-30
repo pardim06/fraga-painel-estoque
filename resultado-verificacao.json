@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-30T13:02:17.857Z",
+  "atualizadoEm": "2026-08-30T13:07:21.421Z",
   "totalSkus": 283,
-  "corretos": 278,
-  "totalDivergentes": 5,
+  "corretos": 279,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -31,13 +31,6 @@
       "qtdBling": 7,
       "qtdML": 5,
       "diferenca": 2
-    },
-    {
-      "sku": "6662",
-      "nome": "CUBO DIANTEIRO SHIMANO TOURNEY HB-TX505 C LOCK 36F PRETO",
-      "qtdBling": 19,
-      "qtdML": 18,
-      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
