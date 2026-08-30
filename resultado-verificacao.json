@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-30T16:37:18.903Z",
+  "atualizadoEm": "2026-08-30T16:42:07.661Z",
   "totalSkus": 282,
-  "corretos": 275,
-  "totalDivergentes": 7,
+  "corretos": 278,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -19,20 +19,6 @@
       "diferenca": 1
     },
     {
-      "sku": "3914",
-      "nome": "OCULOS CICLISMO ADX VENTUS RIDE - BRANCO/PRETO",
-      "qtdBling": 42,
-      "qtdML": 41,
-      "diferenca": 1
-    },
-    {
-      "sku": "4046",
-      "nome": "CORTA VENTO CICLY LIFE ELITE REFLETIVO COR:PRETO;TAMANHO:G",
-      "qtdBling": 30,
-      "qtdML": 29,
-      "diferenca": 1
-    },
-    {
       "sku": "5678",
       "nome": "CANOTE RETRÁTIL RAD7 DE ALUMINIO - 31.6MM 100MM CURSO 345MM - CABO INTERNO",
       "qtdBling": 39,
@@ -45,13 +31,6 @@
       "qtdBling": 7,
       "qtdML": 5,
       "diferenca": 2
-    },
-    {
-      "sku": "6708",
-      "nome": "CORRENTE KMC 12V 126 ELOS X12 BIKE MTB SPEED - GOLD",
-      "qtdBling": 19,
-      "qtdML": 18,
-      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
