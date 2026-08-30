@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-30T17:20:26.352Z",
+  "atualizadoEm": "2026-08-30T17:27:36.017Z",
   "janelaDias": 60,
   "cancelamento": {
     "quantidade": 1,
@@ -18,7 +18,7 @@
   },
   "reclamacao": {
     "quantidade": 17,
-    "diasParaZerar": 60,
+    "diasParaZerar": 59,
     "ocorrencias": [
       {
         "id": 5540434064,
@@ -136,7 +136,7 @@
         "id": 5568203126,
         "data": "2026-08-29T13:27:30.000-04:00",
         "motivo": "PDD9939",
-        "diasRestantes": 60,
+        "diasRestantes": 59,
         "saiEm": "2026-10-28T17:27:30.000Z"
       }
     ],
