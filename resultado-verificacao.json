@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-30T11:17:04.186Z",
-  "totalSkus": 284,
+  "atualizadoEm": "2026-08-30T11:22:19.668Z",
+  "totalSkus": 283,
   "corretos": 279,
-  "totalDivergentes": 5,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -31,13 +31,6 @@
       "qtdBling": 7,
       "qtdML": 5,
       "diferenca": 2
-    },
-    {
-      "sku": "6701",
-      "nome": "CAMISA FRAGA BIKE ELITE 2.0 - SCOTT TAMANHO:G;COR:PRETO/LARANJA",
-      "qtdBling": 25,
-      "qtdML": 24,
-      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
