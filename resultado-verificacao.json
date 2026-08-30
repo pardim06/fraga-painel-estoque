@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-30T16:22:23.855Z",
+  "atualizadoEm": "2026-08-30T16:27:32.652Z",
   "totalSkus": 282,
-  "corretos": 278,
-  "totalDivergentes": 4,
+  "corretos": 277,
+  "totalDivergentes": 5,
   "divergencias": [
     {
       "sku": "97",
@@ -16,6 +16,13 @@
       "nome": "OLEO MOTUL P/CORRENTE UMIDO 100 ML",
       "qtdBling": 27,
       "qtdML": 26,
+      "diferenca": 1
+    },
+    {
+      "sku": "4045",
+      "nome": "CORTA VENTO CICLY LIFE ELITE REFLETIVO COR:PRETO;TAMANHO:M",
+      "qtdBling": 17,
+      "qtdML": 16,
       "diferenca": 1
     },
     {
