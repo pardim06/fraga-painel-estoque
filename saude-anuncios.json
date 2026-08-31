@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-31T15:19:54.012Z",
+  "atualizadoEm": "2026-08-31T17:10:01.166Z",
   "totalUnhealthy": 285,
   "totalWarning": 11,
   "itens": [
@@ -1271,14 +1271,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Preencha os dados fiscais para emitir faturas",
-          "tipo": "oportunidade",
-          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB5468465424/tax-information"
-        },
-        {
           "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB5468465424"
+        },
+        {
+          "titulo": "Preencha os dados fiscais para emitir faturas",
+          "tipo": "oportunidade",
+          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB5468465424/tax-information"
         }
       ]
     },
@@ -2415,7 +2415,7 @@
       "titulo": "Guidão Carbono Mtb Reto 740mm Rad7 31.8mm Flat Bike Preto",
       "link": "https://produto.mercadolivre.com.br/MLB-4924063491-guido-carbono-mtb-reto-740mm-rad7-318mm-flat-bike-preto-_JM",
       "status": "unhealthy",
-      "score": 79,
+      "score": 84,
       "level": "Profissional",
       "problemas": [
         {
@@ -2427,11 +2427,6 @@
           "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB4924063491"
-        },
-        {
-          "titulo": "Participe de uma promoção para receber mais visitas",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/anuncios/lista/promos?search=MLB4924063491"
         }
       ]
     },
@@ -3053,6 +3048,11 @@
       "level": "Profissional",
       "problemas": [
         {
+          "titulo": "Preencha as características principais",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4666654579/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB7388008708"
+        },
+        {
           "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4666654579"
@@ -3061,11 +3061,6 @@
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4666654579&item_id=MLB7388008708&item_syi=MLB7388008708&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Preencha as características principais",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4666654579/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB7388008708"
         }
       ]
     },
