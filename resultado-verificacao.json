@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-31T13:46:31.789Z",
-  "totalSkus": 278,
-  "corretos": 275,
-  "totalDivergentes": 3,
+  "atualizadoEm": "2026-08-31T13:52:44.070Z",
+  "totalSkus": 276,
+  "corretos": 272,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -10,6 +10,13 @@
       "qtdBling": 4,
       "qtdML": 2,
       "diferenca": 2
+    },
+    {
+      "sku": "1296",
+      "nome": "SAPATILHA SPEED SHIMANO SH-RC302 - BRANCO COR:BRANCO;TAMANHO:40",
+      "qtdBling": 3,
+      "qtdML": 2,
+      "diferenca": 1
     },
     {
       "sku": "5678",
