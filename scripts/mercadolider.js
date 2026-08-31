@@ -27,11 +27,20 @@ const META = {
   atrasoMax: 0.06,
 };
 
-async function buscarFaturamento60d(token, sellerId) {
+// Um único pente de 60 dias já cobre o mês corrente inteiro (mês tem no
+// máximo 31 dias) — separa o total do mês sem precisar de uma segunda
+// varredura na API.
+async function buscarFaturamento(token, sellerId) {
   const de = new Date(Date.now() - 60 * 24 * 60 * 60 * 1000).toISOString();
   const ate = new Date().toISOString();
-  let total = 0;
-  let quantidade = 0;
+  const inicioMes = new Date();
+  inicioMes.setDate(1);
+  inicioMes.setHours(0, 0, 0, 0);
+
+  let total60d = 0;
+  let qtd60d = 0;
+  let totalMes = 0;
+  let qtdMes = 0;
   let offset = 0;
   const limit = 50;
 
@@ -49,15 +58,19 @@ async function buscarFaturamento60d(token, sellerId) {
     });
 
     for (const pedido of resp.data.results) {
-      total += pedido.total_amount || 0;
-      quantidade++;
+      total60d += pedido.total_amount || 0;
+      qtd60d++;
+      if (new Date(pedido.date_created) >= inicioMes) {
+        totalMes += pedido.total_amount || 0;
+        qtdMes++;
+      }
     }
 
     offset += limit;
     if (offset >= resp.data.paging.total || resp.data.results.length === 0) break;
   }
 
-  return { total, quantidade };
+  return { total60d, qtd60d, totalMes, qtdMes, mesAtual: inicioMes.toISOString().slice(0, 7) };
 }
 
 function lerJson(caminho) {
@@ -73,7 +86,7 @@ async function main() {
   const token = await getMLAccessToken();
   const sellerId = process.env.ML_SELLER_ID;
 
-  const { total: faturamento60d, quantidade: pedidosPagos } = await buscarFaturamento60d(token, sellerId);
+  const { total60d: faturamento60d, qtd60d: pedidosPagos, totalMes, qtdMes, mesAtual } = await buscarFaturamento(token, sellerId);
   const reputacao = lerJson(REPUTACAO_PATH);
   const m = reputacao?.metricas || {};
   const vendas60d = m.vendas60d ?? pedidosPagos;
@@ -134,6 +147,7 @@ async function main() {
   const resultado = {
     atualizadoEm: new Date().toISOString(),
     powerSellerAtual: reputacao?.powerSeller || null,
+    faturamentoMesAtual: { mes: mesAtual, total: totalMes, quantidade: qtdMes },
     requisitos,
     totalRequisitos: requisitos.length,
     totalFaltantes: faltantes.length,

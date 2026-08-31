@@ -48,6 +48,30 @@
   .hbar-legenda .traco { width: 10px; height: 2px; background: var(--ink); opacity: .45; flex-shrink: 0; }
 
   .empty-mini { font-size: 12.5px; color: var(--ink-faint); padding: 12px 4px; }
+
+  .placar-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 26px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 24px;
+  }
+  .placar-topo { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .placar-titulo { font-family: var(--font-display); font-size: 15px; font-weight: 700; color: var(--ink); }
+  .placar-sub { font-size: 12px; color: var(--ink-faint); margin-top: 2px; }
+  .placar-editar {
+    font-size: 12px; font-weight: 600; color: var(--blue);
+    background: var(--blue-bg); border: none; border-radius: 999px;
+    padding: 6px 13px; cursor: pointer;
+  }
+  .placar-numeros { display: flex; gap: 32px; margin: 18px 0 14px; flex-wrap: wrap; }
+  .placar-num-lbl { font-size: 12px; color: var(--ink-dim); }
+  .placar-num-val { font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-top: 2px; color: var(--ink); }
+  .placar-barra { position: relative; height: 16px; background: var(--bg-raised); border-radius: 999px; overflow: hidden; }
+  .placar-barra-fill { height: 100%; border-radius: 999px; transition: width .6s cubic-bezier(.16,1,.3,1); }
+  .placar-marca-hoje { position: absolute; top: -3px; bottom: -3px; width: 2px; background: var(--ink); opacity: .5; }
+  .placar-legenda { font-size: 12px; color: var(--ink-dim); margin-top: 10px; }
 </style>
 </head>
 <body>
@@ -144,6 +168,19 @@
     return (taxa * 100).toLocaleString('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 2 }) + '%';
   }
 
+  function formatarMoeda(v) {
+    if (v === null || v === undefined) return '—';
+    return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+  }
+
+  const META_STORAGE = 'meta_faturamento_mensal';
+  function getMeta() {
+    try { return parseFloat(localStorage.getItem(META_STORAGE)) || 0; } catch { return 0; }
+  }
+  function salvarMeta(valor) {
+    try { localStorage.setItem(META_STORAGE, String(valor)); } catch {}
+  }
+
   async function buscar(url) {
     try {
       const resp = await fetch(url, { cache: 'no-store' });
@@ -176,12 +213,13 @@
   async function carregar() {
     document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
 
-    const [estoque, perguntas, compras, reputacao, historicoMensal] = await Promise.all([
+    const [estoque, perguntas, compras, reputacao, historicoMensal, platinum] = await Promise.all([
       buscar('resultado-verificacao.json'),
       buscar('perguntas-ml.json'),
       buscar('lista-compras.json'),
       buscar('reputacao-ml.json'),
       buscar('historico-mensal.json'),
+      buscar('mercadolider-platinum.json'),
     ]);
 
     if (!estoque && !perguntas && !compras && !reputacao) {
@@ -192,6 +230,9 @@
 
     let html = '';
     const pct = estoque && estoque.totalSkus > 0 ? Math.round((estoque.corretos / estoque.totalSkus) * 100) : null;
+
+    // ---- placar executivo: meta x realizado ----
+    html += placarHtml(platinum);
 
     // ---- hero: medidor de estoque ----
     if (estoque) {
@@ -299,6 +340,20 @@
 
     document.getElementById('conteudo').innerHTML = html;
 
+    const btnMeta = document.getElementById('btnEditarMeta');
+    if (btnMeta) {
+      btnMeta.addEventListener('click', () => {
+        const atual = getMeta();
+        const novo = prompt('Meta de faturamento do mês (R$):', atual > 0 ? atual : '');
+        if (novo === null) return;
+        const valor = parseFloat(novo.replace(/\./g, '').replace(',', '.'));
+        if (!isNaN(valor) && valor >= 0) {
+          salvarMeta(valor);
+          carregar();
+        }
+      });
+    }
+
     if (pct !== null) {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -307,6 +362,55 @@
         });
       });
     }
+  }
+
+  function placarHtml(platinum) {
+    const hoje = new Date();
+    const diasNoMes = new Date(hoje.getFullYear(), hoje.getMonth() + 1, 0).getDate();
+    const diaAtual = hoje.getDate();
+    const realizado = platinum?.faturamentoMesAtual?.total ?? null;
+    const meta = getMeta();
+    const nomeMes = MES_NOME[String(hoje.getMonth() + 1).padStart(2, '0')] + '/' + hoje.getFullYear();
+
+    if (realizado === null) {
+      return '<div class="placar-card rise"><div class="empty-mini">Faturamento do mês ainda não disponível — aparece depois da primeira execução do módulo MercadoLíder Platinum.</div></div>';
+    }
+
+    if (meta <= 0) {
+      return '<div class="placar-card rise">' +
+        '<div class="placar-topo"><div><div class="placar-titulo">Meta de Faturamento · ' + nomeMes + '</div>' +
+        '<div class="placar-sub">Realizado até agora: ' + formatarMoeda(realizado) + ' (' + (platinum.faturamentoMesAtual.quantidade ?? 0) + ' pedidos)</div></div>' +
+        '<button class="placar-editar" id="btnEditarMeta">Definir meta</button></div>' +
+        '</div>';
+    }
+
+    const pctRealizado = Math.min((realizado / meta) * 100, 100);
+    const pctTempo = (diaAtual / diasNoMes) * 100;
+    const projecao = (realizado / diaAtual) * diasNoMes;
+    const noRitmo = pctRealizado >= pctTempo;
+    const cor = noRitmo ? 'var(--good)' : 'var(--critical)';
+    const falta = Math.max(meta - realizado, 0);
+
+    return '<div class="placar-card rise">' +
+      '<div class="placar-topo">' +
+      '<div><div class="placar-titulo">Meta de Faturamento · ' + nomeMes + '</div>' +
+      '<div class="placar-sub">Dia ' + diaAtual + ' de ' + diasNoMes + ' · atualizado com pedidos pagos</div></div>' +
+      '<button class="placar-editar" id="btnEditarMeta">Editar meta</button>' +
+      '</div>' +
+      '<div class="placar-numeros">' +
+      '<div><div class="placar-num-lbl">Realizado</div><div class="placar-num-val">' + formatarMoeda(realizado) + '</div></div>' +
+      '<div><div class="placar-num-lbl">Meta</div><div class="placar-num-val">' + formatarMoeda(meta) + '</div></div>' +
+      '<div><div class="placar-num-lbl">Projeção do mês</div><div class="placar-num-val" style="color:' + cor + ';">' + formatarMoeda(projecao) + '</div></div>' +
+      '</div>' +
+      '<div class="placar-barra">' +
+      '<div class="placar-barra-fill" style="width:' + pctRealizado + '%; background:' + cor + ';"></div>' +
+      '<div class="placar-marca-hoje" style="left:' + Math.min(pctTempo, 100) + '%;" title="Ritmo esperado hoje"></div>' +
+      '</div>' +
+      '<div class="placar-legenda">' + pctRealizado.toFixed(0) + '% da meta · ' +
+      (falta > 0 ? 'faltam ' + formatarMoeda(falta) : 'meta batida') +
+      ' · ' + (noRitmo ? 'no ritmo pra bater a meta' : 'abaixo do ritmo esperado pra hoje') +
+      '</div>' +
+      '</div>';
   }
 
   // barra horizontal pra taxa, com uma marca no ponto do limite oficial do

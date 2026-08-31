@@ -1,6 +1,11 @@
 {
-  "atualizadoEm": "2026-08-31T15:00:53.641Z",
+  "atualizadoEm": "2026-08-31T15:15:53.850Z",
   "powerSellerAtual": "gold",
+  "faturamentoMesAtual": {
+    "mes": "2026-08",
+    "total": 228427.7299999992,
+    "quantidade": 809
+  },
   "requisitos": [
     {
       "chave": "vendas",
@@ -13,7 +18,7 @@
     {
       "chave": "faturamento",
       "titulo": "Faturamento (60 dias)",
-      "atual": 511050.57999999507,
+      "atual": 511210.56999999506,
       "meta": 296000,
       "tipo": "moeda",
       "cumprido": true
