@@ -44,11 +44,19 @@ jobs:
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
 
+      - run: npm run mercadolider
+        env:
+          ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
+          ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
+          ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
+          ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+
       - name: Commitar resultado atualizado
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add saude-anuncios.json saude-anuncios-estado.json
-          git diff --quiet --cached || git commit -m "chore: atualiza saude dos anuncios ML"
+          git add saude-anuncios.json saude-anuncios-estado.json mercadolider-platinum.json
+          git diff --quiet --cached || git commit -m "chore: atualiza saude dos anuncios e progresso pro MercadoLider Platinum"
           git pull --rebase
           git push

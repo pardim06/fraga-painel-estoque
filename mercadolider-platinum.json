@@ -1,0 +1,57 @@
+{
+  "atualizadoEm": "2026-08-31T14:56:13.078Z",
+  "powerSellerAtual": "gold",
+  "requisitos": [
+    {
+      "chave": "vendas",
+      "titulo": "Vendas (60 dias)",
+      "atual": 1497,
+      "meta": 1725,
+      "tipo": "contagem",
+      "cumprido": false
+    },
+    {
+      "chave": "faturamento",
+      "titulo": "Faturamento (60 dias)",
+      "atual": 511020.5899999951,
+      "meta": 296000,
+      "tipo": "moeda",
+      "cumprido": true
+    },
+    {
+      "chave": "cancelamento",
+      "titulo": "Taxa de cancelamento (vendedor)",
+      "atual": 0.0005,
+      "meta": 0.005,
+      "tipo": "taxa_max",
+      "cumprido": true
+    },
+    {
+      "chave": "reclamacao",
+      "titulo": "Taxa de reclamação",
+      "atual": 0.0087,
+      "meta": 0.01,
+      "tipo": "taxa_max",
+      "cumprido": true
+    },
+    {
+      "chave": "atraso",
+      "titulo": "Taxa de atraso no envio",
+      "atual": 0.0099,
+      "meta": 0.06,
+      "tipo": "taxa_max",
+      "cumprido": true
+    },
+    {
+      "chave": "termometro",
+      "titulo": "Termômetro verde-escuro",
+      "atual": "5_green",
+      "meta": "5_green",
+      "tipo": "nivel",
+      "cumprido": true
+    }
+  ],
+  "totalRequisitos": 6,
+  "totalFaltantes": 1,
+  "observacao": "Requisitos de MercadoLíder Platinum pesquisados externamente (o Mercado Livre não documenta isso via API) — confira também em Reputação > MercadoLíder no seu painel de vendedor, os valores podem mudar com o tempo. Não inclui requisitos não numéricos (documentação validada, loja ativa há 4+ meses)."
+}

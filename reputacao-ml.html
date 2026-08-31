@@ -33,6 +33,25 @@
     letter-spacing: .03em; color: var(--warn); background: var(--warn-bg);
     padding: 1px 7px; border-radius: 999px; margin-left: 6px; vertical-align: middle;
   }
+  .requisito-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .requisito-row:last-child { border-bottom: none; }
+  .requisito-icone {
+    width: 24px; height: 24px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .requisito-icone.ok { background: var(--ok-bg); color: var(--ok); }
+  .requisito-icone.falta { background: var(--alert-bg); color: var(--alert); }
+  .requisito-corpo { flex: 1; min-width: 0; }
+  .requisito-titulo { font-size: 13.5px; font-weight: 600; color: var(--ink); }
+  .requisito-detalhe { font-size: 12px; color: var(--ink-dim); margin-top: 2px; }
+  .requisito-falta-tag {
+    font-size: 11px; font-weight: 700; color: var(--alert);
+    background: var(--alert-bg); padding: 2px 9px; border-radius: 999px; flex-shrink: 0;
+  }
 </style>
 </head>
 <body>
@@ -120,14 +139,16 @@
     document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
 
     try {
-      const [resp, respDetalhe] = await Promise.all([
+      const [resp, respDetalhe, respPlatinum] = await Promise.all([
         fetch('reputacao-ml.json', { cache: 'no-store' }),
         fetch('reputacao-detalhe.json', { cache: 'no-store' }),
+        fetch('mercadolider-platinum.json', { cache: 'no-store' }),
       ]);
       if (!resp.ok) throw new Error('HTTP ' + resp.status);
       const dados = await resp.json();
       const detalhe = respDetalhe.ok ? await respDetalhe.json() : null;
-      render(dados, detalhe);
+      const platinum = respPlatinum.ok ? await respPlatinum.json() : null;
+      render(dados, detalhe, platinum);
     } catch (err) {
       document.getElementById('conteudo').innerHTML =
         '<div class="error-state">Não foi possível carregar os dados de reputação. O arquivo reputacao-ml.json só existe depois da primeira execução do workflow "Verificar perguntas e reputação no Mercado Livre".' +
@@ -161,7 +182,66 @@
     return html;
   }
 
-  function render(dados, detalhe) {
+  function formatarMoeda(v) {
+    if (v === null || v === undefined) return '—';
+    return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+  }
+
+  function formatarValorRequisito(req) {
+    if (req.tipo === 'moeda') return formatarMoeda(req.atual);
+    if (req.tipo === 'taxa_max') return formatarPct(req.atual);
+    if (req.tipo === 'nivel') return NIVEIS[req.atual]?.label || req.atual || '—';
+    return (req.atual ?? '—').toLocaleString('pt-BR');
+  }
+
+  function formatarMetaRequisito(req) {
+    if (req.tipo === 'moeda') return formatarMoeda(req.meta);
+    if (req.tipo === 'taxa_max') return 'até ' + formatarPct(req.meta);
+    if (req.tipo === 'nivel') return NIVEIS[req.meta]?.label || req.meta;
+    return req.meta.toLocaleString('pt-BR');
+  }
+
+  function platinumHtml(platinum) {
+    if (!platinum || !Array.isArray(platinum.requisitos)) return '';
+
+    let html = '<div class="section-header rise" style="animation-delay:.14s; margin-top:24px;">' +
+      '<div class="section-title">Progresso pro MercadoLíder Platinum ' +
+      '<span class="count-chip' + (platinum.totalFaltantes > 0 ? ' alert' : '') + '">' +
+      (platinum.totalRequisitos - platinum.totalFaltantes) + '/' + platinum.totalRequisitos + '</span></div></div>';
+
+    html += '<div class="metrica-card rise" style="animation-delay:.16s">';
+    platinum.requisitos.forEach((req) => {
+      html += '<div class="requisito-row">' +
+        '<div class="requisito-icone ' + (req.cumprido ? 'ok' : 'falta') + '">' +
+        (req.cumprido
+          ? '<svg width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+          : '<svg width="13" height="13" viewBox="0 0 20 20" fill="none"><path d="M5 5l10 10M15 5L5 15" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>') +
+        '</div>' +
+        '<div class="requisito-corpo">' +
+        '<div class="requisito-titulo">' + escapeHtml(req.titulo) + '</div>' +
+        '<div class="requisito-detalhe">' + (
+          req.tipo === 'nivel'
+            ? 'Nível atual: ' + formatarValorRequisito(req) + ' · necessário: ' + formatarMetaRequisito(req)
+            : formatarValorRequisito(req) + ' de ' + formatarMetaRequisito(req) + ' necessário(s)'
+        ) + '</div>' +
+        '</div>' +
+        (req.cumprido ? '' : '<div class="requisito-falta-tag">falta</div>') +
+        '</div>';
+    });
+    html += '</div>';
+
+    html += '<div class="updated-at" style="margin-top:10px; border-top:none; padding-top:0;">' + escapeHtml(platinum.observacao) + '</div>';
+
+    return html;
+  }
+
+  function escapeHtml(texto) {
+    const div = document.createElement('div');
+    div.textContent = texto ?? '';
+    return div.innerHTML;
+  }
+
+  function render(dados, detalhe, platinum) {
     const { atualizadoEm, nickname, nivel, powerSeller, metricas } = dados;
     const nivelInfo = NIVEIS[nivel] || { label: nivel || '—', cor: 'var(--ink-dim)', bg: 'var(--bg-raised)' };
 
@@ -207,6 +287,8 @@
       '</div>';
 
     html += '</div>';
+
+    html += platinumHtml(platinum);
 
     document.getElementById('conteudo').innerHTML = html;
   }
