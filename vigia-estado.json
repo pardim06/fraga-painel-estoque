@@ -2,21 +2,21 @@
   "estoque": {
     "status": "ok",
     "atrasoMin": 1,
-    "verificadoEm": "2026-08-31T23:03:11.954Z"
+    "verificadoEm": "2026-08-31T23:07:50.569Z"
   },
   "perguntas": {
     "status": "ok",
     "atrasoMin": 0,
-    "verificadoEm": "2026-08-31T23:03:11.955Z"
+    "verificadoEm": "2026-08-31T23:07:50.570Z"
   },
   "reputacao": {
     "status": "ok",
     "atrasoMin": 0,
-    "verificadoEm": "2026-08-31T23:03:11.955Z"
+    "verificadoEm": "2026-08-31T23:07:50.570Z"
   },
   "lista-compras": {
     "status": "ok",
-    "atrasoMin": 355,
-    "verificadoEm": "2026-08-31T23:03:11.978Z"
+    "atrasoMin": 359,
+    "verificadoEm": "2026-08-31T23:07:50.585Z"
   }
 }
