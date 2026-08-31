@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-08-31T23:07:07.157Z",
+  "atualizadoEm": "2026-08-31T23:12:27.431Z",
   "totalSkus": 278,
-  "corretos": 273,
-  "totalDivergentes": 5,
+  "corretos": 274,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -31,13 +31,6 @@
       "qtdBling": 7,
       "qtdML": 5,
       "diferenca": 2
-    },
-    {
-      "sku": "6708",
-      "nome": "CORRENTE KMC 12V 126 ELOS X12 BIKE MTB SPEED - GOLD",
-      "qtdBling": 7,
-      "qtdML": 6,
-      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
