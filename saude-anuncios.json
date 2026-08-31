@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-31T15:00:49.698Z",
+  "atualizadoEm": "2026-08-31T15:19:54.012Z",
   "totalUnhealthy": 285,
   "totalWarning": 11,
   "itens": [
@@ -900,7 +900,7 @@
       "titulo": "Protetor De Canote Shiver",
       "link": "https://produto.mercadolivre.com.br/MLB-3807237469-protetor-de-canote-shiver-_JM",
       "status": "unhealthy",
-      "score": 80,
+      "score": 79,
       "level": "Profissional",
       "problemas": [
         {
@@ -2016,18 +2016,18 @@
       "titulo": "Manopla Punho Esi Grips Chunky - Laranja Laranja",
       "link": "https://produto.mercadolivre.com.br/MLB-6971779102-manopla-punho-esi-grips-chunky-laranja-laranja-_JM",
       "status": "unhealthy",
-      "score": 69,
+      "score": 67,
       "level": "Profissional",
       "problemas": [
-        {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4096413291&item_id=MLB6971779102&item_syi=MLB6971779102&origin=quality#origin=quality"
-        },
         {
           "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4096413291/modificar/omni/variation/dominio/picture-uploader-default"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4096413291&item_id=MLB6971779102&item_syi=MLB6971779102&origin=quality#origin=quality"
         },
         {
           "titulo": "Adicione preços de atacado",
@@ -3058,14 +3058,14 @@
           "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4666654579"
         },
         {
-          "titulo": "Preencha as características principais",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4666654579/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB7388008708"
-        },
-        {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4666654579&item_id=MLB7388008708&item_syi=MLB7388008708&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Preencha as características principais",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4666654579/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB7388008708"
         }
       ]
     },
