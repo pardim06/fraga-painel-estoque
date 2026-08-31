@@ -4,11 +4,12 @@
 // já gerado pelo verificar-perguntas.js), pede pra Gemini sugerir uma resposta.
 //
 // Fora do horário comercial (segunda a sexta 18:00-08:10, e sábado/domingo
-// o dia todo) a resposta é publicada automaticamente no ML — é quando não
-// tem ninguém pra revisar antes. Em horário comercial, só manda o rascunho
-// pro dono aprovar via WhatsApp/e-mail e copiar/colar manualmente — mas se
-// passar 45 minutos sem aprovação, publica sozinho mesmo assim (pra pergunta
-// não ficar sem resposta o dia todo esperando alguém ver o WhatsApp).
+// o dia todo) a resposta é publicada automaticamente no ML, com um aviso do
+// horário de atendimento anexado — é quando não tem ninguém pra revisar
+// antes. Em horário comercial, só manda o rascunho pro dono aprovar via
+// WhatsApp/e-mail e copiar/colar manualmente, mas se passar 20 minutos sem
+// aprovação, publica sozinho mesmo assim (pra não ficar tempo demais sem
+// resposta e pesar na taxa de resposta do ML).
 //
 // Só processa pergunta nova (controlado por respostas-sugeridas.json), pra
 // não gastar chamada da API nem repetir notificação a cada ciclo.
@@ -30,7 +31,10 @@ const HISTORICO_PATH = path.join(__dirname, '..', 'historico-respostas-ia.json')
 const HISTORICO_DIAS = 30;
 const FUSO = 'America/Sao_Paulo';
 // Em horário comercial, se ninguém aprovar em até esse tempo, publica sozinho.
-const LIMITE_ESCALONAMENTO_MIN = 45;
+const LIMITE_ESCALONAMENTO_MIN = 20;
+// Anexado só quando a resposta sai automática por estar fora do horário de
+// atendimento (não no escalonamento de 20min, que acontece em horário comercial).
+const AVISO_FORA_DE_HORARIO = 'Nosso atendimento é de segunda a sexta, das 8h10 às 18h. Te respondemos assim que possível!';
 
 function lerJson(caminho) {
   if (!fs.existsSync(caminho)) return null;
@@ -217,7 +221,9 @@ async function main() {
 
       if (automatico) {
         try {
-          await postarRespostaML(token, p.id, resposta);
+          const respostaComAviso = `${resposta}\n\n${AVISO_FORA_DE_HORARIO}`;
+          await postarRespostaML(token, p.id, respostaComAviso);
+          registro.resposta = respostaComAviso;
           registro.status = 'auto_respondida';
           registro.respondidoEm = new Date().toISOString();
           autoRespondidas.push(registro);
