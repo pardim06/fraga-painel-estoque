@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assistente IA · Fraga Bike Shop</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="assets/estilo.css">
+<style>
+  .chat-shell {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    box-shadow: var(--shadow-sm);
+    height: calc(100vh - 190px);
+    min-height: 420px;
+    overflow: hidden;
+  }
+  .chat-mensagens {
+    flex: 1;
+    overflow-y: auto;
+    padding: 22px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .chat-msg { display: flex; }
+  .chat-msg.user { justify-content: flex-end; }
+  .chat-msg .bolha {
+    max-width: 78%;
+    padding: 11px 15px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    line-height: 1.55;
+    white-space: pre-wrap;
+  }
+  .chat-msg.user .bolha { background: var(--blue-vivid); color: #fff; border-bottom-right-radius: 4px; }
+  .chat-msg.ia .bolha { background: var(--bg-raised); color: var(--ink); border: 1px solid var(--line); border-bottom-left-radius: 4px; }
+  .chat-msg.ia .bolha.carregando { color: var(--ink-faint); font-style: italic; }
+  .chat-msg.erro .bolha { background: var(--alert-bg); color: var(--alert); border: 1px solid rgba(220,38,38,0.25); }
+
+  .chat-sugestoes { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 24px 16px; }
+  .chat-sugestao {
+    font-size: 12px;
+    padding: 7px 13px;
+    border-radius: 999px;
+    border: 1px solid var(--line-strong);
+    background: var(--bg-panel);
+    color: var(--ink-dim);
+    cursor: pointer;
+  }
+  .chat-sugestao:hover { border-color: var(--blue); color: var(--ink); }
+
+  .chat-input-row {
+    display: flex;
+    gap: 10px;
+    padding: 14px 18px;
+    border-top: 1px solid var(--line);
+    background: var(--bg-panel);
+  }
+  .chat-input-row textarea {
+    flex: 1;
+    resize: none;
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    padding: 10px 13px;
+    font-size: 13.5px;
+    font-family: inherit;
+    background: var(--bg);
+    color: var(--ink);
+    outline: none;
+    max-height: 90px;
+  }
+  .chat-input-row textarea:focus { border-color: var(--blue); }
+  .chat-input-row button {
+    padding: 0 20px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, var(--blue-vivid), var(--blue-dark));
+    color: #fff;
+    font-weight: 600;
+    font-size: 13.5px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .chat-input-row button:disabled { opacity: .5; cursor: default; }
+
+  .config-box {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 28px 26px;
+    max-width: 480px;
+  }
+  .config-box p { font-size: 13.5px; color: var(--ink-dim); line-height: 1.6; margin: 0 0 16px; }
+  .config-box input {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 8px;
+    border: 1px solid var(--line-strong);
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 13.5px;
+    outline: none;
+    margin-bottom: 12px;
+  }
+  .config-box input:focus { border-color: var(--blue); }
+  .config-box button {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    background: linear-gradient(135deg, var(--blue-vivid), var(--blue-dark));
+    color: #fff;
+    font-weight: 600;
+    font-size: 13.5px;
+    cursor: pointer;
+  }
+  .config-aviso { font-size: 11.5px; color: var(--ink-faint); margin-top: 14px; line-height: 1.5; }
+  .trocar-chave { font-size: 11.5px; color: var(--ink-faint); margin-top: 8px; }
+  .trocar-chave a { color: var(--blue); cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <img src="assets/logo-fraga.png" alt="Fraga Bike Shop">
+      <div>
+        <div class="name">Fraga Bike Shop</div>
+        <div class="tag">Sistema Interno</div>
+      </div>
+    </a>
+
+    <div class="sidebar-label">Módulos</div>
+    <nav class="sidebar-nav">
+      <a href="index.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 9.5L10 3l7 6.5M5 8.2V17h4v-5h2v5h4V8.2" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        Início
+      </a>
+      <a href="dashboard.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="2" y="10" width="4" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="8" y="5" width="4" height="13" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="2" width="4" height="16" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
+        Dashboard
+      </a>
+      <a href="painel-estoque.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.6"/><path d="M10 5.5v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Painel de Estoque
+      </a>
+      <a href="perguntas-ml.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 8h6M7 10.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Perguntas ML
+      </a>
+      <a href="lista-compras.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 3h10v14l-5-2.5L5 17V3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 7h5M7.5 10h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Lista de Compras
+      </a>
+      <a href="reputacao-ml.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.9 4.6 5 .4-3.8 3.3 1.2 4.9L10 12.7l-4.3 2.5 1.2-4.9L3.1 7l5-.4L10 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Reputação ML
+      </a>
+      <a href="saude-anuncios.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 17.5s-6.5-3.9-6.5-8.9A3.6 3.6 0 0110 6.1a3.6 3.6 0 016.5 2.5c0 5-6.5 8.9-6.5 8.9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Saúde dos Anúncios
+      </a>
+      <a href="assistente-ia.html" class="active">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 8.2l1.2 1.2 3-3.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Assistente IA
+      </a>
+    </nav>
+
+    <div class="sidebar-foot">Painel interno<br>Fraga Bike Shop</div>
+  </aside>
+
+  <main class="content">
+    <div class="page-head rise">
+      <div>
+        <h1>Assistente IA</h1>
+        <div class="subtitle">Pergunte sobre estoque, vendas, reputação e mais</div>
+      </div>
+    </div>
+
+    <div id="conteudo"></div>
+  </main>
+</div>
+
+<script>
+  const CHAVE_STORAGE = 'assistente_gemini_key';
+  const MODELO = 'gemini-flash-latest';
+  let historico = []; // [{role:'user'|'model', parts:[{text}]}]
+
+  const SUGESTOES = [
+    'Quanto faturei nos últimos 60 dias?',
+    'Quais produtos estão furando estoque?',
+    'Como está minha reputação no Mercado Livre?',
+    'O que falta pra eu chegar no MercadoLíder Platinum?',
+    'Tem pergunta de cliente sem resposta?',
+    'Algum módulo do sistema parou de atualizar?',
+  ];
+
+  function getChave() {
+    try { return localStorage.getItem(CHAVE_STORAGE) || ''; } catch { return ''; }
+  }
+  function salvarChave(chave) {
+    try { localStorage.setItem(CHAVE_STORAGE, chave); } catch {}
+  }
+  function limparChave() {
+    try { localStorage.removeItem(CHAVE_STORAGE); } catch {}
+  }
+
+  function escapeHtml(texto) {
+    const div = document.createElement('div');
+    div.textContent = texto ?? '';
+    return div.innerHTML;
+  }
+
+  async function buscarJson(url) {
+    try {
+      const resp = await fetch(url, { cache: 'no-store' });
+      if (!resp.ok) return null;
+      return await resp.json();
+    } catch {
+      return null;
+    }
+  }
+
+  // Junta um resumo enxuto de cada módulo (não os arquivos crus, que podem
+  // ter centenas de linhas) — o suficiente pra IA responder perguntas de
+  // negócio sem estourar o tamanho do contexto.
+  async function montarContexto() {
+    const [estoque, historicoCorr, compras, reputacao, reputacaoDet, platinum, perguntas, saude, vigia] = await Promise.all([
+      buscarJson('resultado-verificacao.json'),
+      buscarJson('historico-mensal.json'),
+      buscarJson('lista-compras.json'),
+      buscarJson('reputacao-ml.json'),
+      buscarJson('reputacao-detalhe.json'),
+      buscarJson('mercadolider-platinum.json'),
+      buscarJson('perguntas-ml.json'),
+      buscarJson('saude-anuncios.json'),
+      buscarJson('vigia-estado.json'),
+    ]);
+
+    let c = '';
+
+    if (estoque) {
+      c += `\n## Estoque (Bling x Mercado Livre)\nAtualizado em: ${estoque.atualizadoEm}\nSKUs verificados: ${estoque.totalSkus}, corretos: ${estoque.corretos}, divergentes: ${estoque.totalDivergentes}\n`;
+      const divs = (estoque.divergencias || []).slice(0, 15);
+      if (divs.length) {
+        c += 'Principais divergências (SKU | produto | Bling | ML | diferença | corrigido):\n';
+        divs.forEach((d) => { c += `- ${d.sku} | ${d.nome} | ${d.qtdBling} | ${d.qtdML} | ${d.diferenca} | ${d.corrigido ? 'sim' : 'não'}\n`; });
+      }
+    }
+
+    if (historicoCorr) {
+      c += `\n## Furos de estoque evitados por mês\n`;
+      Object.entries(historicoCorr).forEach(([mes, qtd]) => { c += `- ${mes}: ${qtd}\n`; });
+    }
+
+    if (compras) {
+      const r = compras.resumo || {};
+      c += `\n## Lista de compras sugerida\nAtualizado em: ${compras.atualizadoEm}\nTotal pra comprar: ${r.totalParaComprar}, investimento estimado: R$ ${r.investimentoEstimado}\nClasse A: ${r.classeA_paraComprar}, Classe B: ${r.classeB_paraComprar}, Classe C: ${r.classeC_paraComprar}\n`;
+      const top = (compras.itens || []).filter((i) => i.classeABC === 'A').slice(0, 15);
+      if (top.length) {
+        c += 'Produtos classe A mais urgentes (SKU | produto | estoque | comprar):\n';
+        top.forEach((i) => { c += `- ${i.sku} | ${i.nome} | ${i.estoqueAtual ?? i.estoque} | ${i.quantidadeSugerida ?? i.comprar}\n`; });
+      }
+    }
+
+    if (reputacao) {
+      const m = reputacao.metricas || {};
+      c += `\n## Reputação no Mercado Livre\nNível: ${reputacao.nivel}, Power Seller: ${reputacao.powerSeller}, vendas 60 dias: ${m.vendas60d}\n`;
+      c += `Taxa de cancelamento: ${((m.cancelamento?.taxa || 0) * 100).toFixed(2)}% (${m.cancelamento?.quantidade || 0} pedidos)\n`;
+      c += `Taxa de reclamação: ${((m.reclamacao?.taxa || 0) * 100).toFixed(2)}% (${m.reclamacao?.quantidade || 0} reclamações)\n`;
+      c += `Taxa de atraso: ${((m.atraso?.taxa || 0) * 100).toFixed(2)}% (${m.atraso?.quantidade || 0} envios)\n`;
+    }
+
+    if (reputacaoDet) {
+      c += `\n## Contagem regressiva de reputação\nCancelamento zera em ${reputacaoDet.cancelamento?.diasParaZerar ?? '?'} dia(s)\nReclamação (estimativa) zera em ${reputacaoDet.reclamacao?.diasParaZerar ?? '?'} dia(s)\n`;
+    }
+
+    if (platinum) {
+      c += `\n## Progresso pro MercadoLíder Platinum (${platinum.totalRequisitos - platinum.totalFaltantes}/${platinum.totalRequisitos} cumpridos)\n`;
+      (platinum.requisitos || []).forEach((r) => { c += `- ${r.titulo}: ${r.cumprido ? 'CUMPRIDO' : 'FALTA'} (atual: ${r.atual}, meta: ${r.meta})\n`; });
+    }
+
+    if (perguntas) {
+      c += `\n## Perguntas em aberto no Mercado Livre\nTotal: ${perguntas.total}, atrasadas (+1h): ${perguntas.atrasadas}\n`;
+      (perguntas.perguntas || []).slice(0, 10).forEach((p) => { c += `- ${p.produto}: "${p.texto}" (aberta há ${p.minutosAberta}min)\n`; });
+    }
+
+    if (saude) {
+      c += `\n## Saúde dos anúncios\nPerdendo exposição: ${saude.totalUnhealthy}, em alerta: ${saude.totalWarning}\n`;
+    }
+
+    if (vigia) {
+      c += `\n## Status dos módulos automáticos (vigia)\n`;
+      Object.entries(vigia).forEach(([modulo, info]) => { c += `- ${modulo}: ${info.status} (atualizado há ${info.atrasoMin}min)\n`; });
+    }
+
+    return c || 'Nenhum dado disponível ainda.';
+  }
+
+  const SYSTEM_PROMPT = `Você é o assistente de análise de negócios da Fraga Bike Shop, uma loja de bicicletas que vende no Mercado Livre.
+Sua tarefa é responder às perguntas do dono da loja sobre o negócio, com base SOMENTE nos dados fornecidos no contexto abaixo de cada pergunta.
+
+Regras:
+- Responda em português do Brasil, com acentuação correta, sem travessão (—).
+- Seja direto e objetivo. Use os números reais do contexto, não invente nada.
+- Se a pergunta não puder ser respondida com os dados disponíveis, diga isso claramente e sugira em qual página do painel a informação pode estar (Painel de Estoque, Perguntas ML, Lista de Compras, Reputação ML, Saúde dos Anúncios).
+- Pode dar sua opinião/recomendação quando fizer sentido (ex: "vale repor esse produto logo"), mas deixe claro quando é uma sugestão e não um fato dos dados.
+- Nada de markdown pesado (sem #, sem **negrito**) — texto simples, pode usar quebra de linha e "-" pra listas.`;
+
+  async function perguntarIA(chave, pergunta) {
+    const contexto = await montarContexto();
+    const mensagemComContexto = `Dados atuais do sistema:\n${contexto}\n\nPergunta do dono da loja: ${pergunta}`;
+
+    historico.push({ role: 'user', parts: [{ text: mensagemComContexto }] });
+
+    const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODELO}:generateContent?key=${encodeURIComponent(chave)}`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        contents: historico,
+        generationConfig: { maxOutputTokens: 1024 },
+      }),
+    });
+
+    if (!resp.ok) {
+      const erro = await resp.json().catch(() => null);
+      throw new Error(erro?.error?.message || ('HTTP ' + resp.status));
+    }
+
+    const dados = await resp.json();
+    const texto = dados?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!texto) throw new Error('Resposta vazia da IA.');
+
+    historico.push({ role: 'model', parts: [{ text: texto }] });
+    return texto.trim();
+  }
+
+  function renderConfig() {
+    document.getElementById('conteudo').innerHTML =
+      '<div class="config-box rise">' +
+      '<p>Pra usar o assistente, cole abaixo a chave da API do Gemini (gratuita). Ela fica salva só nesse navegador, nunca é enviada pra nenhum lugar além da API do Google.</p>' +
+      '<input type="password" id="inputChave" placeholder="Cole a chave aqui (AIzaSy... ou AQ...)">' +
+      '<button id="btnSalvarChave">Salvar e continuar</button>' +
+      '<div class="config-aviso">Pra gerar uma chave: entre em aistudio.google.com, faça login, clique no ícone de chave no canto inferior esquerdo e em "Create API key".</div>' +
+      '</div>';
+
+    document.getElementById('btnSalvarChave').addEventListener('click', () => {
+      const chave = document.getElementById('inputChave').value.trim();
+      if (!chave) return;
+      salvarChave(chave);
+      renderChat();
+    });
+  }
+
+  function renderChat() {
+    const chave = getChave();
+    document.getElementById('conteudo').innerHTML =
+      '<div class="chat-shell rise">' +
+      '  <div class="chat-mensagens" id="chatMensagens">' +
+      '    <div class="chat-msg ia"><div class="bolha">Oi! Pode perguntar sobre estoque, vendas, reputação, perguntas de cliente ou qualquer outro módulo do sistema. Vou responder com base nos dados reais.</div></div>' +
+      '  </div>' +
+      '  <div class="chat-sugestoes" id="chatSugestoes">' +
+      SUGESTOES.map((s) => '<div class="chat-sugestao">' + escapeHtml(s) + '</div>').join('') +
+      '  </div>' +
+      '  <div class="chat-input-row">' +
+      '    <textarea id="chatInput" rows="1" placeholder="Digite sua pergunta..."></textarea>' +
+      '    <button id="chatEnviar">Enviar</button>' +
+      '  </div>' +
+      '</div>' +
+      '<div class="trocar-chave"><a id="trocarChave">Trocar chave da API</a></div>';
+
+    const mensagensEl = document.getElementById('chatMensagens');
+    const inputEl = document.getElementById('chatInput');
+    const enviarBtn = document.getElementById('chatEnviar');
+
+    function adicionarMensagem(texto, tipo) {
+      const div = document.createElement('div');
+      div.className = 'chat-msg ' + tipo;
+      div.innerHTML = '<div class="bolha">' + escapeHtml(texto) + '</div>';
+      mensagensEl.appendChild(div);
+      mensagensEl.scrollTop = mensagensEl.scrollHeight;
+      return div;
+    }
+
+    async function enviar(pergunta) {
+      if (!pergunta.trim()) return;
+      document.getElementById('chatSugestoes')?.remove();
+      adicionarMensagem(pergunta, 'user');
+      inputEl.value = '';
+      inputEl.disabled = true;
+      enviarBtn.disabled = true;
+
+      const carregandoEl = adicionarMensagem('Analisando os dados...', 'ia');
+      carregandoEl.querySelector('.bolha').classList.add('carregando');
+
+      try {
+        const resposta = await perguntarIA(chave, pergunta);
+        carregandoEl.remove();
+        adicionarMensagem(resposta, 'ia');
+      } catch (err) {
+        carregandoEl.remove();
+        adicionarMensagem('Não consegui responder: ' + err.message, 'erro');
+      } finally {
+        inputEl.disabled = false;
+        enviarBtn.disabled = false;
+        inputEl.focus();
+      }
+    }
+
+    enviarBtn.addEventListener('click', () => enviar(inputEl.value));
+    inputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        enviar(inputEl.value);
+      }
+    });
+    document.getElementById('chatSugestoes').addEventListener('click', (e) => {
+      const chip = e.target.closest('.chat-sugestao');
+      if (chip) enviar(chip.textContent);
+    });
+    document.getElementById('trocarChave').addEventListener('click', () => {
+      limparChave();
+      historico = [];
+      renderConfig();
+    });
+  }
+
+  if (getChave()) {
+    renderChat();
+  } else {
+    renderConfig();
+  }
+</script>
+</body>
+</html>
