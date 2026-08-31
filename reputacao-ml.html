@@ -185,24 +185,24 @@
 
     html += '  <div class="metrica-card">' +
       '<div class="titulo">Taxa de cancelamento</div>' +
-      '<div class="valor" style="color:' + (metricas?.cancelamento?.taxa > 0.03 ? 'var(--alert)' : 'var(--ink)') + ';">' + formatarPct(metricas?.cancelamento?.taxa) + '</div>' +
-      '<div class="detalhe">' + (metricas?.cancelamento?.quantidade ?? 0) + ' pedido(s) cancelado(s)</div>' +
+      '<div class="valor" style="color:' + (metricas?.cancelamento?.taxa > 0.005 ? 'var(--alert)' : 'var(--ink)') + ';">' + formatarPct(metricas?.cancelamento?.taxa) + '</div>' +
+      '<div class="detalhe">' + (metricas?.cancelamento?.quantidade ?? 0) + ' pedido(s) cancelado(s) · limite MercadoLíder Platinum: 0,5%</div>' +
       '<div class="explicacao">Pedidos que você cancelou depois de vendidos. Furo de estoque é uma das causas mais diretas.</div>' +
       contagemHtml(detalhe?.cancelamento) +
       '</div>';
 
     html += '  <div class="metrica-card">' +
       '<div class="titulo">Taxa de reclamação' + (detalhe?.reclamacao?.estimativa ? '<span class="estimativa-tag">contagem estimada</span>' : '') + '</div>' +
-      '<div class="valor" style="color:' + (metricas?.reclamacao?.taxa > 0.03 ? 'var(--alert)' : 'var(--ink)') + ';">' + formatarPct(metricas?.reclamacao?.taxa) + '</div>' +
-      '<div class="detalhe">' + (metricas?.reclamacao?.quantidade ?? 0) + ' reclamação(ões)</div>' +
+      '<div class="valor" style="color:' + (metricas?.reclamacao?.taxa > 0.01 ? 'var(--alert)' : 'var(--ink)') + ';">' + formatarPct(metricas?.reclamacao?.taxa) + '</div>' +
+      '<div class="detalhe">' + (metricas?.reclamacao?.quantidade ?? 0) + ' reclamação(ões) · limite MercadoLíder Platinum: 1%</div>' +
       '<div class="explicacao">Compradores que abriram reclamação após a compra (produto errado, atraso, problema no atendimento etc.).</div>' +
       contagemHtml(detalhe?.reclamacao) +
       '</div>';
 
     html += '  <div class="metrica-card">' +
       '<div class="titulo">Taxa de atraso no envio</div>' +
-      '<div class="valor" style="color:' + (metricas?.atraso?.taxa > 0.1 ? 'var(--alert)' : 'var(--ink)') + ';">' + formatarPct(metricas?.atraso?.taxa) + '</div>' +
-      '<div class="detalhe">' + (metricas?.atraso?.quantidade ?? 0) + ' envio(s) atrasado(s)</div>' +
+      '<div class="valor" style="color:' + (metricas?.atraso?.taxa > 0.06 ? 'var(--alert)' : 'var(--ink)') + ';">' + formatarPct(metricas?.atraso?.taxa) + '</div>' +
+      '<div class="detalhe">' + (metricas?.atraso?.quantidade ?? 0) + ' envio(s) atrasado(s) · limite MercadoLíder Platinum: 6%</div>' +
       '<div class="explicacao">Pedidos despachados depois do prazo prometido ao comprador.</div>' +
       '</div>';
 

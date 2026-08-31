@@ -40,9 +40,12 @@
   .hbar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
   .hbar-row:last-child { margin-bottom: 0; }
   .hbar-row .hbar-label { width: 90px; flex-shrink: 0; font-size: 12.5px; color: var(--ink-dim); }
-  .hbar-row .hbar-track { flex: 1; background: var(--bg-raised); border-radius: 999px; height: 14px; overflow: hidden; }
-  .hbar-row .hbar-fill { height: 100%; border-radius: 999px; }
+  .hbar-row .hbar-track { position: relative; flex: 1; background: var(--bg-raised); border-radius: 999px; height: 14px; overflow: hidden; }
+  .hbar-row .hbar-fill { height: 100%; border-radius: 999px; transition: width .6s cubic-bezier(.16,1,.3,1); }
+  .hbar-row .hbar-limite { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--ink); opacity: .45; }
   .hbar-row .hbar-valor { width: 34px; text-align: right; flex-shrink: 0; font-size: 12.5px; font-weight: 700; }
+  .hbar-legenda { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--ink-faint); margin-top: 12px; }
+  .hbar-legenda .traco { width: 10px; height: 2px; background: var(--ink); opacity: .45; flex-shrink: 0; }
 
   .empty-mini { font-size: 12.5px; color: var(--ink-faint); padding: 12px 4px; }
 </style>
@@ -266,9 +269,10 @@
     html += '    <div class="section-title" style="margin-bottom:14px;">Taxas do ML (60 dias)</div>';
     if (reputacao) {
       const m = reputacao.metricas || {};
-      html += hbar('Cancelamento', m.cancelamento?.taxa, 'var(--critical)');
-      html += hbar('Reclamação', m.reclamacao?.taxa, 'var(--critical)');
-      html += hbar('Atraso no envio', m.atraso?.taxa, 'var(--critical)');
+      html += hbar('Cancelamento', m.cancelamento?.taxa, 0.005);
+      html += hbar('Reclamação', m.reclamacao?.taxa, 0.01);
+      html += hbar('Atraso no envio', m.atraso?.taxa, 0.06);
+      html += '<div class="hbar-legenda"><span class="traco"></span> Limite do MercadoLíder Platinum</div>';
     } else {
       html += '<div class="empty-mini">Sem dados ainda.</div>';
     }
@@ -301,13 +305,23 @@
     }
   }
 
-  // barra horizontal pra taxa (0-100%, limitada a um teto visual de 10% pra não esmagar as outras)
-  function hbar(rotulo, taxa, cor) {
-    const pct = taxa === null || taxa === undefined ? 0 : Math.min((taxa / 0.1) * 100, 100);
+  // barra horizontal pra taxa, com uma marca no ponto do limite oficial do
+  // ML pra essa métrica. Teto visual calculado por linha (não fixo) porque
+  // cancelamento/reclamação têm limite bem menor que atraso — numa escala
+  // única, as barras menores ficariam praticamente invisíveis.
+  function hbar(rotulo, taxa, limite) {
+    const teto = Math.max(limite * 2, (taxa || 0) * 1.25);
+    const pct = taxa === null || taxa === undefined ? 0 : Math.min((taxa / teto) * 100, 100);
+    const pctLimite = Math.min((limite / teto) * 100, 100);
+    const acimaDoLimite = taxa !== null && taxa !== undefined && taxa > limite;
+    const cor = acimaDoLimite ? 'var(--critical)' : 'var(--good)';
     return '<div class="hbar-row">' +
       '<div class="hbar-label">' + escapeHtml(rotulo) + '</div>' +
-      '<div class="hbar-track"><div class="hbar-fill" style="width:' + pct + '%; background:' + cor + ';"></div></div>' +
-      '<div class="hbar-valor">' + formatarPct(taxa) + '</div>' +
+      '<div class="hbar-track">' +
+        '<div class="hbar-fill" style="width:' + pct + '%; background:' + cor + ';"></div>' +
+        '<div class="hbar-limite" style="left:' + pctLimite + '%;" title="Limite do ML: ' + formatarPct(limite) + '"></div>' +
+      '</div>' +
+      '<div class="hbar-valor" style="color:' + (acimaDoLimite ? 'var(--critical)' : 'var(--ink)') + ';">' + formatarPct(taxa) + '</div>' +
       '</div>';
   }
 
