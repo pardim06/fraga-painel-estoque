@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-08-31T19:07:55.678Z",
+  "atualizadoEm": "2026-08-31T19:12:36.767Z",
   "totalSkus": 278,
   "corretos": 274,
   "totalDivergentes": 4,
@@ -14,9 +14,11 @@
     {
       "sku": "4636",
       "nome": "SACHÊ 20G (UNIDADE) - SUDRACT ISOTÔNICO HYDRAMAXI - LARANJA",
-      "qtdBling": 52,
-      "qtdML": 51,
-      "diferenca": 1
+      "qtdBling": 51,
+      "qtdML": 52,
+      "diferenca": -1,
+      "corrigido": true,
+      "corrigidoDetalhe": "1 anúncio(s) atualizado(s) para 51"
     },
     {
       "sku": "5678",
