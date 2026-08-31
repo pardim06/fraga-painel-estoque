@@ -1,6 +1,6 @@
 {
-  "atualizadoEm": "2026-08-30T14:45:10.682Z",
-  "totalUnhealthy": 293,
+  "atualizadoEm": "2026-08-31T15:00:49.698Z",
+  "totalUnhealthy": 285,
   "totalWarning": 11,
   "itens": [
     {
@@ -25,6 +25,15 @@
       "itemId": "MLB7024747614",
       "titulo": "Quadro Carbono Rad7 Stuttgart Mtb Aro 29 Boost Modelo 2026 Cor Branco 19 Tamanho Del Quadro 19",
       "link": "https://produto.mercadolivre.com.br/MLB-7024747614-quadro-carbono-rad7-stuttgart-mtb-aro-29-boost-modelo-2026-cor-branco-19-tamanho-del-quadro-19-_JM",
+      "status": "unhealthy",
+      "score": null,
+      "level": null,
+      "problemas": []
+    },
+    {
+      "itemId": "MLB4930820033",
+      "titulo": "Par Rodas Aro 29 Absolute Wild Tubeless Disco 8/12v",
+      "link": "https://produto.mercadolivre.com.br/MLB-4930820033-par-rodas-aro-29-absolute-wild-tubeless-disco-812v-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
@@ -76,48 +85,12 @@
       "problemas": []
     },
     {
-      "itemId": "MLB4781077798",
-      "titulo": "Par Camaras De Ar Chaoyang 29x2.10/2.25 Valvula Presta 48mm Presta",
-      "link": "https://produto.mercadolivre.com.br/MLB-4781077798-par-camaras-de-ar-chaoyang-29x210225-valvula-presta-48mm-presta-_JM",
-      "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
-    },
-    {
-      "itemId": "MLB4784200330",
-      "titulo": "Par De Câmara Aro 29 Vacinada Antifuro Chaoyang Bico Fino",
-      "link": "https://produto.mercadolivre.com.br/MLB-4784200330-par-de-cmara-aro-29-vacinada-antifuro-chaoyang-bico-fino-_JM",
-      "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
-    },
-    {
-      "itemId": "MLB3739631567",
-      "titulo": "Par De Camara Aro 29 Vacinada Antifuro Chaoyang Bico Grosso",
-      "link": "https://produto.mercadolivre.com.br/MLB-3739631567-par-de-camara-aro-29-vacinada-antifuro-chaoyang-bico-grosso-_JM",
-      "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
-    },
-    {
       "itemId": "MLB4803887528",
       "titulo": "Pedal Clip Shimano Pd-m520 C/ Tacos Sm-sh51 - Preto Prata",
       "link": "https://produto.mercadolivre.com.br/MLB-4803887528-pedal-clip-shimano-pd-m520-c-tacos-sm-sh51-preto-prata-_JM",
       "status": "unhealthy",
       "score": 100,
       "level": "Profissional",
-      "problemas": []
-    },
-    {
-      "itemId": "MLB4808894880",
-      "titulo": "Canote Selim Tsw Quest Carbono - 31.6x400mm - Preto",
-      "link": "https://produto.mercadolivre.com.br/MLB-4808894880-canote-selim-tsw-quest-carbono-316x400mm-preto-_JM",
-      "status": "unhealthy",
-      "score": null,
-      "level": null,
       "problemas": []
     },
     {
@@ -133,15 +106,6 @@
       "itemId": "MLB3754636259",
       "titulo": "Par De Camara Chaoyang Speed 700x25/32 Valv Presta 60mm Presta",
       "link": "https://produto.mercadolivre.com.br/MLB-3754636259-par-de-camara-chaoyang-speed-700x2532-valv-presta-60mm-presta-_JM",
-      "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
-    },
-    {
-      "itemId": "MLB3750139007",
-      "titulo": "Par De Camara De Ar Aro 29kenda Bico Fino + Fita Anti Furo Presta",
-      "link": "https://produto.mercadolivre.com.br/MLB-3750139007-par-de-camara-de-ar-aro-29kenda-bico-fino-fita-anti-furo-presta-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
@@ -223,15 +187,6 @@
       "itemId": "MLB4878365210",
       "titulo": "Pedal Shimano Xtr Pd-m9100 - Preto\\prata",
       "link": "https://produto.mercadolivre.com.br/MLB-4878365210-pedal-shimano-xtr-pd-m9100-pretoprata-_JM",
-      "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
-    },
-    {
-      "itemId": "MLB4808555388",
-      "titulo": "Par De Câmara De Ar Aro 29 Pirelli Sportube Bico Fico Presta",
-      "link": "https://produto.mercadolivre.com.br/MLB-4808555388-par-de-cmara-de-ar-aro-29-pirelli-sportube-bico-fico-presta-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
@@ -480,15 +435,6 @@
       "problemas": []
     },
     {
-      "itemId": "MLB3750203669",
-      "titulo": "Par De Camara De Ar Aro 29 Kenda Bico Fino Presta",
-      "link": "https://produto.mercadolivre.com.br/MLB-3750203669-par-de-camara-de-ar-aro-29-kenda-bico-fino-presta-_JM",
-      "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
-    },
-    {
       "itemId": "MLB5071260680",
       "titulo": "Câmbio Bike Traseiro Shimano 8v Essa Ed-u2000 Mtb Speed Top Preto Longo",
       "link": "https://produto.mercadolivre.com.br/MLB-5071260680-cmbio-bike-traseiro-shimano-8v-essa-ed-u2000-mtb-speed-top-preto-longo-_JM",
@@ -618,15 +564,6 @@
       "itemId": "MLB5075632590",
       "titulo": "Câmera De Bicicleta 29x2.10/2.30 Pirelli Valvula Presta 48mm Presta",
       "link": "https://produto.mercadolivre.com.br/MLB-5075632590-cmera-de-bicicleta-29x210230-pirelli-valvula-presta-48mm-presta-_JM",
-      "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
-    },
-    {
-      "itemId": "MLB5075616144",
-      "titulo": "Par De Camara De Ar Aro 29kenda Bico Fino + Fita Anti Furo Presta",
-      "link": "https://produto.mercadolivre.com.br/MLB-5075616144-par-de-camara-de-ar-aro-29kenda-bico-fino-fita-anti-furo-presta-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
@@ -1865,14 +1802,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3959438157/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB6768497364"
-        },
-        {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3959438157&item_id=MLB6768497364&item_syi=MLB6768497364&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU3959438157/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB6768497364"
         }
       ]
     },
@@ -1955,15 +1892,9 @@
       "titulo": "Pinhao Cog Shimano - Cs-m6100/m7100/m8100/m9100 - 10d E 12d Aço",
       "link": "https://produto.mercadolivre.com.br/MLB-4977700626-pinhao-cog-shimano-cs-m6100m7100m8100m9100-10d-e-12d-aco-_JM",
       "status": "unhealthy",
-      "score": 95,
-      "level": "Profissional",
-      "problemas": [
-        {
-          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU1479113474/modificar/omni/variation/dominio/picture-uploader-default"
-        }
-      ]
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB4748770579",
@@ -2235,7 +2166,7 @@
       "titulo": "Pedivela Sunrace M600 170mm 42/32/22d Preto Triplo Mtb",
       "link": "https://produto.mercadolivre.com.br/MLB-7109945216-pedivela-sunrace-m600-170mm-423222d-preto-triplo-mtb-_JM",
       "status": "unhealthy",
-      "score": 65,
+      "score": 64,
       "level": "Satisfatória",
       "problemas": [
         {
@@ -2244,19 +2175,24 @@
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4246561162&item_id=MLB7109945216&item_syi=MLB7109945216&origin=quality#origin=quality"
         },
         {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4246561162/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB7109945216"
+        },
+        {
           "titulo": "Preencha as características principais",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4246561162/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB7109945216"
         },
         {
-          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB7109945216"
-        },
-        {
           "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB7109945216"
+        },
+        {
+          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB7109945216"
         }
       ]
     },
@@ -2319,9 +2255,14 @@
       "titulo": "Pedivela Triplo Sunrace M600 Preto 170mm 42/32/22 Mtb Bike",
       "link": "https://produto.mercadolivre.com.br/MLB-4856843631-pedivela-triplo-sunrace-m600-preto-170mm-423222-mtb-bike-_JM",
       "status": "unhealthy",
-      "score": 93,
+      "score": 92,
       "level": "Profissional",
       "problemas": [
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4226381395/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4856843631"
+        },
         {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
@@ -2620,84 +2561,23 @@
       "titulo": "Cubo Dianteiro Shimano Hb-tx506 6 Parafusos Disco 36f Mtb",
       "link": "https://produto.mercadolivre.com.br/MLB-4931741219-cubo-dianteiro-shimano-hb-tx506-6-parafusos-disco-36f-mtb-_JM",
       "status": "unhealthy",
-      "score": 67,
-      "level": "Profissional",
-      "problemas": [
-        {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4407339134/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4931741219"
-        },
-        {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4407339134&item_id=MLB4931741219&item_syi=MLB4931741219&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4931741219"
-        },
-        {
-          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4931741219"
-        }
-      ]
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB4931741217",
       "titulo": "Cubo Dianteiro Tourney Hb-tx506 6 Parafuso 36f Preto",
       "link": "https://produto.mercadolivre.com.br/MLB-4931741217-cubo-dianteiro-tourney-hb-tx506-6-parafuso-36f-preto-_JM",
       "status": "unhealthy",
-      "score": 60,
-      "level": "Satisfatória",
-      "problemas": [
-        {
-          "titulo": "Preencha as características principais",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4383962597/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB4931741217"
-        },
-        {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4383962597&item_id=MLB4931741217&item_syi=MLB4931741217&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4383962597/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4931741217"
-        },
-        {
-          "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4383962597"
-        },
-        {
-          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4931741217"
-        },
-        {
-          "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB4931741217"
-        }
-      ]
-    },
-    {
-      "itemId": "MLB4930820035",
-      "titulo": "Par Rodas Aro 29 Mtb Absolute Wild Disco Tubeless 8/12v 32f",
-      "link": "https://produto.mercadolivre.com.br/MLB-4930820035-par-rodas-aro-29-mtb-absolute-wild-disco-tubeless-812v-32f-_JM",
-      "status": "unhealthy",
       "score": null,
       "level": null,
       "problemas": []
     },
     {
-      "itemId": "MLB4930820033",
-      "titulo": "Par Rodas Aro 29 Absolute Wild Tubeless Disco 8/12v",
-      "link": "https://produto.mercadolivre.com.br/MLB-4930820033-par-rodas-aro-29-absolute-wild-tubeless-disco-812v-_JM",
+      "itemId": "MLB4930820035",
+      "titulo": "Par Rodas Aro 29 Mtb Absolute Wild Disco Tubeless 8/12v 32f",
+      "link": "https://produto.mercadolivre.com.br/MLB-4930820035-par-rodas-aro-29-mtb-absolute-wild-disco-tubeless-812v-32f-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
@@ -2990,12 +2870,12 @@
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4622056516&item_id=MLB5005893621&item_syi=MLB5005893621&origin=quality#origin=quality"
         },
         {
-          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
+          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005893621"
         },
         {
-          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
+          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5005893621"
         }
@@ -3173,9 +3053,9 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4666654579&item_id=MLB7388008708&item_syi=MLB7388008708&origin=quality#origin=quality"
+          "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4666654579"
         },
         {
           "titulo": "Preencha as características principais",
@@ -3183,9 +3063,9 @@
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4666654579/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB7388008708"
         },
         {
-          "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4666654579"
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4666654579&item_id=MLB7388008708&item_syi=MLB7388008708&origin=quality#origin=quality"
         }
       ]
     },
@@ -3256,13 +3136,13 @@
       "titulo": "Par Alavanca Câmbio Shimano Alivio Sl-m3100 2x9v 18v Mtb Tro",
       "link": "https://produto.mercadolivre.com.br/MLB-5080031959-par-alavanca-cmbio-shimano-alivio-sl-m3100-2x9v-18v-mtb-tro-_JM",
       "status": "unhealthy",
-      "score": 60,
+      "score": 64,
       "level": "Satisfatória",
       "problemas": [
         {
-          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4784605430/modificar/omni/variation/dominio/picture-uploader-default"
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4784605430&item_id=MLB5080031959&item_syi=MLB5080031959&origin=quality#origin=quality"
         },
         {
           "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
@@ -3270,19 +3150,14 @@
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4784605430/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB5080031959"
         },
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4784605430&item_id=MLB5080031959&item_syi=MLB5080031959&origin=quality#origin=quality"
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4784605430/modificar/omni/variation/dominio/picture-uploader-default"
         },
         {
           "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5080031959"
-        },
-        {
-          "titulo": "Participe de uma promoção para receber mais visitas",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/anuncios/lista/promos?search=MLB5080031959"
         }
       ]
     },
@@ -3443,23 +3318,18 @@
       "titulo": "Sapatilha Shimano Rc503 Road Carbon - Branco",
       "link": "https://produto.mercadolivre.com.br/MLB-4275979469-sapatilha-shimano-rc503-road-carbon-branco-_JM",
       "status": "warning",
-      "score": 77,
+      "score": 82,
       "level": "Profissional",
       "problemas": [
-        {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?item_id=MLB4275979469&item_syi=MLB4275979469&origin=quality#origin=quality&pi_origin=listings&pi_rule=HAS_SHORTS"
-        },
         {
           "titulo": "Preencha os dados fiscais para emitir faturas",
           "tipo": "oportunidade",
           "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4275979469/tax-information"
         },
         {
-          "titulo": "Participe de uma promoção para receber mais visitas",
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/anuncios/lista/promos?search=MLB4275979469"
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?item_id=MLB4275979469&item_syi=MLB4275979469&origin=quality#origin=quality&pi_origin=listings&pi_rule=HAS_SHORTS"
         },
         {
           "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
