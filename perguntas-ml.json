@@ -1,7 +1,18 @@
 {
-  "atualizadoEm": "2026-09-01T15:35:44.012Z",
+  "atualizadoEm": "2026-09-01T15:40:30.544Z",
   "limiteMinutos": 60,
-  "total": 0,
+  "total": 1,
   "atrasadas": 0,
-  "perguntas": []
+  "perguntas": [
+    {
+      "id": 13650751033,
+      "texto": "Qual a garantia dessa roda ???",
+      "itemId": "MLB5138758901",
+      "produto": "Par De Rodas Rad7  Performance Carbono Mtb Microspline  30mm",
+      "link": "https://produto.mercadolivre.com.br/MLB-5138758901-par-de-rodas-rad7-performance-carbono-mtb-microspline-30mm-_JM",
+      "dataCriacao": "2026-09-01T11:40:13.142934496-04:00",
+      "minutosAberta": 0,
+      "atrasada": false
+    }
+  ]
 }
