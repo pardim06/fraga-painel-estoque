@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-09-01T15:50:25.743Z",
+  "atualizadoEm": "2026-09-01T15:55:38.507Z",
   "limiteMinutos": 60,
   "total": 2,
   "atrasadas": 0,
@@ -11,7 +11,7 @@
       "produto": "Par De Rodas Rad7  Performance Carbono Mtb Microspline  30mm",
       "link": "https://produto.mercadolivre.com.br/MLB-5138758901-par-de-rodas-rad7-performance-carbono-mtb-microspline-30mm-_JM",
       "dataCriacao": "2026-09-01T11:40:13.142934496-04:00",
-      "minutosAberta": 10,
+      "minutosAberta": 15,
       "atrasada": false
     },
     {
@@ -21,7 +21,7 @@
       "produto": "Sapatilha Shimano Xc302 Mtb Ciclismo Boa Spd Cinza Gelo",
       "link": "https://produto.mercadolivre.com.br/MLB-4151877343-sapatilha-shimano-xc302-mtb-ciclismo-boa-spd-cinza-gelo-_JM",
       "dataCriacao": "2026-09-01T11:49:33.143019192-04:00",
-      "minutosAberta": 1,
+      "minutosAberta": 6,
       "atrasada": false
     }
   ]
