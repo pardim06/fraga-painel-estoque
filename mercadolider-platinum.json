@@ -1,16 +1,16 @@
 {
-  "atualizadoEm": "2026-08-31T17:10:05.071Z",
+  "atualizadoEm": "2026-09-01T13:54:45.276Z",
   "powerSellerAtual": "gold",
   "faturamentoMesAtual": {
-    "mes": "2026-08",
-    "total": 228200.87999999934,
-    "quantidade": 817
+    "mes": "2026-09",
+    "total": 1171.91,
+    "quantidade": 9
   },
   "requisitos": [
     {
       "chave": "vendas",
       "titulo": "Vendas (60 dias)",
-      "atual": 1497,
+      "atual": 1498,
       "meta": 1725,
       "tipo": "contagem",
       "cumprido": false
@@ -18,7 +18,7 @@
     {
       "chave": "faturamento",
       "titulo": "Faturamento (60 dias)",
-      "atual": 509225.53999999515,
+      "atual": 505924.8499999953,
       "meta": 296000,
       "tipo": "moeda",
       "cumprido": true
@@ -34,7 +34,7 @@
     {
       "chave": "reclamacao",
       "titulo": "Taxa de reclamação",
-      "atual": 0.0087,
+      "atual": 0.0081,
       "meta": 0.01,
       "tipo": "taxa_max",
       "cumprido": true
@@ -42,7 +42,7 @@
     {
       "chave": "atraso",
       "titulo": "Taxa de atraso no envio",
-      "atual": 0.0099,
+      "atual": 0.0093,
       "meta": 0.06,
       "tipo": "taxa_max",
       "cumprido": true
