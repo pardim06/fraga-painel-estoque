@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-09-01T22:02:21.501Z",
+  "atualizadoEm": "2026-09-01T22:07:33.464Z",
   "totalSkus": 273,
-  "corretos": 269,
-  "totalDivergentes": 4,
+  "corretos": 270,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -16,13 +16,6 @@
       "nome": "SACHÊ 20G (UNIDADE) - SUDRACT ISOTÔNICO HYDRAMAXI - LARANJA",
       "qtdBling": 52,
       "qtdML": 51,
-      "diferenca": 1
-    },
-    {
-      "sku": "5093",
-      "nome": "BOMBA DE AR CILINDRO CO2 16G GC-02P HIGH ONE",
-      "qtdBling": 14,
-      "qtdML": 13,
       "diferenca": 1
     },
     {
