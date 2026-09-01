@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-09-01T19:08:20.031Z",
+  "atualizadoEm": "2026-09-01T19:12:47.005Z",
   "totalSkus": 274,
-  "corretos": 271,
-  "totalDivergentes": 3,
+  "corretos": 270,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -17,6 +17,13 @@
       "qtdBling": 52,
       "qtdML": 51,
       "diferenca": 1
+    },
+    {
+      "sku": "5363",
+      "nome": "PAR DE RODAS RAD7  PERFORMANCE CARBONO MTB Microspline  30MM",
+      "qtdBling": 39,
+      "qtdML": 37,
+      "diferenca": 2
     },
     {
       "sku": "5813",
