@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-09-01T23:47:26.454Z",
+  "atualizadoEm": "2026-09-01T23:52:30.960Z",
   "totalSkus": 272,
-  "corretos": 268,
-  "totalDivergentes": 4,
+  "corretos": 269,
+  "totalDivergentes": 3,
   "divergencias": [
     {
       "sku": "97",
@@ -24,13 +24,6 @@
       "qtdBling": 7,
       "qtdML": 5,
       "diferenca": 2
-    },
-    {
-      "sku": "6695",
-      "nome": "CAMISA FRAGA BIKE ELITE 2.0 - FRAGA TAMANHO:GG;COR:PRETO/LARANJA",
-      "qtdBling": 9,
-      "qtdML": 8,
-      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
