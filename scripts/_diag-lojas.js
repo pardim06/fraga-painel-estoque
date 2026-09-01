@@ -33,6 +33,16 @@ async function main() {
   }
   console.log('\nContagem por loja.id (na listagem, se disponível):');
   console.log(JSON.stringify(porLoja, null, 2));
+
+  try {
+    const lojasResp = await blingGet('https://api.bling.com.br/Api/v3/lojas', {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    console.log('\nGET /lojas:');
+    console.log(JSON.stringify(lojasResp.data, null, 2));
+  } catch (err) {
+    console.log('\nGET /lojas falhou:', err.response?.status, JSON.stringify(err.response?.data));
+  }
 }
 
 main().catch((err) => {
