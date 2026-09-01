@@ -34,14 +34,37 @@ async function main() {
   console.log('\nContagem por loja.id (na listagem, se disponível):');
   console.log(JSON.stringify(porLoja, null, 2));
 
-  try {
-    const lojasResp = await blingGet('https://api.bling.com.br/Api/v3/lojas', {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    console.log('\nGET /lojas:');
-    console.log(JSON.stringify(lojasResp.data, null, 2));
-  } catch (err) {
-    console.log('\nGET /lojas falhou:', err.response?.status, JSON.stringify(err.response?.data));
+  const idsConhecidos = [204966737, 205187092, 205655926];
+  for (const id of idsConhecidos) {
+    try {
+      const lojaResp = await blingGet(`https://api.bling.com.br/Api/v3/lojas/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log(`\nGET /lojas/${id}:`);
+      console.log(JSON.stringify(lojaResp.data, null, 2));
+    } catch (err) {
+      console.log(`\nGET /lojas/${id} falhou:`, err.response?.status, JSON.stringify(err.response?.data));
+    }
+  }
+
+  // Também busca o detalhe completo de um pedido de cada loja, pra ver se
+  // a origem/número do pedido dá alguma pista (ex: prefixo Bagy vs PDV).
+  const exemploPorLoja = {};
+  for (const p of dados) {
+    const id = p.loja?.id;
+    if (id && !exemploPorLoja[id]) exemploPorLoja[id] = p.id;
+  }
+  for (const [lojaId, pedidoId] of Object.entries(exemploPorLoja)) {
+    try {
+      const detResp = await blingGet(`https://api.bling.com.br/Api/v3/pedidos/vendas/${pedidoId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log(`\nDetalhe do pedido ${pedidoId} (loja ${lojaId}):`);
+      console.log(JSON.stringify(detResp.data.data?.loja, null, 2));
+      console.log('numeroLoja:', detResp.data.data?.numeroLoja, '| numero:', detResp.data.data?.numero, '| vendedor:', JSON.stringify(detResp.data.data?.vendedor));
+    } catch (err) {
+      console.log(`\nDetalhe do pedido ${pedidoId} falhou:`, err.response?.status);
+    }
   }
 }
 
