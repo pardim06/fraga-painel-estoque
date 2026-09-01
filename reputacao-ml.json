@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-09-01T09:37:48.443Z",
+  "atualizadoEm": "2026-09-01T09:40:26.580Z",
   "nickname": "FRAGAPROMO",
   "nivel": "5_green",
   "powerSeller": "gold",
@@ -14,8 +14,8 @@
       "quantidade": 14
     },
     "atraso": {
-      "taxa": 0.0087,
-      "quantidade": 14
+      "taxa": 0.0093,
+      "quantidade": 15
     }
   }
 }
