@@ -47,7 +47,7 @@ async function trocarML(code) {
 
 async function trocarBling(code) {
   const resp = await axios.post(
-    'https://www.bling.com.br/Api/v3/oauth/token',
+    'https://api.bling.com.br/Api/v3/oauth/token',
     new URLSearchParams({
       grant_type: 'authorization_code',
       code,

@@ -15,7 +15,8 @@ const path = require('path');
 require('dotenv').config(); // no-op em produção: GitHub Actions já injeta as env vars diretamente
 const axios = require('axios');
 const { getBlingAccessToken, getMLAccessToken } = require('./lib/tokens');
-const { blingGet, aguardar } = require('./lib/bling-http');
+const { aguardar } = require('./lib/bling-http');
+const { getEstoqueBling } = require('./lib/bling-estoque');
 const { enviarNotificacao } = require('./lib/notificar');
 
 // ===== CONFIG (variáveis de ambiente / GitHub Secrets) =====
@@ -24,68 +25,9 @@ const HISTORICO_PATH = path.join(__dirname, 'historico-correcoes.json');
 const HISTORICO_MAX = 300; // mantém só as correções mais recentes, pra não crescer sem limite
 const HISTORICO_MENSAL_PATH = path.join(__dirname, 'historico-mensal.json');
 
-// Depósito "1 - SITE / MERCADO LIVRE" — só o estoque desse depósito deve ser
-// comparado com o ML (os outros são lojas físicas, reserva, eventos etc.).
-const BLING_DEPOSITO_ID = process.env.BLING_DEPOSITO_ID || '14887750294';
 const ML_SELLER_ID = process.env.ML_SELLER_ID;
 
 const TOLERANCIA = 0; // diferença mínima pra considerar divergência (0 = qualquer diferença já dispara)
-
-// ===== 2. ESTOQUE NO BLING =====
-// Retorna um mapa { sku: quantidade }
-// Usa só o saldo do depósito "SITE / MERCADO LIVRE" (BLING_DEPOSITO_ID) — o
-// saldo agregado de /produtos soma também lojas físicas e outros depósitos,
-// o que não é o estoque de fato publicado no ML.
-async function getEstoqueBling(accessToken) {
-  // 1. lista todos os produtos ativos, exceto os "pai" com variações (formato "V"):
-  // { id -> {codigo, nome} }. Um produto pai não tem saldo próprio — quem carrega
-  // o estoque de verdade são as variações filhas, que já aparecem nessa mesma
-  // listagem como itens separados (formato "S"). Kits (formato "E") têm saldo
-  // próprio normalmente e entram na comparação como qualquer produto simples.
-  const infoPorId = {};
-  let pagina = 1;
-
-  while (true) {
-    const resp = await blingGet('https://www.bling.com.br/Api/v3/produtos', {
-      headers: { Authorization: `Bearer ${accessToken}` },
-      params: { pagina, limite: 100, situacao: 'A' }, // só produtos ativos
-    });
-
-    const dados = resp.data.data || [];
-    if (dados.length === 0) break;
-
-    for (const item of dados) {
-      if (item.codigo && item.formato !== 'V') {
-        infoPorId[item.id] = { codigo: item.codigo, nome: item.nome };
-      }
-    }
-
-    pagina++;
-  }
-
-  // 2. busca o saldo por depósito em lotes (idsProdutos)
-  const estoques = {};
-  const idsProdutos = Object.keys(infoPorId);
-  const TAMANHO_LOTE = 50;
-
-  for (let i = 0; i < idsProdutos.length; i += TAMANHO_LOTE) {
-    const lote = idsProdutos.slice(i, i + TAMANHO_LOTE);
-    const resp = await blingGet('https://www.bling.com.br/Api/v3/estoques/saldos', {
-      headers: { Authorization: `Bearer ${accessToken}` },
-      params: { idsProdutos: lote },
-    });
-
-    for (const item of resp.data.data || []) {
-      const info = infoPorId[item.produto?.id];
-      const sku = item.produto?.codigo ?? info?.codigo;
-      const depositoSite = item.depositos?.find((d) => String(d.id) === String(BLING_DEPOSITO_ID));
-      const saldo = depositoSite?.saldoVirtual ?? depositoSite?.saldoFisico;
-      if (sku && saldo !== undefined) estoques[sku] = { saldo, nome: info?.nome };
-    }
-  }
-
-  return estoques;
-}
 
 // ===== 4. ESTOQUE PUBLICADO NO ML =====
 // Retorna um mapa { sku: quantidade_disponivel }
