@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-09-02T14:01:41.535Z",
+  "atualizadoEm": "2026-09-02T14:14:33.365Z",
   "totalUnhealthy": 285,
   "totalWarning": 12,
   "itens": [
@@ -3195,14 +3195,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Preencha os dados fiscais para emitir faturas",
-          "tipo": "oportunidade",
-          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4803870204/tax-information"
-        },
-        {
           "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4803870204"
+        },
+        {
+          "titulo": "Preencha os dados fiscais para emitir faturas",
+          "tipo": "oportunidade",
+          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4803870204/tax-information"
         }
       ]
     },
