@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-09-02T15:13:04.861Z",
+  "atualizadoEm": "2026-09-02T15:17:34.102Z",
   "totalSkus": 1928,
   "corretos": 1840,
   "totalDivergentes": 88,
@@ -165,8 +165,8 @@
     {
       "sku": "2546",
       "nome": "BRETELLE MASCULINO CICLY LIFE TOP GEL PRETO TAMANHO:M;Cor:preto",
-      "qtdBling": 0,
-      "qtdBagy": -1,
+      "qtdBling": 40,
+      "qtdBagy": 39,
       "diferenca": 1
     },
     {
