@@ -74,10 +74,6 @@
       <div class="badge-live"><span class="dot"></span> Confere 1x/dia</div>
     </div>
 
-    <div class="info-banner rise" style="animation-delay:.04s">
-      Fase de validação: essa comparação é só leitura, nenhum estoque é corrigido automaticamente na Bagy ainda. Serve pra conferir se os números batem antes de ativar a correção automática, como já existe pro Mercado Livre.
-    </div>
-
     <div id="conteudo"></div>
 
     <footer>Painel interno · dados do último resultado gerado pelo verificador Bagy × Bling</footer>
@@ -138,13 +134,20 @@
     return (n > 0 ? '+' : '') + n;
   }
 
+  // Só o sentido de risco (Bling < Bagy) passa por correção automática.
   function statusBadge(d) {
-    if (d.diferenca < 0) return '<span class="status-badge alert">Risco de furo</span>';
-    return '<span class="status-badge neutral">Sem ação</span>';
+    if (d.diferenca >= 0) {
+      return '<span class="status-badge neutral">sem ação</span>';
+    }
+    if (d.corrigido) {
+      return '<span class="status-badge ok" title="' + escapeHtml(d.corrigidoDetalhe || '') + '">Corrigido</span>';
+    }
+    return '<span class="status-badge alert" title="' + escapeHtml(d.corrigidoDetalhe || '') + '">Falha ao corrigir</span>';
   }
 
   function statusTexto(d) {
-    return d.diferenca < 0 ? 'Risco de furo' : 'Sem acao';
+    if (d.diferenca >= 0) return 'Sem acao';
+    return d.corrigido ? 'Corrigido' : 'Falha ao corrigir';
   }
 
   function gaugeSvg(pct) {

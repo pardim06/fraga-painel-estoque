@@ -52,8 +52,9 @@ jobs:
           ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
           GH_PAT: ${{ secrets.GH_PAT }}
 
-      # Fase de validação: só leitura, roda 1x/dia junto dos outros (estoque
-      # Bagy não muda tão rápido quanto o do ML). Ver verificador-estoque-bagy-bling.js.
+      # Corrige o sentido de risco (Bling < Bagy) automaticamente, igual ao
+      # ML. Roda 1x/dia junto dos outros (estoque Bagy não muda tão rápido
+      # quanto o do ML). Ver verificador-estoque-bagy-bling.js.
       - run: npm run verificar-bagy
         env:
           BLING_CLIENT_ID: ${{ secrets.BLING_CLIENT_ID }}
@@ -62,6 +63,13 @@ jobs:
           BLING_DEPOSITO_ID: ${{ secrets.BLING_DEPOSITO_ID }}
           BAGY_ACCESS_TOKEN: ${{ secrets.BAGY_ACCESS_TOKEN }}
           GH_PAT: ${{ secrets.GH_PAT }}
+          CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
+          CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
+          ZAPI_INSTANCE_URL: ${{ secrets.ZAPI_INSTANCE_URL }}
+          WHATSAPP_DESTINO: ${{ secrets.WHATSAPP_DESTINO }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
 
       - name: Commitar resultado atualizado
         run: |

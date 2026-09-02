@@ -1,13 +1,12 @@
 // scripts/verificador-estoque-bagy-bling.js
 //
 // Verifica divergência entre o estoque do Bling e o estoque publicado na
-// loja Bagy (fragabikeshop.com.br). Roda via GitHub Actions — veja
-// .github/workflows/bagy.yml.
+// loja Bagy (fragabikeshop.com.br) e corrige o sentido de risco (Bling <
+// Bagy). Roda via GitHub Actions, 1x/dia — veja .github/workflows/saude-anuncios.yml.
 //
-// Diferente do verificador-estoque-ml-bling.js, esse aqui é SÓ LEITURA:
-// não corrige nada automaticamente na Bagy nem manda alerta de risco.
-// Objetivo por enquanto é validar se a comparação bate com a realidade
-// antes de considerar automatizar a correção, como já existe pro ML.
+// Mesmo padrão do verificador-estoque-ml-bling.js: só corrige o sentido que
+// tem risco real de vender sem estoque (Bling < Bagy); Bling > Bagy não é
+// mexido automaticamente, só sobra estoque não anunciado, sem risco.
 
 const fs = require('fs');
 const path = require('path');
@@ -15,16 +14,20 @@ require('dotenv').config(); // no-op em produção: GitHub Actions já injeta as
 const axios = require('axios');
 const { getBlingAccessToken } = require('../lib/tokens');
 const { getEstoqueBling } = require('../lib/bling-estoque');
+const { aguardar } = require('../lib/bling-http');
+const { enviarNotificacao } = require('../lib/notificar');
 
 const OUTPUT_PATH = path.join(__dirname, '..', 'resultado-bagy.json');
 const BAGY_ACCESS_TOKEN = process.env.BAGY_ACCESS_TOKEN;
 
 // ===== ESTOQUE PUBLICADO NA BAGY =====
-// Retorna um mapa { sku: { saldo, nome } }. O estoque de verdade mora na
-// variação (variations[].balance), não no produto — mesmo produto sem
-// variação visível no site aparece aqui como 1 variação única (confirmado
-// testando contra a loja real). sku/external_id/reference da variação são
-// sempre iguais entre si e batem com o "codigo" do Bling.
+// Retorna um mapa { sku: { saldo, nome, variationId } }. O estoque de
+// verdade mora na variação (variations[].balance), não no produto — mesmo
+// produto sem variação visível no site aparece aqui como 1 variação única
+// (confirmado testando contra a loja real). sku/external_id/reference da
+// variação são sempre iguais entre si e batem com o "codigo" do Bling.
+// variationId (variations[].id) é o que a API de correção de estoque da
+// Bagy espera — não é o mesmo que o sku.
 async function getEstoqueBagy() {
   const estoques = {};
   let page = 1;
@@ -47,7 +50,7 @@ async function getEstoqueBagy() {
         if (!sku) continue;
 
         const saldo = (v.balance || 0) - (v.reserved_balance || 0);
-        estoques[sku] = { saldo, nome: produto.name };
+        estoques[sku] = { saldo, nome: produto.name, variationId: v.id };
       }
     }
 
@@ -84,11 +87,98 @@ function compararEstoques(estoqueBling, estoqueBagy) {
         qtdBling: bling.saldo,
         qtdBagy: bagy.saldo,
         diferenca,
+        variationId: bagy.variationId, // uso interno (corrigirEstoqueBagy)
       });
     }
   }
 
   return { divergencias, semSkuNoBling };
+}
+
+// ===== CORREÇÃO AUTOMÁTICA NA BAGY =====
+// Só corrige o sentido de risco (Bling < Bagy): atualiza o saldo da
+// variação na Bagy pra bater com o saldo real do Bling. Bling > Bagy não é
+// mexido automaticamente — só sobra estoque não anunciado, sem risco.
+//
+// Saldo negativo no Bling (produto vendido sem ter, "furo" já consumado)
+// vira 0 na Bagy — uma vitrine não tem como mostrar "-1 unidade", e o
+// objetivo aqui é parar de vender, não representar o furo.
+//
+// A API da Bagy aceita lote de até 150 (PUT /stocks, array de
+// {variation_id, balance}) — bem mais eficiente que 1 chamada por SKU.
+const BAGY_LOTE_MAX = 150;
+
+async function corrigirEstoqueBagy(divergencias) {
+  const paraCorrigir = divergencias.filter((d) => d.diferenca < 0 && d.variationId);
+
+  for (let i = 0; i < paraCorrigir.length; i += BAGY_LOTE_MAX) {
+    const lote = paraCorrigir.slice(i, i + BAGY_LOTE_MAX);
+    const body = lote.map((d) => ({
+      variation_id: d.variationId,
+      balance: Math.max(0, d.qtdBling),
+    }));
+
+    try {
+      const resp = await axios.put('https://api.dooca.store/stocks', body, {
+        headers: { Authorization: `Bearer ${BAGY_ACCESS_TOKEN}` },
+      });
+      // A Bagy não dá erro HTTP pra variação inexistente — só lista o id em
+      // variations_not_found. Sem isso, um produto excluído/renomeado na
+      // Bagy pareceria "corrigido" sem ter sido de fato.
+      const naoEncontradas = new Set(resp.data?.variations_not_found || []);
+
+      lote.forEach((d) => {
+        if (naoEncontradas.has(d.variationId)) {
+          d.corrigido = false;
+          d.corrigidoDetalhe = 'Variação não encontrada na Bagy (produto pode ter sido excluído/alterado)';
+        } else {
+          d.corrigido = true;
+          d.corrigidoDetalhe = `Atualizado para ${Math.max(0, d.qtdBling)}`;
+        }
+      });
+      console.log(`Lote de ${lote.length} SKU(s) processado(s) na Bagy (${naoEncontradas.size} não encontrada(s)).`);
+    } catch (err) {
+      const erro = err.response?.data?.message || err.message;
+      lote.forEach((d) => {
+        d.corrigido = false;
+        d.corrigidoDetalhe = `Falha ao corrigir: ${erro}`;
+      });
+      console.log(`Falha ao corrigir lote de ${lote.length} SKU(s) na Bagy: ${erro}`);
+    }
+
+    await aguardar(300);
+  }
+}
+
+// ===== ALERTA DE RISCO (WhatsApp/e-mail) =====
+// Só avisa dos casos que a correção automática NÃO conseguiu resolver
+// sozinha — o que corrigiu não precisa acordar ninguém, já está resolvido.
+async function enviarAlertaRisco(divergencias) {
+  const risco = divergencias.filter((d) => d.diferenca < 0 && !d.corrigido);
+  if (risco.length === 0) return;
+
+  const LIMITE_ITENS = 15;
+  const separador = '----------------------------';
+
+  let corpo = `*RISCO DE FURO NA BAGY - CORRECAO AUTOMATICA FALHOU*\n${risco.length} produto(s) precisam de atencao manual\n`;
+
+  for (const d of risco.slice(0, LIMITE_ITENS)) {
+    corpo +=
+      `\n${separador}\n` +
+      `*SKU ${d.sku}*\n` +
+      `${d.nome || 'sem nome'}\n` +
+      `Bling: ${d.qtdBling}  |  Bagy: ${d.qtdBagy}\n` +
+      `Motivo: ${d.corrigidoDetalhe || 'nao corrigido'}\n`;
+  }
+
+  if (risco.length > LIMITE_ITENS) {
+    corpo += `\n${separador}\n... e mais ${risco.length - LIMITE_ITENS} produto(s) em risco. Veja todos no painel.\n`;
+  }
+
+  const enviado = await enviarNotificacao(corpo, `Risco de furo de estoque na Bagy - ${risco.length} SKU(s)`);
+  if (enviado) {
+    console.log(`Alerta enviado (${risco.length} SKU(s) em risco na Bagy).`);
+  }
 }
 
 // ===== SALVAR RESULTADO PRO PAINEL =====
@@ -101,9 +191,9 @@ function salvarResultadoLocal({ totalSkusBagy, divergencias, semSkuNoBling }) {
     totalSkus: totalComparavel,
     corretos,
     totalDivergentes: divergencias.length,
-    divergencias,
+    // "variationId" é só uso interno (corrigirEstoqueBagy), não vai pro painel.
+    divergencias: divergencias.map(({ variationId, ...resto }) => resto),
     semSkuNoBling,
-    observacao: 'Comparação só leitura — nenhuma correção automática é feita na Bagy ainda.',
   };
 
   fs.writeFileSync(OUTPUT_PATH, JSON.stringify(resultado, null, 2));
@@ -128,6 +218,8 @@ async function main() {
     console.log(`Aviso: ${semSkuNoBling.length} SKUs da Bagy não foram encontrados no Bling (verifique cadastro).`);
   }
 
+  await corrigirEstoqueBagy(divergencias);
+  await enviarAlertaRisco(divergencias);
   salvarResultadoLocal({ totalSkusBagy, divergencias, semSkuNoBling });
 }
 
