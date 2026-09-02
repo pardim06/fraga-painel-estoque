@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-09-02T14:16:42.774Z",
+  "atualizadoEm": "2026-09-02T14:31:10.352Z",
   "totalSkus": 1928,
-  "corretos": 1831,
-  "totalDivergentes": 97,
+  "corretos": 1839,
+  "totalDivergentes": 89,
   "divergencias": [
     {
       "sku": "283",
@@ -73,15 +73,6 @@
       "corrigidoDetalhe": "Atualizado para 0"
     },
     {
-      "sku": "840",
-      "nome": "FREIO D HID DIANT SH DEORE BL-M6100/BR-M6100 - RESINA 1000MM",
-      "qtdBling": 0,
-      "qtdBagy": 2,
-      "diferenca": -2,
-      "corrigido": true,
-      "corrigidoDetalhe": "Atualizado para 0"
-    },
-    {
       "sku": "1056",
       "nome": "CAMBIO TRASEIRO SHIMANO DEORE XT RD-M8100 SGS 12V",
       "qtdBling": -1,
@@ -136,24 +127,6 @@
       "corrigidoDetalhe": "Atualizado para 0"
     },
     {
-      "sku": "1655",
-      "nome": "FREIO D HID TRAS SH DEORE BL-M6100/BR-M6100 - METALICA1700MM",
-      "qtdBling": 0,
-      "qtdBagy": 17,
-      "diferenca": -17,
-      "corrigido": true,
-      "corrigidoDetalhe": "Atualizado para 0"
-    },
-    {
-      "sku": "1656",
-      "nome": "FREIO D HID DIANT SH DEORE BL-M6100/BR-M6100 - METAL 1000MM",
-      "qtdBling": 0,
-      "qtdBagy": 17,
-      "diferenca": -17,
-      "corrigido": true,
-      "corrigidoDetalhe": "Atualizado para 0"
-    },
-    {
       "sku": "1698",
       "nome": "CAPACETE CICLISMO LAZER ROAD TONIC KINETICORE - CINZA GELO COR:CZA GELO;TAMANHO:G",
       "qtdBling": -1,
@@ -168,24 +141,6 @@
       "qtdBling": -1,
       "qtdBagy": 0,
       "diferenca": -1,
-      "corrigido": true,
-      "corrigidoDetalhe": "Atualizado para 0"
-    },
-    {
-      "sku": "1782",
-      "nome": "CAPACETE CICLISMO LAZER FINCH KINETICORE - PRETO FOSCO COR:PRETO FSC;TAMANHO:UNICO",
-      "qtdBling": 6,
-      "qtdBagy": 9,
-      "diferenca": -3,
-      "corrigido": true,
-      "corrigidoDetalhe": "Atualizado para 6"
-    },
-    {
-      "sku": "1932",
-      "nome": "PAR DE FREIO HID SHIMANO DEORE BL-M6100/BR-M6100 METALICA",
-      "qtdBling": 0,
-      "qtdBagy": 17,
-      "diferenca": -17,
       "corrigido": true,
       "corrigidoDetalhe": "Atualizado para 0"
     },
@@ -560,24 +515,6 @@
       "corrigidoDetalhe": "Atualizado para 0"
     },
     {
-      "sku": "5521",
-      "nome": "KIT 5 SACHÊS 20G - SUDRACT ISOTÔNICO HYDRAMAXI - LARANJA",
-      "qtdBling": 0,
-      "qtdBagy": 10,
-      "diferenca": -10,
-      "corrigido": true,
-      "corrigidoDetalhe": "Atualizado para 0"
-    },
-    {
-      "sku": "5522",
-      "nome": "KIT 10 SACHÊS 20G - SUDRACT ISOTÔNICO HYDRAMAXI - LARANJA",
-      "qtdBling": 0,
-      "qtdBagy": 5,
-      "diferenca": -5,
-      "corrigido": true,
-      "corrigidoDetalhe": "Atualizado para 0"
-    },
-    {
       "sku": "5878",
       "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  PRETO/VERMELHO CICLISMO TAMANHO:39;COR:PRETO/VERMELHO",
       "qtdBling": -1,
@@ -846,15 +783,6 @@
       "diferenca": -1,
       "corrigido": true,
       "corrigidoDetalhe": "Atualizado para 0"
-    },
-    {
-      "sku": "6540",
-      "nome": "POTE ENERGY PRO 750G SUPLEMENTO SUDRACT - TANGERINA",
-      "qtdBling": 2,
-      "qtdBagy": 5,
-      "diferenca": -3,
-      "corrigido": true,
-      "corrigidoDetalhe": "Atualizado para 2"
     },
     {
       "sku": "6708",
