@@ -53,14 +53,6 @@ jobs:
           GH_PAT: ${{ secrets.GH_PAT }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-
-      # resultado-bagy.json não é commitado mais — vai pro Supabase (dado de
-      # negócio, não pertence a um repo público). Ver lib/supabase-publicar.js.
-      - name: Commitar resultado atualizado
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add resultado-verificacao.json historico-correcoes.json historico-mensal.json
-          git diff --quiet --cached || git commit -m "chore: atualiza resultado da verificacao de estoque ML"
-          git pull --rebase
-          git push
+      # resultado-verificacao.json, historico-correcoes.json, historico-mensal.json
+      # e resultado-bagy.json vao todos pro Supabase agora — nada sobra pra
+      # commitar nesse workflow. Ver lib/supabase-publicar.js.
