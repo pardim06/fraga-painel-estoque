@@ -17,7 +17,7 @@ const ESTADO_PATH = path.join(__dirname, '..', 'vigia-estado.json');
 // Limite generoso (6x a cadência real de ~5min / 1x/dia) pra não disparar
 // falso alarme por um atraso pontual do GitHub Actions.
 const FONTES = [
-  { chave: 'estoque', arquivo: 'resultado-verificacao.json', limiteMin: 30, label: 'Painel de Estoque' },
+  { chave: 'estoque', arquivo: 'resultado-verificacao.json', limiteMin: 30, label: 'Estoque Mercado Livre' },
   { chave: 'perguntas', arquivo: 'perguntas-ml.json', limiteMin: 30, label: 'Perguntas ML' },
   { chave: 'reputacao', arquivo: 'reputacao-ml.json', limiteMin: 30, label: 'Reputação ML' },
   { chave: 'lista-compras', arquivo: 'lista-compras.json', limiteMin: 60 * 30, label: 'Lista de Compras' },

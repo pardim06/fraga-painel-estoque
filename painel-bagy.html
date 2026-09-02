@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Estoque Mercado Livre · Fraga Bike Shop</title>
+<title>Estoque Bagy · Fraga Bike Shop</title>
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="stylesheet" href="assets/estilo.css">
 </head>
@@ -28,11 +28,11 @@
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="2" y="10" width="4" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="8" y="5" width="4" height="13" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="2" width="4" height="16" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
         Dashboard
       </a>
-      <a href="painel-estoque.html" class="active">
+      <a href="painel-estoque.html">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5.5 7h9l1 10.5a1 1 0 01-1 1.1H5.5a1 1 0 01-1-1.1L5.5 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 7V5.5a2.5 2.5 0 015 0V7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         Estoque Mercado Livre
       </a>
-      <a href="painel-bagy.html">
+      <a href="painel-bagy.html" class="active">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 6l7-3.5L17 6v8l-7 3.5L3 14V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 6l7 3.5L17 6M10 9.5V17.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
         Estoque Bagy
       </a>
@@ -68,15 +68,19 @@
   <main class="content">
     <div class="page-head rise">
       <div>
-        <h1>Estoque Mercado Livre</h1>
-        <div class="subtitle">Fraga Bike Shop · Bling × Mercado Livre</div>
+        <h1>Estoque Bagy</h1>
+        <div class="subtitle">Fraga Bike Shop · Bling × Bagy (fragabikeshop.com.br)</div>
       </div>
-      <div class="badge-live"><span class="dot"></span> Confere a cada 5min</div>
+      <div class="badge-live"><span class="dot"></span> Confere 1x/dia</div>
+    </div>
+
+    <div class="info-banner rise" style="animation-delay:.04s">
+      Fase de validação: essa comparação é só leitura, nenhum estoque é corrigido automaticamente na Bagy ainda. Serve pra conferir se os números batem antes de ativar a correção automática, como já existe pro Mercado Livre.
     </div>
 
     <div id="conteudo"></div>
 
-    <footer>Painel interno · dados do último resultado gerado pelo verificador automático</footer>
+    <footer>Painel interno · dados do último resultado gerado pelo verificador Bagy × Bling</footer>
   </main>
 </div>
 
@@ -97,17 +101,14 @@
   async function carregar() {
     renderCarregando();
 
-    const [dados, historico] = await Promise.all([
-      buscarJson('resultado-verificacao.json'),
-      buscarJson('historico-correcoes.json'),
-    ]);
+    const dados = await buscarJson('resultado-bagy.json');
 
     if (!dados) {
-      renderErro('Não foi possível carregar o resultado-verificacao.json. Ele só existe depois da primeira execução do workflow no GitHub Actions.');
+      renderErro('Não foi possível carregar o resultado-bagy.json. Ele só existe depois da primeira execução do workflow no GitHub Actions.');
       return;
     }
 
-    renderPainel(dados, historico || []);
+    renderPainel(dados);
   }
 
   function renderCarregando() {
@@ -131,26 +132,19 @@
     return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
   }
 
-  // Positivo: Bling tem mais que o ML. Negativo: Bling tem menos que o ML
-  // publicado (risco de vender sem estoque).
+  // Positivo: Bling tem mais que a Bagy. Negativo: Bling tem menos que a
+  // Bagy publicada (risco de vender sem estoque).
   function formatarDiferenca(n) {
     return (n > 0 ? '+' : '') + n;
   }
 
-  // Só o sentido de risco (Bling < ML) passa por correção automática.
   function statusBadge(d) {
-    if (d.diferenca >= 0) {
-      return '<span class="status-badge neutral">sem ação</span>';
-    }
-    if (d.corrigido) {
-      return '<span class="status-badge ok" title="' + escapeHtml(d.corrigidoDetalhe || '') + '">Corrigido</span>';
-    }
-    return '<span class="status-badge alert" title="' + escapeHtml(d.corrigidoDetalhe || '') + '">Falha ao corrigir</span>';
+    if (d.diferenca < 0) return '<span class="status-badge alert">Risco de furo</span>';
+    return '<span class="status-badge neutral">Sem ação</span>';
   }
 
   function statusTexto(d) {
-    if (d.diferenca >= 0) return 'Sem acao';
-    return d.corrigido ? 'Corrigido' : 'Falha ao corrigir';
+    return d.diferenca < 0 ? 'Risco de furo' : 'Sem acao';
   }
 
   function gaugeSvg(pct) {
@@ -164,14 +158,15 @@
       </svg>`;
   }
 
-  function renderPainel(dados, historico) {
-    const { atualizadoEm, totalSkus, corretos, totalDivergentes, divergencias } = dados;
+  function renderPainel(dados) {
+    const { atualizadoEm, totalSkus, corretos, totalDivergentes, divergencias, semSkuNoBling } = dados;
     const total = totalSkus ?? 0;
     const ok = corretos ?? 0;
     const pct = total > 0 ? Math.round((ok / total) * 100) : 0;
     const divs = divergencias || [];
+    const risco = divs.filter((d) => d.diferenca < 0).length;
 
-    window._divergenciasAtuais = divs;
+    window._divergenciasBagyAtuais = divs;
 
     let html = '';
 
@@ -183,6 +178,7 @@
     html += '    <div class="spec-row"><span class="k">Total de SKUs verificados</span><span class="v">' + (totalSkus ?? '—') + '</span></div>';
     html += '    <div class="spec-row spec-ok"><span class="k">Corretos</span><span class="v">' + (corretos ?? '—') + '</span></div>';
     html += '    <div class="spec-row spec-alert"><span class="k">Divergentes</span><span class="v">' + (totalDivergentes ?? 0) + '</span></div>';
+    html += '    <div class="spec-row spec-alert"><span class="k">Risco de furo (Bling &lt; Bagy)</span><span class="v">' + risco + '</span></div>';
     html += '    <div class="updated-at">Última verificação: ' + formatarData(atualizadoEm) + '</div>';
     html += '  </div>';
     html += '</div>';
@@ -199,17 +195,17 @@
 
     if (divs.length > 0) {
       html += '<div class="table-scroll rise" style="animation-delay:.14s"><table><thead><tr>' +
-        '<th>SKU</th><th>Produto</th><th class="num">Bling</th><th class="num">ML</th><th class="num">Diferença</th><th>Status</th>' +
+        '<th>SKU</th><th>Produto</th><th class="num">Bling</th><th class="num">Bagy</th><th class="num">Diferença</th><th>Status</th>' +
         '</tr></thead><tbody>';
       divs
         .slice()
-        .sort((a, b) => Math.abs(b.diferenca) - Math.abs(a.diferenca))
+        .sort((a, b) => a.diferenca - b.diferenca)
         .forEach((d) => {
           html += '<tr>' +
             '<td class="sku">' + escapeHtml(d.sku) + '</td>' +
             '<td class="produto" title="' + escapeHtml(d.nome) + '">' + escapeHtml(d.nome || '—') + '</td>' +
             '<td class="num">' + d.qtdBling + '</td>' +
-            '<td class="num">' + d.qtdML + '</td>' +
+            '<td class="num">' + d.qtdBagy + '</td>' +
             '<td class="num"><span class="diff-badge">' + formatarDiferenca(d.diferenca) + '</span></td>' +
             '<td>' + statusBadge(d) + '</td>' +
             '</tr>';
@@ -221,29 +217,13 @@
         'Estoque em dia, nenhuma divergência encontrada</div>';
     }
 
-    if (historico && historico.length > 0) {
-      html += '<div class="section-header rise" style="animation-delay:.24s; margin-top:24px;">';
-      html += '  <div class="section-title">Histórico de correções automáticas <span class="count-chip">' + historico.length + '</span>' +
-        '<span style="font-size:11.5px;font-weight:400;color:var(--ink-faint);">últimos 3 dias</span></div>';
-      html += '</div>';
-      html += '<div class="table-scroll rise" style="animation-delay:.26s"><table><thead><tr>' +
-        '<th>SKU</th><th>Produto</th><th class="num">De</th><th class="num">Para</th><th>Quando</th>' +
-        '</tr></thead><tbody>';
-      historico.forEach((h) => {
-        html += '<tr>' +
-          '<td class="sku">' + escapeHtml(h.sku) + '</td>' +
-          '<td class="produto" title="' + escapeHtml(h.nome) + '">' + escapeHtml(h.nome || '—') + '</td>' +
-          '<td class="num">' + h.qtdAnteriorML + '</td>' +
-          '<td class="num">' + h.qtdNova + '</td>' +
-          '<td>' + formatarData(h.dataHora) + '</td>' +
-          '</tr>';
-      });
-      html += '</tbody></table></div>';
+    if (semSkuNoBling && semSkuNoBling.length > 0) {
+      html += '<div class="updated-at rise" style="animation-delay:.2s; margin-top:16px;">' +
+        semSkuNoBling.length + ' SKU(s) da Bagy não encontrados no Bling (produto pode estar inativo/excluído no Bling ou com código diferente)</div>';
     }
 
     document.getElementById('conteudo').innerHTML = html;
 
-    // dispara a animação do medidor depois que o SVG já está no DOM
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         const prog = document.querySelector('.gauge-progress');
@@ -253,15 +233,15 @@
   }
 
   function exportarCSV() {
-    const lista = window._divergenciasAtuais || [];
+    const lista = window._divergenciasBagyAtuais || [];
     if (lista.length === 0) return;
 
-    let csv = 'SKU;Produto;Estoque Bling;Estoque ML;Diferenca;Status\n';
+    let csv = 'SKU;Produto;Estoque Bling;Estoque Bagy;Diferenca;Status\n';
     lista
       .slice()
-      .sort((a, b) => Math.abs(b.diferenca) - Math.abs(a.diferenca))
+      .sort((a, b) => a.diferenca - b.diferenca)
       .forEach((d) => {
-        csv += d.sku + ';' + (d.nome || '').replace(/;/g, ',') + ';' + d.qtdBling + ';' + d.qtdML + ';' + formatarDiferenca(d.diferenca) + ';' + statusTexto(d) + '\n';
+        csv += d.sku + ';' + (d.nome || '').replace(/;/g, ',') + ';' + d.qtdBling + ';' + d.qtdBagy + ';' + formatarDiferenca(d.diferenca) + ';' + statusTexto(d) + '\n';
       });
 
     const blob = new Blob(['﻿' + csv], { type: 'text/csv;charset=utf-8;' });
@@ -269,7 +249,7 @@
     const a = document.createElement('a');
     const hoje = new Date().toISOString().slice(0, 10);
     a.href = url;
-    a.download = 'produtos-para-arrumar-' + hoje + '.csv';
+    a.download = 'divergencias-bagy-' + hoje + '.csv';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -277,15 +257,15 @@
   }
 
   function copiarLista() {
-    const lista = window._divergenciasAtuais || [];
+    const lista = window._divergenciasBagyAtuais || [];
     if (lista.length === 0) return;
 
-    let texto = 'Produtos para arrumar (' + lista.length + '):\n\n';
+    let texto = 'Divergências Bagy x Bling (' + lista.length + '):\n\n';
     lista
       .slice()
-      .sort((a, b) => Math.abs(b.diferenca) - Math.abs(a.diferenca))
+      .sort((a, b) => a.diferenca - b.diferenca)
       .forEach((d) => {
-        texto += 'SKU ' + d.sku + ' (' + (d.nome || 'sem nome') + '): Bling ' + d.qtdBling + ' | ML ' + d.qtdML + ' | diferenca ' + formatarDiferenca(d.diferenca) + ' | ' + statusTexto(d) + '\n';
+        texto += 'SKU ' + d.sku + ' (' + (d.nome || 'sem nome') + '): Bling ' + d.qtdBling + ' | Bagy ' + d.qtdBagy + ' | diferenca ' + formatarDiferenca(d.diferenca) + ' | ' + statusTexto(d) + '\n';
       });
 
     navigator.clipboard.writeText(texto).then(() => {

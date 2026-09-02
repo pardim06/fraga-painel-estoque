@@ -52,11 +52,22 @@ jobs:
           ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
           GH_PAT: ${{ secrets.GH_PAT }}
 
+      # Fase de validação: só leitura, roda 1x/dia junto dos outros (estoque
+      # Bagy não muda tão rápido quanto o do ML). Ver verificador-estoque-bagy-bling.js.
+      - run: npm run verificar-bagy
+        env:
+          BLING_CLIENT_ID: ${{ secrets.BLING_CLIENT_ID }}
+          BLING_CLIENT_SECRET: ${{ secrets.BLING_CLIENT_SECRET }}
+          BLING_REFRESH_TOKEN: ${{ secrets.BLING_REFRESH_TOKEN }}
+          BLING_DEPOSITO_ID: ${{ secrets.BLING_DEPOSITO_ID }}
+          BAGY_ACCESS_TOKEN: ${{ secrets.BAGY_ACCESS_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+
       - name: Commitar resultado atualizado
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add saude-anuncios.json saude-anuncios-estado.json mercadolider-platinum.json
-          git diff --quiet --cached || git commit -m "chore: atualiza saude dos anuncios e progresso pro MercadoLider Platinum"
+          git add saude-anuncios.json saude-anuncios-estado.json mercadolider-platinum.json resultado-bagy.json
+          git diff --quiet --cached || git commit -m "chore: atualiza saude dos anuncios, mercadolider e estoque bagy"
           git pull --rebase
           git push
