@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-09-02T13:32:45.565Z",
+  "atualizadoEm": "2026-09-02T13:35:52.254Z",
   "totalSkus": 270,
-  "corretos": 267,
-  "totalDivergentes": 3,
+  "corretos": 266,
+  "totalDivergentes": 4,
   "divergencias": [
     {
       "sku": "97",
@@ -24,6 +24,13 @@
       "qtdBling": 7,
       "qtdML": 5,
       "diferenca": 2
+    },
+    {
+      "sku": "6658",
+      "nome": "Par Cubo Diant/tras 32f K7 Padrão Hg Boost Rolamentado Lotus",
+      "qtdBling": 6,
+      "qtdML": 5,
+      "diferenca": 1
     }
   ],
   "semSkuNoBling": [
