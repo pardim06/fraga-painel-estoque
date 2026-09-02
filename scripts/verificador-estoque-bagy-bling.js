@@ -2,7 +2,14 @@
 //
 // Verifica divergência entre o estoque do Bling e o estoque publicado na
 // loja Bagy (fragabikeshop.com.br) e corrige o sentido de risco (Bling <
-// Bagy). Roda via GitHub Actions, 1x/dia — veja .github/workflows/saude-anuncios.yml.
+// Bagy). Roda via GitHub Actions, a cada 5min — chamado de dentro do
+// verificador-estoque-ml-bling.js (veja rodarVerificacaoBagy abaixo).
+//
+// IMPORTANTE: o Bling gira o refresh_token a cada uso — se esse script
+// chamasse getBlingAccessToken() de novo aqui, um segundo processo/step na
+// mesma execução do workflow usaria um token já invalidado pelo primeiro
+// (foi exatamente isso que quebrou quando isso rodava como step separado).
+// Por isso recebe blingToken/estoqueBling já prontos de quem chamou.
 //
 // Mesmo padrão do verificador-estoque-ml-bling.js: só corrige o sentido que
 // tem risco real de vender sem estoque (Bling < Bagy); Bling > Bagy não é
@@ -228,13 +235,15 @@ function salvarResultadoLocal({ totalSkusBagy, divergencias, semSkuNoBling }) {
 }
 
 // ===== EXECUÇÃO =====
-async function main() {
+// Recebe o estoque do Bling já buscado por quem chamou (veja o comentário
+// no topo do arquivo — evita um segundo refresh do Bling na mesma
+// execução do workflow).
+async function rodarVerificacaoBagy(estoqueBling) {
   if (!BAGY_ACCESS_TOKEN) {
-    throw new Error('BAGY_ACCESS_TOKEN não configurado (.env local ou GitHub Secret).');
+    console.log('BAGY_ACCESS_TOKEN não configurado, pulando verificação da Bagy.');
+    return;
   }
 
-  const blingToken = await getBlingAccessToken();
-  const estoqueBling = await getEstoqueBling(blingToken);
   const estoqueBagy = await getEstoqueBagy();
 
   const { divergencias, semSkuNoBling } = compararEstoques(estoqueBling, estoqueBagy);
@@ -251,8 +260,19 @@ async function main() {
   salvarResultadoLocal({ totalSkusBagy, divergencias, semSkuNoBling });
 }
 
+module.exports = { rodarVerificacaoBagy };
+
+// Uso standalone (local/manual) — busca o token/estoque do Bling sozinho,
+// já que nesse caso não tem nenhum outro processo disputando o refresh.
 if (require.main === module) {
-  main().catch((err) => {
+  (async () => {
+    if (!BAGY_ACCESS_TOKEN) {
+      throw new Error('BAGY_ACCESS_TOKEN não configurado (.env local ou GitHub Secret).');
+    }
+    const blingToken = await getBlingAccessToken();
+    const estoqueBling = await getEstoqueBling(blingToken);
+    await rodarVerificacaoBagy(estoqueBling);
+  })().catch((err) => {
     console.error('Erro na verificação de estoque Bagy x Bling:', err.response?.data || err.message);
     process.exit(1);
   });

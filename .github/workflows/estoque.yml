@@ -28,6 +28,10 @@ jobs:
 
       - run: npm install
 
+      # Um único step: ML e Bagy rodam no mesmo processo Node, reaproveitando
+      # o mesmo access token do Bling. Chamar getBlingAccessToken() duas
+      # vezes na mesma execução quebra — o Bling gira o refresh_token a cada
+      # uso, e o segundo step ficaria com um token já invalidado pelo primeiro.
       - run: npm run verificar
         env:
           BLING_CLIENT_ID: ${{ secrets.BLING_CLIENT_ID }}
@@ -38,21 +42,6 @@ jobs:
           ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
           ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
           ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
-          CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
-          CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
-          ZAPI_INSTANCE_URL: ${{ secrets.ZAPI_INSTANCE_URL }}
-          WHATSAPP_DESTINO: ${{ secrets.WHATSAPP_DESTINO }}
-          GMAIL_USER: ${{ secrets.GMAIL_USER }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
-          GH_PAT: ${{ secrets.GH_PAT }}
-
-      - run: npm run verificar-bagy
-        env:
-          BLING_CLIENT_ID: ${{ secrets.BLING_CLIENT_ID }}
-          BLING_CLIENT_SECRET: ${{ secrets.BLING_CLIENT_SECRET }}
-          BLING_REFRESH_TOKEN: ${{ secrets.BLING_REFRESH_TOKEN }}
-          BLING_DEPOSITO_ID: ${{ secrets.BLING_DEPOSITO_ID }}
           BAGY_ACCESS_TOKEN: ${{ secrets.BAGY_ACCESS_TOKEN }}
           CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
           CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}

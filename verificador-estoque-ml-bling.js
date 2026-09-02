@@ -18,6 +18,7 @@ const { getBlingAccessToken, getMLAccessToken } = require('./lib/tokens');
 const { aguardar } = require('./lib/bling-http');
 const { getEstoqueBling } = require('./lib/bling-estoque');
 const { enviarNotificacao } = require('./lib/notificar');
+const { rodarVerificacaoBagy } = require('./scripts/verificador-estoque-bagy-bling');
 
 // ===== CONFIG (variáveis de ambiente / GitHub Secrets) =====
 const OUTPUT_PATH = path.join(__dirname, 'resultado-verificacao.json');
@@ -302,6 +303,16 @@ async function main() {
   registrarHistoricoMensal(divergencias);
   await enviarAlertaRisco(divergencias);
   salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling });
+
+  // Reaproveita o mesmo blingToken/estoqueBling já buscados acima — o Bling
+  // gira o refresh_token a cada uso, então buscar de novo aqui invalidaria
+  // o token que acabou de ser usado. Erro na Bagy não deve derrubar o
+  // resultado do ML, que já foi salvo com sucesso.
+  try {
+    await rodarVerificacaoBagy(estoqueBling);
+  } catch (err) {
+    console.error('Erro na verificação de estoque Bagy x Bling:', err.response?.data || err.message);
+  }
 }
 
 if (require.main === module) {
