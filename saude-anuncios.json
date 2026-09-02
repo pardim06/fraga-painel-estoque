@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-09-01T13:54:38.725Z",
+  "atualizadoEm": "2026-09-02T13:12:17.585Z",
   "totalUnhealthy": 285,
   "totalWarning": 12,
   "itens": [
@@ -22,18 +22,18 @@
       "problemas": []
     },
     {
-      "itemId": "MLB7024747614",
-      "titulo": "Quadro Carbono Rad7 Stuttgart Mtb Aro 29 Boost Modelo 2026 Cor Branco 19 Tamanho Del Quadro 19",
-      "link": "https://produto.mercadolivre.com.br/MLB-7024747614-quadro-carbono-rad7-stuttgart-mtb-aro-29-boost-modelo-2026-cor-branco-19-tamanho-del-quadro-19-_JM",
+      "itemId": "MLB4930820033",
+      "titulo": "Par Rodas Aro 29 Absolute Wild Tubeless Disco 8/12v",
+      "link": "https://produto.mercadolivre.com.br/MLB-4930820033-par-rodas-aro-29-absolute-wild-tubeless-disco-812v-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
       "problemas": []
     },
     {
-      "itemId": "MLB4930820033",
-      "titulo": "Par Rodas Aro 29 Absolute Wild Tubeless Disco 8/12v",
-      "link": "https://produto.mercadolivre.com.br/MLB-4930820033-par-rodas-aro-29-absolute-wild-tubeless-disco-812v-_JM",
+      "itemId": "MLB7024747614",
+      "titulo": "Quadro Carbono Rad7 Stuttgart Mtb Aro 29 Boost Modelo 2026 Cor Branco 19 Tamanho Del Quadro 19",
+      "link": "https://produto.mercadolivre.com.br/MLB-7024747614-quadro-carbono-rad7-stuttgart-mtb-aro-29-boost-modelo-2026-cor-branco-19-tamanho-del-quadro-19-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
@@ -682,18 +682,13 @@
       "titulo": "Fita Guidao Pro Sport Control Eva Silicon 200x3cm - Vermelho Vermelho Sport Control",
       "link": "https://produto.mercadolivre.com.br/MLB-5082839984-fita-guidao-pro-sport-control-eva-silicon-200x3cm-vermelho-vermelho-sport-control-_JM",
       "status": "unhealthy",
-      "score": 83,
+      "score": 93,
       "level": "Profissional",
       "problemas": [
         {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU1556403524&item_id=MLB5082839984&item_syi=MLB5082839984&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB5082839984"
         }
       ]
     },
@@ -1603,9 +1598,15 @@
       "titulo": "Par Rodas Carbono Rad7 Mtb Aro 29 Boost Tubeless 30mm",
       "link": "https://produto.mercadolivre.com.br/MLB-4460400887-par-rodas-carbono-rad7-mtb-aro-29-boost-tubeless-30mm-_JM",
       "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
+      "score": 93,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3767768887&item_id=MLB4460400887&item_syi=MLB4460400887&origin=quality#origin=quality"
+        }
+      ]
     },
     {
       "itemId": "MLB4463538607",
@@ -1693,9 +1694,15 @@
       "titulo": "Alavanca Shimano Deore Sl-m5100 11v Dir",
       "link": "https://produto.mercadolivre.com.br/MLB-6512944770-alavanca-shimano-deore-sl-m5100-11v-dir-_JM",
       "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
+      "score": 93,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3869122616&item_id=MLB6512944770&item_syi=MLB6512944770&origin=quality#origin=quality"
+        }
+      ]
     },
     {
       "itemId": "MLB4903048628",
@@ -1763,15 +1770,9 @@
       "titulo": "Quadro Mtb Rad7 Stuttgart Carbon Off White Boost 148mm 25/26 19",
       "link": "https://produto.mercadolivre.com.br/MLB-6768497374-quadro-mtb-rad7-stuttgart-carbon-off-white-boost-148mm-2526-19-_JM",
       "status": "unhealthy",
-      "score": 93,
-      "level": "Profissional",
-      "problemas": [
-        {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3959438165&item_id=MLB6768497374&item_syi=MLB6768497374&origin=quality#origin=quality"
-        }
-      ]
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB6768497364",
@@ -1918,14 +1919,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4061947999&item_id=MLB4752902493&item_syi=MLB4752902493&origin=quality#origin=quality"
-        },
-        {
           "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4061947999/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4752902493"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4061947999&item_id=MLB4752902493&item_syi=MLB4752902493&origin=quality#origin=quality"
         }
       ]
     },
@@ -2102,13 +2103,18 @@
       "titulo": "Pedal Shimano Pd-m520 Mtb Clipless Preto Com Tacos Sh51 C/nf Prata",
       "link": "https://produto.mercadolivre.com.br/MLB-5425647712-pedal-shimano-pd-m520-mtb-clipless-preto-com-tacos-sh51-cnf-prata-_JM",
       "status": "unhealthy",
-      "score": 94,
+      "score": 87,
       "level": "Profissional",
       "problemas": [
         {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3227199421&item_id=MLB5425647712&item_syi=MLB5425647712&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Participe de uma promoção para receber mais visitas",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/anuncios/lista/promos?search=MLB5425647712"
         }
       ]
     },
@@ -2126,20 +2132,9 @@
       "titulo": "Kit Transmissão Absolute Prime Mtb 1x12v Câmbio Traseiro +al",
       "link": "https://produto.mercadolivre.com.br/MLB-7110255382-kit-transmisso-absolute-prime-mtb-1x12v-cmbio-traseiro-al-_JM",
       "status": "unhealthy",
-      "score": 93,
-      "level": "Profissional",
-      "problemas": [
-        {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4246918048&item_id=MLB7110255382&item_syi=MLB7110255382&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4246918048/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB7110255382"
-        }
-      ]
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB7109945216",
@@ -2155,14 +2150,14 @@
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4246561162&item_id=MLB7109945216&item_syi=MLB7109945216&origin=quality#origin=quality"
         },
         {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4246561162/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB7109945216"
-        },
-        {
           "titulo": "Preencha as características principais",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4246561162/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB7109945216"
+        },
+        {
+          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4246561162/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB7109945216"
         },
         {
           "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
@@ -2201,25 +2196,9 @@
       "titulo": "Kit Transmissão Absolute Prime Mtb 1x12v Câmbio Alavanca",
       "link": "https://produto.mercadolivre.com.br/MLB-4857010665-kit-transmisso-absolute-prime-mtb-1x12v-cmbio-alavanca-_JM",
       "status": "unhealthy",
-      "score": 85,
-      "level": "Profissional",
-      "problemas": [
-        {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4246918060&item_id=MLB4857010665&item_syi=MLB4857010665&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4246918060/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4857010665"
-        },
-        {
-          "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB4857010665"
-        }
-      ]
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB4857009465",
@@ -2297,9 +2276,20 @@
       "titulo": "Par Rodas Carbono Rad7 Mtb Aro 29 Boost Tubeless 30mm 1,488g",
       "link": "https://produto.mercadolivre.com.br/MLB-4875450743-par-rodas-carbono-rad7-mtb-aro-29-boost-tubeless-30mm-1488g-_JM",
       "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
+      "score": 84,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4263192467&item_id=MLB4875450743&item_syi=MLB4875450743&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB4875450743"
+        }
+      ]
     },
     {
       "itemId": "MLB7159851796",
@@ -2535,14 +2525,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4405719704&item_id=MLB7228511536&item_syi=MLB7228511536&origin=quality#origin=quality"
-        },
-        {
           "titulo": "Preencha as características principais",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4405719704/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB7228511536"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4405719704&item_id=MLB7228511536&item_syi=MLB7228511536&origin=quality#origin=quality"
         }
       ]
     },
@@ -2551,70 +2541,18 @@
       "titulo": "Cubo Dianteiro Shimano Hb-tx506 6 Parafusos Disco 36f Mtb",
       "link": "https://produto.mercadolivre.com.br/MLB-4931741219-cubo-dianteiro-shimano-hb-tx506-6-parafusos-disco-36f-mtb-_JM",
       "status": "unhealthy",
-      "score": 67,
-      "level": "Profissional",
-      "problemas": [
-        {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4407339134/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4931741219"
-        },
-        {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4407339134&item_id=MLB4931741219&item_syi=MLB4931741219&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Entregue no mesmo dia com o Envios Flex para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4931741219"
-        },
-        {
-          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4931741219"
-        }
-      ]
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB4931741217",
       "titulo": "Cubo Dianteiro Tourney Hb-tx506 6 Parafuso 36f Preto",
       "link": "https://produto.mercadolivre.com.br/MLB-4931741217-cubo-dianteiro-tourney-hb-tx506-6-parafuso-36f-preto-_JM",
       "status": "unhealthy",
-      "score": 60,
-      "level": "Satisfatória",
-      "problemas": [
-        {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4383962597/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB4931741217"
-        },
-        {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4383962597&item_id=MLB4931741217&item_syi=MLB4931741217&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Preencha as características principais",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4383962597/modificar/omni/variation/dominio/techspecs-primary?item_id=MLB4931741217"
-        },
-        {
-          "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4383962597"
-        },
-        {
-          "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB4931741217"
-        },
-        {
-          "titulo": "Ofereça frete grátis para que seu anúncio seja mais competitivo",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=shipping_task&itemId=MLB4931741217"
-        }
-      ]
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB4930820035",
@@ -2743,7 +2681,7 @@
       "titulo": "Canote Retrátil Rad7 De Aluminio - 31.6mm 100mm Curso 345mm ",
       "link": "https://produto.mercadolivre.com.br/MLB-4986471323-canote-retratil-rad7-de-aluminio-316mm-100mm-curso-345mm-_JM",
       "status": "unhealthy",
-      "score": 78,
+      "score": 75,
       "level": "Profissional",
       "problemas": [
         {
@@ -2903,8 +2841,8 @@
       "titulo": "Corrente Ted Tec Pwr Index C9 - Cinza",
       "link": "https://produto.mercadolivre.com.br/MLB-5005893621-corrente-ted-tec-pwr-index-c9-cinza-_JM",
       "status": "unhealthy",
-      "score": 68,
-      "level": "Profissional",
+      "score": 63,
+      "level": "Satisfatória",
       "problemas": [
         {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
@@ -3152,18 +3090,13 @@
       "titulo": "Par Alavanca Câmbio Shimano Alivio Sl-m3100 2x9v 18v Mtb Tro",
       "link": "https://produto.mercadolivre.com.br/MLB-5080031959-par-alavanca-cmbio-shimano-alivio-sl-m3100-2x9v-18v-mtb-tro-_JM",
       "status": "unhealthy",
-      "score": 64,
+      "score": 65,
       "level": "Satisfatória",
       "problemas": [
         {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4784605430&item_id=MLB5080031959&item_syi=MLB5080031959&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Certifique-se de que seu anúncio tenha 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4784605430/modificar/omni/variation/dominio/stock-sku-default?item_id=MLB5080031959"
         },
         {
           "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
@@ -3251,14 +3184,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4803870204"
-        },
-        {
           "titulo": "Preencha os dados fiscais para emitir faturas",
           "tipo": "oportunidade",
           "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4803870204/tax-information"
+        },
+        {
+          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4803870204"
         }
       ]
     },
@@ -3271,14 +3204,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB3750557283"
-        },
-        {
           "titulo": "Preencha os dados fiscais para emitir faturas",
           "tipo": "oportunidade",
           "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB3750557283/tax-information"
+        },
+        {
+          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB3750557283"
         }
       ]
     },
@@ -3291,14 +3224,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4979016510"
-        },
-        {
           "titulo": "Preencha os dados fiscais para emitir faturas",
           "tipo": "oportunidade",
           "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4979016510/tax-information"
+        },
+        {
+          "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB4979016510"
         }
       ]
     },
@@ -3358,14 +3291,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Preencha os dados fiscais para emitir faturas",
-          "tipo": "oportunidade",
-          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4275979469/tax-information"
-        },
-        {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?item_id=MLB4275979469&item_syi=MLB4275979469&origin=quality#origin=quality&pi_origin=listings&pi_rule=HAS_SHORTS"
+        },
+        {
+          "titulo": "Preencha os dados fiscais para emitir faturas",
+          "tipo": "oportunidade",
+          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB4275979469/tax-information"
         },
         {
           "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
