@@ -28,7 +28,21 @@
     color: var(--ink-faint);
     margin-bottom: 20px;
   }
+  .urgencia-badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 11.5px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .urgencia-badge.atrasado { background: var(--alert-bg); color: var(--alert); }
+  .urgencia-badge.comprar { background: var(--warn-bg); color: var(--warn); }
+  .urgencia-badge.ok { background: var(--ok-bg); color: var(--ok); }
+  .urgencia-badge.sem_dado { background: var(--bg-raised); color: var(--ink-faint); }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-auth.js"></script>
 </head>
 <body>
 <div class="app-shell">
@@ -52,8 +66,16 @@
         Dashboard
       </a>
       <a href="painel-estoque.html">
-        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.6"/><path d="M10 5.5v5l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        Painel de Estoque
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5.5 7h9l1 10.5a1 1 0 01-1 1.1H5.5a1 1 0 01-1-1.1L5.5 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 7V5.5a2.5 2.5 0 015 0V7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Estoque Mercado Livre
+      </a>
+      <a href="painel-bagy.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 6l7-3.5L17 6v8l-7 3.5L3 14V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 6l7 3.5L17 6M10 9.5V17.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Estoque Bagy
+      </a>
+      <a href="painel-shopee.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 8h10l.8 8.5a1.3 1.3 0 01-1.3 1.5H5.5a1.3 1.3 0 01-1.3-1.5L5 8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 8a3 3 0 016 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8 12.2c.5.6 1.1.9 2 .9s1.5-.3 2-.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Estoque Shopee
       </a>
       <a href="perguntas-ml.html">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 8h6M7 10.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
@@ -84,7 +106,7 @@
     <div class="page-head rise">
       <div>
         <h1>Lista de Compras</h1>
-        <div class="subtitle">Fraga Bike Shop · reposição sugerida (Mercado Livre)</div>
+        <div class="subtitle">Fraga Bike Shop · reposição sugerida (todos os canais)</div>
       </div>
       <div class="badge-live"><span class="dot"></span> Atualiza 1x/dia</div>
     </div>
@@ -119,15 +141,25 @@
     return '<span class="tend estável">estável</span>';
   }
 
+  function textoUrgencia(u) {
+    if (u === 'atrasado') return 'Atrasado';
+    if (u === 'comprar') return 'Comprar';
+    if (u === 'sem_dado') return 'Sem dado';
+    return 'Ok';
+  }
+
+  function badgeUrgencia(i) {
+    return '<span class="urgencia-badge ' + i.urgencia + '" title="' + escapeHtml(i.mensagemUrgencia || '') + '">' + textoUrgencia(i.urgencia) + '</span>';
+  }
+
   let ITENS_ATUAIS = [];
 
   async function carregar() {
     document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
 
     try {
-      const resp = await fetch('lista-compras.json', { cache: 'no-store' });
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      const dados = await resp.json();
+      const dados = await buscarDados('lista-compras.json');
+      if (!dados) throw new Error('sem dados');
       render(dados);
     } catch (err) {
       document.getElementById('conteudo').innerHTML =
@@ -143,7 +175,10 @@
     let html = '';
 
     html += '<div class="kpi-grid rise">';
-    html += '  <div class="kpi-card ' + (resumo.totalParaComprar > 0 ? 'alert' : 'ok') + '">' +
+    html += '  <div class="kpi-card ' + ((resumo.totalAtrasados ?? 0) > 0 ? 'alert' : 'ok') + '">' +
+      '<div class="lbl">Pedido atrasado</div><div class="val">' + (resumo.totalAtrasados ?? 0) + '</div>' +
+      '<div class="sub">acaba antes do fornecedor conseguir entregar (' + parametros.leadTimeDias + ' dia(s))</div></div>';
+    html += '  <div class="kpi-card ' + (resumo.totalParaComprar > 0 ? 'alert' : 'ok') + '" style="animation-delay:.03s">' +
       '<div class="lbl">Produtos pra comprar</div><div class="val">' + resumo.totalParaComprar + '</div>' +
       '<div class="sub">de ' + resumo.totalProdutosAnalisados + ' analisados</div></div>';
     html += '  <div class="kpi-card" style="animation-delay:.05s">' +
@@ -158,7 +193,7 @@
     html += '</div>';
 
     html += '<div class="params-note rise" style="animation-delay:.18s">' +
-      'Considera vendas dos últimos ' + parametros.janelaAnaliseDias + ' dias (canal ' + parametros.canalConsiderado + '), ' +
+      'Considera vendas dos últimos ' + parametros.janelaAnaliseDias + ' dias (' + parametros.canalConsiderado + '), ' +
       'lead time de reposição de ' + parametros.leadTimeDias + ' dia(s) + ' + parametros.segurancaDias + ' dia(s) de segurança ' +
       '(cobertura alvo: ' + parametros.coberturaAlvoDias + ' dias). Curva ABC por ' + parametros.criterioABC + '. ' +
       'Última atualização: ' + formatarData(atualizadoEm) + ' · ' + resumo.totalPedidosAnalisados + ' pedido(s) analisado(s).' +
@@ -176,10 +211,19 @@
         '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M6 10.5l2.5 2.5L14 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
         'Nenhum produto precisa de reposição agora</div>';
     } else {
+      const atrasados = ITENS_ATUAIS.filter((i) => i.urgencia === 'atrasado');
+      if (atrasados.length > 0) {
+        html += '<div class="info-banner rise" style="animation-delay:.22s; background:var(--alert-bg); border-color:rgba(220,38,38,0.25); color:var(--alert);">';
+        html += '<strong>' + atrasados.length + ' produto(s) com pedido atrasado:</strong><br>';
+        html += atrasados.slice(0, 8).map((i) => '· ' + escapeHtml(i.nome || i.sku) + ': ' + escapeHtml(i.mensagemUrgencia)).join('<br>');
+        if (atrasados.length > 8) html += '<br>… e mais ' + (atrasados.length - 8) + ' produto(s), veja na tabela abaixo.';
+        html += '</div>';
+      }
+
       html += '<div class="table-scroll rise" style="animation-delay:.24s"><table><thead><tr>' +
         '<th>Classe</th><th>SKU</th><th>Produto</th><th class="num">Estoque</th><th class="num">Vend. 90d</th>' +
         '<th class="num">Vend. 30d</th><th class="num">Un./dia</th><th>Tendência</th><th class="num">Dias restantes</th>' +
-        '<th class="num">Comprar</th><th class="num">Investimento</th>' +
+        '<th>Urgência</th><th class="num">Comprar</th><th class="num">Investimento</th>' +
         '</tr></thead><tbody>';
       ITENS_ATUAIS.forEach((i) => {
         html += '<tr>' +
@@ -192,6 +236,7 @@
           '<td class="num">' + i.velocidadeDiaria.toFixed(2) + '</td>' +
           '<td>' + setaTendencia(i.tendencia) + '</td>' +
           '<td class="num"><span class="diff-badge">' + i.diasDeEstoqueRestante + '</span></td>' +
+          '<td>' + badgeUrgencia(i) + '</td>' +
           '<td class="num" style="font-weight:700;">' + i.quantidadeSugerida + '</td>' +
           '<td class="num">' + formatarMoeda(i.investimentoLinha) + '</td>' +
           '</tr>';
@@ -205,11 +250,11 @@
   function exportarCSV() {
     if (ITENS_ATUAIS.length === 0) return;
 
-    let csv = 'Classe;SKU;Produto;Estoque Atual;Vendido 90d;Vendido 30d;Un por dia;Tendencia;Dias Restantes;Comprar;Custo Unitario;Investimento\n';
+    let csv = 'Classe;SKU;Produto;Estoque Atual;Vendido 90d;Vendido 30d;Un por dia;Tendencia;Dias Restantes;Urgencia;Comprar;Custo Unitario;Investimento\n';
     ITENS_ATUAIS.forEach((i) => {
       csv += [
         i.classeABC, i.sku, (i.nome || '').replace(/;/g, ','), i.estoqueAtual, i.vendidoUlt90d, i.vendidoUlt30d,
-        i.velocidadeDiaria.toFixed(2), i.tendencia, i.diasDeEstoqueRestante, i.quantidadeSugerida,
+        i.velocidadeDiaria.toFixed(2), i.tendencia, i.diasDeEstoqueRestante, textoUrgencia(i.urgencia), i.quantidadeSugerida,
         i.custoUnitario ?? '', i.investimentoLinha ?? '',
       ].join(';') + '\n';
     });
@@ -226,7 +271,7 @@
     URL.revokeObjectURL(url);
   }
 
-  carregar();
+  verificarAcesso(carregar);
 </script>
 </body>
 </html>

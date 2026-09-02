@@ -15,19 +15,14 @@
 // tem risco real de vender sem estoque (Bling < Bagy); Bling > Bagy não é
 // mexido automaticamente, só sobra estoque não anunciado, sem risco.
 
-const fs = require('fs');
-const path = require('path');
 require('dotenv').config(); // no-op em produção: GitHub Actions já injeta as env vars diretamente
 const axios = require('axios');
 const { getBlingAccessToken } = require('../lib/tokens');
 const { getEstoqueBling } = require('../lib/bling-estoque');
 const { aguardar } = require('../lib/bling-http');
 const { enviarNotificacao } = require('../lib/notificar');
-const { publicarDados } = require('../lib/supabase-publicar');
+const { publicarDados, incrementarHistoricoMensal } = require('../lib/supabase-publicar');
 
-// Mesmo arquivo do verificador do ML — "furos evitados por mês" no
-// dashboard é uma métrica do negócio como um todo, não por canal.
-const HISTORICO_MENSAL_PATH = path.join(__dirname, '..', 'historico-mensal.json');
 const BAGY_ACCESS_TOKEN = process.env.BAGY_ACCESS_TOKEN;
 
 // ===== ESTOQUE PUBLICADO NA BAGY =====
@@ -191,30 +186,6 @@ async function enviarAlertaRisco(divergencias) {
   }
 }
 
-// ===== HISTÓRICO MENSAL (furos evitados por mês, compartilhado com o ML) =====
-function registrarHistoricoMensal(divergencias) {
-  const corrigidosAgora = divergencias.filter((d) => d.corrigido).length;
-
-  let porMes = {};
-  if (fs.existsSync(HISTORICO_MENSAL_PATH)) {
-    try {
-      porMes = JSON.parse(fs.readFileSync(HISTORICO_MENSAL_PATH, 'utf8'));
-    } catch {
-      porMes = {};
-    }
-  }
-
-  // Sempre escreve o arquivo, mesmo sem correção nova — senão o "git add"
-  // do Actions falha com pathspec não encontrado num ciclo sem correção.
-  const chave = new Date().toISOString().slice(0, 7); // "2026-08"
-  porMes[chave] = (porMes[chave] || 0) + corrigidosAgora;
-
-  fs.writeFileSync(HISTORICO_MENSAL_PATH, JSON.stringify(porMes, null, 2));
-  if (corrigidosAgora > 0) {
-    console.log(`Histórico mensal atualizado: +${corrigidosAgora} furo(s) evitado(s) na Bagy.`);
-  }
-}
-
 // ===== PUBLICAR RESULTADO PRO PAINEL =====
 // Vai pro Supabase, não pro repositório — o estoque por SKU é dado de
 // negócio, não deveria ficar num repo público. Só quem estiver logado no
@@ -257,7 +228,7 @@ async function rodarVerificacaoBagy(estoqueBling) {
   }
 
   await corrigirEstoqueBagy(divergencias);
-  registrarHistoricoMensal(divergencias);
+  await incrementarHistoricoMensal(divergencias.filter((d) => d.corrigido).length);
   await enviarAlertaRisco(divergencias);
   await salvarResultadoLocal({ totalSkusBagy, divergencias, semSkuNoBling });
 }

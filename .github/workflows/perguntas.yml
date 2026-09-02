@@ -32,6 +32,8 @@ jobs:
           ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
           ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
           GH_PAT: ${{ secrets.GH_PAT }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
       - run: npm run reputacao
         env:
@@ -40,6 +42,8 @@ jobs:
           ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
           ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
           GH_PAT: ${{ secrets.GH_PAT }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
       - run: npm run reputacao-detalhe
         env:
@@ -48,6 +52,8 @@ jobs:
           ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
           ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
           GH_PAT: ${{ secrets.GH_PAT }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
       - run: npm run responder-perguntas
         env:
@@ -64,12 +70,18 @@ jobs:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
+      # perguntas-ml.json, reputacao-ml.json, reputacao-detalhe.json e
+      # historico-respostas-ia.json vao pro Supabase agora (dado de negocio,
+      # nao pertencem a um repo publico) — so respostas-sugeridas.json
+      # (controle interno, nao exibido no painel) continua sendo commitado.
       - name: Commitar resultado atualizado
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add perguntas-ml.json reputacao-ml.json reputacao-detalhe.json respostas-sugeridas.json historico-respostas-ia.json
-          git diff --quiet --cached || git commit -m "chore: atualiza perguntas, reputacao e sugestoes de resposta"
+          git add respostas-sugeridas.json
+          git diff --quiet --cached || git commit -m "chore: atualiza sugestoes de resposta (controle interno)"
           git pull --rebase
           git push

@@ -5,3 +5,14 @@ node_modules/
 # Dados de negócio migrados pro Supabase (não pertencem a um repo público) —
 # ver lib/supabase-publicar.js / assets/supabase-auth.js
 resultado-bagy.json
+resultado-verificacao.json
+historico-correcoes.json
+historico-mensal.json
+perguntas-ml.json
+historico-respostas-ia.json
+reputacao-ml.json
+reputacao-detalhe.json
+lista-compras.json
+saude-anuncios.json
+mercadolider-platinum.json
+vigia-estado.json

@@ -7,15 +7,14 @@
 // etc.) e ninguém perceber, o painel mostra dado velho como se fosse atual —
 // esse script existe pra pegar isso antes do dono perceber sozinho.
 
-const fs = require('fs');
-const path = require('path');
 require('dotenv').config();
 const { enviarNotificacao } = require('../lib/notificar');
-
-const ESTADO_PATH = path.join(__dirname, '..', 'vigia-estado.json');
+const { publicarDados, buscarDadosPublicados } = require('../lib/supabase-publicar');
 
 // Limite generoso (6x a cadência real de ~5min / 1x/dia) pra não disparar
-// falso alarme por um atraso pontual do GitHub Actions.
+// falso alarme por um atraso pontual do GitHub Actions. Cada "arquivo" aqui
+// é uma chave publicada no Supabase (lib/supabase-publicar.js), não mais um
+// arquivo local — os dados desses módulos não ficam mais no repositório.
 const FONTES = [
   { chave: 'estoque', arquivo: 'resultado-verificacao.json', limiteMin: 30, label: 'Estoque Mercado Livre' },
   { chave: 'estoque-bagy', arquivo: 'resultado-bagy.json', limiteMin: 30, label: 'Estoque Bagy' },
@@ -23,19 +22,6 @@ const FONTES = [
   { chave: 'reputacao', arquivo: 'reputacao-ml.json', limiteMin: 30, label: 'Reputação ML' },
   { chave: 'lista-compras', arquivo: 'lista-compras.json', limiteMin: 60 * 30, label: 'Lista de Compras' },
 ];
-
-function lerEstado() {
-  if (!fs.existsSync(ESTADO_PATH)) return {};
-  try {
-    return JSON.parse(fs.readFileSync(ESTADO_PATH, 'utf8'));
-  } catch {
-    return {};
-  }
-}
-
-function salvarEstado(estado) {
-  fs.writeFileSync(ESTADO_PATH, JSON.stringify(estado, null, 2));
-}
 
 function formatarAtraso(minutos) {
   if (minutos < 60) return `${minutos} min`;
@@ -45,25 +31,22 @@ function formatarAtraso(minutos) {
 }
 
 async function main() {
-  const estadoAnterior = lerEstado();
+  const estadoAnterior = (await buscarDadosPublicados('vigia-estado.json')) || {};
   const estadoNovo = {};
   const ficaramRuins = [];
   const voltaramAoNormal = [];
 
   for (const fonte of FONTES) {
-    const caminho = path.join(__dirname, '..', fonte.arquivo);
     let status = 'faltando';
     let atrasoMin = null;
 
-    if (fs.existsSync(caminho)) {
-      try {
-        const dados = JSON.parse(fs.readFileSync(caminho, 'utf8'));
-        const atualizadoEm = dados.atualizadoEm ? new Date(dados.atualizadoEm) : null;
-        if (atualizadoEm && !isNaN(atualizadoEm.getTime())) {
-          atrasoMin = Math.round((Date.now() - atualizadoEm.getTime()) / 60000);
-          status = atrasoMin > fonte.limiteMin ? 'parado' : 'ok';
-        }
-      } catch {
+    const dados = await buscarDadosPublicados(fonte.arquivo);
+    if (dados) {
+      const atualizadoEm = dados.atualizadoEm ? new Date(dados.atualizadoEm) : null;
+      if (atualizadoEm && !isNaN(atualizadoEm.getTime())) {
+        atrasoMin = Math.round((Date.now() - atualizadoEm.getTime()) / 60000);
+        status = atrasoMin > fonte.limiteMin ? 'parado' : 'ok';
+      } else {
         status = 'invalido';
       }
     }
@@ -84,7 +67,7 @@ async function main() {
     }
   }
 
-  salvarEstado(estadoNovo);
+  await publicarDados('vigia-estado.json', estadoNovo);
 
   if (ficaramRuins.length > 0) {
     let corpo = `*ALERTA - MODULO(S) PARADO(S) NO SISTEMA*\n\n`;

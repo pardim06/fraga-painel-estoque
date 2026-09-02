@@ -53,6 +53,8 @@
     background: var(--alert-bg); padding: 2px 9px; border-radius: 999px; flex-shrink: 0;
   }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-auth.js"></script>
 </head>
 <body>
 <div class="app-shell">
@@ -151,15 +153,12 @@
     document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
 
     try {
-      const [resp, respDetalhe, respPlatinum] = await Promise.all([
-        fetch('reputacao-ml.json', { cache: 'no-store' }),
-        fetch('reputacao-detalhe.json', { cache: 'no-store' }),
-        fetch('mercadolider-platinum.json', { cache: 'no-store' }),
+      const [dados, detalhe, platinum] = await Promise.all([
+        buscarDados('reputacao-ml.json'),
+        buscarDados('reputacao-detalhe.json'),
+        buscarDados('mercadolider-platinum.json'),
       ]);
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      const dados = await resp.json();
-      const detalhe = respDetalhe.ok ? await respDetalhe.json() : null;
-      const platinum = respPlatinum.ok ? await respPlatinum.json() : null;
+      if (!dados) throw new Error('sem dados');
       render(dados, detalhe, platinum);
     } catch (err) {
       document.getElementById('conteudo').innerHTML =
@@ -305,7 +304,7 @@
     document.getElementById('conteudo').innerHTML = html;
   }
 
-  carregar();
+  verificarAcesso(carregar);
 </script>
 </body>
 </html>

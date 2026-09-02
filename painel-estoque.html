@@ -6,6 +6,8 @@
 <title>Estoque Mercado Livre · Fraga Bike Shop</title>
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="stylesheet" href="assets/estilo.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-auth.js"></script>
 </head>
 <body>
 <div class="app-shell">
@@ -84,26 +86,16 @@
   const GAUGE_R = 50;
   const GAUGE_C = 2 * Math.PI * GAUGE_R;
 
-  async function buscarJson(url) {
-    try {
-      const resp = await fetch(url, { cache: 'no-store' });
-      if (!resp.ok) return null;
-      return await resp.json();
-    } catch {
-      return null;
-    }
-  }
-
   async function carregar() {
     renderCarregando();
 
     const [dados, historico] = await Promise.all([
-      buscarJson('resultado-verificacao.json'),
-      buscarJson('historico-correcoes.json'),
+      buscarDados('resultado-verificacao.json'),
+      buscarDados('historico-correcoes.json'),
     ]);
 
     if (!dados) {
-      renderErro('Não foi possível carregar o resultado-verificacao.json. Ele só existe depois da primeira execução do workflow no GitHub Actions.');
+      renderErro('Não foi possível carregar os dados. Só existem depois da primeira execução do workflow no GitHub Actions.');
       return;
     }
 
@@ -300,7 +292,7 @@
     });
   }
 
-  carregar();
+  verificarAcesso(carregar);
 </script>
 </body>
 </html>

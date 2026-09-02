@@ -121,6 +121,8 @@
   .trocar-chave { font-size: 11.5px; color: var(--ink-faint); margin-top: 8px; }
   .trocar-chave a { color: var(--blue); cursor: pointer; }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-auth.js"></script>
 </head>
 <body>
 <div class="app-shell">
@@ -222,11 +224,9 @@
     return div.innerHTML;
   }
 
-  async function buscarJson(url) {
+  async function buscarJson(chave) {
     try {
-      const resp = await fetch(url, { cache: 'no-store' });
-      if (!resp.ok) return null;
-      return await resp.json();
+      return await buscarDados(chave);
     } catch {
       return null;
     }
@@ -437,11 +437,13 @@ Regras:
     });
   }
 
-  if (getChave()) {
-    renderChat();
-  } else {
-    renderConfig();
-  }
+  verificarAcesso(() => {
+    if (getChave()) {
+      renderChat();
+    } else {
+      renderConfig();
+    }
+  });
 </script>
 </body>
 </html>

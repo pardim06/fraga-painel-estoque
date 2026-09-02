@@ -21,13 +21,11 @@ const axios = require('axios');
 const { getMLAccessToken } = require('../lib/tokens');
 const { gerarRespostaSugerida } = require('../lib/gemini');
 const { enviarNotificacao } = require('../lib/notificar');
+const { publicarDados, buscarDadosPublicados } = require('../lib/supabase-publicar');
 
-const PERGUNTAS_PATH = path.join(__dirname, '..', 'perguntas-ml.json');
-const ESTADO_PATH = path.join(__dirname, '..', 'respostas-sugeridas.json');
 // respostas-sugeridas.json é só controle de dedup (some quando a pergunta
-// fecha) — esse aqui é o histórico de verdade, pra acompanhar no painel o
-// que a IA já respondeu mesmo depois de fechada.
-const HISTORICO_PATH = path.join(__dirname, '..', 'historico-respostas-ia.json');
+// fecha), fica só local — não é exibido em nenhuma página do painel.
+const ESTADO_PATH = path.join(__dirname, '..', 'respostas-sugeridas.json');
 const HISTORICO_DIAS = 30;
 const FUSO = 'America/Sao_Paulo';
 // Em horário comercial, se ninguém aprovar em até esse tempo, publica sozinho.
@@ -83,15 +81,8 @@ async function getDescricaoItem(accessToken, itemId) {
   return descricao;
 }
 
-function registrarHistorico(questionId, registro) {
-  let historico = {};
-  if (fs.existsSync(HISTORICO_PATH)) {
-    try {
-      historico = JSON.parse(fs.readFileSync(HISTORICO_PATH, 'utf8'));
-    } catch {
-      historico = {};
-    }
-  }
+async function registrarHistorico(questionId, registro) {
+  const historico = (await buscarDadosPublicados('historico-respostas-ia.json')) || {};
 
   historico[questionId] = registro;
 
@@ -100,7 +91,7 @@ function registrarHistorico(questionId, registro) {
     if (new Date(historico[id].geradoEm).getTime() < limite) delete historico[id];
   }
 
-  fs.writeFileSync(HISTORICO_PATH, JSON.stringify(historico, null, 2));
+  await publicarDados('historico-respostas-ia.json', historico);
 }
 
 async function postarRespostaML(accessToken, questionId, texto) {
@@ -141,14 +132,7 @@ function formatarNotificacao({ autoRespondidas, escalonadas, aguardandoAprovacao
 }
 
 async function main() {
-  // Garante que o arquivo existe mesmo sem pergunta nova nesse ciclo — senão
-  // o "git add" do Actions falha com pathspec não encontrado na primeira
-  // execução (mesmo bug que já pegou o historico-mensal.json antes).
-  if (!fs.existsSync(HISTORICO_PATH)) {
-    fs.writeFileSync(HISTORICO_PATH, JSON.stringify({}, null, 2));
-  }
-
-  const perguntasData = lerJson(PERGUNTAS_PATH);
+  const perguntasData = await buscarDadosPublicados('perguntas-ml.json');
   if (!perguntasData || !Array.isArray(perguntasData.perguntas)) {
     console.log('perguntas-ml.json ainda não existe ou está vazio — nada a fazer.');
     return;
@@ -194,7 +178,7 @@ async function main() {
       registro.status = 'auto_respondida';
       registro.respondidoEm = new Date().toISOString();
       estado[id] = registro;
-      registrarHistorico(id, registro);
+      await registrarHistorico(id, registro);
       escalonadas.push(registro);
     } catch (err) {
       console.error(`Falha ao escalar pergunta ${id} após ${LIMITE_ESCALONAMENTO_MIN}min sem aprovação:`, err.response?.data || err.message);
@@ -236,7 +220,7 @@ async function main() {
       }
 
       estado[String(p.id)] = registro;
-      registrarHistorico(String(p.id), registro);
+      await registrarHistorico(String(p.id), registro);
     } catch (err) {
       console.error(`Erro ao gerar resposta pra pergunta ${p.id}:`, err.response?.data || err.message);
     }

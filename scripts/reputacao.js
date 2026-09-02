@@ -5,13 +5,10 @@
 // últimos 60 dias. Roda junto com o verificador de perguntas (mesma
 // cadência, é só 1 chamada leve à API).
 
-const fs = require('fs');
-const path = require('path');
 require('dotenv').config();
 const axios = require('axios');
 const { getMLAccessToken } = require('../lib/tokens');
-
-const OUTPUT_PATH = path.join(__dirname, '..', 'reputacao-ml.json');
+const { publicarDados } = require('../lib/supabase-publicar');
 
 async function main() {
   const token = await getMLAccessToken();
@@ -45,8 +42,8 @@ async function main() {
     },
   };
 
-  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(resultado, null, 2));
-  console.log(`Reputação salva em ${OUTPUT_PATH} (nível ${resultado.nivel}, ${resultado.metricas.cancelamento.quantidade} cancelamento(s) em 60d).`);
+  await publicarDados('reputacao-ml.json', resultado);
+  console.log(`Reputação publicada (nível ${resultado.nivel}, ${resultado.metricas.cancelamento.quantidade} cancelamento(s) em 60d).`);
 }
 
 if (require.main === module) {

@@ -29,6 +29,8 @@ jobs:
 
       - run: npm install
 
+      # lista-compras.json vai pro Supabase agora — nao ha mais nada pra
+      # commitar nesse workflow (custo/investimento e dado de negocio).
       - run: npm run lista-compras
         env:
           BLING_CLIENT_ID: ${{ secrets.BLING_CLIENT_ID }}
@@ -36,12 +38,5 @@ jobs:
           BLING_REFRESH_TOKEN: ${{ secrets.BLING_REFRESH_TOKEN }}
           BLING_DEPOSITO_ID: ${{ secrets.BLING_DEPOSITO_ID }}
           GH_PAT: ${{ secrets.GH_PAT }}
-
-      - name: Commitar resultado atualizado
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add lista-compras.json
-          git diff --quiet --cached || git commit -m "chore: atualiza lista de compras sugerida"
-          git pull --rebase
-          git push
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}

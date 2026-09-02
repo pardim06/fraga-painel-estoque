@@ -5,13 +5,10 @@
 // o verificador de estoque (ver .github/workflows/verificar-perguntas.yml),
 // já que o prazo de resposta é medido em minutos/horas, não em dias.
 
-const fs = require('fs');
-const path = require('path');
 require('dotenv').config();
 const axios = require('axios');
 const { getMLAccessToken } = require('../lib/tokens');
-
-const OUTPUT_PATH = path.join(__dirname, '..', 'perguntas-ml.json');
+const { publicarDados } = require('../lib/supabase-publicar');
 
 // Acima desse tempo sem resposta, a pergunta é destacada como atrasada no painel.
 const LIMITE_MINUTOS = 60;
@@ -81,7 +78,7 @@ async function getInfoAnuncios(accessToken, itemIds) {
   return info;
 }
 
-function salvarResultado(perguntas, infoAnuncios) {
+async function salvarResultado(perguntas, infoAnuncios) {
   const agora = Date.now();
 
   const lista = perguntas
@@ -109,15 +106,15 @@ function salvarResultado(perguntas, infoAnuncios) {
     perguntas: lista,
   };
 
-  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(resultado, null, 2));
-  console.log(`Resultado salvo em ${OUTPUT_PATH} (${lista.length} pergunta(s) em aberto, ${resultado.atrasadas} atrasada(s))`);
+  await publicarDados('perguntas-ml.json', resultado);
+  console.log(`Publicado no Supabase (${lista.length} pergunta(s) em aberto, ${resultado.atrasadas} atrasada(s))`);
 }
 
 async function main() {
   const token = await getMLAccessToken();
   const perguntas = await getPerguntasAbertas(token);
   const infoAnuncios = await getInfoAnuncios(token, perguntas.map((p) => p.item_id));
-  salvarResultado(perguntas, infoAnuncios);
+  await salvarResultado(perguntas, infoAnuncios);
 }
 
 if (require.main === module) {

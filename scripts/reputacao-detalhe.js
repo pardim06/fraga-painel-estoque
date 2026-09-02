@@ -16,14 +16,11 @@
 // Mercado Livre não documenta o critério exato da métrica — pode não bater
 // 100% sempre. Sinalizado como estimativa no painel.
 
-const fs = require('fs');
-const path = require('path');
 require('dotenv').config();
 const axios = require('axios');
 const { getMLAccessToken } = require('../lib/tokens');
+const { publicarDados, buscarDadosPublicados } = require('../lib/supabase-publicar');
 
-const OUTPUT_PATH = path.join(__dirname, '..', 'reputacao-detalhe.json');
-const REPUTACAO_PATH = path.join(__dirname, '..', 'reputacao-ml.json');
 const JANELA_DIAS = 60;
 
 function diasRestantes(dataIso) {
@@ -126,14 +123,10 @@ async function main() {
   ]);
 
   let oficial = { cancelamento: null, reclamacao: null };
-  if (fs.existsSync(REPUTACAO_PATH)) {
-    try {
-      const dados = JSON.parse(fs.readFileSync(REPUTACAO_PATH, 'utf8'));
-      oficial.cancelamento = dados.metricas?.cancelamento?.quantidade ?? null;
-      oficial.reclamacao = dados.metricas?.reclamacao?.quantidade ?? null;
-    } catch {
-      // segue sem o número oficial pra comparar, não é crítico
-    }
+  const dados = await buscarDadosPublicados('reputacao-ml.json');
+  if (dados) {
+    oficial.cancelamento = dados.metricas?.cancelamento?.quantidade ?? null;
+    oficial.reclamacao = dados.metricas?.reclamacao?.quantidade ?? null;
   }
 
   const resultado = {
@@ -143,7 +136,7 @@ async function main() {
     reclamacao: { ...montarResumo(reclamacoes), quantidadeOficial: oficial.reclamacao, estimativa: true },
   };
 
-  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(resultado, null, 2));
+  await publicarDados('reputacao-detalhe.json', resultado);
   console.log(
     `Detalhe de reputação salvo: cancelamento ${resultado.cancelamento.quantidade} (oficial: ${oficial.cancelamento}), ` +
       `reclamação ${resultado.reclamacao.quantidade} estimado (oficial: ${oficial.reclamacao}).`

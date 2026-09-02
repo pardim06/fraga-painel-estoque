@@ -18,8 +18,8 @@ require('dotenv').config();
 const axios = require('axios');
 const { getMLAccessToken } = require('../lib/tokens');
 const { enviarNotificacao } = require('../lib/notificar');
+const { publicarDados } = require('../lib/supabase-publicar');
 
-const OUTPUT_PATH = path.join(__dirname, '..', 'saude-anuncios.json');
 const ESTADO_PATH = path.join(__dirname, '..', 'saude-anuncios-estado.json');
 
 function aguardar(ms) {
@@ -152,8 +152,8 @@ async function main() {
     totalWarning: warningIds.length,
     itens,
   };
-  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(resultado, null, 2));
-  console.log(`Saúde dos anúncios salva: ${unhealthyIds.length} perdendo exposição, ${warningIds.length} em alerta.`);
+  await publicarDados('saude-anuncios.json', resultado);
+  console.log(`Saúde dos anúncios publicada: ${unhealthyIds.length} perdendo exposição, ${warningIds.length} em alerta.`);
 
   // Só avisa por WhatsApp o que É NOVO na lista de "unhealthy" desde a
   // última execução — senão vira lembrete repetido todo dia pro mesmo item.

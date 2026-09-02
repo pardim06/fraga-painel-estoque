@@ -43,6 +43,8 @@ jobs:
           GMAIL_USER: ${{ secrets.GMAIL_USER }}
           GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
           EMAIL_DESTINO: ${{ secrets.EMAIL_DESTINO }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
       - run: npm run mercadolider
         env:
@@ -51,12 +53,17 @@ jobs:
           ML_REFRESH_TOKEN: ${{ secrets.ML_REFRESH_TOKEN }}
           ML_SELLER_ID: ${{ secrets.ML_SELLER_ID }}
           GH_PAT: ${{ secrets.GH_PAT }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
 
+      # saude-anuncios.json e mercadolider-platinum.json vao pro Supabase —
+      # so saude-anuncios-estado.json (controle interno de alerta) continua
+      # sendo commitado.
       - name: Commitar resultado atualizado
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add saude-anuncios.json saude-anuncios-estado.json mercadolider-platinum.json
-          git diff --quiet --cached || git commit -m "chore: atualiza saude dos anuncios e mercadolider"
+          git add saude-anuncios-estado.json
+          git diff --quiet --cached || git commit -m "chore: atualiza estado interno de saude dos anuncios"
           git pull --rebase
           git push

@@ -1,15 +1,16 @@
 // scripts/lista-compras.js
 //
 // Gera a lista de reposição automática: cruza o estoque atual do Bling com a
-// velocidade real de venda no Mercado Livre (últimos 90 dias, comparado com
-// os últimos 30) e sugere o que comprar antes de faltar, já classificado por
-// curva ABC (faturamento). Roda 1x/dia — é uma consulta pesada (milhares de
-// pedidos) e não precisa de tempo real como o verificador de estoque.
+// velocidade real de saída (últimos 90 dias, comparado com os últimos 30) e
+// sugere o que comprar antes de faltar, já classificado por curva ABC
+// (faturamento). Roda 1x/dia — é uma consulta pesada (milhares de pedidos) e
+// não precisa de tempo real como o verificador de estoque.
 //
 // PREMISSAS (documentadas aqui de propósito — revise se algo não bater):
-// - Só conta pedidos do canal Mercado Livre (identificado pelo id da loja no
-//   Bling, ML_LOJA_ID abaixo). Pedidos de outros canais/loja física não
-//   entram na conta de velocidade de venda.
+// - Considera pedidos de TODOS os canais de venda cadastrados no Bling (ML,
+//   Bagy/site, loja física etc.) — a saída real de estoque não vem só do
+//   Mercado Livre, e contar só um canal subestima a velocidade de venda dos
+//   produtos que também saem por outros canais.
 // - Ignora pedidos com situação "Cancelado" (id 12, padrão do sistema Bling).
 //   Se sua conta usa um fluxo de situações diferente, ajuste SITUACAO_CANCELADO.
 // - Estoque atual = saldo do depósito "SITE / MERCADO LIVRE" (mesmo usado no
@@ -17,18 +18,12 @@
 // - Produtos "pai" com variação (formato V) são ignorados — quem entra na
 //   conta são as variações filhas, que têm SKU e estoque próprios.
 
-const fs = require('fs');
-const path = require('path');
 require('dotenv').config();
 const { getBlingAccessToken } = require('../lib/tokens');
 const { blingGet, aguardar } = require('../lib/bling-http');
-
-const OUTPUT_PATH = path.join(__dirname, '..', 'lista-compras.json');
+const { publicarDados } = require('../lib/supabase-publicar');
 const BLING_DEPOSITO_ID = process.env.BLING_DEPOSITO_ID || '14887750294';
 
-// Mercado Livre — confirmado via intermediador.cnpj "03.007.331/0001-41" nos
-// pedidos. Se um dia isso mudar de conta, reconfirme com scripts/obter-token.
-const ML_LOJA_ID = process.env.BLING_LOJA_ML_ID || '204966737';
 const SITUACAO_CANCELADO = 12;
 
 const JANELA_DIAS = 90;
@@ -45,7 +40,7 @@ async function getProdutosAtivos(token) {
   let pagina = 1;
 
   while (true) {
-    const resp = await blingGet('https://www.bling.com.br/Api/v3/produtos', {
+    const resp = await blingGet('https://api.bling.com.br/Api/v3/produtos', {
       headers: { Authorization: `Bearer ${token}` },
       params: { pagina, limite: 100, situacao: 'A' },
     });
@@ -74,7 +69,7 @@ async function getEstoqueAtual(token, produtos) {
 
   for (let i = 0; i < ids.length; i += TAMANHO_LOTE) {
     const lote = ids.slice(i, i + TAMANHO_LOTE);
-    const resp = await blingGet('https://www.bling.com.br/Api/v3/estoques/saldos', {
+    const resp = await blingGet('https://api.bling.com.br/Api/v3/estoques/saldos', {
       headers: { Authorization: `Bearer ${token}` },
       params: { idsProdutos: lote },
     });
@@ -90,8 +85,8 @@ async function getEstoqueAtual(token, produtos) {
   return estoque;
 }
 
-// ===== 3. PEDIDOS DE VENDA DO MERCADO LIVRE (últimos 90 dias) =====
-async function getPedidosML(token) {
+// ===== 3. PEDIDOS DE VENDA — TODOS OS CANAIS (últimos 90 dias) =====
+async function getPedidosVendas(token) {
   const hoje = new Date();
   const dataInicial = new Date(hoje.getTime() - JANELA_DIAS * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
   const dataFinal = hoje.toISOString().slice(0, 10);
@@ -100,9 +95,11 @@ async function getPedidosML(token) {
   let pagina = 1;
 
   while (true) {
-    const resp = await blingGet('https://www.bling.com.br/Api/v3/pedidos/vendas', {
+    // Sem filtro de idLoja de propósito — pega a saída real de todos os
+    // canais (ML, Bagy/site, loja física etc.), não só um.
+    const resp = await blingGet('https://api.bling.com.br/Api/v3/pedidos/vendas', {
       headers: { Authorization: `Bearer ${token}` },
-      params: { pagina, limite: 100, dataInicial, dataFinal, idLoja: ML_LOJA_ID },
+      params: { pagina, limite: 100, dataInicial, dataFinal },
     });
 
     const dados = resp.data.data || [];
@@ -132,7 +129,7 @@ async function getVendasPorSku(token, pedidos) {
   for (const pedido of pedidos) {
     let detalhe;
     try {
-      const resp = await blingGet(`https://www.bling.com.br/Api/v3/pedidos/vendas/${pedido.id}`, {
+      const resp = await blingGet(`https://api.bling.com.br/Api/v3/pedidos/vendas/${pedido.id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       detalhe = resp.data.data;
@@ -181,6 +178,50 @@ function classificarABC(itens) {
   }
 }
 
+// ===== 5b. URGÊNCIA DO PEDIDO (dias até faltar x lead time do fornecedor) =====
+// A pergunta que importa pro dono comprar na hora certa não é só "quantos
+// dias de estoque restam", é "ainda dá tempo do fornecedor entregar antes de
+// faltar". Se o estoque acaba antes do lead time, o pedido já está atrasado
+// mesmo que você feche ele hoje.
+function calcularUrgencia(diasDeEstoqueRestante) {
+  if (diasDeEstoqueRestante === null) {
+    return { urgencia: 'sem_dado', mensagemUrgencia: 'Sem venda no período pra estimar quando vai faltar.' };
+  }
+
+  const dias = Math.round(diasDeEstoqueRestante * 10) / 10;
+
+  // Estoque zerado/negativo (saldo <= 0, já vendendo sem ter) é um caso à
+  // parte — "acaba em -105 dias" não faz sentido pra quem lê.
+  if (dias <= 0) {
+    const diasAtraso = Math.ceil(LEAD_TIME_DIAS - dias);
+    return {
+      urgencia: 'atrasado',
+      mensagemUrgencia: `Estoque já está zerado ou negativo. Fornecedor demora ${LEAD_TIME_DIAS} dia(s) — pedido está atrasado em ${diasAtraso} dia(s).`,
+    };
+  }
+
+  if (dias <= LEAD_TIME_DIAS) {
+    const diasAtraso = Math.ceil(LEAD_TIME_DIAS - dias);
+    return {
+      urgencia: 'atrasado',
+      mensagemUrgencia: `Estoque acaba em ${dias} dia(s), mas o fornecedor demora ${LEAD_TIME_DIAS} dia(s) pra entregar — pedido já está atrasado em ${diasAtraso} dia(s).`,
+    };
+  }
+
+  if (dias <= COBERTURA_ALVO_DIAS) {
+    const diasParaPedir = Math.floor(dias - LEAD_TIME_DIAS);
+    return {
+      urgencia: 'comprar',
+      mensagemUrgencia: `Estoque acaba em ${dias} dia(s). Fornecedor demora ${LEAD_TIME_DIAS} dia(s) — faça o pedido em até ${diasParaPedir} dia(s) pra não faltar.`,
+    };
+  }
+
+  return {
+    urgencia: 'ok',
+    mensagemUrgencia: `Estoque cobre ${dias} dia(s), acima da cobertura alvo de ${COBERTURA_ALVO_DIAS} dia(s).`,
+  };
+}
+
 // ===== 6. MONTAGEM DA LISTA =====
 function montarLista(produtos, estoqueAtual, vendas) {
   const itens = Object.values(produtos).map(({ codigo, nome, precoCusto }) => {
@@ -207,6 +248,8 @@ function montarLista(produtos, estoqueAtual, vendas) {
       ? Math.max(0, Math.ceil(velocidadeConsiderada * COBERTURA_ALVO_DIAS - estoque))
       : 0;
 
+    const { urgencia, mensagemUrgencia } = calcularUrgencia(diasDeEstoqueRestante);
+
     return {
       sku: codigo,
       nome,
@@ -216,6 +259,8 @@ function montarLista(produtos, estoqueAtual, vendas) {
       velocidadeDiaria: Math.round(velocidadeConsiderada * 100) / 100,
       tendencia,
       diasDeEstoqueRestante: diasDeEstoqueRestante !== null ? Math.round(diasDeEstoqueRestante * 10) / 10 : null,
+      urgencia,
+      mensagemUrgencia,
       precisaComprar,
       quantidadeSugerida,
       custoUnitario: precoCusto || null,
@@ -226,8 +271,10 @@ function montarLista(produtos, estoqueAtual, vendas) {
 
   classificarABC(itens);
 
+  const ordemUrgencia = { atrasado: 0, comprar: 1, ok: 2, sem_dado: 3 };
   itens.sort((a, b) => {
     if (a.precisaComprar !== b.precisaComprar) return a.precisaComprar ? -1 : 1;
+    if (ordemUrgencia[a.urgencia] !== ordemUrgencia[b.urgencia]) return ordemUrgencia[a.urgencia] - ordemUrgencia[b.urgencia];
     const ordemClasse = { A: 0, B: 1, C: 2, '—': 3 };
     if (ordemClasse[a.classeABC] !== ordemClasse[b.classeABC]) return ordemClasse[a.classeABC] - ordemClasse[b.classeABC];
     return (a.diasDeEstoqueRestante ?? Infinity) - (b.diasDeEstoqueRestante ?? Infinity);
@@ -236,9 +283,10 @@ function montarLista(produtos, estoqueAtual, vendas) {
   return itens;
 }
 
-function salvar(itens, totalPedidosAnalisados) {
+async function salvar(itens, totalPedidosAnalisados) {
   const paraComprar = itens.filter((i) => i.precisaComprar);
   const comCusto = paraComprar.filter((i) => i.investimentoLinha !== null);
+  const atrasados = itens.filter((i) => i.urgencia === 'atrasado');
 
   const resultado = {
     atualizadoEm: new Date().toISOString(),
@@ -248,13 +296,14 @@ function salvar(itens, totalPedidosAnalisados) {
       coberturaAlvoDias: COBERTURA_ALVO_DIAS,
       janelaAnaliseDias: JANELA_DIAS,
       janelaRecenteDias: JANELA_RECENTE_DIAS,
-      canalConsiderado: 'Mercado Livre',
+      canalConsiderado: 'Todos os canais (Bling)',
       criterioABC: 'faturamento',
     },
     resumo: {
       totalProdutosAnalisados: itens.length,
       totalPedidosAnalisados,
       totalParaComprar: paraComprar.length,
+      totalAtrasados: atrasados.length,
       classeA_paraComprar: paraComprar.filter((i) => i.classeABC === 'A').length,
       classeB_paraComprar: paraComprar.filter((i) => i.classeABC === 'B').length,
       classeC_paraComprar: paraComprar.filter((i) => i.classeABC === 'C').length,
@@ -264,8 +313,8 @@ function salvar(itens, totalPedidosAnalisados) {
     itens,
   };
 
-  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(resultado, null, 2));
-  console.log(`Lista de compras salva em ${OUTPUT_PATH} (${paraComprar.length} produto(s) pra comprar de ${itens.length} analisados).`);
+  await publicarDados('lista-compras.json', resultado);
+  console.log(`Lista de compras publicada (${paraComprar.length} produto(s) pra comprar de ${itens.length} analisados).`);
 }
 
 async function main() {
@@ -278,14 +327,14 @@ async function main() {
   console.log('Buscando estoque atual...');
   const estoqueAtual = await getEstoqueAtual(token, produtos);
 
-  console.log('Buscando pedidos do Mercado Livre dos últimos 90 dias...');
-  const pedidos = await getPedidosML(token);
+  console.log('Buscando pedidos de venda (todos os canais) dos últimos 90 dias...');
+  const pedidos = await getPedidosVendas(token);
   console.log(`${pedidos.length} pedido(s) não cancelado(s) encontrado(s). Buscando itens de cada um...`);
 
   const vendas = await getVendasPorSku(token, pedidos);
 
   const itens = montarLista(produtos, estoqueAtual, vendas);
-  salvar(itens, pedidos.length);
+  await salvar(itens, pedidos.length);
 }
 
 if (require.main === module) {

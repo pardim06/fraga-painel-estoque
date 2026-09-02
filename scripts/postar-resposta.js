@@ -11,9 +11,9 @@ const path = require('path');
 require('dotenv').config();
 const axios = require('axios');
 const { getMLAccessToken } = require('../lib/tokens');
+const { publicarDados, buscarDadosPublicados } = require('../lib/supabase-publicar');
 
 const ESTADO_PATH = path.join(__dirname, '..', 'respostas-sugeridas.json');
-const HISTORICO_PATH = path.join(__dirname, '..', 'historico-respostas-ia.json');
 
 async function main() {
   const questionId = process.argv[2];
@@ -40,16 +40,14 @@ async function main() {
   registro.respondidoEm = new Date().toISOString();
   fs.writeFileSync(ESTADO_PATH, JSON.stringify(estado, null, 2));
 
-  if (fs.existsSync(HISTORICO_PATH)) {
-    try {
-      const historico = JSON.parse(fs.readFileSync(HISTORICO_PATH, 'utf8'));
-      if (historico[questionId]) {
-        historico[questionId] = registro;
-        fs.writeFileSync(HISTORICO_PATH, JSON.stringify(historico, null, 2));
-      }
-    } catch {
-      // histórico é só pra acompanhamento no painel — se falhar, não impede a publicação
+  try {
+    const historico = (await buscarDadosPublicados('historico-respostas-ia.json')) || {};
+    if (historico[questionId]) {
+      historico[questionId] = registro;
+      await publicarDados('historico-respostas-ia.json', historico);
     }
+  } catch {
+    // histórico é só pra acompanhamento no painel — se falhar, não impede a publicação
   }
 
   console.log(`Resposta publicada no ML pra pergunta ${questionId}.`);

@@ -19,6 +19,8 @@
   }
   .problema-tag.warning { color: var(--alert); border-color: rgba(248,113,113,0.35); background: var(--alert-bg); }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-auth.js"></script>
 </head>
 <body>
 <div class="app-shell">
@@ -109,9 +111,8 @@
   async function carregar() {
     document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
     try {
-      const resp = await fetch('saude-anuncios.json', { cache: 'no-store' });
-      if (!resp.ok) throw new Error('HTTP ' + resp.status);
-      const dados = await resp.json();
+      const dados = await buscarDados('saude-anuncios.json');
+      if (!dados) throw new Error('sem dados');
       render(dados);
     } catch (err) {
       document.getElementById('conteudo').innerHTML =
@@ -178,7 +179,7 @@
     document.getElementById('conteudo').innerHTML = html;
   }
 
-  carregar();
+  verificarAcesso(carregar);
 </script>
 </body>
 </html>

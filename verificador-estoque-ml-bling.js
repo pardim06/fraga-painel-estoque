@@ -10,8 +10,6 @@
 // catálogo. Confirme contra o retorno real da sua conta antes de colocar em
 // produção — a Bling e o ML atualizam a API de vez em quando.
 
-const fs = require('fs');
-const path = require('path');
 require('dotenv').config(); // no-op em produção: GitHub Actions já injeta as env vars diretamente
 const axios = require('axios');
 const { getBlingAccessToken, getMLAccessToken } = require('./lib/tokens');
@@ -19,12 +17,9 @@ const { aguardar } = require('./lib/bling-http');
 const { getEstoqueBling } = require('./lib/bling-estoque');
 const { enviarNotificacao } = require('./lib/notificar');
 const { rodarVerificacaoBagy } = require('./scripts/verificador-estoque-bagy-bling');
+const { publicarDados, buscarDadosPublicados, incrementarHistoricoMensal } = require('./lib/supabase-publicar');
 
-// ===== CONFIG (variáveis de ambiente / GitHub Secrets) =====
-const OUTPUT_PATH = path.join(__dirname, 'resultado-verificacao.json');
-const HISTORICO_PATH = path.join(__dirname, 'historico-correcoes.json');
 const HISTORICO_MAX = 300; // mantém só as correções mais recentes, pra não crescer sem limite
-const HISTORICO_MENSAL_PATH = path.join(__dirname, 'historico-mensal.json');
 
 const ML_SELLER_ID = process.env.ML_SELLER_ID;
 
@@ -193,8 +188,8 @@ async function enviarAlertaRisco(divergencias) {
   }
 }
 
-// ===== 7. SALVAR RESULTADO PRO PAINEL (arquivo local, commitado pelo Actions) =====
-function salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling }) {
+// ===== 7. PUBLICAR RESULTADO PRO PAINEL (Supabase, não repo público) =====
+async function salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling }) {
   // "sem SKU no Bling" é majoritariamente produto pai (sem estoque próprio,
   // não é um SKU de fato comparável) — não conta como "verificado" no total,
   // senão infla o denominador e derruba o % em dia artificialmente.
@@ -212,8 +207,7 @@ function salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling }) {
     semSkuNoBling, // skus do ML não encontrados no Bling
   };
 
-  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(resultado, null, 2));
-  console.log(`Resultado salvo em ${OUTPUT_PATH}`);
+  await publicarDados('resultado-verificacao.json', resultado);
 }
 
 // ===== 7b. HISTÓRICO DE CORREÇÕES (persiste entre execuções) =====
@@ -224,17 +218,10 @@ function salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling }) {
 // sempre — o que importa é o que aconteceu recentemente).
 const HISTORICO_DIAS = 3;
 
-function registrarHistoricoCorrecoes(divergencias) {
+async function registrarHistoricoCorrecoes(divergencias) {
   const corrigidosAgora = divergencias.filter((d) => d.corrigido);
 
-  let historico = [];
-  if (fs.existsSync(HISTORICO_PATH)) {
-    try {
-      historico = JSON.parse(fs.readFileSync(HISTORICO_PATH, 'utf8'));
-    } catch {
-      historico = [];
-    }
-  }
+  let historico = (await buscarDadosPublicados('historico-correcoes.json')) || [];
 
   const agora = new Date();
   const limiteData = agora.getTime() - HISTORICO_DIAS * 24 * 60 * 60 * 1000;
@@ -251,35 +238,10 @@ function registrarHistoricoCorrecoes(divergencias) {
     .filter((h) => new Date(h.dataHora).getTime() >= limiteData)
     .slice(0, HISTORICO_MAX);
 
-  fs.writeFileSync(HISTORICO_PATH, JSON.stringify(historico, null, 2));
+  await publicarDados('historico-correcoes.json', historico);
   if (novasEntradas.length > 0) {
     console.log(`Histórico atualizado: +${novasEntradas.length} correção(ões) registrada(s).`);
   }
-}
-
-// ===== 7c. HISTÓRICO MENSAL (furos evitados por mês, sem limite de retenção) =====
-// Diferente do histórico de 3 dias acima, aqui guarda só a contagem por mês
-// ("2026-08": 12) — cresce muito devagar (1 número a mais por mês), então dá
-// pra manter indefinidamente e mostrar tendência ao longo do tempo.
-function registrarHistoricoMensal(divergencias) {
-  const corrigidosAgora = divergencias.filter((d) => d.corrigido).length;
-
-  let porMes = {};
-  if (fs.existsSync(HISTORICO_MENSAL_PATH)) {
-    try {
-      porMes = JSON.parse(fs.readFileSync(HISTORICO_MENSAL_PATH, 'utf8'));
-    } catch {
-      porMes = {};
-    }
-  }
-
-  // Sempre escreve o arquivo, mesmo sem correção nova (corrigidosAgora=0) —
-  // senão o "git add historico-mensal.json" do Actions falha com pathspec
-  // não encontrado num ciclo sem correção, e derruba o commit inteiro junto.
-  const chave = new Date().toISOString().slice(0, 7); // "2026-08"
-  porMes[chave] = (porMes[chave] || 0) + corrigidosAgora;
-
-  fs.writeFileSync(HISTORICO_MENSAL_PATH, JSON.stringify(porMes, null, 2));
 }
 
 // ===== EXECUÇÃO =====
@@ -299,10 +261,10 @@ async function main() {
   }
 
   await corrigirEstoqueML(mlToken, divergencias);
-  registrarHistoricoCorrecoes(divergencias);
-  registrarHistoricoMensal(divergencias);
+  await registrarHistoricoCorrecoes(divergencias);
+  await incrementarHistoricoMensal(divergencias.filter((d) => d.corrigido).length);
   await enviarAlertaRisco(divergencias);
-  salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling });
+  await salvarResultadoLocal({ totalSkusML, divergencias, semSkuNoBling });
 
   // Reaproveita o mesmo blingToken/estoqueBling já buscados acima — o Bling
   // gira o refresh_token a cada uso, então buscar de novo aqui invalidaria

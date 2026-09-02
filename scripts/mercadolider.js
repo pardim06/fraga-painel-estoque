@@ -10,14 +10,10 @@
 // dos anúncios) — o cálculo de faturamento varre todos os pedidos pagos
 // dos últimos 60 dias, não faz sentido rodar a cada 5min.
 
-const fs = require('fs');
-const path = require('path');
 require('dotenv').config();
 const axios = require('axios');
 const { getMLAccessToken } = require('../lib/tokens');
-
-const OUTPUT_PATH = path.join(__dirname, '..', 'mercadolider-platinum.json');
-const REPUTACAO_PATH = path.join(__dirname, '..', 'reputacao-ml.json');
+const { publicarDados, buscarDadosPublicados } = require('../lib/supabase-publicar');
 
 const META = {
   vendas60d: 1725,
@@ -73,21 +69,12 @@ async function buscarFaturamento(token, sellerId) {
   return { total60d, qtd60d, totalMes, qtdMes, mesAtual: inicioMes.toISOString().slice(0, 7) };
 }
 
-function lerJson(caminho) {
-  if (!fs.existsSync(caminho)) return null;
-  try {
-    return JSON.parse(fs.readFileSync(caminho, 'utf8'));
-  } catch {
-    return null;
-  }
-}
-
 async function main() {
   const token = await getMLAccessToken();
   const sellerId = process.env.ML_SELLER_ID;
 
   const { total60d: faturamento60d, qtd60d: pedidosPagos, totalMes, qtdMes, mesAtual } = await buscarFaturamento(token, sellerId);
-  const reputacao = lerJson(REPUTACAO_PATH);
+  const reputacao = await buscarDadosPublicados('reputacao-ml.json');
   const m = reputacao?.metricas || {};
   const vendas60d = m.vendas60d ?? pedidosPagos;
 
@@ -155,7 +142,7 @@ async function main() {
       'Requisitos de MercadoLíder Platinum pesquisados externamente (o Mercado Livre não documenta isso via API) — confira também em Reputação > MercadoLíder no seu painel de vendedor, os valores podem mudar com o tempo. Não inclui requisitos não numéricos (documentação validada, loja ativa há 4+ meses).',
   };
 
-  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(resultado, null, 2));
+  await publicarDados('mercadolider-platinum.json', resultado);
   console.log(
     `MercadoLíder Platinum: ${requisitos.length - faltantes.length}/${requisitos.length} requisitos cumpridos. Faturamento 60d: R$ ${faturamento60d.toFixed(2)} (${pedidosPagos} pedidos pagos).`
   );
