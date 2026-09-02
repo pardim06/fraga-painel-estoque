@@ -1,3 +1,7 @@
 node_modules/
 .env
 .claude/
+
+# Dados de negócio migrados pro Supabase (não pertencem a um repo público) —
+# ver lib/supabase-publicar.js / assets/supabase-auth.js
+resultado-bagy.json

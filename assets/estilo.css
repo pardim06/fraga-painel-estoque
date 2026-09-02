@@ -167,6 +167,78 @@ a { color: var(--blue); text-decoration: none; }
 }
 
 /* ===== shell: menu lateral fixo + conteúdo ===== */
+/* ===== login (Supabase) — esconde o conteúdo até autenticar ===== */
+html:not(.autenticado) .app-shell { display: none; }
+
+#tela-login {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(234,88,12,0.16), transparent 60%),
+    var(--sidebar-bg);
+}
+.login-card {
+  width: 300px;
+  padding: 32px 30px;
+  border-radius: 16px;
+  background: #131c30;
+  box-shadow: 0 0 0 1px var(--sidebar-line), var(--shadow-md);
+  text-align: center;
+}
+.login-logo {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  object-fit: contain;
+  background: #131c30;
+  box-shadow: 0 0 0 1px var(--sidebar-line);
+  margin-bottom: 14px;
+}
+.login-titulo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+}
+.login-subtitulo {
+  font-size: 12.5px;
+  color: var(--sidebar-ink-dim);
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+#form-login input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--sidebar-line);
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+  font-size: 13.5px;
+  margin-bottom: 12px;
+}
+#form-login input::placeholder { color: var(--sidebar-ink-dim); }
+#form-login input:focus { outline: 2px solid var(--blue-vivid); outline-offset: 1px; }
+#form-login button {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: none;
+  background: var(--blue-vivid);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+#form-login button:disabled { opacity: .6; cursor: default; }
+.erro-login {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #fca5a5;
+}
+
 .app-shell {
   display: flex;
   align-items: stretch;

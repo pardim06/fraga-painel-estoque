@@ -23,8 +23,8 @@ const { getBlingAccessToken } = require('../lib/tokens');
 const { getEstoqueBling } = require('../lib/bling-estoque');
 const { aguardar } = require('../lib/bling-http');
 const { enviarNotificacao } = require('../lib/notificar');
+const { publicarDados } = require('../lib/supabase-publicar');
 
-const OUTPUT_PATH = path.join(__dirname, '..', 'resultado-bagy.json');
 // Mesmo arquivo do verificador do ML — "furos evitados por mês" no
 // dashboard é uma métrica do negócio como um todo, não por canal.
 const HISTORICO_MENSAL_PATH = path.join(__dirname, '..', 'historico-mensal.json');
@@ -215,8 +215,11 @@ function registrarHistoricoMensal(divergencias) {
   }
 }
 
-// ===== SALVAR RESULTADO PRO PAINEL =====
-function salvarResultadoLocal({ totalSkusBagy, divergencias, semSkuNoBling }) {
+// ===== PUBLICAR RESULTADO PRO PAINEL =====
+// Vai pro Supabase, não pro repositório — o estoque por SKU é dado de
+// negócio, não deveria ficar num repo público. Só quem estiver logado no
+// painel consegue ler (RLS na tabela dados_painel).
+async function salvarResultadoLocal({ totalSkusBagy, divergencias, semSkuNoBling }) {
   const totalComparavel = totalSkusBagy - semSkuNoBling.length;
   const corretos = totalComparavel - divergencias.length;
 
@@ -230,8 +233,7 @@ function salvarResultadoLocal({ totalSkusBagy, divergencias, semSkuNoBling }) {
     semSkuNoBling,
   };
 
-  fs.writeFileSync(OUTPUT_PATH, JSON.stringify(resultado, null, 2));
-  console.log(`Resultado salvo em ${OUTPUT_PATH}`);
+  await publicarDados('resultado-bagy.json', resultado);
 }
 
 // ===== EXECUÇÃO =====
@@ -257,7 +259,7 @@ async function rodarVerificacaoBagy(estoqueBling) {
   await corrigirEstoqueBagy(divergencias);
   registrarHistoricoMensal(divergencias);
   await enviarAlertaRisco(divergencias);
-  salvarResultadoLocal({ totalSkusBagy, divergencias, semSkuNoBling });
+  await salvarResultadoLocal({ totalSkusBagy, divergencias, semSkuNoBling });
 }
 
 module.exports = { rodarVerificacaoBagy };
