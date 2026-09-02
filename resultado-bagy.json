@@ -1,8 +1,8 @@
 {
-  "atualizadoEm": "2026-09-02T15:33:18.414Z",
+  "atualizadoEm": "2026-09-02T15:38:06.961Z",
   "totalSkus": 1928,
-  "corretos": 1838,
-  "totalDivergentes": 90,
+  "corretos": 1840,
+  "totalDivergentes": 88,
   "divergencias": [
     {
       "sku": "283",
@@ -222,13 +222,6 @@
       "diferenca": -1,
       "corrigido": true,
       "corrigidoDetalhe": "Atualizado para 0"
-    },
-    {
-      "sku": "4256",
-      "nome": "SAPATILHA MTB SHIMANO SH-XC302 - CINZA GELO TAMANHO:38 ;COR:CINZA GELO",
-      "qtdBling": 1,
-      "qtdBagy": 0,
-      "diferenca": 1
     },
     {
       "sku": "4274",
@@ -481,13 +474,6 @@
       "diferenca": -1,
       "corrigido": true,
       "corrigidoDetalhe": "Atualizado para 0"
-    },
-    {
-      "sku": "5167",
-      "nome": "Kit Shimano SH-XC302 Cinza Gelo + Pedal Clip M520 - Sapatilha MTB TAMANHO:38 ;COR:CINZA GELO",
-      "qtdBling": 1,
-      "qtdBagy": 0,
-      "diferenca": 1
     },
     {
       "sku": "5323",
