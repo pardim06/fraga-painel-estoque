@@ -1,0 +1,711 @@
+{
+  "atualizadoEm": "2026-09-02T14:04:13.943Z",
+  "totalSkus": 1928,
+  "corretos": 1829,
+  "totalDivergentes": 99,
+  "divergencias": [
+    {
+      "sku": "283",
+      "nome": "SAPATILHA MTB SHIMANO SH-XC502 VERDE COR:VERDE MUSGO;TAMANHO:44",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "318",
+      "nome": "SAPATILHA MTB SHIMANO SH-MX100 -  VERMELHA COR:VERMELHO;TAMANHO:41",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "367",
+      "nome": "PEDAL SHIMANO DEORE XT PD-M8100 CLIP - PRETO/PRATA",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "406",
+      "nome": "BRETELLE CICLISMO MARCIO MAY RACE CARBON III - MASCULINO COR:PRETO;TAMANHO:G",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "408",
+      "nome": "BRETELLE CICLISMO MARCIO MAY RACE CARBON III - MASCULINO COR:PRETO;TAMANHO:3G",
+      "qtdBling": 0,
+      "qtdBagy": -1,
+      "diferenca": 1
+    },
+    {
+      "sku": "602",
+      "nome": "OCULOS ROCKBROS FOTOCROMATICO PRETO/VERMELHO CICLISMO",
+      "qtdBling": 0,
+      "qtdBagy": -1,
+      "diferenca": 1
+    },
+    {
+      "sku": "615",
+      "nome": "PAR DE PNEUS MTB CHAOYANG PHANTOM WET TUBELESS 29X2.20",
+      "qtdBling": -2,
+      "qtdBagy": 0,
+      "diferenca": -2
+    },
+    {
+      "sku": "832",
+      "nome": "MOTUL LIMPA BIKE SECO 500ML  DESENGRAXA CONCENTRADO PROFISSIONAL",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "840",
+      "nome": "FREIO D HID DIANT SH DEORE BL-M6100/BR-M6100 - RESINA 1000MM",
+      "qtdBling": 0,
+      "qtdBagy": 2,
+      "diferenca": -2
+    },
+    {
+      "sku": "1056",
+      "nome": "CAMBIO TRASEIRO SHIMANO DEORE XT RD-M8100 SGS 12V",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "1131",
+      "nome": "RODINHA LATERAL TREINAMENTO SHIVER ARO 20 REFORCADO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "1202",
+      "nome": "KIT MOTUL BIKE LUBRIFICANTE E LIMPEZA 3 ITENS OLEO SECO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "1203",
+      "nome": "KIT MOTUL BIKE LUBRIFICANTE E LIMPEZA 3 ITENS OLEO UMIDO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "1205",
+      "nome": "KIT MOTUL BIKE CARE: DESENGRAXA SECO + LUBRIFICANTE  LIMPEZA E PROTEÇÃO COMPLETA",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "1342",
+      "nome": "GARRAFA CAMELBAK PODIUM CHILL 620ML CUSTOM - PRETO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "1655",
+      "nome": "FREIO D HID TRAS SH DEORE BL-M6100/BR-M6100 - METALICA1700MM",
+      "qtdBling": 0,
+      "qtdBagy": 17,
+      "diferenca": -17
+    },
+    {
+      "sku": "1656",
+      "nome": "FREIO D HID DIANT SH DEORE BL-M6100/BR-M6100 - METAL 1000MM",
+      "qtdBling": 0,
+      "qtdBagy": 17,
+      "diferenca": -17
+    },
+    {
+      "sku": "1698",
+      "nome": "CAPACETE CICLISMO LAZER ROAD TONIC KINETICORE - CINZA GELO COR:CZA GELO;TAMANHO:G",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "1771",
+      "nome": "CAPACETE CICLISMO LAZER LUPO KINETICORE - VERDE COR:VERDE;TAMANHO:UNICO (55-61)",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "1782",
+      "nome": "CAPACETE CICLISMO LAZER FINCH KINETICORE - PRETO FOSCO COR:PRETO FSC;TAMANHO:UNICO",
+      "qtdBling": 6,
+      "qtdBagy": 9,
+      "diferenca": -3
+    },
+    {
+      "sku": "1932",
+      "nome": "PAR DE FREIO HID SHIMANO DEORE BL-M6100/BR-M6100 METALICA",
+      "qtdBling": 0,
+      "qtdBagy": 17,
+      "diferenca": -17
+    },
+    {
+      "sku": "2101",
+      "nome": "GUIDAO TSW QUEST 2025 760MM C/SUP 17º 70MM",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "2336",
+      "nome": "MANETE DE FREIO ALTUS BL-MT200 - LADO ESQ",
+      "qtdBling": -4,
+      "qtdBagy": 0,
+      "diferenca": -4
+    },
+    {
+      "sku": "2546",
+      "nome": "BRETELLE MASCULINO CICLY LIFE TOP GEL PRETO TAMANHO:M;Cor:preto",
+      "qtdBling": 0,
+      "qtdBagy": -1,
+      "diferenca": 1
+    },
+    {
+      "sku": "2548",
+      "nome": "BRETELLE MASCULINO CICLY LIFE TOP GEL PRETO TAMANHO:GG;Cor:preto",
+      "qtdBling": 5,
+      "qtdBagy": 4,
+      "diferenca": 1
+    },
+    {
+      "sku": "2879",
+      "nome": "BOMBA DE AR ADX DE PLASTICO 23X3CM (80 PSI)",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "3524",
+      "nome": "CANOTE RETRATIL SENTEC 30.9X470MM CURSO 150MM - CABO INTERNO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "3606",
+      "nome": "SAPATILHA MTB SHIMANO SH-XC502 - PRATA TAMANHO:41;COR:PRATA",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "3916",
+      "nome": "OCULOS CICLISMO ADX VENTUS HIGH-END - PRETO/AZUL",
+      "qtdBling": 57,
+      "qtdBagy": 55,
+      "diferenca": 2
+    },
+    {
+      "sku": "3970",
+      "nome": "QUADRO MTB RAD7 STUTTGART CARBON OFF WHITE BOOST 148MM 2025/2026 TAMANHO:15",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "3999",
+      "nome": "SUSPENSÃO ROCKSHOX REBA RL29 100MM BOOST 15X110 TAPERED",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4029",
+      "nome": "PÓS TREINO EM PÓ SIS REGO RAPID RECOVERY 500G - CHOCOLATE",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4274",
+      "nome": "SAPATILHA MTB SHIMANO SH-XC302 - MARROM TAMANHO:40;COR:MARROM",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4614",
+      "nome": "SAPATILHA MTB 3 VELCROS  COBOK HIG ONE - PRETO/ROSA TAMANHO:36;COR:PRETO/ROSA",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4633",
+      "nome": "SAPATILHA MTB 3 VELCROS COBOK HIG ONE  - PRETO/VERMELHO TAMANHO:43;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4694",
+      "nome": "PEDAL CLIP WELLGO MTB WPD-823 PTO 9/16/ C TACOS",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4702",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:35;COR:PRETO/ROSA",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4703",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:36;COR:PRETO/ROSA",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4704",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:37;COR:PRETO/ROSA",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4705",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:38;COR:PRETO/ROSA",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4707",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:35;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4708",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:36;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4709",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:37;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4710",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:38;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4711",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:39;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4712",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:40;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4713",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:41;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4714",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:42;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4715",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:43;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4716",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:44;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4721",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:37;COR:PRETO/VERDE",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4722",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:38;COR:PRETO/VERDE",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4723",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:39;COR:PRETO/VERDE",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4724",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:40;COR:PRETO/VERDE",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4725",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:41;COR:PRETO/VERDE",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4726",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:42;COR:PRETO/VERDE",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4727",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:43;COR:PRETO/VERDE",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "4728",
+      "nome": "SAPATILHA MTB COBOK HIGH ONE + PEDAL CLIP WELGO TAMANHO:44;COR:PRETO/VERDE",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5125",
+      "nome": "SAPATILHA MTB SHIMANO SH-MX100 -  VERMELHA + Pedal M520 COR:VERMELHO;TAMANHO:41",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5153",
+      "nome": "Kit Shimano SH-XC302 Marrom + Pedal Clip M520 - Sapatilha MTB TAMANHO:40;COR:MARROM",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5323",
+      "nome": "BRETELLE MASCULINO CICLY LIFE CARBON PRO TAMANHO:M;COR:PRETO",
+      "qtdBling": 37,
+      "qtdBagy": 36,
+      "diferenca": 1
+    },
+    {
+      "sku": "5325",
+      "nome": "BRETELLE MASCULINO CICLY LIFE CARBON PRO TAMANHO:GG;COR:PRETO",
+      "qtdBling": 38,
+      "qtdBagy": 36,
+      "diferenca": 2
+    },
+    {
+      "sku": "5326",
+      "nome": "BRETELLE MASCULINO CICLY LIFE CARBON PRO TAMANHO:EGG;COR:PRETO",
+      "qtdBling": 58,
+      "qtdBagy": 57,
+      "diferenca": 1
+    },
+    {
+      "sku": "5340",
+      "nome": "GUIDAO INTEGRADO CARBONO RAD7 PERFORMANCE 780MM X 70MM 17º",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5478",
+      "nome": "ROLO DE TREINO ELITE RIVO COM ZWIFT COG E CLICK",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5521",
+      "nome": "KIT 5 SACHÊS 20G - SUDRACT ISOTÔNICO HYDRAMAXI - LARANJA",
+      "qtdBling": 0,
+      "qtdBagy": 10,
+      "diferenca": -10
+    },
+    {
+      "sku": "5522",
+      "nome": "KIT 10 SACHÊS 20G - SUDRACT ISOTÔNICO HYDRAMAXI - LARANJA",
+      "qtdBling": 0,
+      "qtdBagy": 5,
+      "diferenca": -5
+    },
+    {
+      "sku": "5878",
+      "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  PRETO/VERMELHO CICLISMO TAMANHO:39;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5879",
+      "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  PRETO/VERMELHO CICLISMO TAMANHO:40;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5880",
+      "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  PRETO/VERMELHO CICLISMO TAMANHO:41;COR:PRETO/VERMELHO",
+      "qtdBling": -2,
+      "qtdBagy": 0,
+      "diferenca": -2
+    },
+    {
+      "sku": "5881",
+      "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  PRETO/VERMELHO CICLISMO TAMANHO:42;COR:PRETO/VERMELHO",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5890",
+      "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  + PEDAL CLIP WEELGO 823 Vemelha:36",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5891",
+      "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  + PEDAL CLIP WEELGO 823 Vemelha:38",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5892",
+      "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  + PEDAL CLIP WEELGO 823 Vemelha:39",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5893",
+      "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  + PEDAL CLIP WEELGO 823 Vemelha:40",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5894",
+      "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  + PEDAL CLIP WEELGO 823 Vemelha:41",
+      "qtdBling": -2,
+      "qtdBagy": 0,
+      "diferenca": -2
+    },
+    {
+      "sku": "5895",
+      "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  + PEDAL CLIP WEELGO 823 Vemelha:42",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5896",
+      "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  + PEDAL CLIP WEELGO 823 Vemelha:43",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5897",
+      "nome": "SAPATILHA MTB HIGH ONE FEET 2 VELCROS + 1 TRAVA  + PEDAL CLIP WEELGO 823 Vemelha:44",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5899",
+      "nome": "SAPATILHA MTB HIGH ONE FEET  2 VELCROS + 1 TRAVA + PEDAL CLIP WELLGO 823 PTO/CZA:37",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5900",
+      "nome": "SAPATILHA MTB HIGH ONE FEET  2 VELCROS + 1 TRAVA + PEDAL CLIP WELLGO 823 PTO/CZA:38",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5901",
+      "nome": "SAPATILHA MTB HIGH ONE FEET  2 VELCROS + 1 TRAVA + PEDAL CLIP WELLGO 823 PTO/CZA:39",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "5902",
+      "nome": "SAPATILHA MTB HIGH ONE FEET  2 VELCROS + 1 TRAVA + PEDAL CLIP WELLGO 823 PTO/CZA:43",
+      "qtdBling": -7,
+      "qtdBagy": 0,
+      "diferenca": -7
+    },
+    {
+      "sku": "5903",
+      "nome": "SAPATILHA MTB HIGH ONE FEET  2 VELCROS + 1 TRAVA + PEDAL CLIP WELLGO 823 PTO/CZA:44",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6100",
+      "nome": "SAPATILHA MTB HIGH ONE FEET  2 VELCROS + 1 TRAVA + PEDAL CLIP WELLGO 823 PTO/CZA:42",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6151",
+      "nome": "KIT STUTTGART CARBON PERFORMANCE, QUADRO + GUIDÃO DE CARBONO 70MM TAMANHO:15",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6152",
+      "nome": "KIT STUTTGART CARBON PERFORMANCE, QUADRO + GUIDÃO DE CARBONO 70MM TAMANHO:17",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6153",
+      "nome": "KIT STUTTGART CARBON PERFORMANCE, QUADRO + GUIDÃO DE CARBONO 70MM TAMANHO:19",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6176",
+      "nome": "KIT STUTTGART CARBON PERFORMANCE, QUADRO + GUIDÃO DE CARBONO 70MM TAMANHO:15",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6177",
+      "nome": "KIT STUTTGART CARBON PERFORMANCE, QUADRO + GUIDÃO DE CARBONO 70MM TAMANHO:17",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6178",
+      "nome": "KIT STUTTGART CARBON PERFORMANCE, QUADRO + GUIDÃO DE CARBONO 70MM TAMANHO:19",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6192",
+      "nome": "KIT STUTTGART CARBON PERFORMANCE, QUADRO BRANCO + GUIDÃO DE CARBONO 70MM TAMANHO:15",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6193",
+      "nome": "KIT STUTTGART CARBON PERFORMANCE, QUADRO BRANCO + GUIDÃO DE CARBONO 70MM TAMANHO:17",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6194",
+      "nome": "KIT STUTTGART CARBON PERFORMANCE, QUADRO BRANCO + GUIDÃO DE CARBONO 70MM TAMANHO:19",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6196",
+      "nome": "KIT STUTTGART CARBON PERFORMANCE, QUADRO BRANCO + GUIDÃO DE CARBONO 80MM TAMANHO:15",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6200",
+      "nome": "KIT STUTTGART CARBON PERFORMANCE, QUADRO BRANCO + GUIDÃO DE CARBONO 90MM TAMANHO:15",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6204",
+      "nome": "KIT STUTTGART CARBON PERFORMANCE, QUADRO BRANCO + GUIDÃO DE CARBONO 100MM TAMANHO:15",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    },
+    {
+      "sku": "6540",
+      "nome": "POTE ENERGY PRO 750G SUPLEMENTO SUDRACT - TANGERINA",
+      "qtdBling": 2,
+      "qtdBagy": 5,
+      "diferenca": -3
+    },
+    {
+      "sku": "6708",
+      "nome": "CORRENTE KMC 12V 126 ELOS X12 BIKE MTB SPEED - GOLD",
+      "qtdBling": -1,
+      "qtdBagy": 0,
+      "diferenca": -1
+    }
+  ],
+  "semSkuNoBling": [
+    "1356",
+    "3830",
+    "4642",
+    "5887",
+    "5888",
+    "6137",
+    "6138"
+  ],
+  "observacao": "Comparação só leitura — nenhuma correção automática é feita na Bagy ainda."
+}

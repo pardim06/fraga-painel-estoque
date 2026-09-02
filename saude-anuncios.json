@@ -1,5 +1,5 @@
 {
-  "atualizadoEm": "2026-09-02T13:12:17.585Z",
+  "atualizadoEm": "2026-09-02T14:01:41.535Z",
   "totalUnhealthy": 285,
   "totalWarning": 12,
   "itens": [
@@ -79,24 +79,6 @@
       "itemId": "MLB3729124783",
       "titulo": "Guidao Tsw Quest Carbono Reto 9 800mm C/sup 17 100mm",
       "link": "https://produto.mercadolivre.com.br/MLB-3729124783-guidao-tsw-quest-carbono-reto-9-800mm-csup-17-100mm-_JM",
-      "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
-    },
-    {
-      "itemId": "MLB4803887528",
-      "titulo": "Pedal Clip Shimano Pd-m520 C/ Tacos Sm-sh51 - Preto Prata",
-      "link": "https://produto.mercadolivre.com.br/MLB-4803887528-pedal-clip-shimano-pd-m520-c-tacos-sm-sh51-preto-prata-_JM",
-      "status": "unhealthy",
-      "score": 100,
-      "level": "Profissional",
-      "problemas": []
-    },
-    {
-      "itemId": "MLB3754670077",
-      "titulo": "Pedal Shimano Pd-m520 Mtb Preto Com Tacos C/ Nf Prata",
-      "link": "https://produto.mercadolivre.com.br/MLB-3754670077-pedal-shimano-pd-m520-mtb-preto-com-tacos-c-nf-prata-_JM",
       "status": "unhealthy",
       "score": null,
       "level": null,
@@ -296,15 +278,9 @@
       "titulo": "Corrente Shimano Cn-lg500 138l 11v Linkglide Para Bicicleta",
       "link": "https://produto.mercadolivre.com.br/MLB-3800701477-corrente-shimano-cn-lg500-138l-11v-linkglide-para-bicicleta-_JM",
       "status": "unhealthy",
-      "score": 94,
-      "level": "Profissional",
-      "problemas": [
-        {
-          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU1461485090&item_id=MLB3800701477&item_syi=MLB3800701477&origin=quality#origin=quality"
-        }
-      ]
+      "score": null,
+      "level": null,
+      "problemas": []
     },
     {
       "itemId": "MLB3800688535",
@@ -2103,18 +2079,13 @@
       "titulo": "Pedal Shimano Pd-m520 Mtb Clipless Preto Com Tacos Sh51 C/nf Prata",
       "link": "https://produto.mercadolivre.com.br/MLB-5425647712-pedal-shimano-pd-m520-mtb-clipless-preto-com-tacos-sh51-cnf-prata-_JM",
       "status": "unhealthy",
-      "score": 87,
+      "score": 94,
       "level": "Profissional",
       "problemas": [
         {
           "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU3227199421&item_id=MLB5425647712&item_syi=MLB5425647712&origin=quality#origin=quality"
-        },
-        {
-          "titulo": "Participe de uma promoção para receber mais visitas",
-          "tipo": "oportunidade",
-          "link": "https://www.mercadolivre.com.br/anuncios/lista/promos?search=MLB5425647712"
         }
       ]
     },
@@ -2807,9 +2778,25 @@
       "titulo": "Alavanca Cambio Alivio Sl-m3100 9v Direito",
       "link": "https://produto.mercadolivre.com.br/MLB-4992717085-alavanca-cambio-alivio-sl-m3100-9v-direito-_JM",
       "status": "unhealthy",
-      "score": null,
-      "level": null,
-      "problemas": []
+      "score": 86,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Verifique o produto de catálogo que sugerimos e compita para ser a primeira opção de compra.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicar/catalogo/MLBU4590396402"
+        },
+        {
+          "titulo": "Os vídeos devem ter até um minuto, em formato vertical e serão publicados em todas as suas variações.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/video/creator/upload?user_product_id=MLBU4590396402&item_id=MLB4992717085&item_syi=MLB4992717085&origin=quality#origin=quality"
+        },
+        {
+          "titulo": "Adicione mais fotos para mostrar seu produto em diferentes ângulos, carregue pelo menos 3.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/publicaciones/MLBU4590396402/modificar/omni/variation/dominio/picture-uploader-default"
+        }
+      ]
     },
     {
       "itemId": "MLB7344598250",
@@ -3158,6 +3145,30 @@
       "problemas": []
     },
     {
+      "itemId": "MLB4803887528",
+      "titulo": "Pedal Clip Shimano Pd-m520 C/ Tacos Sm-sh51 - Preto Prata",
+      "link": "https://produto.mercadolivre.com.br/MLB-4803887528-pedal-clip-shimano-pd-m520-c-tacos-sm-sh51-preto-prata-_JM",
+      "status": "unhealthy",
+      "score": 90,
+      "level": "Profissional",
+      "problemas": [
+        {
+          "titulo": "Ofereça parcelamento sem juros para que seu anúncio seja mais competitivo.",
+          "tipo": "oportunidade",
+          "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=listing_types_task&itemId=MLB4803887528"
+        }
+      ]
+    },
+    {
+      "itemId": "MLB3754670077",
+      "titulo": "Pedal Shimano Pd-m520 Mtb Preto Com Tacos C/ Nf Prata",
+      "link": "https://produto.mercadolivre.com.br/MLB-3754670077-pedal-shimano-pd-m520-mtb-preto-com-tacos-c-nf-prata-_JM",
+      "status": "unhealthy",
+      "score": null,
+      "level": null,
+      "problemas": []
+    },
+    {
       "itemId": "MLB4775654934",
       "titulo": "Sapatilha Shimano Sh-mx100 Vermelho Pedal Clip Bicicleta Mtb",
       "link": "https://produto.mercadolivre.com.br/MLB-4775654934-sapatilha-shimano-sh-mx100-vermelho-pedal-clip-bicicleta-mtb-_JM",
@@ -3271,14 +3282,14 @@
       "level": "Profissional",
       "problemas": [
         {
-          "titulo": "Preencha os dados fiscais para emitir faturas",
-          "tipo": "oportunidade",
-          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB5468465424/tax-information"
-        },
-        {
           "titulo": "Certifique-se de que todas as variações tenham 2 ou mais unidades disponíveis.",
           "tipo": "oportunidade",
           "link": "https://www.mercadolivre.com.br/syi/core/modify?taskId=variations_task&itemId=MLB5468465424"
+        },
+        {
+          "titulo": "Preencha os dados fiscais para emitir faturas",
+          "tipo": "oportunidade",
+          "link": "https://myaccount.mercadolivre.com.br/fiscal-information/item/MLB5468465424/tax-information"
         }
       ]
     },
