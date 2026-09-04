@@ -25,14 +25,10 @@ require('dotenv').config();
 const { getBlingAccessToken } = require('../lib/tokens');
 const { blingGet, aguardar } = require('../lib/bling-http');
 const { publicarDados } = require('../lib/supabase-publicar');
+const { LOJAS_ECOMMERCE } = require('../lib/lojas-ecommerce');
 const BLING_DEPOSITO_ID = process.env.BLING_DEPOSITO_ID || '14887750294';
 
 const SITUACAO_CANCELADO = 12;
-
-// Lojas de e-commerce cadastradas no Bling — Mercado Livre e Bagy/site.
-// Exclui loja física (id 205187092) e pedidos sem loja associada. Ver
-// premissa no topo do arquivo.
-const LOJAS_ECOMMERCE = new Set(['204966737', '205655926']);
 
 const JANELA_DIAS = 90;
 const JANELA_RECENTE_DIAS = 30;

@@ -12,8 +12,12 @@
 
 require('dotenv').config();
 const axios = require('axios');
-const { getMLAccessToken } = require('../lib/tokens');
+const { getMLAccessToken, getBlingAccessToken } = require('../lib/tokens');
+const { blingGet } = require('../lib/bling-http');
 const { publicarDados, buscarDadosPublicados } = require('../lib/supabase-publicar');
+const { LOJAS_ECOMMERCE } = require('../lib/lojas-ecommerce');
+
+const SITUACAO_CANCELADO = 12;
 
 const META = {
   vendas60d: 1725,
@@ -69,11 +73,55 @@ async function buscarFaturamento(token, sellerId) {
   return { total60d, qtd60d, totalMes, qtdMes, mesAtual: inicioMes.toISOString().slice(0, 7) };
 }
 
+// ===== FATURAMENTO DO MÊS — E-COMMERCE (ML + Bagy), pro placar executivo =====
+// Diferente de buscarFaturamento() acima (que é só ML, usado pro requisito
+// oficial do MercadoLíder Platinum), esse aqui é o "Realizado" que o dono
+// vê no dashboard — soma os dois canais de e-commerce, sem loja física.
+// Usa só a listagem de pedidos (tem "total" pronto por pedido), não precisa
+// buscar detalhe pedido a pedido — rápido mesmo com milhares de pedidos.
+async function buscarFaturamentoEcommerceMes(blingToken) {
+  const inicioMes = new Date();
+  inicioMes.setDate(1);
+  inicioMes.setHours(0, 0, 0, 0);
+  const dataInicial = inicioMes.toISOString().slice(0, 10);
+  const dataFinal = new Date().toISOString().slice(0, 10);
+
+  let total = 0;
+  let quantidade = 0;
+  let pagina = 1;
+
+  while (true) {
+    const resp = await blingGet('https://api.bling.com.br/Api/v3/pedidos/vendas', {
+      headers: { Authorization: `Bearer ${blingToken}` },
+      params: { pagina, limite: 100, dataInicial, dataFinal },
+    });
+
+    const dados = resp.data.data || [];
+    if (dados.length === 0) break;
+
+    for (const p of dados) {
+      if (p.situacao?.id === SITUACAO_CANCELADO) continue;
+      if (!LOJAS_ECOMMERCE.has(String(p.loja?.id))) continue;
+      total += p.total || 0;
+      quantidade++;
+    }
+
+    if (dados.length < 100) break;
+    pagina++;
+  }
+
+  return { total, quantidade, mesAtual: inicioMes.toISOString().slice(0, 7) };
+}
+
 async function main() {
   const token = await getMLAccessToken();
   const sellerId = process.env.ML_SELLER_ID;
 
-  const { total60d: faturamento60d, qtd60d: pedidosPagos, totalMes, qtdMes, mesAtual } = await buscarFaturamento(token, sellerId);
+  const { total60d: faturamento60d, qtd60d: pedidosPagos } = await buscarFaturamento(token, sellerId);
+
+  const blingToken = await getBlingAccessToken();
+  const { total: totalMesEcommerce, quantidade: qtdMesEcommerce, mesAtual } = await buscarFaturamentoEcommerceMes(blingToken);
+
   const reputacao = await buscarDadosPublicados('reputacao-ml.json');
   const m = reputacao?.metricas || {};
   const vendas60d = m.vendas60d ?? pedidosPagos;
@@ -134,7 +182,10 @@ async function main() {
   const resultado = {
     atualizadoEm: new Date().toISOString(),
     powerSellerAtual: reputacao?.powerSeller || null,
-    faturamentoMesAtual: { mes: mesAtual, total: totalMes, quantidade: qtdMes },
+    // ML + Bagy (sem loja física) — é o "Realizado" que o placar executivo
+    // do dashboard mostra. O requisito "Faturamento (60 dias)" acima
+    // continua só ML, que é o que o MercadoLíder de fato exige.
+    faturamentoMesAtual: { mes: mesAtual, total: totalMesEcommerce, quantidade: qtdMesEcommerce, canal: 'E-commerce (ML + Bagy)' },
     requisitos,
     totalRequisitos: requisitos.length,
     totalFaltantes: faltantes.length,
