@@ -7,10 +7,13 @@
 // não precisa de tempo real como o verificador de estoque.
 //
 // PREMISSAS (documentadas aqui de propósito — revise se algo não bater):
-// - Considera pedidos de TODOS os canais de venda cadastrados no Bling (ML,
-//   Bagy/site, loja física etc.) — a saída real de estoque não vem só do
-//   Mercado Livre, e contar só um canal subestima a velocidade de venda dos
-//   produtos que também saem por outros canais.
+// - Considera só pedidos de canais de e-commerce (ML + Bagy/site) — loja
+//   física fica de fora de propósito, porque o estoque considerado aqui é
+//   só o do depósito "SITE / MERCADO LIVRE" (não o da loja física), e
+//   contar a saída da loja física infla a velocidade sem ter relação com
+//   esse depósito. IDs de loja identificados por inferência (loja física
+//   sempre tem "vendedor" no pedido, e-commerce nunca tem) — confira em
+//   Vendas > Pedidos no Bling se algum dia os números não baterem.
 // - Ignora pedidos com situação "Cancelado" (id 12, padrão do sistema Bling).
 //   Se sua conta usa um fluxo de situações diferente, ajuste SITUACAO_CANCELADO.
 // - Estoque atual = saldo do depósito "SITE / MERCADO LIVRE" (mesmo usado no
@@ -25,6 +28,11 @@ const { publicarDados } = require('../lib/supabase-publicar');
 const BLING_DEPOSITO_ID = process.env.BLING_DEPOSITO_ID || '14887750294';
 
 const SITUACAO_CANCELADO = 12;
+
+// Lojas de e-commerce cadastradas no Bling — Mercado Livre e Bagy/site.
+// Exclui loja física (id 205187092) e pedidos sem loja associada. Ver
+// premissa no topo do arquivo.
+const LOJAS_ECOMMERCE = new Set(['204966737', '205655926']);
 
 const JANELA_DIAS = 90;
 const JANELA_RECENTE_DIAS = 30;
@@ -85,7 +93,7 @@ async function getEstoqueAtual(token, produtos) {
   return estoque;
 }
 
-// ===== 3. PEDIDOS DE VENDA — TODOS OS CANAIS (últimos 90 dias) =====
+// ===== 3. PEDIDOS DE VENDA — SÓ CANAIS DE E-COMMERCE (últimos 90 dias) =====
 async function getPedidosVendas(token) {
   const hoje = new Date();
   const dataInicial = new Date(hoje.getTime() - JANELA_DIAS * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
@@ -95,8 +103,6 @@ async function getPedidosVendas(token) {
   let pagina = 1;
 
   while (true) {
-    // Sem filtro de idLoja de propósito — pega a saída real de todos os
-    // canais (ML, Bagy/site, loja física etc.), não só um.
     const resp = await blingGet('https://api.bling.com.br/Api/v3/pedidos/vendas', {
       headers: { Authorization: `Bearer ${token}` },
       params: { pagina, limite: 100, dataInicial, dataFinal },
@@ -106,9 +112,9 @@ async function getPedidosVendas(token) {
     if (dados.length === 0) break;
 
     for (const p of dados) {
-      if (p.situacao?.id !== SITUACAO_CANCELADO) {
-        pedidos.push({ id: p.id, data: p.data });
-      }
+      if (p.situacao?.id === SITUACAO_CANCELADO) continue;
+      if (!LOJAS_ECOMMERCE.has(String(p.loja?.id))) continue;
+      pedidos.push({ id: p.id, data: p.data });
     }
 
     if (dados.length < 100) break;
@@ -296,7 +302,7 @@ async function salvar(itens, totalPedidosAnalisados) {
       coberturaAlvoDias: COBERTURA_ALVO_DIAS,
       janelaAnaliseDias: JANELA_DIAS,
       janelaRecenteDias: JANELA_RECENTE_DIAS,
-      canalConsiderado: 'Todos os canais (Bling)',
+      canalConsiderado: 'E-commerce (Mercado Livre + Bagy)',
       criterioABC: 'faturamento',
     },
     resumo: {
