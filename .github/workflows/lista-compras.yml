@@ -11,7 +11,9 @@ permissions:
 # Compartilha o mesmo grupo dos outros dois: os tres giram o BLING_REFRESH_TOKEN
 # (esse aqui nao mexe no ML_REFRESH_TOKEN, mas ainda assim nao pode rodar ao
 # mesmo tempo que o verificador de estoque sem risco de corrida no token do
-# Bling). E uma consulta pesada (milhares de pedidos), pode levar ~20min.
+# Bling). E uma consulta pesada (milhares de pedidos, ~3300 em ~40min com
+# e-commerce ML+Bagy) — 45min de timeout já quase estourou uma vez, dando
+# folga maior aqui pra não voltar a acontecer conforme o volume cresce.
 concurrency:
   group: ml-bling-token
   cancel-in-progress: false
@@ -19,7 +21,7 @@ concurrency:
 jobs:
   gerar:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 75
     steps:
       - uses: actions/checkout@v4
 
