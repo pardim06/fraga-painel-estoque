@@ -137,6 +137,9 @@ async function corrigirEstoqueML(accessToken, divergencias) {
           ok: false,
           erro: err.response?.data?.message || err.message,
         });
+        // Log completo (inclui "cause", que costuma apontar a política exata
+        // que bloqueou) — o resumo acima não é suficiente pra diagnosticar.
+        console.error(`Detalhe do erro ao corrigir item ${item.itemId}:`, JSON.stringify(err.response?.data));
       }
       await aguardar(250); // folga entre chamadas de escrita no ML
     }
