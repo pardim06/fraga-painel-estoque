@@ -100,6 +100,7 @@ function compararEstoques(estoqueBling, estoqueML) {
     // de vender sem estoque).
     const diferenca = bling.saldo - ml.qtd;
     if (Math.abs(diferenca) > TOLERANCIA) {
+      console.log(`Divergência SKU ${sku}: Bling=${bling.saldo} ML=${ml.qtd} (anúncios: ${ml.itens.map((it) => `${it.itemId}=${it.qtd}`).join(', ')})`);
       divergencias.push({
         sku,
         nome: bling.nome || ml.nome,
