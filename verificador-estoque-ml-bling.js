@@ -31,6 +31,7 @@ async function getEstoqueML(accessToken) {
   const estoques = {};
   let offset = 0;
   const limit = 50;
+  let totalIdsLidos = 0;
 
   while (true) {
     const resp = await axios.get(`https://api.mercadolibre.com/users/${ML_SELLER_ID}/items/search`, {
@@ -38,8 +39,18 @@ async function getEstoqueML(accessToken) {
       params: { offset, limit, status: 'active' },
     });
 
+    // Diagnostico: confirma que a paginacao esta pegando todos os anuncios
+    // ativos (o endpoint da ML as vezes trunca depois de offset 1000).
+    if (offset === 0) {
+      console.log(`Paginação ML: paging.total=${resp.data.paging?.total}`);
+    }
+
     const ids = resp.data.results || [];
-    if (ids.length === 0) break;
+    totalIdsLidos += ids.length;
+    if (ids.length === 0) {
+      console.log(`Paginação ML: parou em offset=${offset}, total de IDs lidos=${totalIdsLidos}`);
+      break;
+    }
 
     // busca detalhes em lote (multiget, máximo 20 por chamada na maioria das contas)
     for (let i = 0; i < ids.length; i += 20) {
