@@ -14,6 +14,7 @@
     "responder-perguntas": "node scripts/responder-perguntas.js",
     "saude-anuncios": "node scripts/saude-anuncios.js",
     "medidas-ml": "node scripts/medidas-ml.js",
+    "buybox-ml": "node scripts/buybox-ml.js",
     "mercadolider": "node scripts/mercadolider.js",
     "verificar-bagy": "node scripts/verificador-estoque-bagy-bling.js"
   },
