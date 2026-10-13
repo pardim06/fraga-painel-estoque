@@ -87,14 +87,12 @@ async function buscarMedidas(accessToken, itemIds) {
     const lote = itemIds.slice(i, i + 20);
     const resp = await axios.get('https://api.mercadolibre.com/items', {
       headers: { Authorization: `Bearer ${accessToken}` },
-      params: { ids: lote.join(','), attributes: 'id,title,seller_custom_field,permalink,attributes,shipping,catalog_listing' },
+      params: { ids: lote.join(','), attributes: 'id,title,seller_custom_field,permalink,attributes,shipping' },
     });
 
     for (const entry of resp.data) {
       if (entry.code !== 200) continue;
       const item = entry.body;
-      global.__catalogoCount = global.__catalogoCount || { sim: 0, nao: 0 };
-      global.__catalogoCount[item.catalog_listing ? 'sim' : 'nao']++;
       const sku =
         item.seller_custom_field ||
         item.attributes?.find((a) => a.id === 'SELLER_SKU')?.value_name ||
@@ -173,7 +171,6 @@ async function main() {
 
   await publicarDados('medidas-ml.json', resultado);
   console.log(`Medidas publicadas: ${itens.length} anúncio(s), ${totalSuspeitos} suspeito(s) (sem medida ou medida zerada).`);
-  console.log(`DIAGNOSTICO catalogo: ${JSON.stringify(global.__catalogoCount)}`);
 }
 
 if (require.main === module) {
