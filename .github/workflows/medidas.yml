@@ -29,7 +29,7 @@ jobs:
 
       - run: npm install
 
-      - run: npm run buybox-ml
+      - run: npm run medidas-ml
         env:
           ML_CLIENT_ID: ${{ secrets.ML_CLIENT_ID }}
           ML_CLIENT_SECRET: ${{ secrets.ML_CLIENT_SECRET }}
