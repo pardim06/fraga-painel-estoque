@@ -1,4 +1,4 @@
-name: Guardião do Estoque - medidas ML
+name: Medidas dos anúncios ML
 
 on:
   # Encadeado no workflow de lista de compras (já roda 1x/dia de forma

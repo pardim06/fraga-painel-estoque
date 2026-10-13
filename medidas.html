@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Guardião do Estoque · Fraga Bike Shop</title>
+<title>Medidas · Fraga Bike Shop</title>
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="stylesheet" href="assets/estilo.css">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -58,9 +58,9 @@
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 17.5s-6.5-3.9-6.5-8.9A3.6 3.6 0 0110 6.1a3.6 3.6 0 016.5 2.5c0 5-6.5 8.9-6.5 8.9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
         Saúde dos Anúncios
       </a>
-      <a href="guardiao-estoque.html" class="active">
+      <a href="medidas.html" class="active">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2.5l6 2.2v4.8c0 4.3-2.6 7.6-6 8.5-3.4-.9-6-4.2-6-8.5V4.7l6-2.2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.3 10l2 2 3.4-3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Guardião do Estoque
+        Medidas
       </a>
       <a href="assistente-ia.html">
         <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 8.2l1.2 1.2 3-3.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -74,7 +74,7 @@
   <main class="content">
     <div class="page-head rise">
       <div>
-        <h1>Guardião do Estoque</h1>
+        <h1>Medidas</h1>
         <div class="subtitle">Fraga Bike Shop · Medidas de envio no Mercado Livre</div>
       </div>
       <div class="badge-live"><span class="dot"></span> Atualiza 1x/dia</div>
@@ -107,7 +107,7 @@
       render(dados);
     } catch (err) {
       document.getElementById('conteudo').innerHTML =
-        '<div class="error-state">Não foi possível carregar os dados. O arquivo medidas-ml.json só existe depois da primeira execução do workflow "Guardião do Estoque - medidas ML".' +
+        '<div class="error-state">Não foi possível carregar os dados. O arquivo medidas-ml.json só existe depois da primeira execução do workflow "Medidas dos anúncios ML".' +
         '<span class="detail">' + err.message + '</span></div>';
     }
   }
