@@ -133,6 +133,23 @@ async function buscarMedidas(accessToken, itemIds) {
 async function main() {
   const token = await getMLAccessToken();
   const itemIds = await buscarTodosAtivos(token);
+
+  // Diagnostico temporario: dump completo (sem projecao de campos) do
+  // primeiro item, pra confirmar o formato real que a conta devolve antes
+  // de confiar na extracao de shipping.dimensions / attributes PACKAGE_*.
+  if (itemIds[0]) {
+    const respCompleto = await axios.get(`https://api.mercadolibre.com/items/${itemIds[0]}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    console.log('DIAGNOSTICO item completo:', JSON.stringify({
+      id: respCompleto.data.id,
+      shipping: respCompleto.data.shipping,
+      attributes: (respCompleto.data.attributes || []).filter((a) =>
+        /PACKAGE|WEIGHT|LENGTH|WIDTH|HEIGHT|DIMENS/i.test(a.id) || /PACKAGE|WEIGHT|LENGTH|WIDTH|HEIGHT|DIMENS/i.test(a.name || '')
+      ),
+    }));
+  }
+
   const itens = await buscarMedidas(token, itemIds);
 
   // Suspeitos primeiro — é o que o usuário quer ver de cara.
