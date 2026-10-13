@@ -50,10 +50,23 @@ async function main() {
   console.log('Item catálogo encontrado:', JSON.stringify(itemCatalogo));
 
   if (itemCatalogo.catalog_product_id) {
-    const respProduto = await axios.get(`https://api.mercadolibre.com/products/${itemCatalogo.catalog_product_id}`, {
+    const respComAttr = await axios.get(`https://api.mercadolibre.com/products/${itemCatalogo.catalog_product_id}`, {
       headers: { Authorization: `Bearer ${token}` },
+      params: { attributes: 'buy_box_winner,buy_box_winner_price_range' },
     });
-    console.log('DIAGNOSTICO produto catálogo completo:', JSON.stringify(respProduto.data));
+    console.log('DIAGNOSTICO com attributes=buy_box_winner:', JSON.stringify({
+      buy_box_winner: respComAttr.data.buy_box_winner,
+      buy_box_winner_price_range: respComAttr.data.buy_box_winner_price_range,
+    }));
+
+    try {
+      const respItems = await axios.get(`https://api.mercadolibre.com/products/${itemCatalogo.catalog_product_id}/items`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      console.log('DIAGNOSTICO /products/{id}/items:', JSON.stringify(respItems.data).slice(0, 2000));
+    } catch (err) {
+      console.log('DIAGNOSTICO /products/{id}/items falhou:', err.response?.status, JSON.stringify(err.response?.data));
+    }
   }
 }
 
