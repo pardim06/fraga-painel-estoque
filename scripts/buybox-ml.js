@@ -25,15 +25,18 @@ async function main() {
     const ids = resp.data.results || [];
     if (ids.length === 0) break;
 
-    const detalhes = await axios.get('https://api.mercadolibre.com/items', {
-      headers: { Authorization: `Bearer ${token}` },
-      params: { ids: ids.join(','), attributes: 'id,title,price,catalog_listing,catalog_product_id' },
-    });
+    for (let i = 0; i < ids.length && !itemCatalogo; i += 20) {
+      const lote = ids.slice(i, i + 20);
+      const detalhes = await axios.get('https://api.mercadolibre.com/items', {
+        headers: { Authorization: `Bearer ${token}` },
+        params: { ids: lote.join(','), attributes: 'id,title,price,catalog_listing,catalog_product_id' },
+      });
 
-    for (const entry of detalhes.data) {
-      if (entry.body?.catalog_listing) {
-        itemCatalogo = entry.body;
-        break;
+      for (const entry of detalhes.data) {
+        if (entry.body?.catalog_listing) {
+          itemCatalogo = entry.body;
+          break;
+        }
       }
     }
     offset += limit;
