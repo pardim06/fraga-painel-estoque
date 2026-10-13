@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guardião do Estoque · Fraga Bike Shop</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="assets/estilo.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-auth.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <img src="assets/logo-fraga.png" alt="Fraga Bike Shop">
+      <div>
+        <div class="name">Fraga Bike Shop</div>
+        <div class="tag">Sistema Interno</div>
+      </div>
+    </a>
+
+    <div class="sidebar-label">Módulos</div>
+    <nav class="sidebar-nav">
+      <a href="index.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 9.5L10 3l7 6.5M5 8.2V17h4v-5h2v5h4V8.2" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        Início
+      </a>
+      <a href="dashboard.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="2" y="10" width="4" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="8" y="5" width="4" height="13" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="2" width="4" height="16" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
+        Dashboard
+      </a>
+      <a href="painel-estoque.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5.5 7h9l1 10.5a1 1 0 01-1 1.1H5.5a1 1 0 01-1-1.1L5.5 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 7V5.5a2.5 2.5 0 015 0V7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Estoque Mercado Livre
+      </a>
+      <a href="painel-bagy.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 6l7-3.5L17 6v8l-7 3.5L3 14V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 6l7 3.5L17 6M10 9.5V17.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Estoque Bagy
+      </a>
+      <a href="painel-shopee.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 8h10l.8 8.5a1.3 1.3 0 01-1.3 1.5H5.5a1.3 1.3 0 01-1.3-1.5L5 8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 8a3 3 0 016 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8 12.2c.5.6 1.1.9 2 .9s1.5-.3 2-.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Estoque Shopee
+      </a>
+      <a href="perguntas-ml.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 8h6M7 10.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Perguntas ML
+      </a>
+      <a href="lista-compras.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 3h10v14l-5-2.5L5 17V3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 7h5M7.5 10h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Lista de Compras
+      </a>
+      <a href="reputacao-ml.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.9 4.6 5 .4-3.8 3.3 1.2 4.9L10 12.7l-4.3 2.5 1.2-4.9L3.1 7l5-.4L10 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Reputação ML
+      </a>
+      <a href="saude-anuncios.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 17.5s-6.5-3.9-6.5-8.9A3.6 3.6 0 0110 6.1a3.6 3.6 0 016.5 2.5c0 5-6.5 8.9-6.5 8.9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Saúde dos Anúncios
+      </a>
+      <a href="guardiao-estoque.html" class="active">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2.5l6 2.2v4.8c0 4.3-2.6 7.6-6 8.5-3.4-.9-6-4.2-6-8.5V4.7l6-2.2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.3 10l2 2 3.4-3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Guardião do Estoque
+      </a>
+      <a href="assistente-ia.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 8.2l1.2 1.2 3-3.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Assistente IA
+      </a>
+    </nav>
+
+    <div class="sidebar-foot">Painel interno<br>Fraga Bike Shop</div>
+  </aside>
+
+  <main class="content">
+    <div class="page-head rise">
+      <div>
+        <h1>Guardião do Estoque</h1>
+        <div class="subtitle">Fraga Bike Shop · Medidas de envio no Mercado Livre</div>
+      </div>
+      <div class="badge-live"><span class="dot"></span> Atualiza 1x/dia</div>
+    </div>
+
+    <div id="conteudo"></div>
+
+    <footer>Painel interno · medida errada ou ausente faz o Mercado Livre calcular o frete pela medida padrão da categoria, que raramente bate com o produto real.</footer>
+  </main>
+</div>
+
+<script>
+  function escapeHtml(texto) {
+    const div = document.createElement('div');
+    div.textContent = texto ?? '';
+    return div.innerHTML;
+  }
+
+  function formatarData(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+  }
+
+  async function carregar() {
+    document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
+    try {
+      const dados = await buscarDados('medidas-ml.json');
+      if (!dados) throw new Error('sem dados');
+      render(dados);
+    } catch (err) {
+      document.getElementById('conteudo').innerHTML =
+        '<div class="error-state">Não foi possível carregar os dados. O arquivo medidas-ml.json só existe depois da primeira execução do workflow "Guardião do Estoque - medidas ML".' +
+        '<span class="detail">' + err.message + '</span></div>';
+    }
+  }
+
+  function render(dados) {
+    const { atualizadoEm, totalItens, totalSuspeitos, itens } = dados;
+    const lista = itens || [];
+
+    let html = '';
+
+    html += '<div class="kpi-grid rise">';
+    html += '  <div class="kpi-card' + (totalSuspeitos > 0 ? ' alert' : ' ok') + '">' +
+      '<div class="lbl">Sem medida ou medida zerada</div><div class="val">' + totalSuspeitos + '</div></div>';
+    html += '  <div class="kpi-card">' +
+      '<div class="lbl">Total de anúncios ativos</div><div class="val">' + totalItens + '</div></div>';
+    html += '</div>';
+
+    html += '<div class="section-header rise" style="animation-delay:.06s; margin-top:20px;"><div class="section-title">Anúncios <span class="count-chip' + (totalSuspeitos > 0 ? ' alert' : '') + '">' + lista.length + '</span></div></div>';
+
+    if (lista.length > 0) {
+      html += '<div class="table-scroll rise" style="animation-delay:.08s"><table><thead><tr>' +
+        '<th>Anúncio</th><th>SKU</th><th>Comprimento</th><th>Largura</th><th>Altura</th><th>Peso</th><th>Situação</th>' +
+        '</tr></thead><tbody>';
+
+      lista.forEach((item) => {
+        const linkAbre = item.link
+          ? '<a href="' + escapeHtml(item.link) + '" target="_blank" rel="noopener">' + escapeHtml(item.titulo) + '</a>'
+          : escapeHtml(item.titulo);
+        const m = item.medidas || {};
+        const campo = (v) => v ? escapeHtml(v) : '<span style="color:var(--ink-faint);">—</span>';
+        const badge = item.suspeito
+          ? '<span class="status-badge alert">' + escapeHtml(item.motivoSuspeita || 'suspeito') + '</span>'
+          : '<span class="status-badge ok">OK</span>';
+
+        html += '<tr>' +
+          '<td class="produto" style="max-width:260px" title="' + escapeHtml(item.titulo) + '">' + linkAbre + '</td>' +
+          '<td>' + escapeHtml(item.sku || '—') + '</td>' +
+          '<td>' + campo(m.comprimento) + '</td>' +
+          '<td>' + campo(m.largura) + '</td>' +
+          '<td>' + campo(m.altura) + '</td>' +
+          '<td>' + campo(m.peso) + '</td>' +
+          '<td>' + badge + '</td>' +
+          '</tr>';
+      });
+
+      html += '</tbody></table></div>';
+    } else {
+      html += '<div class="empty-state rise" style="animation-delay:.08s">' +
+        '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M6 10.5l2.5 2.5L14 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+        'Nenhum anúncio ativo encontrado</div>';
+    }
+
+    html += '<div class="updated-at rise" style="animation-delay:.1s; margin-top:16px; border-top:none; padding-top:0;">Última verificação: ' + formatarData(atualizadoEm) + '</div>';
+
+    document.getElementById('conteudo').innerHTML = html;
+  }
+
+  verificarAcesso(carregar);
+</script>
+</body>
+</html>
