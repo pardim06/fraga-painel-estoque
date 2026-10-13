@@ -54,27 +54,30 @@ function parsearDimensionsString(texto) {
   };
 }
 
-// Fallback: algumas categorias expõem como atributos PACKAGE_* em vez de
-// shipping.dimensions — aqui a unidade vem no próprio value_struct, então
-// mostramos como o ML relatou em vez de converter às cegas.
+// Fonte real pra essa conta (confirmado via dump do item completo):
+// atributos SELLER_PACKAGE_* — medida de embalagem que o próprio vendedor
+// declarou. value_name já vem formatado ("32 cm", "664 g"); o número puro
+// (pra detectar zero) está em values[0].struct.number.
+const IDS_PACKAGE = {
+  comprimento: 'SELLER_PACKAGE_LENGTH',
+  largura: 'SELLER_PACKAGE_WIDTH',
+  altura: 'SELLER_PACKAGE_HEIGHT',
+  peso: 'SELLER_PACKAGE_WEIGHT',
+};
+
 function extrairAtributosPackage(attributes) {
   if (!Array.isArray(attributes)) return null;
   const porId = {};
   for (const attr of attributes) {
-    if (['PACKAGE_LENGTH', 'PACKAGE_WIDTH', 'PACKAGE_HEIGHT', 'PACKAGE_WEIGHT'].includes(attr.id)) {
-      const valor = attr.value_struct
-        ? `${attr.value_struct.number ?? attr.value_struct.value}${attr.value_struct.unit || ''}`
-        : attr.value_name;
-      porId[attr.id] = valor;
-    }
+    const chave = Object.keys(IDS_PACKAGE).find((k) => IDS_PACKAGE[k] === attr.id);
+    if (!chave) continue;
+    porId[chave] = {
+      texto: attr.value_name || null,
+      numero: attr.values?.[0]?.struct?.number ?? null,
+    };
   }
   if (Object.keys(porId).length === 0) return null;
-  return {
-    comprimento: porId.PACKAGE_LENGTH || null,
-    largura: porId.PACKAGE_WIDTH || null,
-    altura: porId.PACKAGE_HEIGHT || null,
-    peso: porId.PACKAGE_WEIGHT || null,
-  };
+  return porId;
 }
 
 async function buscarMedidas(accessToken, itemIds) {
@@ -95,32 +98,51 @@ async function buscarMedidas(accessToken, itemIds) {
         item.attributes?.find((a) => a.id === 'SELLER_SKU')?.value_name ||
         null;
 
-      const porDimensions = parsearDimensionsString(item.shipping?.dimensions);
-      const porAtributos = porDimensions ? null : extrairAtributosPackage(item.attributes);
+      // SELLER_PACKAGE_* (atributos) é a fonte real nessa conta; shipping.dimensions
+      // fica como fallback pra categoria/conta que use o formato antigo.
+      const porAtributos = extrairAtributosPackage(item.attributes);
+      const porDimensions = porAtributos ? null : parsearDimensionsString(item.shipping?.dimensions);
 
-      const semMedidas = !porDimensions && !porAtributos;
-      const zerado =
-        !!porDimensions &&
-        (porDimensions.comprimentoCm === 0 ||
-          porDimensions.larguraCm === 0 ||
-          porDimensions.alturaCm === 0 ||
-          porDimensions.pesoG === 0);
+      const semMedidas = !porAtributos && !porDimensions;
+      const algumaZerada = porAtributos
+        ? Object.values(porAtributos).some((m) => m.numero === 0)
+        : porDimensions &&
+          (porDimensions.comprimentoCm === 0 ||
+            porDimensions.larguraCm === 0 ||
+            porDimensions.alturaCm === 0 ||
+            porDimensions.pesoG === 0);
+      const faltaAlgumaDimensao = porAtributos
+        ? Object.keys(IDS_PACKAGE).some((k) => !porAtributos[k])
+        : false;
 
       itens.push({
         itemId: item.id,
         sku,
         titulo: item.title,
         link: item.permalink,
-        medidas: porDimensions
+        medidas: porAtributos
+          ? {
+              comprimento: porAtributos.comprimento?.texto || null,
+              largura: porAtributos.largura?.texto || null,
+              altura: porAtributos.altura?.texto || null,
+              peso: porAtributos.peso?.texto || null,
+            }
+          : porDimensions
           ? {
               comprimento: `${porDimensions.comprimentoCm} cm`,
               largura: `${porDimensions.larguraCm} cm`,
               altura: `${porDimensions.alturaCm} cm`,
               peso: `${porDimensions.pesoG} g`,
             }
-          : porAtributos,
-        suspeito: semMedidas || zerado,
-        motivoSuspeita: semMedidas ? 'sem medida cadastrada' : zerado ? 'alguma medida zerada' : null,
+          : null,
+        suspeito: semMedidas || algumaZerada || faltaAlgumaDimensao,
+        motivoSuspeita: semMedidas
+          ? 'sem medida cadastrada'
+          : algumaZerada
+          ? 'alguma medida zerada'
+          : faltaAlgumaDimensao
+          ? 'falta alguma dimensão'
+          : null,
       });
     }
 
@@ -133,23 +155,6 @@ async function buscarMedidas(accessToken, itemIds) {
 async function main() {
   const token = await getMLAccessToken();
   const itemIds = await buscarTodosAtivos(token);
-
-  // Diagnostico temporario: dump completo (sem projecao de campos) do
-  // primeiro item, pra confirmar o formato real que a conta devolve antes
-  // de confiar na extracao de shipping.dimensions / attributes PACKAGE_*.
-  if (itemIds[0]) {
-    const respCompleto = await axios.get(`https://api.mercadolibre.com/items/${itemIds[0]}`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    console.log('DIAGNOSTICO item completo:', JSON.stringify({
-      id: respCompleto.data.id,
-      shipping: respCompleto.data.shipping,
-      attributes: (respCompleto.data.attributes || []).filter((a) =>
-        /PACKAGE|WEIGHT|LENGTH|WIDTH|HEIGHT|DIMENS/i.test(a.id) || /PACKAGE|WEIGHT|LENGTH|WIDTH|HEIGHT|DIMENS/i.test(a.name || '')
-      ),
-    }));
-  }
-
   const itens = await buscarMedidas(token, itemIds);
 
   // Suspeitos primeiro — é o que o usuário quer ver de cara.
