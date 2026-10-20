@@ -8,11 +8,6 @@ const { blingGet } = require('../lib/bling-http');
 async function main() {
   const token = await getBlingAccessToken();
 
-  const respLojas = await blingGet('https://api.bling.com.br/Api/v3/lojas', {
-    headers: { Authorization: `Bearer ${token}` },
-  });
-  console.log('DIAGNOSTICO lojas:', JSON.stringify(respLojas.data));
-
   const inicioMes = new Date();
   inicioMes.setDate(1);
   const dataInicial = inicioMes.toISOString().slice(0, 10);
@@ -20,16 +15,23 @@ async function main() {
 
   const respPedidos = await blingGet('https://api.bling.com.br/Api/v3/pedidos/vendas', {
     headers: { Authorization: `Bearer ${token}` },
-    params: { pagina: 1, limite: 1, dataInicial, dataFinal },
+    params: { pagina: 1, limite: 100, dataInicial, dataFinal },
   });
-  const pedido = respPedidos.data.data?.[0];
-  console.log('DIAGNOSTICO pedido (listagem):', JSON.stringify(pedido));
+  const pedidos = respPedidos.data.data || [];
+  console.log(`DIAGNOSTICO total pedidos na pagina: ${pedidos.length}`);
 
-  if (pedido?.id) {
-    const respDetalhe = await blingGet(`https://api.bling.com.br/Api/v3/pedidos/vendas/${pedido.id}`, {
+  const idsAlvo = ['204966737', '205655926'];
+  for (const idLoja of idsAlvo) {
+    const exemplo = pedidos.find((p) => String(p.loja?.id) === idLoja);
+    console.log(`DIAGNOSTICO pedido loja ${idLoja}:`, JSON.stringify(exemplo));
+  }
+
+  const primeiroComId = pedidos.find((p) => p.id);
+  if (primeiroComId?.id) {
+    const respDetalhe = await blingGet(`https://api.bling.com.br/Api/v3/pedidos/vendas/${primeiroComId.id}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-    console.log('DIAGNOSTICO pedido (detalhe):', JSON.stringify(respDetalhe.data).slice(0, 3000));
+    console.log('DIAGNOSTICO pedido (detalhe completo):', JSON.stringify(respDetalhe.data).slice(0, 4000));
   }
 }
 
