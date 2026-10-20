@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Painel Comercial · Fraga Bike Shop</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="stylesheet" href="assets/estilo.css">
+<style>
+  .metrica-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+  .bar-chart-scroll { overflow-x: auto; padding-bottom: 4px; }
+  .bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 160px;
+    padding: 16px 8px 0;
+    min-width: max-content;
+  }
+  .bar-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; width: 34px; flex-shrink: 0; }
+  .bar-col .valor-topo { font-size: 10.5px; font-weight: 700; margin-bottom: 6px; white-space: nowrap; }
+  .bar-col .barra { width: 100%; max-width: 20px; border-radius: 4px 4px 0 0; background: var(--ok); min-height: 3px; }
+  .bar-col .rotulo { font-size: 10px; color: var(--ink-dim); margin-top: 8px; }
+
+  .hbar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .hbar-row:last-child { margin-bottom: 0; }
+  .hbar-row .hbar-label { width: 110px; flex-shrink: 0; font-size: 12.5px; color: var(--ink-dim); }
+  .hbar-row .hbar-track { position: relative; flex: 1; background: var(--bg-raised); border-radius: 999px; height: 16px; overflow: hidden; }
+  .hbar-row .hbar-fill { height: 100%; border-radius: 999px; transition: width .6s cubic-bezier(.16,1,.3,1); }
+  .hbar-row .hbar-valor { width: 100px; text-align: right; flex-shrink: 0; font-size: 12.5px; font-weight: 700; }
+
+  .venda-item { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .venda-item:last-child { border-bottom: none; }
+  .venda-item .produto { font-size: 13px; max-width: 60%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .venda-item .canal { font-size: 11px; color: var(--ink-faint); }
+  .venda-item .valor { font-weight: 700; font-size: 13px; white-space: nowrap; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/supabase-auth.js"></script>
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <a href="index.html" class="sidebar-logo">
+      <img src="assets/logo-fraga.png" alt="Fraga Bike Shop">
+      <div>
+        <div class="name">Fraga Bike Shop</div>
+        <div class="tag">Sistema Interno</div>
+      </div>
+    </a>
+
+    <div class="sidebar-label">Módulos</div>
+    <nav class="sidebar-nav">
+      <a href="index.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 9.5L10 3l7 6.5M5 8.2V17h4v-5h2v5h4V8.2" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+        Início
+      </a>
+      <a href="dashboard.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><rect x="2" y="10" width="4" height="8" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="8" y="5" width="4" height="13" rx="1" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="2" width="4" height="16" rx="1" stroke="currentColor" stroke-width="1.6"/></svg>
+        Dashboard
+      </a>
+      <a href="painel-comercial.html" class="active">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 16.5h14M5 16.5V10m4.5 6.5V6.5m4.5 10V4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Painel Comercial
+      </a>
+      <a href="painel-estoque.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5.5 7h9l1 10.5a1 1 0 01-1 1.1H5.5a1 1 0 01-1-1.1L5.5 7z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 7V5.5a2.5 2.5 0 015 0V7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Estoque Mercado Livre
+      </a>
+      <a href="painel-bagy.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 6l7-3.5L17 6v8l-7 3.5L3 14V6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 6l7 3.5L17 6M10 9.5V17.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Estoque Bagy
+      </a>
+      <a href="painel-shopee.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 8h10l.8 8.5a1.3 1.3 0 01-1.3 1.5H5.5a1.3 1.3 0 01-1.3-1.5L5 8z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 8a3 3 0 016 0" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M8 12.2c.5.6 1.1.9 2 .9s1.5-.3 2-.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Estoque Shopee
+      </a>
+      <a href="perguntas-ml.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7 8h6M7 10.5h4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Perguntas ML
+      </a>
+      <a href="lista-compras.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M5 3h10v14l-5-2.5L5 17V3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 7h5M7.5 10h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Lista de Compras
+      </a>
+      <a href="reputacao-ml.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.9 4.6 5 .4-3.8 3.3 1.2 4.9L10 12.7l-4.3 2.5 1.2-4.9L3.1 7l5-.4L10 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Reputação ML
+      </a>
+      <a href="saude-anuncios.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 17.5s-6.5-3.9-6.5-8.9A3.6 3.6 0 0110 6.1a3.6 3.6 0 016.5 2.5c0 5-6.5 8.9-6.5 8.9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        Saúde dos Anúncios
+      </a>
+      <a href="medidas.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M10 2.5l6 2.2v4.8c0 4.3-2.6 7.6-6 8.5-3.4-.9-6-4.2-6-8.5V4.7l6-2.2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.3 10l2 2 3.4-3.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Medidas
+      </a>
+      <a href="buybox.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.2" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="3.6" stroke="currentColor" stroke-width="1.6"/><circle cx="10" cy="10" r="0.9" fill="currentColor"/></svg>
+        Buy Box
+      </a>
+      <a href="assistente-ia.html">
+        <svg width="16" height="16" viewBox="0 0 20 20" fill="none"><path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M7.5 8.2l1.2 1.2 3-3.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Assistente IA
+      </a>
+    </nav>
+
+    <div class="sidebar-foot">Painel interno<br>Fraga Bike Shop</div>
+  </aside>
+
+  <main class="content">
+    <div class="page-head rise">
+      <div>
+        <h1>Painel Comercial</h1>
+        <div class="subtitle">Fraga Bike Shop · Performance de vendas do mês</div>
+      </div>
+      <div class="badge-live"><span class="dot"></span> Atualiza a cada 5min</div>
+    </div>
+
+    <div id="conteudo"></div>
+
+    <footer>Painel interno · faturamento e pedidos somam Mercado Livre + Bagy (sem loja física). Produtos mais vendidos atualizam 1x/dia.</footer>
+  </main>
+</div>
+
+<script>
+  function escapeHtml(texto) {
+    const div = document.createElement('div');
+    div.textContent = texto ?? '';
+    return div.innerHTML;
+  }
+
+  function formatarData(iso) {
+    if (!iso) return '—';
+    const d = new Date(iso);
+    return d.toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' });
+  }
+
+  function formatarMoeda(v, casas) {
+    if (v === null || v === undefined) return '—';
+    return v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: casas ?? 2 });
+  }
+
+  function formatarRelativo(dataStr) {
+    if (!dataStr) return '';
+    const data = new Date(dataStr + 'T00:00:00');
+    const hoje = new Date();
+    hoje.setHours(0, 0, 0, 0);
+    const diffDias = Math.round((hoje - data) / 86400000);
+    if (diffDias === 0) return 'hoje';
+    if (diffDias === 1) return 'ontem';
+    return diffDias + ' dias atrás';
+  }
+
+  const CORES_CANAL = ['var(--ok)', 'var(--blue)', 'var(--warn)', 'var(--alert)'];
+
+  async function buscar(chave) {
+    try { return await buscarDados(chave); } catch { return null; }
+  }
+
+  async function carregar() {
+    document.getElementById('conteudo').innerHTML = '<div class="loading-state">Carregando…</div>';
+    const [comercial, produtosMes] = await Promise.all([
+      buscar('painel-comercial.json'),
+      buscar('produtos-mes.json'),
+    ]);
+
+    if (!comercial) {
+      document.getElementById('conteudo').innerHTML =
+        '<div class="error-state">Não foi possível carregar os dados. O arquivo painel-comercial.json só existe depois da primeira execução do verificador de estoque após essa atualização.</div>';
+      return;
+    }
+
+    render(comercial, produtosMes);
+  }
+
+  function render(comercial, produtosMes) {
+    const { faturamentoTotal, pedidos, ticketMedio, estoqueDisponivel, porCanal, porDia, ultimasVendas, atualizadoEm } = comercial;
+
+    let html = '';
+
+    // ---- KPIs ----
+    html += '<div class="kpi-grid rise">';
+    html += '  <div class="kpi-card"><div class="lbl">Faturamento do mês</div><div class="val">' + formatarMoeda(faturamentoTotal, 0) + '</div></div>';
+    html += '  <div class="kpi-card"><div class="lbl">Pedidos</div><div class="val">' + (pedidos ?? 0) + '</div></div>';
+    html += '  <div class="kpi-card"><div class="lbl">Ticket médio</div><div class="val">' + formatarMoeda(ticketMedio) + '</div></div>';
+    html += '  <div class="kpi-card"><div class="lbl">Estoque disponível</div><div class="val">' + (estoqueDisponivel ?? 0).toLocaleString('pt-BR') + '</div></div>';
+    html += '</div>';
+
+    // ---- faturamento ao longo do mês ----
+    html += '<div class="section-header rise" style="animation-delay:.06s; margin-top:24px;"><div class="section-title">Faturamento ao longo do mês</div></div>';
+    const dias = Object.keys(porDia || {}).sort();
+    if (dias.length > 0) {
+      const max = Math.max(...dias.map((d) => porDia[d].total), 1);
+      html += '<div class="metrica-card rise" style="animation-delay:.08s"><div class="bar-chart-scroll"><div class="bar-chart">';
+      dias.forEach((d) => {
+        const valor = porDia[d].total;
+        const alturaPct = Math.max((valor / max) * 100, 3);
+        const rotulo = d.slice(8, 10) + '/' + d.slice(5, 7);
+        html += '<div class="bar-col">' +
+          '<div class="valor-topo">' + formatarMoeda(valor, 0) + '</div>' +
+          '<div class="barra" style="height:' + alturaPct + '%;"></div>' +
+          '<div class="rotulo">' + rotulo + '</div>' +
+          '</div>';
+      });
+      html += '</div></div></div>';
+    } else {
+      html += '<div class="metrica-card rise" style="animation-delay:.08s"><div class="empty-mini">Ainda sem vendas registradas esse mês.</div></div>';
+    }
+
+    // ---- vendas por canal + principais produtos ----
+    html += '<div class="kpi-grid rise" style="animation-delay:.1s; grid-template-columns: 1fr 1fr; margin-top:24px;">';
+
+    html += '  <div class="metrica-card">';
+    html += '    <div class="section-title" style="margin-bottom:14px;">Faturamento por canal</div>';
+    const canais = Object.keys(porCanal || {}).sort((a, b) => porCanal[b].total - porCanal[a].total);
+    if (canais.length > 0) {
+      const maxCanal = Math.max(...canais.map((c) => porCanal[c].total), 1);
+      canais.forEach((c, i) => {
+        const valor = porCanal[c].total;
+        const pct = Math.max((valor / maxCanal) * 100, 2);
+        html += '<div class="hbar-row">' +
+          '<div class="hbar-label">' + escapeHtml(c) + '</div>' +
+          '<div class="hbar-track"><div class="hbar-fill" style="width:' + pct + '%; background:' + CORES_CANAL[i % CORES_CANAL.length] + ';"></div></div>' +
+          '<div class="hbar-valor">' + formatarMoeda(valor, 0) + '</div>' +
+          '</div>';
+      });
+    } else {
+      html += '<div class="empty-mini">Sem vendas por canal ainda.</div>';
+    }
+    html += '  </div>';
+
+    html += '  <div class="metrica-card">';
+    html += '    <div class="section-title" style="margin-bottom:14px;">Principais produtos do mês</div>';
+    const top = produtosMes?.principaisProdutos || [];
+    if (top.length > 0) {
+      top.slice(0, 6).forEach((p) => {
+        html += '<div class="venda-item">' +
+          '<span class="produto" title="' + escapeHtml(p.nome) + '">' + escapeHtml(p.nome) + '</span>' +
+          '<span class="valor">' + formatarMoeda(p.faturamento, 0) + '</span>' +
+          '</div>';
+      });
+    } else {
+      html += '<div class="empty-mini">Ainda sem dados — aparece depois da primeira execução do workflow "Produtos mais vendidos do mês".</div>';
+    }
+    html += '  </div>';
+
+    html += '</div>';
+
+    // ---- últimas vendas ----
+    html += '<div class="section-header rise" style="animation-delay:.14s; margin-top:24px;"><div class="section-title">Últimas vendas</div></div>';
+    html += '<div class="metrica-card rise" style="animation-delay:.16s">';
+    if ((ultimasVendas || []).length > 0) {
+      ultimasVendas.forEach((v) => {
+        html += '<div class="venda-item">' +
+          '<span class="produto" title="' + escapeHtml(v.produto || 'Pedido ' + v.pedidoId) + '">' + escapeHtml(v.produto || 'Pedido ' + v.pedidoId) + '</span>' +
+          '<span class="canal">' + escapeHtml(v.canal) + ' · ' + formatarRelativo(v.data) + '</span>' +
+          '<span class="valor">' + formatarMoeda(v.valor) + '</span>' +
+          '</div>';
+      });
+    } else {
+      html += '<div class="empty-mini">Sem vendas registradas ainda.</div>';
+    }
+    html += '</div>';
+
+    html += '<div class="updated-at rise" style="animation-delay:.18s; margin-top:16px; border-top:none; padding-top:0;">Última atualização: ' + formatarData(atualizadoEm) + '</div>';
+
+    document.getElementById('conteudo').innerHTML = html;
+  }
+
+  verificarAcesso(carregar);
+</script>
+</body>
+</html>

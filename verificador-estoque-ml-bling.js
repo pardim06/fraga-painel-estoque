@@ -18,6 +18,7 @@ const { getEstoqueBling } = require('./lib/bling-estoque');
 const { enviarNotificacao } = require('./lib/notificar');
 const { rodarVerificacaoBagy } = require('./scripts/verificador-estoque-bagy-bling');
 const { publicarDados, buscarDadosPublicados, incrementarHistoricoMensal } = require('./lib/supabase-publicar');
+const { publicarFaturamentoLive } = require('./lib/faturamento-live');
 
 const HISTORICO_MAX = 300; // mantém só as correções mais recentes, pra não crescer sem limite
 
@@ -289,6 +290,14 @@ async function main() {
     await rodarVerificacaoBagy(estoqueBling);
   } catch (err) {
     console.error('Erro na verificação de estoque Bagy x Bling:', err.response?.data || err.message);
+  }
+
+  // Mesma lógica de reaproveitar blingToken/estoqueBling acima — e erro
+  // aqui também não deve derrubar o resultado do estoque, que é o core.
+  try {
+    await publicarFaturamentoLive(blingToken, estoqueBling);
+  } catch (err) {
+    console.error('Erro ao publicar faturamento ao vivo:', err.response?.data || err.message);
   }
 }
 

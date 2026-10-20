@@ -1,6 +1,12 @@
-name: DIAG TEMP - apagar depois
+name: Produtos mais vendidos do mês
 
 on:
+  # Encadeado no workflow de lista de compras (já roda 1x/dia de forma
+  # confiável) — abre pedido por pedido do mês inteiro, caro demais pra
+  # rodar com mais frequência que isso.
+  workflow_run:
+    workflows: ['Gerar lista de compras']
+    types: [completed]
   workflow_dispatch: {}
 
 permissions:
@@ -11,16 +17,19 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  diag:
+  verificar:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
+
       - run: npm install
-      - run: npm run diag-painel-comercial
+
+      - run: npm run produtos-mes
         env:
           BLING_CLIENT_ID: ${{ secrets.BLING_CLIENT_ID }}
           BLING_CLIENT_SECRET: ${{ secrets.BLING_CLIENT_SECRET }}
