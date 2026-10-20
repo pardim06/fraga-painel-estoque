@@ -21,6 +21,16 @@ const FONTES = [
   { chave: 'perguntas', arquivo: 'perguntas-ml.json', limiteMin: 30, label: 'Perguntas ML' },
   { chave: 'reputacao', arquivo: 'reputacao-ml.json', limiteMin: 30, label: 'Reputação ML' },
   { chave: 'lista-compras', arquivo: 'lista-compras.json', limiteMin: 60 * 30, label: 'Lista de Compras' },
+  // Esses 4 disparam todos no mesmo instante (quando "Gerar lista de compras"
+  // termina) e competem pela mesma vaga de fila do grupo de concorrência —
+  // é normal e esperado um deles pular um dia de vez em quando (fila só
+  // segura 1 pendente, o mais novo derruba o mais antigo). Limite bem mais
+  // folgado que o resto (3 dias) pra não alarmar à toa nesse caso comum;
+  // só acusa se ficar parado de verdade por vários dias seguidos.
+  { chave: 'saude-anuncios', arquivo: 'saude-anuncios.json', limiteMin: 60 * 24 * 3, label: 'Saúde dos Anúncios' },
+  { chave: 'medidas', arquivo: 'medidas-ml.json', limiteMin: 60 * 24 * 3, label: 'Medidas ML' },
+  { chave: 'buybox', arquivo: 'buybox-ml.json', limiteMin: 60 * 24 * 3, label: 'Buy Box ML' },
+  { chave: 'produtos-mes', arquivo: 'produtos-mes.json', limiteMin: 60 * 24 * 3, label: 'Produtos do Mês' },
 ];
 
 function formatarAtraso(minutos) {
