@@ -77,6 +77,7 @@ async function main() {
     }
   }
 
+  console.log('DIAGNOSTICO estadoNovo:', JSON.stringify(estadoNovo));
   await publicarDados('vigia-estado.json', estadoNovo);
 
   if (ficaramRuins.length > 0) {
