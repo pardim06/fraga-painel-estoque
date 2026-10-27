@@ -77,7 +77,6 @@ async function main() {
     }
   }
 
-  console.log('DIAGNOSTICO estadoNovo:', JSON.stringify(estadoNovo));
   await publicarDados('vigia-estado.json', estadoNovo);
 
   if (ficaramRuins.length > 0) {
@@ -104,7 +103,17 @@ async function main() {
   }
 
   if (ficaramRuins.length === 0 && voltaramAoNormal.length === 0) {
-    console.log('Vigia: tudo em dia, nenhum alerta necessário.');
+    // "Nenhuma mudança" não é o mesmo que "tudo ok" — um módulo pode estar
+    // parado há dias sem gerar novo alerta (só avisa na transição, pra não
+    // repetir o mesmo aviso todo ciclo). Deixa isso explícito no log.
+    const aindaParados = Object.entries(estadoNovo)
+      .filter(([, v]) => v.status !== 'ok')
+      .map(([chave]) => chave);
+    if (aindaParados.length > 0) {
+      console.log(`Vigia: nenhuma mudança (sem alerta novo), mas ainda parado(s) desde o aviso anterior: ${aindaParados.join(', ')}.`);
+    } else {
+      console.log('Vigia: tudo em dia, nenhum alerta necessário.');
+    }
   }
 }
 
