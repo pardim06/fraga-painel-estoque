@@ -16,6 +16,7 @@
     "medidas-ml": "node scripts/medidas-ml.js",
     "buybox-ml": "node scripts/buybox-ml.js",
     "produtos-mes": "node scripts/produtos-mes.js",
+    "custo-nota-fiscal": "node scripts/custo-nota-fiscal.js",
     "mercadolider": "node scripts/mercadolider.js",
     "verificar-bagy": "node scripts/verificador-estoque-bagy-bling.js"
   },

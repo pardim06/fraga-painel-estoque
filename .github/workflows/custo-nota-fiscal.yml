@@ -1,0 +1,49 @@
+name: Custo da última nota fiscal (proposta)
+
+on:
+  workflow_dispatch:
+    inputs:
+      dias:
+        description: 'Quantos dias pra trás verificar (ignorado se data_inicial for informado)'
+        required: false
+        default: '90'
+      data_inicial:
+        description: 'Data inicial (AAAA-MM-DD) — opcional, sobrepõe "dias"'
+        required: false
+      data_final:
+        description: 'Data final (AAAA-MM-DD) — opcional, padrão é hoje'
+        required: false
+
+permissions:
+  contents: write
+
+# Mesma lógica dos outros: evita rodar ao mesmo tempo que qualquer script que
+# gira o BLING_REFRESH_TOKEN.
+concurrency:
+  group: ml-bling-token
+  cancel-in-progress: false
+
+jobs:
+  propor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - run: npm install
+
+      - run: npm run custo-nota-fiscal
+        env:
+          DIAS: ${{ inputs.dias }}
+          DATA_INICIAL: ${{ inputs.data_inicial }}
+          DATA_FINAL: ${{ inputs.data_final }}
+          BLING_CLIENT_ID: ${{ secrets.BLING_CLIENT_ID }}
+          BLING_CLIENT_SECRET: ${{ secrets.BLING_CLIENT_SECRET }}
+          BLING_REFRESH_TOKEN: ${{ secrets.BLING_REFRESH_TOKEN }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
