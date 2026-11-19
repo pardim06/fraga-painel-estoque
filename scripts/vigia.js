@@ -17,7 +17,7 @@ const { publicarDados, buscarDadosPublicados } = require('../lib/supabase-public
 // arquivo local — os dados desses módulos não ficam mais no repositório.
 const FONTES = [
   { chave: 'estoque', arquivo: 'resultado-verificacao.json', limiteMin: 30, label: 'Estoque Mercado Livre' },
-  { chave: 'estoque-bagy', arquivo: 'resultado-bagy.json', limiteMin: 30, label: 'Estoque Bagy' },
+  { chave: 'estoque-nuvemshop', arquivo: 'resultado-nuvemshop.json', limiteMin: 30, label: 'Estoque Nuvemshop' },
   { chave: 'perguntas', arquivo: 'perguntas-ml.json', limiteMin: 30, label: 'Perguntas ML' },
   { chave: 'reputacao', arquivo: 'reputacao-ml.json', limiteMin: 30, label: 'Reputação ML' },
   { chave: 'lista-compras', arquivo: 'lista-compras.json', limiteMin: 60 * 30, label: 'Lista de Compras' },
