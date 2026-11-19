@@ -49,6 +49,16 @@
 
   .empty-mini { font-size: 12.5px; color: var(--ink-faint); padding: 12px 4px; }
 
+  .kpi-grid.kpi-hero .kpi-card { padding: 20px 22px 18px; }
+  .kpi-grid.kpi-hero .kpi-card .icon-wrap {
+    width: 32px; height: 32px; border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg-raised); color: var(--ink-dim);
+    margin-bottom: 12px;
+  }
+  .kpi-grid.kpi-hero .kpi-card.ok .icon-wrap { background: var(--ok-bg); color: var(--ok); }
+  .kpi-grid.kpi-hero .kpi-card.alert .icon-wrap { background: var(--alert-bg); color: var(--alert); }
+
   .placar-card {
     background: var(--bg-panel);
     border: 1px solid var(--line);
@@ -242,48 +252,53 @@
     html += placarHtml(platinum);
 
     // ---- linha de KPIs ----
-    html += '<div class="kpi-grid rise" style="animation-delay:.06s">';
+    const ICONE_ESTOQUE = '<svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M5.5 7h9l1 10.5a1 1 0 01-1 1.1H5.5a1 1 0 01-1-1.1L5.5 7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M7.5 7V5.5a2.5 2.5 0 015 0V7" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
+    const ICONE_PERGUNTAS = '<svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>';
+    const ICONE_COMPRAS = '<svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M5 3h10v14l-5-2.5L5 17V3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>';
+    const ICONE_REPUTACAO = '<svg width="17" height="17" viewBox="0 0 20 20" fill="none"><path d="M10 2l1.9 4.6 5 .4-3.8 3.3 1.2 4.9L10 12.7l-4.3 2.5 1.2-4.9L3.1 7l5-.4L10 2z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>';
+
+    html += '<div class="kpi-grid kpi-hero rise" style="animation-delay:.06s">';
 
     if (estoque) {
       const divergentes = estoque.totalDivergentes ?? 0;
-      html += '<div class="kpi-card ' + (divergentes > 0 ? 'alert' : 'ok') + '">' +
+      html += '<div class="kpi-card ' + (divergentes > 0 ? 'alert' : 'ok') + '"><div class="icon-wrap">' + ICONE_ESTOQUE + '</div>' +
         '<div class="lbl">Estoque ML em dia</div><div class="val">' + (pct ?? '—') + '<span style="font-size:14px;">%</span></div>' +
         '<div class="sub">' + (estoque.corretos ?? '—') + '/' + (estoque.totalSkus ?? '—') + ' SKUs · ' + divergentes + ' divergente(s)</div>' +
         '<a class="goto" href="painel-estoque.html">Ver detalhes →</a></div>';
     } else {
-      html += '<div class="kpi-card"><div class="lbl">Estoque ML em dia</div><div class="sub" style="margin-top:8px;">Sem dados ainda.</div></div>';
+      html += '<div class="kpi-card"><div class="icon-wrap">' + ICONE_ESTOQUE + '</div><div class="lbl">Estoque ML em dia</div><div class="sub" style="margin-top:8px;">Sem dados ainda.</div></div>';
     }
 
     if (perguntas) {
       const total = perguntas.total ?? 0;
       const atrasadas = perguntas.atrasadas ?? 0;
-      html += '<div class="kpi-card ' + (atrasadas > 0 ? 'alert' : 'ok') + '">' +
+      html += '<div class="kpi-card ' + (atrasadas > 0 ? 'alert' : 'ok') + '"><div class="icon-wrap">' + ICONE_PERGUNTAS + '</div>' +
         '<div class="lbl">Perguntas em aberto</div><div class="val">' + total + '</div>' +
         '<div class="sub">' + (atrasadas > 0 ? atrasadas + ' esperando há mais de 1h' : 'nenhuma atrasada') + '</div>' +
         '<a class="goto" href="perguntas-ml.html">Ver perguntas →</a></div>';
     } else {
-      html += '<div class="kpi-card"><div class="lbl">Perguntas em aberto</div><div class="sub" style="margin-top:8px;">Sem dados ainda.</div></div>';
+      html += '<div class="kpi-card"><div class="icon-wrap">' + ICONE_PERGUNTAS + '</div><div class="lbl">Perguntas em aberto</div><div class="sub" style="margin-top:8px;">Sem dados ainda.</div></div>';
     }
 
     if (compras) {
       const totalComprar = compras.resumo?.totalParaComprar ?? 0;
       const classeA = compras.resumo?.classeA_paraComprar ?? 0;
-      html += '<div class="kpi-card ' + (classeA > 0 ? 'alert' : totalComprar > 0 ? '' : 'ok') + '">' +
+      html += '<div class="kpi-card ' + (classeA > 0 ? 'alert' : totalComprar > 0 ? '' : 'ok') + '"><div class="icon-wrap">' + ICONE_COMPRAS + '</div>' +
         '<div class="lbl">Reposição sugerida</div><div class="val">' + totalComprar + '</div>' +
         '<div class="sub">' + (classeA > 0 ? classeA + ' são classe A' : 'nenhum classe A em risco') + '</div>' +
         '<a class="goto" href="lista-compras.html">Ver lista →</a></div>';
     } else {
-      html += '<div class="kpi-card"><div class="lbl">Reposição sugerida</div><div class="sub" style="margin-top:8px;">Sem dados ainda.</div></div>';
+      html += '<div class="kpi-card"><div class="icon-wrap">' + ICONE_COMPRAS + '</div><div class="lbl">Reposição sugerida</div><div class="sub" style="margin-top:8px;">Sem dados ainda.</div></div>';
     }
 
     if (reputacao) {
       const nivelInfo = NIVEIS[reputacao.nivel] || { label: reputacao.nivel || '—', cor: 'var(--ink-dim)' };
-      html += '<div class="kpi-card">' +
+      html += '<div class="kpi-card"><div class="icon-wrap">' + ICONE_REPUTACAO + '</div>' +
         '<div class="lbl">Reputação ML</div><div class="val" style="color:' + nivelInfo.cor + ';">' + nivelInfo.label + '</div>' +
         '<div class="sub">' + (reputacao.powerSeller || '—') + ' · ' + (reputacao.metricas?.vendas60d ?? '—') + ' vendas (60d)</div>' +
         '<a class="goto" href="reputacao-ml.html">Ver detalhes →</a></div>';
     } else {
-      html += '<div class="kpi-card"><div class="lbl">Reputação ML</div><div class="sub" style="margin-top:8px;">Sem dados ainda.</div></div>';
+      html += '<div class="kpi-card"><div class="icon-wrap">' + ICONE_REPUTACAO + '</div><div class="lbl">Reputação ML</div><div class="sub" style="margin-top:8px;">Sem dados ainda.</div></div>';
     }
 
     html += '</div>';
