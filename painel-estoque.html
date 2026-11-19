@@ -6,6 +6,19 @@
 <title>Estoque Mercado Livre · Fraga Bike Shop</title>
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="stylesheet" href="assets/estilo.css">
+<style>
+  .hbar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .hbar-row:last-child { margin-bottom: 0; }
+  .hbar-row .hbar-label { width: 170px; flex-shrink: 0; font-size: 12.5px; color: var(--ink-dim); display: flex; align-items: center; gap: 7px; }
+  .hbar-row .hbar-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .hbar-row .hbar-track { position: relative; flex: 1; background: var(--bg-raised); border-radius: 999px; height: 16px; overflow: hidden; }
+  .hbar-row .hbar-fill { height: 100%; border-radius: 999px; transition: width .6s cubic-bezier(.16,1,.3,1); }
+  .hbar-row .hbar-valor { width: 46px; text-align: right; flex-shrink: 0; font-size: 12.5px; font-weight: 700; }
+
+  .diff-chip { display: inline-flex; align-items: center; gap: 5px; font-weight: 700; font-size: 12.5px; }
+  .diff-chip .barra-mini { width: 36px; height: 5px; border-radius: 999px; background: var(--bg-raised); overflow: hidden; position: relative; }
+  .diff-chip .barra-mini .preench { position: absolute; top: 0; bottom: 0; border-radius: 999px; }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/supabase-auth.js"></script>
 </head>
@@ -95,9 +108,6 @@
 </div>
 
 <script>
-  const GAUGE_R = 50;
-  const GAUGE_C = 2 * Math.PI * GAUGE_R;
-
   async function carregar() {
     renderCarregando();
 
@@ -142,57 +152,64 @@
   }
 
   // Só o sentido de risco (Bling < ML) passa por correção automática.
+  function statusDe(d) {
+    if (d.diferenca >= 0) return 'semAcao';
+    return d.corrigido ? 'corrigido' : 'falha';
+  }
+
   function statusBadge(d) {
-    if (d.diferenca >= 0) {
-      return '<span class="status-badge neutral">sem ação</span>';
-    }
-    if (d.corrigido) {
-      return '<span class="status-badge ok" title="' + escapeHtml(d.corrigidoDetalhe || '') + '">Corrigido</span>';
-    }
+    const s = statusDe(d);
+    if (s === 'semAcao') return '<span class="status-badge neutral">sem ação</span>';
+    if (s === 'corrigido') return '<span class="status-badge ok" title="' + escapeHtml(d.corrigidoDetalhe || '') + '">Corrigido</span>';
     return '<span class="status-badge alert" title="' + escapeHtml(d.corrigidoDetalhe || '') + '">Falha ao corrigir</span>';
   }
 
   function statusTexto(d) {
-    if (d.diferenca >= 0) return 'Sem acao';
-    return d.corrigido ? 'Corrigido' : 'Falha ao corrigir';
+    const s = statusDe(d);
+    return s === 'semAcao' ? 'Sem acao' : s === 'corrigido' ? 'Corrigido' : 'Falha ao corrigir';
   }
 
-  function gaugeSvg(pct) {
-    const cor = pct >= 98 ? 'var(--ok)' : pct >= 90 ? 'var(--blue)' : 'var(--alert)';
-    return `
-      <svg viewBox="0 0 120 120" role="img" aria-label="${pct}% dos SKUs em dia">
-        <circle cx="60" cy="60" r="${GAUGE_R}" fill="none" stroke="var(--line)" stroke-width="9"/>
-        <circle class="gauge-progress" cx="60" cy="60" r="${GAUGE_R}" fill="none" stroke="${cor}"
-          stroke-width="9" stroke-linecap="round" stroke-dasharray="${GAUGE_C}"
-          stroke-dashoffset="${GAUGE_C}" transform="rotate(-90 60 60)"/>
-      </svg>`;
+  function diffChip(n, max) {
+    const pct = max > 0 ? Math.min(100, (Math.abs(n) / max) * 100) : 0;
+    const cor = n < 0 ? 'var(--alert)' : 'var(--ink-faint)';
+    const lado = n < 0 ? 'right:0;' : 'left:0;';
+    return '<span class="diff-chip">' + formatarDiferenca(n) +
+      '<span class="barra-mini"><span class="preench" style="' + lado + 'width:' + pct + '%; background:' + cor + ';"></span></span>' +
+      '</span>';
   }
 
   function renderPainel(dados, historico) {
     const { atualizadoEm, totalSkus, corretos, totalDivergentes, divergencias } = dados;
     const total = totalSkus ?? 0;
     const ok = corretos ?? 0;
-    const pct = total > 0 ? Math.round((ok / total) * 100) : 0;
     const divs = divergencias || [];
+    const corrigidos = divs.filter((d) => statusDe(d) === 'corrigido').length;
+    const falhas = divs.filter((d) => statusDe(d) === 'falha').length;
+    const semAcao = divs.filter((d) => statusDe(d) === 'semAcao').length;
 
     window._divergenciasAtuais = divs;
 
     let html = '';
 
-    html += '<div class="hero rise">';
-    html += '  <div class="gauge-wrap">' + gaugeSvg(pct) +
-            '    <div class="gauge-readout"><div class="pct">' + pct + '<span class="unit">%</span></div><div class="lbl">Em dia</div></div>' +
-            '  </div>';
-    html += '  <div class="specs">';
-    html += '    <div class="spec-row"><span class="k">Total de SKUs verificados</span><span class="v">' + (totalSkus ?? '—') + '</span></div>';
-    html += '    <div class="spec-row spec-ok"><span class="k">Corretos</span><span class="v">' + (corretos ?? '—') + '</span></div>';
-    html += '    <div class="spec-row spec-alert"><span class="k">Divergentes</span><span class="v">' + (totalDivergentes ?? 0) + '</span></div>';
-    html += '    <div class="updated-at">Última verificação: ' + formatarData(atualizadoEm) + '</div>';
-    html += '  </div>';
+    html += '<div class="kpi-grid rise">';
+    html += '  <div class="kpi-card' + (ok === total && total > 0 ? ' ok' : '') + '"><div class="lbl">SKUs em dia</div><div class="val">' + ok + ' <span style="font-size:14px; color:var(--ink-faint); font-weight:500;">/ ' + total + '</span></div></div>';
+    html += '  <div class="kpi-card' + (totalDivergentes > 0 ? ' alert' : ' ok') + '"><div class="lbl">Divergências</div><div class="val">' + (totalDivergentes ?? 0) + '</div></div>';
+    html += '  <div class="kpi-card ok"><div class="lbl">Corrigido automaticamente</div><div class="val">' + corrigidos + '</div></div>';
+    html += '  <div class="kpi-card' + (falhas > 0 ? ' alert' : '') + '"><div class="lbl">Falha, precisa atenção</div><div class="val">' + falhas + '</div></div>';
     html += '</div>';
 
-    html += '<div class="section-header rise" style="animation-delay:.08s">';
-    html += '  <div class="section-title">Divergências <span class="count-chip">' + divs.length + '</span></div>';
+    if (divs.length > 0) {
+      const compMax = Math.max(corrigidos, falhas, semAcao, 1);
+      html += '<div class="section-header rise" style="animation-delay:.06s; margin-top:24px;"><div class="section-title">Composição das divergências</div></div>';
+      html += '<div class="metrica-card rise" style="animation-delay:.08s; background:var(--bg-panel); border:1px solid var(--line); border-radius:14px; padding:18px 20px;">';
+      html += '  <div class="hbar-row"><div class="hbar-label"><span class="hbar-dot" style="background:var(--ok);"></span>Corrigido automaticamente</div><div class="hbar-track"><div class="hbar-fill" style="width:' + (corrigidos / compMax * 100) + '%; background:var(--ok);"></div></div><div class="hbar-valor">' + corrigidos + '</div></div>';
+      html += '  <div class="hbar-row"><div class="hbar-label"><span class="hbar-dot" style="background:var(--alert);"></span>Falha ao corrigir</div><div class="hbar-track"><div class="hbar-fill" style="width:' + (falhas / compMax * 100) + '%; background:var(--alert);"></div></div><div class="hbar-valor">' + falhas + '</div></div>';
+      html += '  <div class="hbar-row"><div class="hbar-label"><span class="hbar-dot" style="background:var(--ink-faint);"></span>Sem ação (Bling &gt; ML)</div><div class="hbar-track"><div class="hbar-fill" style="width:' + (semAcao / compMax * 100) + '%; background:var(--ink-faint);"></div></div><div class="hbar-valor">' + semAcao + '</div></div>';
+      html += '</div>';
+    }
+
+    html += '<div class="section-header rise" style="animation-delay:.12s; margin-top:24px;">';
+    html += '  <div class="section-title">Divergências <span class="count-chip' + (totalDivergentes > 0 ? ' alert' : '') + '">' + divs.length + '</span></div>';
     if (divs.length > 0) {
       html += '  <div class="export-buttons">';
       html += '    <button class="btn-export primary" onclick="exportarCSV()">Baixar CSV</button>';
@@ -202,7 +219,8 @@
     html += '</div>';
 
     if (divs.length > 0) {
-      html += '<div class="table-scroll rise" style="animation-delay:.14s"><table><thead><tr>' +
+      const maxDiff = Math.max(...divs.map((d) => Math.abs(d.diferenca)), 1);
+      html += '<div class="table-scroll rise" style="animation-delay:.16s"><table><thead><tr>' +
         '<th>SKU</th><th>Produto</th><th class="num">Bling</th><th class="num">ML</th><th class="num">Diferença</th><th>Status</th>' +
         '</tr></thead><tbody>';
       divs
@@ -214,7 +232,7 @@
             '<td class="produto" title="' + escapeHtml(d.nome) + '">' + escapeHtml(d.nome || '—') + '</td>' +
             '<td class="num">' + d.qtdBling + '</td>' +
             '<td class="num">' + d.qtdML + '</td>' +
-            '<td class="num"><span class="diff-badge">' + formatarDiferenca(d.diferenca) + '</span></td>' +
+            '<td class="num">' + diffChip(d.diferenca, maxDiff) + '</td>' +
             '<td>' + statusBadge(d) + '</td>' +
             '</tr>';
         });
@@ -245,15 +263,9 @@
       html += '</tbody></table></div>';
     }
 
-    document.getElementById('conteudo').innerHTML = html;
+    html += '<div class="updated-at rise" style="animation-delay:.3s; margin-top:16px;">Última verificação: ' + formatarData(atualizadoEm) + '</div>';
 
-    // dispara a animação do medidor depois que o SVG já está no DOM
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        const prog = document.querySelector('.gauge-progress');
-        if (prog) prog.style.strokeDashoffset = GAUGE_C * (1 - pct / 100);
-      });
-    });
+    document.getElementById('conteudo').innerHTML = html;
   }
 
   function exportarCSV() {

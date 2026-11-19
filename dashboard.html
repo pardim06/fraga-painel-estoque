@@ -162,8 +162,6 @@
 </div>
 
 <script>
-  const GAUGE_R = 50;
-  const GAUGE_C = 2 * Math.PI * GAUGE_R;
   const MES_NOME = { '01': 'Jan', '02': 'Fev', '03': 'Mar', '04': 'Abr', '05': 'Mai', '06': 'Jun', '07': 'Jul', '08': 'Ago', '09': 'Set', '10': 'Out', '11': 'Nov', '12': 'Dez' };
 
   function escapeHtml(texto) {
@@ -211,17 +209,6 @@
     }
   }
 
-  function gaugeSvg(pct) {
-    const cor = pct >= 98 ? 'var(--ok)' : pct >= 90 ? 'var(--blue)' : 'var(--alert)';
-    return `
-      <svg viewBox="0 0 120 120" role="img" aria-label="${pct}% dos SKUs em dia">
-        <circle cx="60" cy="60" r="${GAUGE_R}" fill="none" stroke="var(--line)" stroke-width="9"/>
-        <circle class="gauge-progress" cx="60" cy="60" r="${GAUGE_R}" fill="none" stroke="${cor}"
-          stroke-width="9" stroke-linecap="round" stroke-dasharray="${GAUGE_C}"
-          stroke-dashoffset="${GAUGE_C}" transform="rotate(-90 60 60)"/>
-      </svg>`;
-  }
-
   const NIVEIS = {
     '5_green': { label: 'Excelente', cor: 'var(--ok)' },
     '4_light_green': { label: 'Bom', cor: 'var(--ok)' },
@@ -254,23 +241,18 @@
     // ---- placar executivo: meta x realizado ----
     html += placarHtml(platinum);
 
-    // ---- hero: medidor de estoque ----
-    if (estoque) {
-      html += '<div class="hero rise">';
-      html += '  <div class="gauge-wrap">' + gaugeSvg(pct ?? 0) +
-        '    <div class="gauge-readout"><div class="pct">' + (pct ?? '—') + '<span class="unit">%</span></div><div class="lbl">Em dia</div></div>' +
-        '  </div>';
-      html += '  <div class="specs">';
-      html += '    <div class="spec-row"><span class="k">Total de SKUs verificados</span><span class="v">' + (estoque.totalSkus ?? '—') + '</span></div>';
-      html += '    <div class="spec-row spec-ok"><span class="k">Corretos</span><span class="v">' + (estoque.corretos ?? '—') + '</span></div>';
-      html += '    <div class="spec-row spec-alert"><span class="k">Divergentes</span><span class="v">' + (estoque.totalDivergentes ?? 0) + '</span></div>';
-      html += '    <div class="updated-at">Última verificação: ' + formatarData(estoque.atualizadoEm) + ' · <a href="painel-estoque.html" style="color:var(--blue);">ver detalhes →</a></div>';
-      html += '  </div>';
-      html += '</div>';
-    }
-
     // ---- linha de KPIs ----
     html += '<div class="kpi-grid rise" style="animation-delay:.06s">';
+
+    if (estoque) {
+      const divergentes = estoque.totalDivergentes ?? 0;
+      html += '<div class="kpi-card ' + (divergentes > 0 ? 'alert' : 'ok') + '">' +
+        '<div class="lbl">Estoque ML em dia</div><div class="val">' + (pct ?? '—') + '<span style="font-size:14px;">%</span></div>' +
+        '<div class="sub">' + (estoque.corretos ?? '—') + '/' + (estoque.totalSkus ?? '—') + ' SKUs · ' + divergentes + ' divergente(s)</div>' +
+        '<a class="goto" href="painel-estoque.html">Ver detalhes →</a></div>';
+    } else {
+      html += '<div class="kpi-card"><div class="lbl">Estoque ML em dia</div><div class="sub" style="margin-top:8px;">Sem dados ainda.</div></div>';
+    }
 
     if (perguntas) {
       const total = perguntas.total ?? 0;
@@ -374,14 +356,6 @@
       });
     }
 
-    if (pct !== null) {
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          const prog = document.querySelector('.gauge-progress');
-          if (prog) prog.style.strokeDashoffset = GAUGE_C * (1 - pct / 100);
-        });
-      });
-    }
   }
 
   function placarHtml(platinum) {

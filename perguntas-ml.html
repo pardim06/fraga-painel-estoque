@@ -149,9 +149,17 @@
       badge.querySelector('.dot').classList.add('alert');
     }
 
+    const dentroDoPrazo = (total ?? lista.length) - (atrasadas ?? 0);
+
     let html = '';
 
-    html += '<div class="section-header rise">';
+    html += '<div class="kpi-grid rise">';
+    html += '  <div class="kpi-card' + (lista.length === 0 ? ' ok' : '') + '"><div class="lbl">Sem resposta agora</div><div class="val">' + lista.length + '</div></div>';
+    html += '  <div class="kpi-card' + (atrasadas > 0 ? ' alert' : ' ok') + '"><div class="lbl">Atrasadas (&gt;1h)</div><div class="val">' + (atrasadas ?? 0) + '</div></div>';
+    html += '  <div class="kpi-card ok"><div class="lbl">Dentro do prazo</div><div class="val">' + Math.max(0, dentroDoPrazo) + '</div></div>';
+    html += '</div>';
+
+    html += '<div class="section-header rise" style="animation-delay:.06s; margin-top:24px;">';
     html += '  <div class="section-title">Perguntas sem resposta <span class="count-chip' + (atrasadas > 0 ? ' alert' : '') + '">' + lista.length + '</span></div>';
     html += '</div>';
 

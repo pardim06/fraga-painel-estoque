@@ -270,18 +270,18 @@
 
     let html = '';
 
-    html += '<div class="hero rise" style="align-items:flex-start; flex-direction:column; gap:16px;">';
-    html += '  <div>';
-    html += '    <div class="nivel-badge" style="background:' + nivelInfo.bg + '; color:' + nivelInfo.cor + ';">' +
+    html += '<div class="rise" style="display:flex; align-items:center; gap:10px; margin-bottom:18px;">';
+    html += '  <div class="nivel-badge" style="background:' + nivelInfo.bg + '; color:' + nivelInfo.cor + ';">' +
       '<span class="bolinha" style="background:' + nivelInfo.cor + ';"></span>' + nivelInfo.label + '</div>';
-    html += '  </div>';
-    html += '  <div class="specs" style="width:100%;">';
-    html += '    <div class="spec-row"><span class="k">Conta</span><span class="v">' + (nickname || '—') + '</span></div>';
-    html += '    <div class="spec-row"><span class="k">Power Seller</span><span class="v">' + (powerSeller || '—') + '</span></div>';
-    html += '    <div class="spec-row"><span class="k">Vendas concluídas (60 dias)</span><span class="v">' + (metricas?.vendas60d ?? '—') + '</span></div>';
-    html += '    <div class="updated-at">Última atualização: ' + formatarData(atualizadoEm) + '</div>';
-    html += '  </div>';
+    html += '  <span style="font-size:12.5px; color:var(--ink-faint);">Termômetro de reputação</span>';
     html += '</div>';
+
+    html += '<div class="kpi-grid rise" style="animation-delay:.03s">';
+    html += '  <div class="kpi-card"><div class="lbl">Conta</div><div class="val" style="font-size:18px;">' + (nickname || '—') + '</div></div>';
+    html += '  <div class="kpi-card"><div class="lbl">Power Seller</div><div class="val" style="font-size:18px;">' + (powerSeller || '—') + '</div></div>';
+    html += '  <div class="kpi-card"><div class="lbl">Vendas concluídas (60 dias)</div><div class="val">' + (metricas?.vendas60d ?? '—') + '</div></div>';
+    html += '</div>';
+    html += '<div class="updated-at rise" style="animation-delay:.05s; margin-top:10px; border-top:none; padding-top:0;">Última atualização: ' + formatarData(atualizadoEm) + '</div>';
 
     html += '<div class="section-header rise" style="animation-delay:.08s"><div class="section-title">Taxas (últimos 60 dias)</div></div>';
     html += '<div class="kpi-grid rise" style="animation-delay:.1s">';
