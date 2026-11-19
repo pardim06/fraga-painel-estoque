@@ -135,6 +135,7 @@ async function corrigirEstoqueNuvemshop(divergencias) {
       d.corrigidoDetalhe = `Falha ao corrigir: ${err.response?.data?.message || err.message}`;
     }
 
+    console.log(`SKU ${d.sku}: ${d.corrigido ? 'corrigido' : 'FALHA ao corrigir'} — ${d.corrigidoDetalhe}`);
     await aguardar(300);
   }
 }
