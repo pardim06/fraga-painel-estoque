@@ -1,0 +1,35 @@
+name: DIAG TEMP - apagar depois
+
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ml-bling-token
+  cancel-in-progress: false
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: npm install
+      - run: npm run verificar-nuvemshop
+        env:
+          BLING_CLIENT_ID: ${{ secrets.BLING_CLIENT_ID }}
+          BLING_CLIENT_SECRET: ${{ secrets.BLING_CLIENT_SECRET }}
+          BLING_REFRESH_TOKEN: ${{ secrets.BLING_REFRESH_TOKEN }}
+          BLING_DEPOSITO_ID: ${{ secrets.BLING_DEPOSITO_ID }}
+          NUVEMSHOP_ACCESS_TOKEN: ${{ secrets.NUVEMSHOP_ACCESS_TOKEN }}
+          NUVEMSHOP_STORE_ID: ${{ secrets.NUVEMSHOP_STORE_ID }}
+          CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
+          CALLMEBOT_APIKEY: ${{ secrets.CALLMEBOT_APIKEY }}
+          GH_PAT: ${{ secrets.GH_PAT }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
