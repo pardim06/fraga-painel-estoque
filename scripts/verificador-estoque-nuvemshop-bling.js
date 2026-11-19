@@ -32,14 +32,15 @@ const NUVEMSHOP_ACCESS_TOKEN = process.env.NUVEMSHOP_ACCESS_TOKEN;
 // direto (esse fica desatualizado pra correção quando locais estão ativos —
 // confirmado testando contra a loja real). Cada variação tem 1 location_id
 // só nessa conta; se um dia tiver mais de um local, pega o primeiro.
+const POR_PAGINA = 200;
+
 async function getEstoqueNuvemshop() {
   const estoques = {};
   let page = 1;
 
   while (true) {
-    const resp = await nuvemshopGet('/products', { params: { per_page: 200, page } });
+    const resp = await nuvemshopGet('/products', { params: { per_page: POR_PAGINA, page } });
     const produtos = resp.data || [];
-    if (produtos.length === 0) break;
 
     for (const produto of produtos) {
       if (!produto.published) continue;
@@ -64,6 +65,10 @@ async function getEstoqueNuvemshop() {
       }
     }
 
+    // A API da Nuvemshop devolve ERRO (404 "Last page is N"), não lista
+    // vazia, ao pedir uma página além da última — por isso parar com base
+    // no tamanho da página recebida, nunca chamar de novo depois da última.
+    if (produtos.length < POR_PAGINA) break;
     page++;
   }
 
