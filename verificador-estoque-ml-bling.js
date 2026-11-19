@@ -16,7 +16,7 @@ const { getBlingAccessToken, getMLAccessToken } = require('./lib/tokens');
 const { aguardar } = require('./lib/bling-http');
 const { getEstoqueBling } = require('./lib/bling-estoque');
 const { enviarNotificacao } = require('./lib/notificar');
-const { rodarVerificacaoBagy } = require('./scripts/verificador-estoque-bagy-bling');
+const { rodarVerificacaoNuvemshop } = require('./scripts/verificador-estoque-nuvemshop-bling');
 const { publicarDados, buscarDadosPublicados, incrementarHistoricoMensal } = require('./lib/supabase-publicar');
 const { publicarFaturamentoLive } = require('./lib/faturamento-live');
 
@@ -284,12 +284,12 @@ async function main() {
 
   // Reaproveita o mesmo blingToken/estoqueBling já buscados acima — o Bling
   // gira o refresh_token a cada uso, então buscar de novo aqui invalidaria
-  // o token que acabou de ser usado. Erro na Bagy não deve derrubar o
+  // o token que acabou de ser usado. Erro na Nuvemshop não deve derrubar o
   // resultado do ML, que já foi salvo com sucesso.
   try {
-    await rodarVerificacaoBagy(estoqueBling);
+    await rodarVerificacaoNuvemshop(estoqueBling);
   } catch (err) {
-    console.error('Erro na verificação de estoque Bagy x Bling:', err.response?.data || err.message);
+    console.error('Erro na verificação de estoque Nuvemshop x Bling:', err.response?.data || err.message);
   }
 
   // Mesma lógica de reaproveitar blingToken/estoqueBling acima — e erro
